@@ -1,0 +1,101 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSASystem
+public
+with MissionSystemDataTypes;
+with TrackTypes;
+with Data_Model;
+with EMV2;
+with ASSAHardware, JMRMIS;
+	with SAObservations;
+	with ASSAInterfaces;
+system ASSASystem
+		features
+			toSwitch: requires bus access ASSAHardware::ARINC664;
+		
+			IncomingCOP: in data port;
+			FENNLocations: in data port;
+			GeospatialData: in data port;
+			EnvironmentalInformation: in data port;
+			Weather: in data port;
+			OwnAircraftPosition: in data port MissionSystemDataTypes::Position;
+			AMPSInterface: in out event data port MissionSystemDataTypes::PlanningInformation;
+			ASSAAutoControl: out feature group;
+			ThreatAlerts: out feature;
+			ASSAAirCrewPresentation: out feature group  ASSAInterfaces::AirCrewSAInformation;
+		flows
+			directAircraftpos: flow path OwnAircraftPosition -> ASSAAirCrewPresentation;
+			assessedASSAAircraftpos: flow path OwnAircraftPosition -> ASSAAirCrewPresentation;
+			ASSASensorObservations: flow source ASSAAirCrewPresentation;
+		properties
+			JMRMIS::ObservedObjects => ( classifier (SAObservations::Threat),
+				classifier(SAObservations::Obstacle), 
+				classifier(SAObservations::Terrain)
+			);
+			JMRMIS::ObservationRadius => 5 NM applies to ASSAAirCrewPresentation;
+		annex emv2 {**
+ 			use types ErrorLibrary, ExceptionalConditionTypes, SensorErrorLibrary;
+			use behavior ErrorLibrary::DegradedFailStop;
+ 			error propagations
+				--GeospatialData not specified
+				GeospatialData: in propagation{ObservationsImprecise,ObservationsInaccurate,OutOfRange};
+				--EnvironmentalInformation not specified
+				EnvironmentalInformation: in propagation{ItemOmission,OutOfRange};
+				--weather not specified
+				Weather: in propagation{ItemOmission,OutofRange};
+				--COP not totally specified
+				IncomingCOP: in propagation{ItemOmission,OutofRange};
+				ThreatAlerts: out propagation{FalsePositiveASSAData,FalseNegativeASSAData};
+				--Planning Information not specified
+				AMPSInterface: in propagation{ItemOmission,OutofRange};
+				AMPSInterface: out propagation{ItemOmission,OutofRange};
+
+				OwnAircraftPosition: in propagation{ItemOmission,AircraftPositionError};
+ 				ASSAAirCrewPresentation: out propagation {FalsePositiveASSAData, FalseNegativeASSAData, InaccurateASSAData};
+ 			flows
+ 				falsepositives: error source ASSAAirCrewPresentation{FalsePositiveASSAData} ;
+ 				falsenegatives: error source ASSAAirCrewPresentation{FalseNegativeASSAData} when {SensorLoss};
+ 				inaccuratedata: error source ASSAAirCrewPresentation{InaccurateASSAData};
+ 				passthrough1: error path OwnAircraftPosition{ItemOmission} 
+ 				 -> ASSAAirCrewPresentation{FalseNegativeASSAData};
+				passthrough2: error path OwnAircraftPosition{AircraftPositionError} 
+ 				 -> ASSAAirCrewPresentation{InaccurateASSAData};
+ 			end propagations;
+ 			properties
+ 			EMV2::Severity => 2 applies to ASSAAirCrewPresentation;
+			EMV2::OccurrenceDistribution => [ ProbabilityValue => 0.0001 ; Distribution => Fixed;] applies to FailStop;
+			EMV2::Hazards => ([
+    		crossreference => "N/A";
+    		failure => "Non-Existent Threats and Obstacles";
+    		phases => ("all");
+    		developmentassurancelevel => E;
+    		Likelihood => C;
+    		Severity => 3;
+    		description => "Reporting of non-existent threats and obstacles results in higher aircraft loss risk due to unnecessary evasive action.";  
+			]) applies to falsepositives ; --ASSAAirCrewPresentation.FalsePositiveASSAData;
+
+			EMV2::Hazards => ([
+    		crossreference => "N/A";
+    		failure => "Failed Reporting of Threats and Obstacles";
+    		phases => ("all");
+    		developmentassurancelevel => E;
+    		Likelihood => C;
+    		Severity => 3;
+    		description => "Failed reporting of threats and obstacles result in higher risk of loss of aircraft.";  
+			]) applies to falsenegatives; -- ASSAAirCrewPresentation.FalseNegativeASSAData;
+			
+			EMV2::Hazards => ([
+    		crossreference => "N/A";
+    		failure => "Inaccurate Reporting of Threats and Obstacles";
+    		phases => ("all");
+    		developmentassurancelevel => E;
+    		Likelihood => C;
+    		Severity => 3;
+    		description => "Inaccurate and untimely threat and obstacle position reporting can result in higher risk of aircraft loss.";  
+			]) applies to inaccuratedata; -- ASSAAirCrewPresentation.InaccurateASSAData;
+ 		**} ;
+	end ASSASystem;
+
+
+end ASSASystem;

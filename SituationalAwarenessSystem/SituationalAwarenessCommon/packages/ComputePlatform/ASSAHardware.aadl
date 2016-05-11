@@ -1,0 +1,167 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSAHardware
+public
+	with ARINC653;
+--	Description 
+--		This package defines a set of hardware component that make up a hardware platform.
+--		The processor is configed with two or four partitions and includes a partition schedule.
+--	
+
+
+processor GPU
+features
+	pci: requires bus access PCI;
+end GPU;
+
+processor implementation GPU.FourPartition
+subcomponents
+	part1 : virtual processor ARINC653Partition;
+	part2 : virtual processor ARINC653Partition;
+	part3 : virtual processor ARINC653Partition;
+	part4 : virtual processor ARINC653Partition;
+properties
+	arinc653::module_major_frame => 200 ms;
+	arinc653::module_schedule => ([Partition => reference (part1) ; Duration => 50 ms ; Periodic_Processing_Start => true;],
+		                          [Partition => reference (part2) ; Duration => 50 ms ; Periodic_Processing_Start => true;],
+		                          [Partition => reference (part3) ; Duration => 50 ms ; Periodic_Processing_Start => true;],
+		                          [Partition => reference (part4) ; Duration => 50 ms ; Periodic_Processing_Start => true;]);
+	end GPU.FourPartition;
+
+processor implementation GPU.TwoPartition
+subcomponents
+	part1 : virtual processor ARINC653Partition;
+	part2 : virtual processor ARINC653Partition;
+properties
+	arinc653::module_major_frame => 100 ms;
+	arinc653::module_schedule => ([Partition => reference (part1) ; Duration => 50 ms ; Periodic_Processing_Start => true;],
+		                          [Partition => reference (part2) ; Duration => 50 ms ; Periodic_Processing_Start => true;]);
+	end GPU.TwoPartition;
+
+	virtual processor ARINC653Partition
+	end ARINC653Partition;
+
+
+
+processor IOM
+features
+	EtherSwitch_L: requires bus access ARINC664;
+	EtherSwitch_R: requires bus access ARINC664;
+	MS1553: requires bus access MIL_STD_1553_Bus;
+	Serial: requires bus access ARINC_429_Pair;
+	pci: requires bus access PCI;
+end IOM;
+
+	-- ARINC 429 is a twisted-pair, single-transmitter
+	-- multiple-receiver, asynchronous serial bus.	
+	-- ARINC 429 data is transferred in 32 bit words at 100 Kbps.
+	bus ARINC_429_Pair 
+	properties
+		Transmission_Type => push;	
+		Transmission_Time => [Fixed => 0 us .. 0 us; PerByte => 80 us .. 80 us;];
+	end ARINC_429_Pair;
+	
+	-- MIL STD 1553 is a twisted-pair, multi-transmitter
+	-- multi-receiver, dual redundant channels.  Messages up
+	-- to 32 16-bit words are transferred in response
+	-- to commands from a designated bus controller,
+	-- which means all transfers are synchronous to
+	-- bus controller operation.
+	bus MIL_STD_1553_Bus 
+	properties
+		Transmission_Type => pull;
+		-- 16 bit word takes 20 bit-times due to sync + parity bits
+		-- Fixed time is for command word + 10us responder delay + status word
+		Transmission_Time => [Fixed => 50 us .. 50 us; PerByte => 10 us .. 10 us;];
+	annex EMV2 {** 
+		use types ErrorLibrary, HardwareErrorLibrary,SensorErrorLibrary;
+		use behavior ErrorLibrary::FailStop;
+		error propagations
+		bindings: out propagation{NetworkFailure};
+		access: out propagation {NetworkFailure};
+		access: in propagation {ProcessorFailure};
+		flows
+			src1:error source bindings{NetworkFailure} when FailStop;
+			passthru: error path access {ProcessorFailure} -> access{NetworkFailure};
+			passup: error path access{ProcessorFailure} -> bindings{NetworkFailure};
+	end propagations;
+		**};
+	end MIL_STD_1553_Bus;
+	
+	-- ARINC 664 etherswitch with fixed number of connection points
+	bus ARINC664
+	annex EMV2 {** 
+		use types ErrorLibrary, HardwareErrorLibrary;
+		use behavior ErrorLibrary::FailStop;
+		error propagations
+		bindings: out propagation{NetworkFailure};
+		access: out propagation {NetworkFailure};
+		access: in propagation {ProcessorFailure};
+		flows
+			src1:error source bindings{NetworkFailure} when FailStop;
+			src2:error source access{NetworkFailure} when FailStop;
+			mask: error sink access {ProcessorFailure};
+	end propagations;
+		**};
+	end ARINC664;
+	
+	bus PCI
+	annex EMV2 {** 
+		use types ErrorLibrary, HardwareErrorLibrary;
+		use behavior ErrorLibrary::FailStop;
+		error propagations
+		bindings: out propagation{NetworkFailure};
+		access: out propagation {NetworkFailure};
+		flows
+			src1:error source bindings{NetworkFailure} when FailStop;
+	end propagations;
+		**};
+	end PCI;
+	
+	system HWProcessor
+	features
+		ToSwitch: requires bus access arinc664;
+		To1553: requires bus access MIL_STD_1553_Bus;
+	annex EMV2 {** 
+		use types ErrorLibrary, HardwareErrorLibrary;
+		use behavior ErrorLibrary::FailStop;
+		error propagations
+		bindings: out propagation{ProcessorFailure};
+		ToSwitch: out propagation {ProcessorFailure};
+		ToSwitch: in propagation {NetworkFailure};
+		To1553: out propagation {ProcessorFailure};
+		To1553: in propagation {NetworkFailure};
+		flows
+			src1:error source bindings{ProcessorFailure} when FailStop;
+			src2:error source ToSwitch{ProcessorFailure} when FailStop;
+			src3:error source To1553{ProcessorFailure} when FailStop;
+			maskswitch: error sink ToSwitch{NetworkFailure} ;
+			mask1553: error sink To1553{NetworkFailure};
+	end propagations;
+		**};
+	end HWProcessor;
+	
+	system implementation HWProcessor.GPIO
+	subcomponents
+		pc1: processor GPU;
+		io1: processor IOM;
+		pci1: bus pci;
+	connections
+		PCtoPCI: bus access pc1.pci <-> pci1;
+		PCItoIO: bus access pci1 <-> io1.pci;
+		ext664: bus access io1.EtherSwitch_L <-> ToSwitch;
+		ext1553: bus access io1.MS1553 <-> To1553;
+	end HWProcessor.GPIO;
+	
+	system implementation HWProcessor.GPIO4P extends HWProcessor.GPIO
+	subcomponents
+		pc1: refined to processor GPU.FourPartition;
+	end HWProcessor.GPIO4P;
+	
+	system implementation HWProcessor.GPIO2P extends HWProcessor.GPIO
+	subcomponents
+		pc1: refined to processor GPU.TwoPartition;
+	end HWProcessor.GPIO2P;
+
+end ASSAHardware;

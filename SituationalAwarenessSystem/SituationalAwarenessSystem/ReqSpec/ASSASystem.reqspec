@@ -1,0 +1,95 @@
+// Copyright 2015 Carnegie Mellon University
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+
+system requirements ASSASystemReqs for ASSASystem::ASSASystem
+[
+	requirement req1 : "support offboard and onboard mission planning"
+	for AMPSInterface 
+	[		
+		description "support offboard and onboard mission planning and replanning"
+		see goal  MISStakeholderRequirements.SR_73 MISStakeholderRequirements.SR_74 
+		MISStakeholderRequirements.SR_75 MISStakeholderRequirements.SR_76 MISStakeholderRequirements.SR_77 
+	]
+	
+	requirement req2 : "exchange planning information" for AMPSInterface
+	[	
+		description "Planning information is communicated through the AMPSInterface."
+	]
+	
+	requirement req3 for ThreatAlerts
+	[	description "alert other manned and unmanned systems"
+		see goal MISStakeholderRequirements.SR_81
+	]
+	
+	requirement req4 : "alert aircrew of threats" for ThreatAlerts
+		[
+			description "aural and visual annunciation of threat alerts to aircrew"
+		see goal MISStakeholderRequirements.SR_81
+		]
+	requirement req5 for IncomingCOP
+[		description "Receipt of Common Operating Picture (COP)" 
+	see goal MISStakeholderRequirements.SR_80
+			]
+	requirement req6 for ASSAAirCrewPresentation
+		[ description "aircrew display of threat information affecting the area of operation"
+		see goal MISStakeholderRequirements.SR_82
+			]
+	requirement req7 for ASSAAirCrewPresentation
+		[description "aircrew display of obstacle information affecting the area of operation"
+		see goal MISStakeholderRequirements.SR_83
+			]
+	requirement req8 for ASSAAirCrewPresentation
+		[description "aircrew display of weather information affecting the area of operation"
+		see goal MISStakeholderRequirements.SR_84
+			]
+	requirement req9 for GeospatialData
+		[description "Receipt of geospatial data"
+		see goal MISStakeholderRequirements.SR_85
+			]
+	requirement req10 for EnvironmentalInformation
+		[description "Receipt of environment information"
+		see goal MISStakeholderRequirements.SR_85
+			]
+	requirement req11 for FENNLocations
+		[description "Receipt of FENN locations"
+		see goal MISStakeholderRequirements.SR_86
+			]
+			issues  		"SR_78/79: Under location non-degraded aircraft location and airspace SA. Can be interpreted as non-stale and error threshold. No similar statements on threats, obstacles, terrain. Are they airspace SA?"
+		"SR_88: Terrain hazards has no hazard condition. Should awareness of 2mn be interpreted as such?"
+		"SR_28: terrain location relative to what? (latitude/longitude vs. x/y distance from aircraft)" 
+		"SR_29: terrain height relative to what? (altitude above sea level vs. z distance from aircraft)" 
+		"SR 7.3: Terrain is indicated in terms of location and height. SR 7.4: Obstacles are indicated relative to aircraft position and height. Are position and location in 2D or 3D space and in what units? "
+		"SR 7.3 only refers to height, while SR 7.4 refers to height and horizontal separation from aircraft. What is the difference between height (altitude?) and horizontal separation (horizontal distance)?"
+		"SR_96: separation distance is specified for flight path obstacles - assumed to be applicable for wire obstacles to determining when rerouting should be initiated"
+		"SR 7.5: no numeric awareness condition for adjacent aircraft, or other aircraft"
+		"SR 7.5: aircraft in terms of position and altitude (is position 2D ore 3D?). Also relative position to self without altitude or vertical separation."
+		"SR 7.5 specifies position and altitude, SR 7.4 specifies position relative to aircraft & horizontal/vertical separation. SR 7.3 specifies location and height. Need to know relation of these different measurement units."
+		"SR_85 Environmental information: does that include weather information? We need to provide weather information. "
+		"Unspecified whether aircraft position is represented in source track format"
+			
+]
+
+		
+system requirements ASSASystemDCMReqs for ASSASystem::Functional::ASSASystem.DCMFunctional
+	[  
+		requirement req12 : "provide data storage and conversion"for ASSADataService
+		[ description "Provide data service in support of the data flows specified by ConnectionBinding"
+		value predicate  #ACVIP::Service_Binding == "ASSADataService"
+		]
+
+	requirement req13 :"monitor the health of the SA components" for ASSAHealthMonitor
+		[
+		description "monitor the health of the SA components identified by Supervise"
+		value predicate #ACVIP::Supervise == "ASSAHealthMonitor"
+		]
+		
+		issues 	"ASSA system variant that does correlation of a track stream from a single threat sensor"
+		
+		]
+
+system requirements dcfmreqs for ASSASystem::Functional::ASSASystem.DCFMFunctional [
+	issues "ASSA system variant that does fusion and correlation for track streams from two threat sensors"
+	]
+
+		

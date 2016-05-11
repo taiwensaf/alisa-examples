@@ -1,0 +1,168 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSAServices
+public
+with ACVIP;
+with MissionSystemDataTypes;
+with ASSAInterfaces;
+
+process SituationAssessment
+		features
+			AssessmentInput: in feature group;
+			AssessmentResults: out feature group;
+		flows
+			Assessment: flow path AssessmentInput -> AssessmentResults;
+		properties
+			Latency => 10 ms .. 10 ms applies to Assessment;
+			Period => 100 ms;
+	annex EMV2{**
+			use types  ExceptionalConditionTypes,HardwareErrorLibrary;
+			error propagations
+				AssessmentResults:out propagation{FalseNegativeASSAData, FalsePositiveASSAData,InaccurateASSAData};
+				AssessmentInput:in propagation{TrackOmission, TrackSetIntegrity};
+				processor: in propagation{ProcessorFailure};
+				flows
+					computesrc:error source AssessmentResults{OutOfRangeASSAData} when {TrackComputationError};
+					timeskewsrc:error source AssessmentResults{TimeSkewedASSADataAircraftPosition} ;
+					passthruintegrity: error path AssessmentInput{TrackSetIntegrity} -> AssessmentResults{InaccurateASSAData};
+					passthruvalueerror: error path AssessmentInput{TrackValueError} -> AssessmentResults{FalsePositiveASSAData};
+					passthruomission: error path AssessmentInput{TrackOmission} -> AssessmentResults{FalseNegativeASSAData};
+					passupomission: error path processor{ProcessorFailure} -> AssessmentResults{FalseNegativeASSAData};
+			end propagations;
+		**};
+	end SituationAssessment;
+
+	process SADataConversion
+		prototypes
+			SensorTrackSets: feature group ASSAInterfaces::SensorTrackSets;
+			StdSourceTrackSets: feature group ASSAInterfaces::StdSourceTrackSets;
+		features
+			SensorSetReadings: feature group inverse of SensorTrackSets;
+			StdSourceTracks: out feature group StdSourceTrackSets;
+		flows
+			TrackConversion: flow path SensorSetReadings -> StdSourceTracks;
+		properties 
+			Latency => 5 ms .. 10 ms applies to TrackConversion;
+	annex EMV2{**
+			use types  ExceptionalConditionTypes, SensorErrorLibrary, HardwareErrorLibrary;
+			error propagations
+				StdSourceTracks:out propagation{TrackValueError,TrackOmission};
+				SensorSetReadings:in propagation{SensorDataOmission,SensorDataOutofRange};
+				processor: in propagation{ProcessorFailure};
+				flows
+					conversionsrc:error source StdSourceTracks{TrackValueError} when {TrackComputationError};
+					badtrackdata:error path SensorSetReadings{SensorDataOutofRange} -> StdSourceTracks{TrackValueError};
+					missingtrack:error path SensorSetReadings{SensorDataOmission} -> StdSourceTracks{TrackOmission};
+					lostgpu:error path processor{ProcessorFailure} -> StdSourceTracks{TrackOmission};
+			end propagations;
+		**};
+	end SADataConversion;
+
+	process SADataService
+		features
+			IncomingOwnAircraftPosition: in data port;
+			OutgoingOwnAircraftPosition: out data port;
+
+			IncomingStdSourceTrackSets: in feature group inverse of ASSAInterfaces::StdSourceTrackSets;
+			OutgoingStdSourceTrackSets: out feature group ASSAInterfaces::StdSourceTrackSets;
+			IncomingCorrelatedTrackSets: in feature group inverse of ASSAInterfaces::CorrelatedTrackSets;
+			OutgoingCorrelatedTrackSets: out feature group ASSAInterfaces::CorrelatedTrackSets {
+				ACVIP::OutputInterval => 1 sec;
+				Communication_Properties::Transmission_Type => pull;
+			};
+
+			Alerts: out event data port;
+		flows
+			sourcetracktoAlert: flow path IncomingOwnAircraftPosition -> Alerts;
+	annex EMV2{**
+			use types  ExceptionalConditionTypes;
+			error propagations
+				OutgoingStdSourceTrackSets:out propagation{TrackSetIntegrity};
+				OutgoingCorrelatedTrackSets:out propagation{TrackSetIntegrity};
+				flows
+					src1:error source OutgoingStdSourceTrackSets{TrackSetIntegrity} ;
+					src2:error source OutgoingCorrelatedTrackSets{TrackSetIntegrity} ;
+			end propagations;
+		**};
+	end SADataService;
+
+	process DCFM
+		features
+			IncomingData: feature group;
+			ownAircraftPosition: in data port MissionSystemDataTypes::Position;
+			OutgoingCorrelatedTracks: feature group ASSAInterfaces::CorrelatedTrackSets;
+		flows
+			TrackFusion: flow path IncomingData -> OutgoingCorrelatedTracks;
+			AircraftPositionFusion: flow path ownAircraftPosition -> OutgoingCorrelatedTracks;
+	annex EMV2{**
+			use types  ExceptionalConditionTypes, HardwareErrorLibrary;
+			error propagations
+				OutgoingCorrelatedTracks:out propagation{TrackOmission,TrackSetIntegrity};
+				IncomingData:in propagation{TrackValueError,TrackOmission};
+				processor: in propagation{ProcessorFailure};
+				flows
+					src1:error source OutgoingCorrelatedTracks{TrackSetIntegrity} when {TrackOmission};
+					src2:error source OutgoingCorrelatedTracks{TrackValueError} when {TrackComputationError};
+					passthru: error path IncomingData -> OutgoingCorrelatedTracks;
+					lostGPU: error path processor{ProcessorFailure} -> OutgoingCorrelatedTracks{TrackOmission};
+			end propagations;
+		**};
+	end DCFM;
+
+	system ASSASensors
+		prototypes
+			SensorSetOutput: feature group ASSAInterfaces::SensorTrackSets;
+			SensorNetworkConnections: feature group ASSAInterfaces::SensorNetworkConnections;
+		features
+			SensorSetReadings: feature group SensorSetOutput;
+			SensorSetComm: feature group SensorNetworkConnections;
+		flows
+			sensorReadings: flow source SensorSetReadings;
+	annex EMV2{**
+			use types ErrorLibrary, SensorErrorLibrary;
+			use behavior ErrorLibrary::DegradedFailStop;
+			error propagations
+				SensorSetReadings:out propagation{SensorDataOmission,SensorDataOutofRange};
+				flows
+					src1:error source SensorSetReadings{SensorDataOmission} when FailStop;
+					src2:error source SensorSetReadings{SensorDataOutofRange} when Degraded;
+			end propagations;
+			component error behavior
+			events
+				FailEvent: error event {SensorDataOmission};
+				DegradeEvent: error event{SensorDataOutofRange};
+			transitions
+				fail: Operational-[FailEvent]->FailStop;
+				degrade: Operational-[DegradeEvent]->Degraded;
+			end component;
+		**};
+	end ASSASensors;
+
+	process SAInformationPreparation
+		features
+			WeatherInformation: in data port;
+			AssessedInformation: in feature group;
+			ObstacleInformation: in data port;
+			TerrainInformation: in data port;
+			OwnAircraftPosition: in data port MissionSystemDataTypes::Position;
+			MFDSAInformation: out feature group ASSAInterfaces::MFDSAInformation;
+		flows
+			AssessedThreatInfo: flow path AssessedInformation -> MFDSAInformation;
+			OwnAircraftInfo: flow path OwnAircraftPosition -> MFDSAInformation;
+		properties
+			Period => 100 ms;
+			Latency => 1 ms .. 1 ms applies to AssessedThreatInfo;
+	annex EMV2{**
+			use types  ExceptionalConditionTypes;
+			error propagations
+				MFDSAInformation:out propagation{FalseNegativeASSAData, FalsePositiveASSAData,InaccurateASSAData};
+				AssessedInformation:in propagation{FalseNegativeASSAData, FalsePositiveASSAData,InaccurateASSAData};
+				flows
+					timeskewsrc:error source MFDSAInformation{TimeSkewedASSADataAircraftPosition} ;
+					passthru: error path AssessedInformation -> MFDSAInformation;
+			end propagations;
+		**};
+	end SAInformationPreparation;
+
+	end ASSAServices;

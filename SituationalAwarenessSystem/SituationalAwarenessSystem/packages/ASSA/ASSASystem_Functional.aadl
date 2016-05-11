@@ -1,0 +1,134 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSASystem::Functional
+public
+with  ASSASystem, ASSASensors, ASSAAssessment,SAAwarenessAnnunciation;
+with DCFM,   ASSASystem;
+with ACVIP;
+ASSASystem renames system ASSASystem::ASSASystem;
+
+-- This package contains the specification of the ASSA functional architecture.
+-- It is specified for a specific sensor configuration (APR39D and WW)
+-- We provide two variants, one for a single sensor stream processed by a DCM, 
+-- the other with a DCFM processing two sensor streams.
+-- The specification incldues end to end flow specification for latency analysis.
+-- The data conversion service and data storage service are represented as infrastructure services.
+-- The connections between the ASSA functions are appropriately bound to these services.
+-- As a result of this binding the latency analysis includes their latency contributions.
+
+
+abstract ASSADataService
+properties
+Latency => 100ms .. 100ms;
+end ASSADataService ;
+
+abstract ASSADataConversion
+properties
+Latency => 3ms .. 5ms;
+end ASSADataConversion ;
+
+	system implementation ASSASystem.Common 
+	subcomponents
+		APR39D : device ASSASensors::APR39D;
+		WW : device ASSASensors::WeaponWatch;
+		RadarDCM : system DCFM::RadarTrackCorrelation;
+		SAAssessment : system ASSAAssessment::SituationAssessment;
+		AirCrewDisplay : device SAAwarenessAnnunciation::SituationAwarenessDisplay;
+		AircrewAnnunciation: device SAAwarenessAnnunciation::SAAnnunciationDevice;
+		ASSAHealthMonitor : abstract;
+		ASSADataService : abstract ASSADataService;
+		ASSADataConversion: abstract ASSADataConversion;
+	connections
+		WeatherInfo: port Weather -> AirCrewDisplay.WeatherInformation;
+			-- phf: this error message is intentional. 
+			-- It indicates that data format conversion must be performed.
+		RadarTracks : port APR39D.SourceTracks -> RadarDCM.SourceTracks;
+		CorrelatedRadars : port RadarDCM.CorrelatedTracks -> SAAssessment.RadarTracks;
+		CorrelatedRadarTracks : port RadarDCM.CorrelatedTracks -> AirCrewDisplay.RadarInformation;
+		AssessedTracks : port SAAssessment.AssessedTracks -> AirCrewDisplay.AssessedInformation;
+		SAAlerts : port SAAssessment.Alerts -> AircrewAnnunciation.Alerts;
+		AircrewVisuals : feature group AirCrewDisplay.AircrewSAInformation -> ASSAAirCrewPresentation;
+		MyPositionAssessment: port OwnAircraftPosition -> SAAssessment.OwnAircraftPosition;
+		MyPositionDisplay: port OwnAircraftPosition -> AirCrewDisplay.OwnAircraftPosition;
+	flows
+		RadarAlert : end to end flow APR39D.RadarObserved -> RadarTracks -> RadarDCM.RadarCorrelation -> CorrelatedRadars -> 
+		SAAssessment.RadarAlerts -> SAAlerts -> AircrewAnnunciation.SoundAlerts;
+		RadarObservation : end to end flow APR39D.RadarObserved -> RadarTracks -> RadarDCM.RadarCorrelation -> CorrelatedRadars -> 
+		SAAssessment.RadarAssessment -> AssessedTracks -> AirCrewDisplay.AssessedThreatInfo;
+	Properties
+		Latency => 1650 ms .. 1650 ms applies to RadarObservation, RadarAlert;
+		ACVIP::Supervise => (reference (APR39D), reference (WW))
+			applies to ASSAHealthMonitor;
+		ACVIP::Service_Binding => (reference (ASSADataService))
+			applies to   CorrelatedRadarTracks,
+		 CorrelatedRadars, SAAlerts, MyPositionAssessment,MyPositionDisplay,
+		WeatherInfo;
+		ACVIP::Service_Binding => (reference (ASSADataService),reference (ASSADataConversion))
+			applies to RadarTracks; 
+		
+	end ASSASystem.Common;
+
+	system implementation ASSASystem.DCMFunctional extends ASSASystem.Common
+	subcomponents
+			ThreatDCM : system DCFM::DataCorrelation;
+		connections
+			-- phf: this error message is intentional. 
+			-- It indicates that data format conversion must be performed.
+		WWTracks : port WW.SourceTracks -> ThreatDCM.Sourcetracks;
+		CorrelatedThreats : port ThreatDCM.CorrelatedTracks -> SAAssessment.ThreatTracks;
+		CorrelatedThreatTracks : port ThreatDCM.CorrelatedTracks -> AirCrewDisplay.ThreatInformation;
+	MyPositionThreat: port OwnAircraftPosition -> ThreatDCM.OwnAircraftPosition;
+	Assessments : port SAAssessment.AssessedTracks -> AirCrewDisplay.AssessedInformation;
+flows
+		HostileFireObservation: end to end flow WW.ThreatObserved -> WWTracks ->ThreatDCM.ThreatCorrelation -> 
+		CorrelatedThreatTracks  ->
+		  AirCrewDisplay.ThreatInfo;
+		HostileFireWarning: end to end flow WW.ThreatObserved -> WWTracks ->ThreatDCM.ThreatCorrelation -> 
+		CorrelatedThreats -> SAAssessment.ThreatAssessment -> AssessedTracks ->
+		  AirCrewDisplay.AssessedThreatInfo;
+		HostileFireAlert: end to end flow WW.ThreatObserved -> WWTracks ->ThreatDCM.ThreatCorrelation -> 
+		CorrelatedThreats -> SAAssessment.ThreatAlerts -> SAAlerts ->
+		 AircrewAnnunciation.SoundAlerts;
+properties
+	Latency => 1600 ms .. 1600 ms applies to HostileFireObservation, HostileFireWarning, HostileFireAlert;
+
+	ACVIP::Service_Binding => (reference (ASSADataService))
+			applies to CorrelatedThreatTracks, CorrelatedRadarTracks,
+		CorrelatedThreats, CorrelatedRadars, SAAlerts, MyPositionThreat,MyPositionAssessment,MyPositionDisplay,
+		WeatherInfo;
+		ACVIP::Service_Binding => (reference (ASSADataService),reference (ASSADataConversion))
+			applies to WWTracks, RadarTracks; --, MyPositionAssessment, MyPositionDisplay;
+	end ASSASystem.DCMFunctional;
+
+	system implementation ASSASystem.DCFMFunctional extends ASSASystem.Common
+	subcomponents
+			ThreatDCFM : system DCFM::DataCorrelationAndFusion;
+			JATAS: device ASSASensors::JATAS;
+		connections
+			-- phf: these 2 error messages are intentional. 
+			-- They indicate that data format conversion must be performed.
+		WWTracks : port WW.SourceTracks -> ThreatDCFM.Sourcetracks1;
+		JATASTracks : port JATAS.SourceTracks -> ThreatDCFM.Sourcetracks2;
+		CorrelatedThreats : port ThreatDCFM.CorrelatedTracks -> SAAssessment.ThreatTracks;
+		CorrelatedThreatTracks : port ThreatDCFM.CorrelatedTracks -> AirCrewDisplay.ThreatInformation;
+	flows
+		HostileFireAlert: end to end flow WW.ThreatObserved -> WWTracks ->ThreatDCFM.ThreatConversion1 -> 
+		CorrelatedThreats -> SAAssessment.ThreatAssessment -> SAAlerts ->
+		 AircrewAnnunciation.SoundAlerts;
+	properties
+		ACVIP::Supervise => (reference (APR39D), reference (JATAS), reference(WW))
+			applies to ASSAHealthMonitor;
+			-- additional service bindings
+		ACVIP::Service_Binding => (reference (ASSADataService))
+			applies to CorrelatedThreats,  CorrelatedThreatTracks;
+		ACVIP::Service_Binding => (reference (ASSADataConversion))
+			applies to RadarTracks; 
+		ACVIP::Service_Binding => (reference (ASSADataService),reference (ASSADataConversion))
+			applies to WWTracks, JATASTracks; 
+			--, MyPositionAssessment, MyPositionDisplay;
+	Latency => 1600 ms .. 1600 ms applies to  HostileFireAlert;
+	
+	end ASSASystem.DCFMFunctional;
+	
+end ASSASystem::Functional;

@@ -1,0 +1,25 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package CH47FConfiguration
+public
+with AircraftSystems;
+
+AircraftSystem renames system AircraftSystems::AircraftSystem;
+ASSASystem renames system ASSASystem::ASSASystem;
+with ASSASystem;
+with ASSASensorConfigurations;
+with ASSAMISConfigurations;
+with ASSASystem::Common;
+
+system implementation AircraftSystem.CH47F extends AircraftSystems::AircraftSystem.ASSASystem
+subcomponents
+		assa: refined to system ASSASystem.CH47F;
+end AircraftSystem.CH47F;
+
+system implementation ASSASystem.CH47F extends ASSASystem::Common::ASSASystem.common
+subcomponents
+	Sensors: refined to system ASSASensorConfigurations::ASSASensorConfiguration.CH47F;
+	Conversion: refined to process ASSAMISConfigurations::ASSADataConversion.CH47F;
+end ASSASystem.CH47F;
+end CH47FConfiguration;

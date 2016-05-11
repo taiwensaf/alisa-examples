@@ -1,0 +1,42 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSAPlatform
+public
+	with ASSAHardware, ASSASensors, ASSADisplayAnnunication;
+--	 Description 
+--		This package defines a hardware platform for ASSA.
+--		It includes the Hardware Processor, MFD, external networks, and a sensor
+--	
+	
+System ASSAPlatform
+features
+	switchaccess: provides bus access ASSAHardware::ARINC664;
+end ASSAPlatform;
+
+system implementation ASSAPlatform.Basic
+	subcomponents
+		apr39d: device ASSASensors::APR39D;
+		ChannelA: bus ASSAHardware::MIL_STD_1553_Bus;
+		Switch: bus ASSAHardware::ARINC664;
+		gpu: system ASSAHardware::HWProcessor;
+		mfd: device ASSADisplayAnnunication::ASSAMFDDisplay;
+connections
+	gputo1553: bus access gpu.To1553 <-> ChannelA;
+	sensorto1553: bus access apr39d.network <-> ChannelA;
+	gputoswitch: bus access gpu.ToSwitch <-> Switch;
+	mfdtoswitch: bus access mfd.network <-> Switch;
+	extswitchaccess: bus access switchaccess <-> Switch;
+end ASSAPlatform.Basic;
+
+system implementation ASSAPlatform.FourPart extends ASSAPlatform.Basic
+	subcomponents
+		gpu: refined to system ASSAHardware::HWProcessor.GPIO4P;
+end ASSAPlatform.FourPart;
+
+system implementation ASSAPlatform.TwoPart extends ASSAPlatform.Basic
+	subcomponents
+		gpu: refined to system ASSAHardware::HWProcessor.GPIO4P;
+end ASSAPlatform.TwoPart;
+	
+end ASSAPlatform;

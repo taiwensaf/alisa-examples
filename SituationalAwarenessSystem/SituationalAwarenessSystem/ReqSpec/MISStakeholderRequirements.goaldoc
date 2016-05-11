@@ -1,0 +1,321 @@
+// Copyright 2015 Carnegie Mellon University
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+document MISStakeholderRequirements [
+	section ActualRequirements [
+		goal SR_57 : "MIS shall operate during all aircraft operations missions and flight profiles" [
+			stakeholder mrj.phf
+		]
+		goal SR_56 : "MIS shall operate during visual meteorological conditions" [
+			stakeholder mrj.phf
+		]
+		goal SR_55 : "MIS shall operate during instrument meteorological conditions" [
+			stakeholder mrj.phf
+		]
+		goal SR_65 : "MIS shall enable pilot control of systems that are integrated through MIS" [
+			stakeholder mrj.phf
+		]
+		goal SR_2 : "The MIS Program shall enable development and fielding of a non-proprietary open systems architecture"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_3 :
+				"MIS shall enable Mission Equipment Packages MEPs to be less costly because of open systems architecture" [
+			stakeholder mrj.phf
+		]
+		goal SR_4 : "MIS shall enable MEPs that are reconfigurable to meet mission  specific objectives" [
+			stakeholder mrj.phf
+		]
+		goal SR_5 : "MIS shall enable MEPs to be adaptable to address emerging hybrid threat capabilities" [
+			stakeholder mrj.phf
+		]
+		goal SR_7 :
+				"MIS shall enable development of an integrated hardwaresoftware solution that links onboard Aircraft Survivability Equipment ASE"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_66 :
+				"MIS shall enable the aircraft to be configured with a mission specific package of equipment and settings for aircraft and crew to counter threats"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_10 :
+				"The MIS Program shall enable common capabilities and standards to allow for component commonality with future vertical lift platforms"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_11 :
+				"The MIS Program shall enable common capabilities and standards to allow for component commonality across existing aircraft platforms"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_67 :
+				"The MIS Program shall demonstrate that technology aligned with the Joint Common Architecture JCA can be retrofitted into the existing fleet of aircraft"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_13 : "MIS shall enable integrated passive ASE that is common to the fleet" [
+			stakeholder mrj.phf
+		]
+		goal SR_69 : "MIS shall enable integration of passive ASE with existing systems and displays" [
+			stakeholder mrj.phf
+		]
+		goal SR_14 : "MIS shall enable development of common aircraft architecture and subsystems   " [
+			stakeholder mrj.phf
+		]
+		goal SR_15 : "MIS shall enable improved passive ASE that is common to the fleet" [
+			stakeholder mrj.phf
+		]
+		goal SR_16 :
+				"The MIS Program shall demonstrate integration aspects that reduce time to field for future common systems across the fleet"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_18 : "MIS shall enable MEP to be less costly because of common hardware" [
+			stakeholder mrj.phf
+		]
+		goal SR_19 : "MIS shall enable MEP to be less costly because of common software" [
+			stakeholder mrj.phf
+		]
+		goal SR_20 : "MIS shall reduce cost to transition new or improved capabilities into the fleet" [
+			stakeholder mrj.phf
+		]
+		goal SR_24 : "MIS shall reduce integration time to transition new or improved capabilities into the fleet" [
+			stakeholder mrj.phf
+		]
+		goal SR_22 : "MIS shall enable MEP suites to be modular" [
+			stakeholder mrj.phf
+		]
+		goal SR_25 : "MIS shall reduce Operations and Support OS costs" [
+			stakeholder mrj.phf
+		]
+		goal SR_73 : "MIS shall be compatible with Aviation Mission Planning System  AMPS planning information" [
+			stakeholder mrj.phf
+		]
+		goal SR_74 : "MIS shall enable determining a primary route during premission planning" [
+			stakeholder mrj.phf
+		]
+		goal SR_75 : "MIS shall enable inflight mission planning " [
+			stakeholder mrj.phf
+		]
+		goal SR_76 : "MIS shall enable determining at least one alternate route during premission planning" [
+			stakeholder mrj.phf
+		]
+		goal SR_77 : "MIS shall enable inflight mission replanning" [
+			stakeholder mrj.phf
+		]
+		goal SR_78 :
+				"MIS shall convey nondegraded aircraft location information from systems that are integrated through MIS" [
+			stakeholder mrj.phf
+		]
+		goal SR_79 :
+				"MIS shall convey nondegraded airspace Situational Awareness SA information from systems that are integrated through MIS"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_80 : "MIS shall enable receipt of a Common Operating Picture COP" [
+			stakeholder mrj.phf
+		]
+		goal SR_81 :
+				"MIS shall enable a capability to alert air crews and other manned and unmanned systems when threats are detected by systems that are integrated through MIS"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_82 : "MIS shall enable aircrews to have access to threat information affecting the area of operations" [
+			stakeholder mrj.phf
+		]
+		goal SR_83 : "MIS shall enable aircrews to have access to obstacle information affecting the area of operations" [
+			stakeholder mrj.phf
+		]
+		goal SR_84 : "MIS shall enable aircrews to have access to weather information affecting the area of operations" [
+			stakeholder mrj.phf
+		]
+		goal SR_85 : "MIS shall enable reception of geospatial data and environmental information" [
+			stakeholder mrj.phf
+		]
+		goal SR_86 : "MIS shall enable receipt of Observed Friendly Enemy Neutral  NonCombatant FENN locations" [
+			stakeholder mrj.phf
+		]
+		goal SR_27 :
+				"MIS shall enable a passive sensor capability that allows aircrews to maintain spherical SA of terrain within a 5 nautical mile nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_87 :
+				"MIS shall enable an active sensor capability that allows aircrews to maintain spherical SA of terrain within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_28 : "MIS shall enable awareness of the location of terrain within a 2 nm radius of the aircraft" [
+			stakeholder mrj.phf
+		]
+		goal SR_29 : "MIS shall enable awareness of the height of terrain within a 2 nm radius of the aircraft" [
+			stakeholder mrj.phf
+		]
+		goal SR_88 : "MIS shall enable determination of terrain hazards" [
+			stakeholder mrj.phf
+		]
+		goal SR_89 :
+				"MIS shall enable aircraft systems to gain and maintain SA of obstacles within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_90 : "MIS shall enable aircraft to detect obstacles within a 5 nm radius from the center of the airframe" [
+			stakeholder mrj.phf
+		]
+		goal SR_91 :
+				"MIS shall enable an active sensor capability that allows aircrews to maintain spherical SA of obstacles within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_92 :
+				"MIS shall enable a passive sensor capability that allows aircrews to maintain spherical SA of obstacles within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_93 :
+				"MIS shall enable awareness of the aircrafts position in relation to flight path obstacles within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_94 :
+				"MIS shall enable awareness of the aircrafts position in relation to wires within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_95 :
+				"MIS shall enable a capability using passive database displays  to provide full spherical SA of obstacles within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_96 : "MIS shall enable a method to negotiate wire obstacles" [
+			stakeholder mrj.phf
+		]
+		goal SR_97 :
+				"MIS shall enable integration of passive database information with active sensor capability to give aircrews full SA of the suitability of the landing area"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_98 :
+				"MIS shall enable awareness of the height of flight path obstacles within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_99 :
+				"MIS shall enable safe horizontal separation between aircraft and flight path obstacles within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_100 :
+				"MIS shall enable safe vertical separation between aircraft and flight path obstacles within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_101 :
+				"MIS shall enable an active sensor capability that allows aircrews to maintain spherical SA of adjacent aircraft "
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_102 :
+				"MIS shall enable a passive sensor capability that allows aircrews to maintain spherical SA of adjacent aircraft "
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_103 : "MIS shall enable awareness of the aircrafts position in relation to adjacent aircraft" [
+			stakeholder mrj.phf
+		]
+		goal SR_104 : "MIS shall enable awareness of the position of other aircraft" [
+			stakeholder mrj.phf
+		]
+		goal SR_105 : "MIS shall enable awareness of the altitude of other aircraft" [
+			stakeholder mrj.phf
+		]
+		goal SR_33 :
+				"MIS shall enable aircraft systems to gain and maintain SA of all threats with a detectable signature supported by installed MEPs that are integrated through MIS within 100 meter accuracy"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_34 :
+				"MIS shall enable aircraft systems that are integrated through MIS to identify threats within the effective engagement or acquisition ranges supported by installed MEPs "
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_35 :
+				"MIS shall enable aircraft to avoid acquisition by threats within lethal engagement ranges supported by installed MEPs that are integrated through MIS"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_36 :
+				"MIS shall enable aircraft to maximize detection avoidance capability within lethal engagement ranges of threat weapon systems addressed by installed MEPs that are integrated through MIS"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_37 :
+				"MIS shall enable aircraft to prevent threat weapons from establishing track or optical lockon 90 of the time at ranges supported by installed MEPs that are integrated through MIS"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_38 :
+				"MIS shall enable a warning capability to alert air crews and other manned and unmanned systems when detecting radar and laser threats 80 of the time at engagement ranges supported by installed MEPs that are integrated through MIS"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_39 :
+				"MIS shall enable detection of all  Radio Frequency RF threats enabled by installed MEPs that are integrated through MIS within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_40 :
+				"MIS shall enable detection of an Infrared IR threat by installed MEPs that are integrated through MIS within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_41 :
+				"MIS shall enable detection of unguided ballistic munitions by installed MEPs that are integrated through MIS within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_42 : "MIS shall enable integration of a 360degree Hostile Fire Indicator HFI" [
+			stakeholder mrj.phf
+		]
+		goal SR_43 :
+				"MIS shall enable the aircraft to recognize when being detected tracked or targeted by threat radar and laser systems supported by installed MEPs that are integrated through MIS within a 5 nm radius from the center of the airframe"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_44 : "MIS shall enable use of ASE to reduce probability of detection by threat systems" [
+			stakeholder mrj.phf
+		]
+		goal SR_45 : "MIS shall enable use of integrated ASE to reduce probability of hit by threat systems" [
+			stakeholder mrj.phf
+		]
+		goal SR_31 :
+				"MIS shall enable graduated early collision warning to aircrew when potential impact exists with ground at 5 nm 2 nm and 12 nm"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_117 :
+				"MIS shall enable graduated early collision warning to aircrew when potential impact exists with obstacles" [
+			stakeholder mrj.phf
+		]
+		goal SR_118 :
+				"MIS shall enable graduated early collision warning to aircrew when potential impact exists with adjacent aircraft"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_119 :
+				"MIS shall enable hazard warnings to be provided in a timely manner to allow sufficient aircrew reaction time" [
+			stakeholder mrj.phf
+		]
+		goal SR_49 :
+				"MIS shall enable aural cueing systems that provide warning to aircrews of impending collisions with objects within a 5 nm radius"
+				[
+			stakeholder mrj.phf
+		]
+		goal SR_50 :
+				"MIS shall enable visual cueing systems that provide warning to aircrews of impending collisions with objects within a 5 nm radius"
+				[
+			stakeholder mrj.phf
+		]
+	]
+]

@@ -1,0 +1,22 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSAConfiguredInterfaces
+public
+	with ASSAInterfaces;
+	with TrackTypes;
+	
+			
+	feature group CH47FSensorSourceTrackSets extends ASSAInterfaces::SensorTrackSets
+	features
+		WWSensorTracks: out data port TrackTypes::WWTrackSet;
+		ATWSensorTracks: out data port TrackTypes::ATWTrackSet;
+	end CH47FSensorSourceTrackSets;
+		
+	feature group CH47FStdSourceTrackSets extends ASSAInterfaces::StdSourceTrackSets
+	features
+		WWStdTracks: out data port TrackTypes::DCFMSourceTrackSet;
+		ATWStdTracks: out data port TrackTypes::DCFMSourceTrackSet;
+	end CH47FStdSourceTrackSets;
+	
+end ASSAConfiguredInterfaces;

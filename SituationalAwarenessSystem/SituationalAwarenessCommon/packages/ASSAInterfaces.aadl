@@ -1,0 +1,68 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSAInterfaces
+public
+with JMRMIS;
+
+-- This package defines feature group types that represent interfaces as groups of features.
+-- AirCrew SA Information is elaborated to reflect the information shown to the pilot on the display.
+-- the other feature group types are placeholders in the reference architecture that get configured for specific aircraft.
+
+	feature group StdSourceTrackSets
+	end StdSourceTrackSets;
+
+	feature group SensorTrackSets
+	end SensorTrackSets;
+
+	feature group CorrelatedTrackSets
+	end CorrelatedTrackSets;
+
+	feature group SensorNetworkConnections
+	end SensorNetworkConnections;
+	
+	feature group MFDSAInformation
+	end MFDSAInformation;
+	
+	feature group AirCrewSAInformation
+	features
+		AircrewSphericalTerrainInformation : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewTerrainLocationAwareness : out feature {
+			JMRMIS::ObservationRadius => 2 NM;
+		};
+		AircrewTerrainHeightAwareness : out feature {
+			JMRMIS::ObservationRadius => 2 NM;
+		};
+		AircrewTerrainHazards : out feature;
+		AircrewSphericalObstacleInformation : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewRelativeFlightPathObstaclePositionAwareness : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewFlightPathObstacleHeightAwareness : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewFlightPathObstacleSeparationAwareness : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewRelativeWireObstaclePositionAwareness : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewFlightPathObstacleHorizontalSeparationAlert : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewFlightPathObstacleVerticalSeparationAlert : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewSphericalAdjacentAircraftInformation : out feature {
+			JMRMIS::ObservationRadius => 5 NM;
+		};
+		AircrewRelativeAdjacentAircraftPositionAwareness : out feature;
+		AircrewOtherAircraftPositionAwareness : out feature;
+		AircrewOtherAircraftAltitudeAwareness : out feature;
+	end AirCrewSAInformation;
+
+end ASSAInterfaces;

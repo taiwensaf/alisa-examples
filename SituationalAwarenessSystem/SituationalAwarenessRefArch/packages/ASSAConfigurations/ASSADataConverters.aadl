@@ -1,0 +1,29 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSADataConverters
+public
+	with TrackTypes;
+	with ACVIP;
+--	 Description 
+--		This package documents data conversion services found in the SADS-SDD document.
+--		They can be configured into the reference architecture for specific platforms.
+--	
+	
+	thread WWTrackConverter
+	features
+	  SourceTracks: in data port TrackTypes::WWTrackSet;
+	  StdSourceTracks: out data port TrackTypes::DCFMSourceTrackSet;
+properties
+	ACVIP::aliases => ("AST Manager","Weapons Watch Controller","Weapons Watch Manager");
+	end WWTrackConverter ;
+	
+	thread ATWTrackConverter
+	features
+	  SourceTracks: in data port TrackTypes::ATWTrackSet;
+	  StdSourceTracks: out data port TrackTypes::DCFMSourceTrackSet;
+properties
+	ACVIP::aliases => ("AST Manager","ATW Controller","ATW Manager");
+	end ATWTrackConverter ;
+	
+end ASSADataConverters;

@@ -1,0 +1,27 @@
+// Copyright 2015 Carnegie Mellon University
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+organization mrj
+stakeholder ab
+[ 
+	full name "Alex Boydston"
+	title "Lead Engineer" 
+	description  "Mission system user"  
+	role  "JMR representative"   ]
+
+stakeholder phf 
+[ 
+	full name "Peter Feiler"
+	title  "Principal Researcher" 
+	description  "System architect" 
+	email "phf@sei.cmu.edu"
+	phone "412-268-7790"
+	role "Responsible for ASSA System Design"
+	   ]
+
+stakeholder noone 
+[ 
+	full name "Not Assigned"
+	title  "Goof off" 
+	   ]
+ 

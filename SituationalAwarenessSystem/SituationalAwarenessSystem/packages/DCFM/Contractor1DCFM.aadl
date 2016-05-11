@@ -1,0 +1,21 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package Contractor1DCFM
+public
+with DCFM;
+
+-- This package captures information about the Boeing supplied DCFM
+-- that is relevant for the interaction with other ASSA components.
+-- In particular it expects source tracks to be sent without explicit request and
+-- it expects to operate at a 1 second rate.
+
+system DCFM extends DCFM::DataCorrelationAndFusion
+features
+	healthdata: out data port;
+properties
+	Transmission_Type => Push applies to SourceTracks1, Sourcetracks2;
+	Period => 1 sec;
+end DCFM;
+
+end Contractor1DCFM;

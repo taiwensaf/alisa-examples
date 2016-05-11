@@ -1,0 +1,110 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSASystem::Design
+public
+with MISProtocols;
+with ASSASensors, MISServices,  ASSAAssessment;
+with SAAwarenessAnnunciation, DCFM;
+with ASSASystem;
+
+-- This package contains an elaboration of the ASSA system as atypical design.
+-- This is done in two steps.
+-- First we show the functional archtiecture elaborated by explicit insertion
+-- of the data converters to directly interact with the functions.
+-- Second we show the architecture with the data storage service inserted and connected as well.
+-- In the latter case every functional component is now connected to the data storage service.
+-- This makes it difficult to determine what the information flow between the ASSA service functions is.
+
+ASSASystem renames system ASSASystem::ASSASystem;
+
+
+	system implementation ASSASystem.MISDataConversionArchitecture 
+	subcomponents
+		APR39D : device ASSASensors::APR39D;
+		WW : device ASSASensors::WeaponWatch;
+		RadarDCM : system DCFM::RadarTrackCorrelation;
+		ThreatDCM : system DCFM::DataCorrelation;
+		SAAssessment : system ASSAAssessment::SituationAssessment;
+		AirCrewDisplay : device SAAwarenessAnnunciation::SituationAwarenessDisplay;
+		AircrewAnnunciation: device SAAwarenessAnnunciation::SAAnnunciationDevice;
+		ASSADataConversion : system MISServices::ASSADataConversion;
+	connections
+		APRSensorTracks : port APR39D.SourceTracks -> ASSADataConversion.APR39DTracks {Transmission_Type => push;};
+		WWSensorTracks : port WW.SourceTracks -> ASSADataConversion.WWTracks {Transmission_Type => push;};
+		RadarSourceTracks : port ASSADataConversion.RadarSourceTracks -> RadarDCM.Sourcetracks {Transmission_Type => pull;};
+		ThreatSourceTracks : port ASSADataConversion.ThreatSourceTracks -> ThreatDCM.Sourcetracks {Transmission_Type => pull;};
+		RadarCorrelatedTracks: port RadarDCM.CorrelatedTracks -> SAAssessment.RadarTracks {Transmission_Type => push;};
+		ThreatCorrelatedTracks: port ThreatDCM.CorrelatedTracks -> SAAssessment.ThreatTracks {Transmission_Type => push;};
+		AssessedTracks : port SAAssessment.AssessedTracks -> AirCrewDisplay.AssessedInformation;
+		SAAlerts : port SAAssessment.Alerts -> AircrewAnnunciation.Alerts;
+		AircrewVisuals : feature group AirCrewDisplay.AircrewSAInformation -> ASSAAirCrewPresentation;
+		MyPositionAssessment: port OwnAircraftPosition -> SAAssessment.OwnAircraftPosition;
+		MyPositionDisplay: port OwnAircraftPosition -> AirCrewDisplay.OwnAircraftPosition;
+	MyPositionDCF : port OwnAircraftPosition -> ThreatDCM.OwnAircraftPosition;
+flows
+	RadarAlert: end to end flow APR39D.RadarObserved -> APRSensorTracks -> ASSADataConversion.RadarFlow ->
+														RadarSourceTracks -> RadarDCM.RadarCorrelation -> RadarCorrelatedTracks -> SAAssessment.RadarAlerts ->
+														SAAlerts -> AircrewAnnunciation.SoundAlerts;
+	RadarObservation: end to end flow
+														APR39D.RadarObserved -> APRSensorTracks -> ASSADataConversion.RadarFlow -> RadarSourceTracks ->
+														RadarDCM.RadarCorrelation -> RadarCorrelatedTracks -> SAAssessment.RadarAssessment -> AssessedTracks ->
+														AirCrewDisplay.AssessedRadarInfo;
+	ThreatAlert: end to end flow ww.ThreatObserved -> WWSensorTracks -> ASSADataConversion.ThreatFlow -> ThreatSourceTracks -> ThreatDCM.ThreatCorrelation ->ThreatCorrelatedTracks -> 
+	SAAssessment.ThreatAlerts -> SAAlerts -> AircrewAnnunciation.SoundAlerts;
+	ThreatInfo: end to end flow ww.ThreatObserved -> WWSensorTracks -> ASSADataConversion.ThreatFlow -> ThreatSourceTracks -> ThreatDCM.ThreatCorrelation ->ThreatCorrelatedTracks -> 
+	SAAssessment.ThreatAssessment -> AssessedTracks ->	AirCrewDisplay.AssessedThreatInfo;
+	properties
+		Required_Virtual_Bus_Class => (classifier(MISProtocols::PullDCFMInputDataSetProtocol),classifier(MISProtocols::SADataServiceProtocol)) applies to ThreatSourceTracks;
+		Required_Virtual_Bus_Class => (classifier(MISProtocols::SADataServiceProtocol)) applies to RadarSourceTracks,  RadarCorrelatedTracks,
+		ThreatCorrelatedTracks,AssessedTracks,SAAlerts;
+	Latency => 1400 ms .. 1600 ms applies to  ThreatAlert;
+	Latency => 1400 ms .. 1600 ms applies to  ThreatInfo;
+	Latency => 1400 ms .. 1600 ms applies to  RadarAlert;
+	Latency => 1400 ms .. 1600 ms applies to  RadarObservation;
+	end ASSASystem.MISDataConversionArchitecture;
+
+	system implementation ASSASystem.MISDataServiceArchitecture 
+	subcomponents
+		APR39D : device ASSASensors::APR39D;
+		WW : device ASSASensors::WeaponWatch;
+		RadarDCM : system DCFM::RadarTrackCorrelation;
+		ThreatDCM : system DCFM::DataCorrelation;
+		SAAssessment : system ASSAAssessment::SituationAssessment;
+		AirCrewDisplay : device SAAwarenessAnnunciation::SituationAwarenessDisplay;
+		AircrewAnnunciation: device SAAwarenessAnnunciation::SAAnnunciationDevice;
+		ASSADataConversion : system MISServices::ASSADataConversion;
+		ASSADataStorage : system MISServices::ASSADataStorage;
+	connections
+		APRSensorTracks : port APR39D.SourceTracks ->  ASSADataConversion.APR39DTracks {Transmission_Type => push;};
+		StoreRadarSourceTracks: port ASSADataConversion.RadarSourceTracks -> ASSADataStorage.APR39DTracks {Transmission_Type => push;};
+		WWSensorTracks : port WW.SourceTracks -> ASSADataConversion.WWTracks {Transmission_Type => push;};
+		StoreThreatSourceTracks: port ASSADataConversion.RadarSourceTracks -> ASSADataStorage.WWTracks {Transmission_Type => push;};
+		RadarSourceTracks : port ASSADataStorage.OutgoingRadarSourceTracks -> RadarDCM.Sourcetracks {Transmission_Type => pull;};
+		ThreatSourceTracks : port ASSADataStorage.DCFMSourceTracks -> ThreatDCM.Sourcetracks {Transmission_Type => pull;};
+		RadarCorrelatedTracks: port RadarDCM.CorrelatedTracks -> ASSADataStorage.IncomingRadarCorrelatedTracks {Transmission_Type => push;};
+		ThreatCorrelatedTracks: port ThreatDCM.CorrelatedTracks -> ASSADataStorage.IncomingThreatCorrelatedTracks {Transmission_Type => push;};
+		AssessThreats: port ASSADataStorage.OutgoingThreatCorrelatedTracks -> SAAssessment.ThreatTracks{Transmission_Type => pull;};
+		AssessRadar: port ASSADataStorage.OutgoingRadarCorrelatedTracks -> SAAssessment.RadarTracks{Transmission_Type => pull;};
+		StoreAssessedTracks: port SAAssessment.AssessedTracks -> ASSADataStorage.IncomingAssessedTracks {Transmission_Type => push;};
+		DisplayThreats: port ASSADataStorage.OutgoingThreatCorrelatedTracks -> AirCrewDisplay.ThreatInformation{Transmission_Type => pull;};
+		DisplayRadar: port ASSADataStorage.OutgoingRadarCorrelatedTracks -> AirCrewDisplay.RadarInformation{Transmission_Type => pull;};
+		DisplayAssessments: port ASSADataStorage.OutgoingAssessedTracks -> AirCrewDisplay.AssessedInformation{Transmission_Type => pull;};
+		IssueAlerts: port ASSADataStorage.Alerts -> AircrewAnnunciation.Alerts;
+	DisplayOwnPosition : port ASSADataStorage.OutgoingOwnAircraftPosition -> AirCrewDisplay.OwnAircraftPosition;
+flows
+		RadarObservation : end to end flow APR39D.RadarObserved -> APRSensorTracks ->ASSADataConversion.RadarFlow -> StoreRadarSourceTracks -> ASSADataStorage.radarSourceTracks -> 
+					RadarSourceTracks -> RadarDCM.RadarCorrelation -> RadarCorrelatedTracks -> ASSADataStorage.radarCorrelatedTracks -> AssessRadar ->
+		SAAssessment.RadarAssessment -> StoreAssessedTracks -> ASSADataStorage.assessedTracks -> DisplayAssessments -> AirCrewDisplay.AssessedThreatInfo;
+		ThreatObservation : end to end flow ww.ThreatObserved ->  WWSensorTracks -> ASSADataConversion.ThreatFlow -> StoreThreatSourceTracks -> ASSADataStorage.threatSourceTracks -> 
+					ThreatSourceTracks -> ThreatDCM.ThreatCorrelation -> ThreatCorrelatedTracks -> ASSADataStorage.threatCorrelatedTracks -> AssessThreats ->
+		SAAssessment.ThreatAssessment -> StoreAssessedTracks -> ASSADataStorage.assessedTracks -> DisplayAssessments -> AirCrewDisplay.AssessedThreatInfo;
+	
+	properties
+		Required_Virtual_Bus_Class => (classifier(MISProtocols::PullDCFMInputDataSetProtocol),classifier(MISProtocols::PullProtocol)) applies to ThreatSourceTracks;
+		Required_Virtual_Bus_Class => (classifier(MISProtocols::PullProtocol)) applies to RadarSourceTracks, AssessThreats,AssessRadar,DisplayThreats,DisplayRadar,DisplayAssessments;
+		
+		Latency => 1600 ms .. 1600 ms applies to RadarObservation, ThreatObservation;
+	end ASSASystem.MISDataServiceArchitecture;
+	
+end ASSASystem::Design;

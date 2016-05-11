@@ -1,0 +1,8 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+property set MISConfigurationConstants is
+with JMRMIS, ACVIP;
+
+WWOutputInterval: constant ACVIP::TimeIntervalType => 100 ms;
+end MISConfigurationConstants;

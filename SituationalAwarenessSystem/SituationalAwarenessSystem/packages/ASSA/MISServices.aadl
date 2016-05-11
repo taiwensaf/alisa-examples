@@ -1,0 +1,139 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package MISServices
+public
+	with ACVIP, TrackTypes;
+	-- this package specifies the three MIS services: data conversion, data storage, and ASSA helth monitor
+	-- Here we have specified the services for a particular ASSA configuration of two sensor types.
+	-- Separately we have defined a reference architecture that is configurable for specific platforms.
+	abstract ASSADataStorage
+		features
+			IncomingOwnAircraftPosition: in data port;
+			OutgoingOwnAircraftPosition: out data port;
+
+			Alerts: out event data port;
+
+			WWTracks: in data port TrackTypes::DCFMSourceTrackSet {
+						ACVIP::InputInterval => 100 ms;
+					};
+			APR39DTracks: in data port TrackTypes::DCFMSourceTrackSet {
+						ACVIP::InputInterval => 100 ms;
+					};
+			OutgoingRadarSourceTracks: out data port TrackTypes::DCFMSourceTrackSet {
+						ACVIP::OutputInterval => 1 sec;};
+			OutgoingThreatSourceTracks: out data port TrackTypes::DCFMSourceTrackSet {
+						ACVIP::OutputInterval => 1 sec;
+					};
+
+			IncomingRadarCorrelatedTracks: in data port TrackTypes::CorrelatedRadarTrackSet;
+			IncomingThreatCorrelatedTracks: in data port TrackTypes::CorrelatedThreatTrackSet;
+			OutgoingRadarCorrelatedTracks: out data port TrackTypes::CorrelatedRadarTrackSet;
+			OutgoingThreatCorrelatedTracks: out data port TrackTypes::CorrelatedThreatTrackSet;
+
+			IncomingAssessedTracks: in data port TrackTypes::AssessedTrackSet;
+			OutgoingAssessedTracks: out data port TrackTypes::AssessedTrackSet;
+
+			DCFMSourceTracks: out data port TrackTypes::DCFMSourceTrackSet {
+						ACVIP::OutputInterval => 1 sec;
+						Communication_Properties::Transmission_Type => pull;
+					};
+		flows
+			radarSourceTracks: flow path APR39DTracks -> OutgoingRadarSourceTracks;
+			threatSourceTracks: flow path WWTracks -> OutgoingThreatSourceTracks;
+			radarCorrelatedTracks: flow path IncomingRadarCorrelatedTracks -> OutgoingRadarCorrelatedTracks;
+			threatCorrelatedTracks: flow path IncomingThreatCorrelatedTracks -> OutgoingThreatCorrelatedTracks;
+			assessedTracks: flow path IncomingAssessedTracks -> OutgoingAssessedTracks;
+			sourcetracktoAlert: flow path IncomingOwnAircraftPosition -> Alerts;
+		properties
+			ACVIP::aliases => ("SADS", "SA Data Server", "IASE Data Server", "SA Data Manager", "SADM", "SADB");
+	end ASSADataStorage;
+
+	abstract ASSADataConversion
+		features
+			WWTracks: in data port TrackTypes::WWTrackSet {
+						ACVIP::InputInterval => 100 ms;
+					};
+			APR39DTracks: in data port TrackTypes::APR39DTrackSet {
+						ACVIP::InputInterval => 100 ms;
+					};
+
+			RadarSourceTracks: out data port TrackTypes::DCFMSourceTrackSet;
+			ThreatSourceTracks: out data port TrackTypes::DCFMSourceTrackSet;
+		flows
+			RadarFlow: flow path APR39DTracks -> RadarSourceTracks;
+			ThreatFlow: flow path WWTracks -> ThreatSourceTracks;
+		properties
+			Latency => 3 ms .. 5 ms applies to RadarFlow, ThreatFlow;
+	end ASSADataConversion;
+
+	-- data service with correlated trackset diff incoming and making corr trackset out available 
+	abstract ASSADataStorageCorrelatedUpdate extends ASSADataStorage
+		features
+			IncomingThreatCorrelatedTracks: refined to in data port TrackTypes::CorrelatedTrackSetDiff;
+			PreviousCorrelatedThreatTracks: out data port TrackTypes::CorrelatedTrackSet;
+	end ASSADataStorageCorrelatedUpdate;
+
+	abstract ASSAHealthMonitorControl
+		properties
+			ACVIP::aliases => ("IASE Controller");
+	end ASSAHealthMonitorControl;
+	
+-- the following are specific data conversion services mentioned in the MIS documents
+-- see also respective requirement specification
+
+abstract WWSourceTrackConversion
+features
+	WWSourceTrackSet: in data port TrackTypes::WWTrackSet;
+	StdSourcetracks : out data port TrackTypes::DCFMSourceTrackSet;
+properties
+	ACVIP::aliases => ("AST Manager","Weapons Watch Controller","Weapons Watch Manager");
+end WWSourceTrackConversion;
+
+abstract ATWSourceTrackConversion
+features
+	WWSourceTrackSet: in data port TrackTypes::ATWTrackSet;
+	StdSourcetracks : out data port TrackTypes::DCFMSourceTrackSet;
+properties
+	ACVIP::aliases => ("AST Manager","ATW Controller","ATW Manager");
+end ATWSourceTrackConversion;
+	
+	
+	-- the following abstract components reflect information from the SADS-SDD document
+	-- They give the impression that the SA data service consists of a set of independent services
+	-- one for each type of data to be managed. 
+	-- There was no indication in the MIS document as to whether the SA data service
+	-- provides query functionality across the different data streams. 
+
+	abstract RadarDataService
+		properties
+			ACVIP::aliases => ("RADataStore(SADS-SDD)");
+	end RadarDataService;
+
+	abstract ObstacleDataService
+		properties
+			ACVIP::aliases => ("MMObsDataStore(SADS-SDD)");
+	end ObstacleDataService;
+
+	abstract OwnAircraftPositionDataService
+		properties
+			ACVIP::aliases => ("PlatformDataCache(SADS-SDD)");
+	end OwnAircraftPositionDataService;
+
+	abstract ThreatSourceTrackDataService
+		properties
+			ACVIP::aliases => ("SrcTrkDataStore(SADS-SDD)");
+	end ThreatSourceTrackDataService;
+
+	abstract ThreatCorrelatedTrackDataservice
+		properties
+			ACVIP::aliases => ("CorrTrkDataCache(SADS-SDD)");
+	end ThreatCorrelatedTrackDataService;
+
+
+	-- Host support system is mentioned in the MIS documents as an infrastructure service.
+	-- Limited additional detail is provided as to its role.
+	abstract HostSupportSystem
+	end HostSupportSystem;
+
+end MISServices;

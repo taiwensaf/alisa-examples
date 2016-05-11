@@ -1,0 +1,21 @@
+Fault Impact of System Internal Error Sources
+
+Component, Initial Failure Mode, 1st Level Effect, Failure Mode, second Level Effect, Failure Mode, third Level Effect, Failure Mode, 4th Level Effect, Failure Mode, 5th Level Effect, Failure Mode, 6th Level Effect, Failure Mode, 7th Level Effect, More
+Switch,FailStop,{NetworkFailure} bindings -> [No Outgoing Conn],,
+Switch,FailStop,{NetworkFailure} access -> gpu:ToSwitch, gpu {NetworkFailure} [Masked],
+Switch,FailStop,{NetworkFailure} access -> Switch:access, Switch {NetworkFailure} [Masked],
+ChannelA,FailStop,{NetworkFailure} bindings -> [No Outgoing Conn],,
+gpu,FailStop,{ProcessorFailure} bindings -> [No Outgoing Conn],,
+gpu,FailStop,{ProcessorFailure} To1553 -> ChannelA:access, ChannelA {ProcessorFailure},{NetworkFailure} access -> gpu:To1553, gpu {NetworkFailure} [Masked],
+gpu,FailStop,{ProcessorFailure} To1553 -> ChannelA:access, ChannelA {ProcessorFailure},{NetworkFailure} access -> ChannelA:access, ChannelA {NetworkFailure},{NetworkFailure} access -> [Propagation Cycle],,
+gpu,FailStop,{ProcessorFailure} To1553 -> ChannelA:access, ChannelA {ProcessorFailure},{NetworkFailure} access -> ChannelA:access, ChannelA {NetworkFailure},{NetworkFailure} bindings -> [Propagation Cycle],,
+gpu,FailStop,{ProcessorFailure} To1553 -> ChannelA:access, ChannelA {ProcessorFailure},{NetworkFailure} bindings -> [No Outgoing Conn],,
+gpu,FailStop,{ProcessorFailure} ToSwitch -> Switch:access, Switch {ProcessorFailure} [Masked],
+apr39d,{SensorFailure},{SensorFailure} network -> ChannelA:access {SensorFailure} [Unhandled Type]
+apr39d,{HighRate},{HighRate} SourceTracks -> [No Outgoing Conn],,
+apr39d,{LowRate},{LowRate} SourceTracks -> [No Outgoing Conn],,
+apr39d,{SensorFailure},{SensorFailure} SourceTracks -> [No Outgoing Conn],,
+apr39d,FailStop,{SensorDataOmission} SourceTracks -> [No Outgoing Conn],,
+apr39d,{EarlyDelivery},{EarlyDelivery} SourceTracks -> [No Outgoing Conn],,
+apr39d,{LateDelivery},{LateDelivery} SourceTracks -> [No Outgoing Conn],,
+apr39d,Degraded,{SensorDataOutofRange} SourceTracks -> [No Outgoing Conn],,

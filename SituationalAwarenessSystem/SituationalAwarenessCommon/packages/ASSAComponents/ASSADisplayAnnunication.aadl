@@ -1,0 +1,45 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSADisplayAnnunication
+public
+with ASSAInterfaces;
+with ASSAHardware;
+
+device ASSAMFDDisplay
+features
+	MFDSAInformation: feature group inverse of ASSAInterfaces::MFDSAInformation;
+	AircrewSAInformation: out feature group ASSAInterfaces::AirCrewSAInformation;
+	network: requires bus access ASSAHardware::ARINC664;
+flows
+	ASSAInfo: flow sink MFDSAInformation;
+	ASSAInfoToPilot: flow path MFDSAInformation -> AircrewSAInformation;
+properties
+	Dispatch_Protocol => Periodic;
+	Period => 100 ms;
+	Latency => 1ms .. 2ms applies to ASSAInfo;
+	annex EMV2{**
+			use types HardwareErrorLibrary,  ExceptionalConditionTypes;
+			use behavior ErrorLibrary::FailStop;
+			error propagations
+				MFDSAInformation: in propagation {FalsePositiveASSAData, FalseNegativeASSAData,InaccurateASSAData};
+				AircrewSAInformation: out propagation {FalsePositiveASSAData, FalseNegativeASSAData, InaccurateASSAData};
+				Access: in propagation {NetworkFailure};
+			flows
+				passthru: error path MFDSAInformation -> AircrewSAInformation;
+				networkfailed: error path Access {NetworkFailure} -> AircrewSAInformation {FalseNegativeASSAData};
+			end propagations;
+		**};
+end ASSAMFDDisplay;
+
+device SAAnnunciationDevice
+features
+	Alerts: in data port;
+flows
+	SoundAlerts: flow sink Alerts;
+properties
+	Latency => 1 ms .. 1 ms applies to SoundAlerts;
+end SAAnnunciationDevice;
+
+
+end ASSADisplayAnnunication;

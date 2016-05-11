@@ -1,0 +1,48 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+property set JMRMIS is
+
+-- MIS SR_13, SR_69, SR_15
+SensorKind : enumeration (Active, Passive) applies to (system, device);
+
+ObservedObjects: list of classifier(abstract, system, device) applies to (system, device,data,abstract);
+
+NauticalDistance: type aadlinteger units JMRMIS::Distance;
+
+Distance: type units ( m , km => m * 1000, nm =>  m * 1852);
+
+ObservationRadius: JMRMIS::NauticalDistance applies to (all);
+
+MaxTimeStampVariation: Time applies to (abstract, system, device);
+
+FrameOfReferenceType: type enumeration (WGS84, OwnAircraft);
+
+FrameOfReference: JMRMIS::FrameOfReferenceType applies to (all);
+
+InputInterval: time applies to (all);
+
+ObservedObjectType: type enumeration (LaserDesignator, Missile,BallisticWeaponsFire, ActiveRadarSystem, AdjacentAircraft
+	,WireObstacle, FlightPathObstacle, Obstacle, Terrain, OwnPosition
+);
+
+ClientQuery: list of JMRMIS::ClientQueryType applies to (all);
+
+-- limited radius: SADS to send tracks within 25km
+-- uncorrelated source tracks shown to pilot (BAA)
+ClientQueryType: type enumeration (CorrelatedThreats, Obstacles, Terrain, Weather, AjacentAircraft, LimitedRadiusSourceTracks, UncorrelatedSourceTracks);
+ 
+ObservationTrackProviderType: type enumeration (WW, JATAS, APR39D, ATW);
+ 
+ObservedObjectTypeDCFM: type enumeration (HOSTILE_FIRE_DETECTION_SYSTEM,LASER_WARNING_RECEIVER, MISSILE_WARNING_RECEIVER, VMF_OBSERVATION_MESSAGE, VMF_POSITION_REPORT);
+
+ObservedObjectTypes: list of JMRMIS::ObservedObjectType applies to (all);
+
+SADSQueryType: type enumeration (CorrelatedTracks, SourceTracks, UncorrelatedSourceTracks, CorrelatedThreats, OwnAircraftPosition, AdjacentAircraft);
+
+SADSQueryConstraintType: type enumeration (ObservationRadius25km, AlertnessRadius5nm, AlertnessRadius2nm);
+
+SADSQuery: JMRMIS::SADSQueryType applies to (all);
+SADSQueryConstraint: JMRMIS::SADSQueryConstraintType applies to (all);
+
+end JMRMIS;

@@ -1,0 +1,243 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package MISProtocols
+public
+with JMRMIS, ACVIP, MissionSystemDataTypes, TrackTypes;
+with ASSAHardware;
+--		This package introduces protocols that represent several typesof communication between subsystems.
+--		The protocols are represented as abstraction by a virtual bus and 
+--		as system to model its implemetnation. The abstraction has a latency property reflecting the overhead by the protocol.
+--		The implementation is used to derive and verify the latency figure used in the abstraction.
+--		MIS expects clients to request data: represented by a PullProtocol
+--		The data correlation and fusion subsystem requests its data in three steps accoding to a sequence diagram: PullDCFMDataSetProtocol
+--		Sensors provide data on a continuous bassis: ASSASensorPushProtocol
+--		The SA Data Service can be viewed as a communication protocol: SADataServiceProtocol
+--
+-- The separation of protocol abstraction and implementation allows for compositional analysis.s
+	
+	-- the sensor push protocol itself contributes to latency between zero and one partition fame
+	-- depending on the window order of the partitions involved.
+	virtual bus ASSASensorPushProtocol
+		properties
+			Transmission_Type => push;
+			latency => 0 ms .. 100 ms;
+	end ASSASensorPushProtocol;
+
+	-- a data request/reply takes at least one partition frame 
+	virtual bus PullProtocol
+		properties
+			Transmission_Type => pull;
+			Latency => 100 ms .. 100 ms;
+			Implemented_As => classifier (PullDataProtocol.CrossPartition);
+
+	end PullProtocol;
+
+	-- a request for three sets of data before processing takes three frames
+	-- this protocol reflects the sequence diagram specification provided to the contractors.
+	virtual bus PullDCFMInputDataSetProtocol
+		properties
+			Transmission_Type => pull;
+			Latency => 300 ms .. 300 ms;
+			--Implemented_As => classifier (PullDCFMInputDataset.CrossPartition);
+
+	end PullDCFMInputDataSetProtocol;
+
+	-- Communication of data through the SA data service takes 100 ms
+	virtual bus SADataServiceProtocol
+		properties
+			Transmission_Type => pull;
+			Latency => 100 ms .. 100 ms;
+			--Implemented_As => classifier (PullDataProtocol.CrossPartition);
+
+	end SADataServiceProtocol;
+
+	abstract PullDataProtocol
+		features
+			SenderData: in data port MissionSystemDataTypes::DCFMInputDataSet.basic;
+			ReceiverData: out data port MissionSystemDataTypes::DCFMInputDataSet.basic;
+		flows
+			Xfer: flow path SenderData -> ReceiverData;
+	end PullDataProtocol;
+
+	abstract implementation PullDataProtocol.CrossPartition
+		subcomponents
+			sender: thread PullDCFMDataSetSender;
+			requestor: thread PullDCFMDataSetRequestor;
+		connections
+			incoming: port SenderData -> sender.SenderData;
+			outgoing: port requestor.ReceiverData -> ReceiverData;
+			STRequest: port requestor.SourceTracksRequest -> sender.SourceTracksRequest { Timing => immediate; };
+			STReply: port sender.SendSourceTrackSet -> requestor.ReceivedSourceTrackSet { Timing => delayed; };
+		flows
+			XferOnly: end to end flow requestor.SourceTrackRequestFlow -> STRequest -> sender.SourceTrackFlowpath -> STReply ->
+					requestor.SourceTrackReceivedSink;
+		properties
+			Latency => 10 ms .. 10 ms applies to XferOnly;
+	end PullDataProtocol.CrossPartition;
+	
+	thread PullProtocolSender
+		features
+		-- data to be transferred
+			SenderData: in data port;
+			-- protocol interaction ports
+			DataRequest: in data port;
+			SendData: out data port;
+		flows
+			SenderDataFLow: flow path SenderData -> SendData;
+			DataRequestFlowpath: flow path DataRequest -> SendData;
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 100 ms;
+	end PullProtocolSender;
+
+	thread PullProtocolRequestor
+		features
+		-- data being transferred
+			ReceiverData: out data port;
+			-- protocol interaction ports
+			DataRequest: out data port;
+			ReceivedData: in data port;
+		flows
+			DataRequestFlow: flow source DataRequest;
+			DataReceivedSink: flow sink ReceivedData;
+			ReceivedDataSetFlow: flow path ReceivedData -> ReceiverData;
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 100 ms;
+	end PullProtocolRequestor;
+	
+	-- the sensor push protocol itself contributes to latency between zero and one partition fame
+	-- depending on the window order of the partitions involved.
+	abstract PullInputDataset
+		features
+			SenderData: in data port MissionSystemDataTypes::DCFMInputDataSet.basic;
+			ReceiverData: out data port MissionSystemDataTypes::DCFMInputDataSet.basic;
+		flows
+			Xfer: flow path SenderData -> ReceiverData;
+	end PullInputDataset;
+
+--	the protocol implementation is modeled as an interaction between a sender thread and a receiver thread.
+--	We define a common implementation that represents the interaction sequence.
+--	1) we model the cross partition communication as immediate (in one direction) and delayed (in the other direction) connection. See PullDCFMInputDataSet.CrossPartition
+--	2) we explicitly model partitions and a partition schedule. See ProtocolValidation.Partition.
+	
+	abstract implementation PullInputDataset.Common
+		subcomponents
+			sender: thread PullDCFMDataSetSender;
+			requestor: thread PullDCFMDataSetRequestor;
+		connections
+			incoming: port SenderData -> sender.SenderData;
+			outgoing: port requestor.ReceiverData -> ReceiverData;
+			STRequest: port requestor.SourceTracksRequest -> sender.SourceTracksRequest;
+			STReply: port sender.SendSourceTrackSet -> requestor.ReceivedSourceTrackSet;
+			CTRequest: port requestor.CorrelatedTracksRequest -> sender.CorrelatedTracksRequest;
+			CTReply: port sender.SendCorrelatedTrackSet -> requestor.ReceivedCorrelatedTrackSet ;
+			APRequest: port requestor.OwnAircraftPositionRequest -> sender.OwnAircraftPositionRequest;
+			APReply: port sender.SendOwnAircraftPosition -> requestor.ReceivedOwnAircraftPosition ;
+		flows
+			XferOnly: end to end flow requestor.SourceTrackRequestFlow -> STRequest -> sender.SourceTrackFlowpath -> STReply ->
+					requestor.SourceTrackReceivedFlow -> CTRequest -> sender.CorrelatedFlow -> CTReply -> requestor.
+					CorrelatedTrackReceivedFlow -> APRequest -> sender.AircraftPositionFlow -> APReply -> requestor.
+					AircraftPositionReceivedFlow;
+			Xfer: flow path SenderData -> incoming -> sender.SenderDataSetFLow -> STReply -> requestor.SourceTrackReceivedFlow
+					-> CTRequest -> sender.CorrelatedFlow -> CTReply -> requestor.CorrelatedTrackReceivedFlow -> APRequest -> sender.
+					AircraftPositionFlow -> APReply -> requestor.ReceivedDataSetFlow -> outgoing -> ReceiverData;
+		properties
+			Latency => 10 ms .. 10 ms applies to XferOnly;
+	end PullInputDataset.Common;
+
+	abstract implementation PullInputDataset.CrossPartitionTasks extends PullInputDataset.Common
+		properties
+		Timing => immediate applies to STRequest, CTRequest, APRequest;
+		Timing => delayed applies to STReply, CTReply, APReply;
+	end PullInputDataset.CrossPartitionTasks;
+	
+	abstract implementation PullInputDataset.PT extends PullInputDataset.Common
+		subcomponents		
+			pform : processor ASSAHardware::GPU.TwoPartition;
+			
+			properties
+			Actual_Processor_Binding => (reference(pform.part1)) applies to requestor;
+			Actual_Processor_Binding => (reference(pform.part2)) applies to sender;
+	end PullInputDataset.CrossPartitionTasks;
+
+
+	thread PullDCFMDataSetSender
+		features
+		-- data to be transferred
+			SenderData: in data port MissionSystemDataTypes::DCFMInputDataSet.basic;
+			-- protocol interaction ports
+			SourceTracksRequest: in data port;
+			SendSourceTrackSet: out data port TrackTypes::DCFMSourceTrackSet;
+			CorrelatedTracksRequest: in data port;
+			SendCorrelatedTrackSet: out data port TrackTypes::CorrelatedThreatTrackSet;
+			OwnAircraftPositionRequest: in data port;
+			SendOwnAircraftPosition: out data port MissionSystemDataTypes::Position;
+		flows
+			SenderDataSetFLow: flow path SenderData -> SendSourceTrackSet;
+			SourceTrackFlow: flow source SendSourceTrackSet;
+			SourceTrackFlowpath: flow path SourceTracksRequest -> SendSourceTrackSet;
+			CorrelatedFlow: flow path CorrelatedTracksRequest -> SendCorrelatedTrackSet;
+			AircraftPositionFlow: flow path OwnAircraftPositionRequest -> SendOwnAircraftPosition;
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 100 ms;
+	end PullDCFMDataSetSender;
+
+	thread PullDCFMDataSetRequestor
+		features
+		-- data being transferred
+			ReceiverData: out data port MissionSystemDataTypes::DCFMInputDataSet.basic;
+			-- protocol interaction ports
+			SourceTracksRequest: out data port;
+			ReceivedSourceTrackSet: in data port TrackTypes::DCFMSourceTrackSet;
+			CorrelatedTracksRequest: out data port;
+			ReceivedCorrelatedTrackSet: in data port TrackTypes::CorrelatedThreatTrackSet;
+			OwnAircraftPositionRequest: out data port;
+			ReceivedOwnAircraftPosition: in data port MissionSystemDataTypes::Position;
+		flows
+			SourceTrackRequestFlow: flow source SourceTracksRequest;
+			SourceTrackReceivedFlow: flow path ReceivedSourceTrackSet -> CorrelatedTracksRequest;
+			SourceTrackReceivedSink: flow sink ReceivedSourceTrackSet;
+			CorrelatedTrackReceivedFlow: flow path ReceivedCorrelatedTrackSet -> OwnAircraftPositionRequest;
+			AircraftPositionReceivedFlow: flow sink ReceivedOwnAircraftPosition;
+			ReceivedDataSetFlow: flow path ReceivedOwnAircraftPosition -> ReceiverData;
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 100 ms;
+	end PullDCFMDataSetRequestor;
+
+
+-- this test will produce a latency of 300ms
+-- The model uses immediate and delayed connections to reflect cross partition connections
+
+	system ProtocolValidation
+	end ProtocolValidation;
+
+
+	system implementation ProtocolValidation.Tasking
+		subcomponents
+			prot: abstract PullInputDataset.CrossPartitionTasks;
+	end ProtocolValidation.Tasking;
+
+-- this model uses regular connections with threads mapped to different partitions
+-- the partitions are allocated to the same processor in a particular order
+-- running the analysis with partition end output will show a latency of 300 ms.
+-- running the same analysis with major frame output will show a latency of 600ms
+-- this represents a frame dealy on every cross partition connection. 
+-- This could be modeled in the abstracted tasking model be setting all conenctions as delayed.
+
+	system implementation ProtocolValidation.Partition
+		subcomponents
+			prot: abstract PullInputDataset.Common;
+			
+			pform : processor ASSAHardware::GPU.TwoPartition;
+			
+			properties
+			Actual_Processor_Binding => (reference(pform.part1)) applies to prot.requestor;
+			Actual_Processor_Binding => (reference(pform.part2)) applies to prot.sender;
+	end ProtocolValidation.Partition;
+
+
+	end MISProtocols;

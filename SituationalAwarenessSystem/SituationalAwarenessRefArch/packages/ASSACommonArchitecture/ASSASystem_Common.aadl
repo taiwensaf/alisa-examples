@@ -1,0 +1,64 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSASystem::Common
+public
+	with ASSAServices;
+	with ASSADisplayAnnunication;
+	with ASSASystem;
+
+	ASSASystem renames system ASSASystem::AssaSystem;
+
+	system implementation ASSASystem.Common
+		subcomponents
+			Sensors: system ASSAServices::ASSASensors;
+			Conversion: process ASSAServices::SADataConversion;
+			Fusion: process ASSAServices::DCFM;
+			Assessmnent: process ASSAServices::SituationAssessment;
+			ASSAFormatting: process ASSAServices::SAInformationPreparation;
+			AirCrewDisplay: device ASSADisplayAnnunication::ASSAMFDDisplay;
+			AircrewAnnunciation: device ASSADisplayAnnunication::ASSAMFDDisplay;
+		connections
+			srctracks: feature group Sensors.SensorSetReadings -> Conversion.SensorSetReadings;
+			stdtracks: feature group Conversion.StdSourceTracks -> Fusion.IncomingData;
+			fusedtracks: feature group Fusion.OutgoingCorrelatedTracks -> Assessmnent.AssessmentInput;
+			assessedtracks: feature group Assessmnent.AssessmentResults -> ASSAFormatting.AssessedInformation;
+			formattedtracks: feature group ASSAFormatting.MFDSAInformation -> AirCrewDisplay.MFDSAInformation;
+			showtopilot: feature group AirCrewDisplay.AircrewSAInformation -> ASSAAirCrewPresentation;
+			ownaircraftposfusion: port OwnAircraftPosition -> Fusion.ownAircraftPosition;
+			ownaircraftposdisplay: port OwnAircraftPosition -> ASSAFormatting.OwnAircraftPosition;
+		flows
+			assessedASSAAircraftpos: flow path OwnAircraftPosition ->
+					ownaircraftposfusion ->
+					Fusion.AircraftPositionFusion ->
+					fusedtracks ->
+					Assessmnent.Assessment ->
+					assessedtracks ->
+					ASSAFormatting.AssessedThreatInfo ->
+					formattedtracks ->
+					AirCrewDisplay.ASSAInfoToPilot ->
+					showtopilot ->
+					ASSAAirCrewPresentation;
+			directAircraftpos: flow path OwnAircraftPosition ->
+					ownaircraftposdisplay ->
+					ASSAFormatting.OwnAircraftInfo ->
+					formattedtracks ->
+					AirCrewDisplay.ASSAInfoToPilot ->
+					showtopilot ->
+					ASSAAirCrewPresentation;
+			ASSASensorObservations: flow source Sensors.sensorReadings ->
+					srctracks ->
+					Conversion.TrackConversion ->
+					stdtracks ->
+					Fusion.TrackFusion ->
+					fusedtracks ->
+					Assessmnent.Assessment ->
+					assessedtracks ->
+					ASSAFormatting.AssessedThreatInfo ->
+					formattedtracks ->
+					AirCrewDisplay.ASSAInfoToPilot ->
+					showtopilot ->
+					ASSAAirCrewPresentation;
+	end ASSASystem.Common;
+
+end ASSASystem::Common;

@@ -1,0 +1,80 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package DCFM
+public
+	with TrackTypes, MissionSystemDataTypes, JMRMIS, ACVIP;
+--	 Description 
+--		This package specifies data correlation and fusion managers.
+--		We have distinguished between data correlation, which focuses on correlating tracks to the own aircraft position,
+--		and data correlation and fusion, which involves combining (fusing) two source track streams and correlating the result
+--		to the own aircraft position.
+--	
+
+	system DataCorrelation
+		features
+			Sourcetracks: in data port TrackTypes::DCFMSourceTrackSet;
+			OwnAircraftPosition: in data port MissionSystemDataTypes::Position;
+			CorrelatedTracks: out data port TrackTypes::CorrelatedThreatTrackSet;
+		flows
+			ThreatCorrelation: flow path SourceTracks -> CorrelatedTracks;
+		properties
+			JMRMIS::MaxTimeStampVariation => 100 ms;
+			JMRMIS::FrameOfReference => WGS84 applies to Sourcetracks;
+			JMRMIS::FrameOfReference => OwnAircraft applies to CorrelatedTracks;
+			Transmission_Type => Pull applies to SourceTracks;
+			Transmission_Type => Push applies to CorrelatedTracks;
+			JMRMIS::ObservationRadius => 25 km applies to CorrelatedTracks;
+			ACVIP::InputInterval => 100 ms applies to SourceTracks;
+			ACVIP::OutputInterval => 1 sec applies to CorrelatedTracks;
+			Latency => 1 sec .. 1 sec applies to ThreatCorrelation;
+	end DataCorrelation;
+
+	system DataCorrelationAndFusion
+		features
+			Sourcetracks1: in data port TrackTypes::DCFMSourceTrackSet;
+			Sourcetracks2: in data port TrackTypes::DCFMSourceTrackSet;
+
+			OwnAircraftPosition: in data port MissionSystemDataTypes::Position;
+
+			CorrelatedTracks: out data port TrackTypes::CorrelatedThreatTrackSet;
+		flows
+			ThreatConversion1: flow path SourceTracks1 -> CorrelatedTracks;
+			ThreatConversion2: flow path SourceTracks2 -> CorrelatedTracks;
+		properties
+			JMRMIS::MaxTimeStampVariation => 100 ms;
+	end DataCorrelationAndFusion;
+
+	system RadarTrackCorrelation
+		features
+			Sourcetracks: in data port TrackTypes::DCFMSourceTrackSet;
+			CorrelatedTracks: out data port TrackTypes::CorrelatedRadarTrackSet;
+		flows
+			RadarCorrelation: flow path SourceTracks -> CorrelatedTracks;
+		properties
+			Latency => 1 sec .. 1 sec applies to RadarCorrelation;
+		annex EMV2{**
+			use types ErrorLibrary, SensorErrorLibrary;
+			use behavior ErrorLibrary::DegradedFailStop;
+			error propagations
+				SourceTracks:in propagation{SensorDataOmission, SensorDataOutofRange, EarlyDelivery, LateDelivery};--, HighRate, LowRate};
+				CorrelatedTracks:out propagation{SensorDataOmission, SensorDataOutofRange, EarlyDelivery, LateDelivery};--, HighRate, LowRate};
+				flows
+					src1:error path SourceTracks{SensorDataOmission} -> CorrelatedTracks{SensorDataOmission};
+					src2:error path SourceTracks{SensorDataOutofRange} -> CorrelatedTracks{SensorDataOutofRange};
+					src3:error path SourceTracks{EarlyDelivery,LateDelivery}->CorrelatedTracks{EarlyDelivery}; 
+					src4:error path SourceTracks{EarlyDelivery,LateDelivery}->CorrelatedTracks{LateDelivery};
+					--src4:error path SourceTracks{HighRate,LowRate}->CorrelatedTracks{HighRate,LowRate}; --sequence error
+			end propagations;
+			component error behavior
+			events
+				FailEvent: error event {SensorDataOmission};
+				DegradeEvent: error event{SensorDataOutofRange,EarlyDelivery,LateDelivery};--,HighRate,LowRate};
+			transitions
+				fail: Operational-[FailEvent]->FailStop;
+				degrade: Operational-[DegradeEvent]->Degraded;
+			end component;
+		**};
+	end RadarTrackCorrelation;
+
+end DCFM;

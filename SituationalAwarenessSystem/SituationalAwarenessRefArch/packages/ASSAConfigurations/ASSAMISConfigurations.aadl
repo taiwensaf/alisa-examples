@@ -1,0 +1,26 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSAMISConfigurations
+public
+with ASSAServices;
+with ASSAConfiguredInterfaces;
+with ASSADataConverters;
+
+	process ASSADataConversion extends ASSAServices::SADataConversion ( SensorTrackSets =>feature group ASSAConfiguredInterfaces::CH47FSensorSourceTrackSets,
+		StdSourceTrackSets => feature group ASSAConfiguredInterfaces::CH47FStdSourceTrackSets
+	)
+	end ASSADataConversion;
+	
+	process implementation ASSADataConversion.CH47F 
+	subcomponents
+	  WWConversion: thread ASSADataConverters::WWTrackConverter;
+	  ATWConversion: thread ASSADataConverters::ATWTrackConverter;
+	 connections
+	 	WWin: port SensorSetReadings.WWSensorTracks -> WWConversion.SourceTracks;
+	 	WWout: port  WWConversion.StdSourcetracks -> StdSourceTracks.WWStdTracks;
+	 	ATWin: port SensorSetReadings.ATWSensorTracks -> ATWConversion.SourceTracks;
+	 	ATWout: port  WWConversion.StdSourcetracks -> StdSourceTracks.WWStdTracks;
+	end ASSADataConversion.CH47F ;
+	
+end ASSAMISConfigurations;

@@ -1,0 +1,30 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+property set ACVIP is
+
+
+Aliases: list of aadlstring applies to (all); 
+
+Description : aadlstring applies to (all);
+
+Rationale: aadlstring applies to (all);
+
+-- Who is being supervised - in our case by the SA health monitor
+Supervise: list of reference (system, abstract, device, data) applies to (system, abstract);
+
+-- who is being serviced by SA Data Service 
+Service_Binding: list of reference (processor, virtual processor, bus, virtual bus, device, memory, system, abstract)
+		applies to (feature, connection, thread, thread group, process, system, virtual bus);
+
+
+
+TimeIntervalType: type aadlinteger 100 ms .. 1000 ms units time_units;
+
+-- simple way of specifying expected input and output rate. The core language has a record property for that purpose.
+InputInterval: ACVIP::TimeIntervalType applies to (feature);
+
+OutputInterval: ACVIP::TimeIntervalType  applies to (feature);
+
+
+end ACVIP;

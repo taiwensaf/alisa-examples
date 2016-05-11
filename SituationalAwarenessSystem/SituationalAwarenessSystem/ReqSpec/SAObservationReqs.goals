@@ -1,0 +1,18 @@
+// Copyright 2015 Carnegie Mellon University
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+stakeholder goals SAThreatObservations for  SAObservations::Threat
+	[ goal g1 
+	[	description "Pilot must be made aware of enemy fire, missiles, and other external threats"
+		see goal MISStakeholderRequirements.SR_81 MISStakeholderRequirements.SR_82 MISStakeholderRequirements.SR_38
+	stakeholder mrj.noone
+	]
+]
+stakeholder goals SAObstacleObservations for  SAObservations::Obstacle
+	[ goal g2 
+	[	description "Pilot must be made aware of obstacles in the flight path"
+		rationale "Aircraft lost more often to obstacles than enemy fire"
+	see goal MISStakeholderRequirements.SR_83 MISStakeholderRequirements.SR_90
+	stakeholder mrj.noone
+	]
+]

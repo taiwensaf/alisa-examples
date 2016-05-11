@@ -1,0 +1,1718 @@
+<?xml version="1.0" encoding="ASCII"?>
+<instance:SystemInstance xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance" xmi:id="_wEEJEFi1EeSrQvninL_KZg" name="AircraftSystem_CH47F_Instance" category="system">
+  <componentInstance xmi:id="_wEXEAFi1EeSrQvninL_KZg" name="egi1" category="device">
+    <featureInstance xmi:id="_wEg1AFi1EeSrQvninL_KZg" name="airCraftPosition" srcConnectionInstance="_wIsKYFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg" dstFlowSpec="_wEqmAFi1EeSrQvninL_KZg" direction="out">
+      <ownedPropertyAssociation xmi:id="_wP17QFi1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Element_Names"/>
+        <ownedValue xmi:id="_wP17QVi1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wP17Qli1EeSrQvninL_KZg">
+            <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17Q1i1EeSrQvninL_KZg" value="Latitude"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17RFi1EeSrQvninL_KZg" value="Longitude"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17RVi1EeSrQvninL_KZg" value="Altitude"/>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xmi:id="_wP17Rli1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Data_Representation"/>
+        <ownedValue xmi:id="_wP17R1i1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:NamedValue" xmi:id="_wP17SFi1EeSrQvninL_KZg">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Data_Model.aadl#//@ownedProperty.4/@ownedPropertyType/@ownedLiteral.8"/>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0"/>
+    </featureInstance>
+    <flowSpecification xmi:id="_wEqmAFi1EeSrQvninL_KZg" name="ProvideOwnAircraftPos" destination="_wEg1AFi1EeSrQvninL_KZg">
+      <flowSpecification href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+    </flowSpecification>
+    <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedDeviceSubcomponent.0"/>
+    <index>0</index>
+  </componentInstance>
+  <componentInstance xmi:id="_wEqmAVi1EeSrQvninL_KZg" name="pilot">
+    <featureInstance xmi:id="_wEqmAli1EeSrQvninL_KZg" name="SAInformation" srcFlowSpec="_wEzv_1i1EeSrQvninL_KZg" category="featureGroup" direction="in out">
+      <featureInstance xmi:id="_wEzv8Fi1EeSrQvninL_KZg" name="AircrewSphericalTerrainInformation" srcConnectionInstance="_wJIPQ1i1EeSrQvninL_KZg" dstConnectionInstance="_wJIPQFi1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wP_FMFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wP_FMVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wP_FMli1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv8Vi1EeSrQvninL_KZg" name="AircrewTerrainLocationAwareness" srcConnectionInstance="_wJIPSVi1EeSrQvninL_KZg" dstConnectionInstance="_wJIPRli1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQI2MFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQI2MVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQI2Mli1EeSrQvninL_KZg" value="2">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.1"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv8li1EeSrQvninL_KZg" name="AircrewTerrainHeightAwareness" srcConnectionInstance="_wJIPT1i1EeSrQvninL_KZg" dstConnectionInstance="_wJIPTFi1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQI2M1i1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQI2NFi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQI2NVi1EeSrQvninL_KZg" value="2">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.2"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv81i1EeSrQvninL_KZg" name="AircrewTerrainHazards" srcConnectionInstance="_wJIPVVi1EeSrQvninL_KZg" dstConnectionInstance="_wJIPUli1EeSrQvninL_KZg" category="abstractFeature">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.3"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv9Fi1EeSrQvninL_KZg" name="AircrewSphericalObstacleInformation" srcConnectionInstance="_wJIPW1i1EeSrQvninL_KZg" dstConnectionInstance="_wJIPWFi1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQI2Nli1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQI2N1i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQI2OFi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.4"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv9Vi1EeSrQvninL_KZg" name="AircrewRelativeFlightPathObstaclePositionAwareness" srcConnectionInstance="_wJIPYVi1EeSrQvninL_KZg" dstConnectionInstance="_wJIPXli1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQI2OVi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQI2Oli1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQI2O1i1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.5"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv9li1EeSrQvninL_KZg" name="AircrewFlightPathObstacleHeightAwareness" srcConnectionInstance="_wJIPZ1i1EeSrQvninL_KZg" dstConnectionInstance="_wJIPZFi1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQI2PFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQI2PVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQI2Pli1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.6"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv91i1EeSrQvninL_KZg" name="AircrewFlightPathObstacleSeparationAwareness" srcConnectionInstance="_wJSAQFi1EeSrQvninL_KZg" dstConnectionInstance="_wJIPali1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQI2P1i1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQI2QFi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQI2QVi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.7"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv-Fi1EeSrQvninL_KZg" name="AircrewRelativeWireObstaclePositionAwareness" srcConnectionInstance="_wJSARli1EeSrQvninL_KZg" dstConnectionInstance="_wJSAQ1i1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQI2Qli1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQI2Q1i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQI2RFi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.8"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv-Vi1EeSrQvninL_KZg" name="AircrewFlightPathObstacleHorizontalSeparationAlert" srcConnectionInstance="_wJSATFi1EeSrQvninL_KZg" dstConnectionInstance="_wJSASVi1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQI2RVi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQSAIFi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQSAIVi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.9"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv-li1EeSrQvninL_KZg" name="AircrewFlightPathObstacleVerticalSeparationAlert" srcConnectionInstance="_wJSAUli1EeSrQvninL_KZg" dstConnectionInstance="_wJSAT1i1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQSAIli1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQSAI1i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQSAJFi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.10"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv-1i1EeSrQvninL_KZg" name="AircrewSphericalAdjacentAircraftInformation" srcConnectionInstance="_wJSAWFi1EeSrQvninL_KZg" dstConnectionInstance="_wJSAVVi1EeSrQvninL_KZg" category="abstractFeature">
+        <ownedPropertyAssociation xmi:id="_wQSAJVi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQSAJli1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQSAJ1i1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.11"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv_Fi1EeSrQvninL_KZg" name="AircrewRelativeAdjacentAircraftPositionAwareness" srcConnectionInstance="_wJSAXli1EeSrQvninL_KZg" dstConnectionInstance="_wJSAW1i1EeSrQvninL_KZg" category="abstractFeature">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.12"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv_Vi1EeSrQvninL_KZg" name="AircrewOtherAircraftPositionAwareness" srcConnectionInstance="_wJSAZFi1EeSrQvninL_KZg" dstConnectionInstance="_wJSAYVi1EeSrQvninL_KZg" category="abstractFeature">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.13"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wEzv_li1EeSrQvninL_KZg" name="AircrewOtherAircraftAltitudeAwareness" srcConnectionInstance="_wJSAali1EeSrQvninL_KZg" dstConnectionInstance="_wJSAZ1i1EeSrQvninL_KZg" category="abstractFeature">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.14"/>
+      </featureInstance>
+      <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroup.0"/>
+    </featureInstance>
+    <flowSpecification xmi:id="_wEzv_1i1EeSrQvninL_KZg" name="SeeAssaInfo" source="_wEqmAli1EeSrQvninL_KZg">
+      <flowSpecification href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFlowSpecification.0"/>
+    </flowSpecification>
+    <subcomponent xsi:type="aadl2:SystemSubcomponent" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedSystemSubcomponent.0"/>
+    <index>0</index>
+  </componentInstance>
+  <componentInstance xmi:id="_wE9g8Fi1EeSrQvninL_KZg" name="assa" category="system">
+    <ownedPropertyAssociation xmi:id="_wQbxIFi1EeSrQvninL_KZg">
+      <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservedObjects"/>
+      <ownedValue xmi:id="_wQliIFi1EeSrQvninL_KZg">
+        <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wQliIVi1EeSrQvninL_KZg">
+          <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wQliIli1EeSrQvninL_KZg">
+            <classifier xsi:type="aadl2:AbstractType" href="../../ASSAComponents/SAObservations.aadl#SAObservations.Threat"/>
+          </ownedListElement>
+        </ownedValue>
+      </ownedValue>
+    </ownedPropertyAssociation>
+    <featureInstance xmi:id="_wHyygVi1EeSrQvninL_KZg" name="SSSAirCrewPresentation" dstFlowSpec="_wIFtdVi1EeSrQvninL_KZg _wIFtdli1EeSrQvninL_KZg _wIFtd1i1EeSrQvninL_KZg" category="featureGroup" direction="out">
+      <featureInstance xmi:id="_wHyygli1EeSrQvninL_KZg" name="AircrewSphericalTerrainInformation" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusEFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusEVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusEli1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyg1i1EeSrQvninL_KZg" name="AircrewTerrainLocationAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusE1i1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusFFi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusFVi1EeSrQvninL_KZg" value="2">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.1"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyhFi1EeSrQvninL_KZg" name="AircrewTerrainHeightAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusFli1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusF1i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusGFi1EeSrQvninL_KZg" value="2">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.2"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyhVi1EeSrQvninL_KZg" name="AircrewTerrainHazards" category="abstractFeature" direction="out">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.3"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyhli1EeSrQvninL_KZg" name="AircrewSphericalObstacleInformation" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusGVi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusGli1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusG1i1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.4"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyh1i1EeSrQvninL_KZg" name="AircrewRelativeFlightPathObstaclePositionAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusHFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusHVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusHli1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.5"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyiFi1EeSrQvninL_KZg" name="AircrewFlightPathObstacleHeightAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusH1i1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusIFi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusIVi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.6"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyiVi1EeSrQvninL_KZg" name="AircrewFlightPathObstacleSeparationAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusIli1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusI1i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusJFi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.7"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyili1EeSrQvninL_KZg" name="AircrewRelativeWireObstaclePositionAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusJVi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusJli1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusJ1i1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.8"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyi1i1EeSrQvninL_KZg" name="AircrewFlightPathObstacleHorizontalSeparationAlert" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusKFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusKVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusKli1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.9"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyjFi1EeSrQvninL_KZg" name="AircrewFlightPathObstacleVerticalSeparationAlert" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusK1i1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusLFi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusLVi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.10"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyjVi1EeSrQvninL_KZg" name="AircrewSphericalAdjacentAircraftInformation" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xmi:id="_wQusLli1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wQusL1i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wQusMFi1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.11"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyjli1EeSrQvninL_KZg" name="AircrewRelativeAdjacentAircraftPositionAwareness" category="abstractFeature" direction="out">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.12"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyyj1i1EeSrQvninL_KZg" name="AircrewOtherAircraftPositionAwareness" category="abstractFeature" direction="out">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.13"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHyykFi1EeSrQvninL_KZg" name="AircrewOtherAircraftAltitudeAwareness" category="abstractFeature" direction="out">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.14"/>
+      </featureInstance>
+      <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.0"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wHyykVi1EeSrQvninL_KZg" name="toSwitch" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedBusAccess.0"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wH78cFi1EeSrQvninL_KZg" name="IncomingCOP">
+      <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wH78cVi1EeSrQvninL_KZg" name="ThreatAlerts" direction="out">
+      <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.1"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wH78cli1EeSrQvninL_KZg" name="WireObstaclesForAvoidance" direction="out">
+      <ownedPropertyAssociation xmi:id="_wQ4dEFi1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+        <ownedValue xmi:id="_wQ4dEVi1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wQ4dEli1EeSrQvninL_KZg">
+            <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wQ4dE1i1EeSrQvninL_KZg">
+              <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.ObstacleTrack"/>
+            </ownedListElement>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xmi:id="_wQ4dFFi1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+        <ownedValue xmi:id="_wQ4dFVi1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wQ4dFli1EeSrQvninL_KZg">
+            <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wQ4dF1i1EeSrQvninL_KZg">
+              <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxObstacleTracks"/>
+            </ownedListElement>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.2"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wIFtcFi1EeSrQvninL_KZg" name="GeospatialData">
+      <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.3"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wIFtcVi1EeSrQvninL_KZg" name="EnvironmentalInformation">
+      <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.4"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wIFtcli1EeSrQvninL_KZg" name="Weather">
+      <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.5"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wIFtc1i1EeSrQvninL_KZg" name="OwnAircraftPosition" srcFlowSpec="_wIFtdVi1EeSrQvninL_KZg _wIFtdli1EeSrQvninL_KZg">
+      <ownedPropertyAssociation xmi:id="_wQ4dGFi1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Element_Names"/>
+        <ownedValue xmi:id="_wQ4dGVi1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wP17Qli1EeSrQvninL_KZg">
+            <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17Q1i1EeSrQvninL_KZg" value="Latitude"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17RFi1EeSrQvninL_KZg" value="Longitude"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17RVi1EeSrQvninL_KZg" value="Altitude"/>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xmi:id="_wQ4dGli1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Data_Representation"/>
+        <ownedValue xmi:id="_wQ4dG1i1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:NamedValue" xmi:id="_wQ4dHFi1EeSrQvninL_KZg">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Data_Model.aadl#//@ownedProperty.4/@ownedPropertyType/@ownedLiteral.8"/>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.6"/>
+    </featureInstance>
+    <featureInstance xmi:id="_wIFtdFi1EeSrQvninL_KZg" name="AMPSInterface" category="eventDataPort" direction="in out">
+      <feature xsi:type="aadl2:EventDataPort" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedEventDataPort.0"/>
+    </featureInstance>
+    <componentInstance xmi:id="_wE9g8Vi1EeSrQvninL_KZg" name="AirCrewDisplay" category="device">
+      <ownedPropertyAssociation xmi:id="_wQ4dHVi1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Thread_Properties.aadl#Thread_Properties.Dispatch_Protocol"/>
+        <ownedValue xmi:id="_wRCOEFi1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:NamedValue" xmi:id="_wRCOEVi1EeSrQvninL_KZg">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.3/@ownedLiteral.0"/>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xmi:id="_wRCOEli1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue xmi:id="_wRCOE1i1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOFFi1EeSrQvninL_KZg" value="100">
+            <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <featureInstance xmi:id="_wFHR8Fi1EeSrQvninL_KZg" name="MFDSAInformation" dstConnectionInstance="_wJbxQFi1EeSrQvninL_KZg" srcFlowSpec="_wFQb8Fi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wFQb4Fi1EeSrQvninL_KZg" name="AircrewSAInformation" dstFlowSpec="_wFQb8Vi1EeSrQvninL_KZg" category="featureGroup" direction="out">
+        <featureInstance xmi:id="_wFQb4Vi1EeSrQvninL_KZg" name="AircrewSphericalTerrainInformation" srcConnectionInstance="_wJIPQFi1EeSrQvninL_KZg" dstConnectionInstance="_wJIPQ1i1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOFVi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOFli1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOF1i1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.0"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb4li1EeSrQvninL_KZg" name="AircrewTerrainLocationAwareness" srcConnectionInstance="_wJIPRli1EeSrQvninL_KZg" dstConnectionInstance="_wJIPSVi1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOGFi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOGVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOGli1EeSrQvninL_KZg" value="2">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.1"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb41i1EeSrQvninL_KZg" name="AircrewTerrainHeightAwareness" srcConnectionInstance="_wJIPTFi1EeSrQvninL_KZg" dstConnectionInstance="_wJIPT1i1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOG1i1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOHFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOHVi1EeSrQvninL_KZg" value="2">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.2"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb5Fi1EeSrQvninL_KZg" name="AircrewTerrainHazards" srcConnectionInstance="_wJIPUli1EeSrQvninL_KZg" dstConnectionInstance="_wJIPVVi1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.3"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb5Vi1EeSrQvninL_KZg" name="AircrewSphericalObstacleInformation" srcConnectionInstance="_wJIPWFi1EeSrQvninL_KZg" dstConnectionInstance="_wJIPW1i1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOHli1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOH1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOIFi1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.4"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb5li1EeSrQvninL_KZg" name="AircrewRelativeFlightPathObstaclePositionAwareness" srcConnectionInstance="_wJIPXli1EeSrQvninL_KZg" dstConnectionInstance="_wJIPYVi1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOIVi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOIli1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOI1i1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.5"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb51i1EeSrQvninL_KZg" name="AircrewFlightPathObstacleHeightAwareness" srcConnectionInstance="_wJIPZFi1EeSrQvninL_KZg" dstConnectionInstance="_wJIPZ1i1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOJFi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOJVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOJli1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.6"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb6Fi1EeSrQvninL_KZg" name="AircrewFlightPathObstacleSeparationAwareness" srcConnectionInstance="_wJIPali1EeSrQvninL_KZg" dstConnectionInstance="_wJSAQFi1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOJ1i1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOKFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOKVi1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.7"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb6Vi1EeSrQvninL_KZg" name="AircrewRelativeWireObstaclePositionAwareness" srcConnectionInstance="_wJSAQ1i1EeSrQvninL_KZg" dstConnectionInstance="_wJSARli1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOKli1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOK1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOLFi1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.8"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb6li1EeSrQvninL_KZg" name="AircrewFlightPathObstacleHorizontalSeparationAlert" srcConnectionInstance="_wJSASVi1EeSrQvninL_KZg" dstConnectionInstance="_wJSATFi1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOLVi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOLli1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOL1i1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.9"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb61i1EeSrQvninL_KZg" name="AircrewFlightPathObstacleVerticalSeparationAlert" srcConnectionInstance="_wJSAT1i1EeSrQvninL_KZg" dstConnectionInstance="_wJSAUli1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOMFi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCOMVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCOMli1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.10"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb7Fi1EeSrQvninL_KZg" name="AircrewSphericalAdjacentAircraftInformation" srcConnectionInstance="_wJSAVVi1EeSrQvninL_KZg" dstConnectionInstance="_wJSAWFi1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xmi:id="_wRCOM1i1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wRCONFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wRCONVi1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.11"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb7Vi1EeSrQvninL_KZg" name="AircrewRelativeAdjacentAircraftPositionAwareness" srcConnectionInstance="_wJSAW1i1EeSrQvninL_KZg" dstConnectionInstance="_wJSAXli1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.12"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb7li1EeSrQvninL_KZg" name="AircrewOtherAircraftPositionAwareness" srcConnectionInstance="_wJSAYVi1EeSrQvninL_KZg" dstConnectionInstance="_wJSAZFi1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.13"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wFQb71i1EeSrQvninL_KZg" name="AircrewOtherAircraftAltitudeAwareness" srcConnectionInstance="_wJSAZ1i1EeSrQvninL_KZg" dstConnectionInstance="_wJSAali1EeSrQvninL_KZg" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedAbstractFeature.14"/>
+        </featureInstance>
+        <feature xsi:type="aadl2:FeatureGroup" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <flowSpecification xmi:id="_wFQb8Fi1EeSrQvninL_KZg" name="ASSAInfo" source="_wFHR8Fi1EeSrQvninL_KZg">
+        <ownedPropertyAssociation xmi:id="_wRLYAFi1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue xmi:id="_wRLYAVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:RangeValue" xmi:id="_wRLYAli1EeSrQvninL_KZg">
+              <minimum xsi:type="aadl2:IntegerLiteral" xmi:id="_wRLYA1i1EeSrQvninL_KZg" value="1">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" xmi:id="_wRLYBFi1EeSrQvninL_KZg" value="2">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <flowSpecification xmi:id="_wFQb8Vi1EeSrQvninL_KZg" name="ASSAInfoToPilot" source="_wFHR8Fi1EeSrQvninL_KZg" destination="_wFQb4Fi1EeSrQvninL_KZg">
+        <flowSpecification href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFlowSpecification.1"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance xmi:id="_wFQb8li1EeSrQvninL_KZg" name="AircrewAnnunciation" category="device">
+      <featureInstance xmi:id="_wFaM4Fi1EeSrQvninL_KZg" name="Alerts" srcFlowSpec="_wFaM4Vi1EeSrQvninL_KZg">
+        <feature xsi:type="aadl2:DataPort" href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedDataPort.0"/>
+      </featureInstance>
+      <flowSpecification xmi:id="_wFaM4Vi1EeSrQvninL_KZg" name="SoundAlerts" source="_wFaM4Fi1EeSrQvninL_KZg">
+        <ownedPropertyAssociation xmi:id="_wRLYBVi1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue xmi:id="_wRLYBli1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:RangeValue" xmi:id="_wRLYB1i1EeSrQvninL_KZg">
+              <minimum xsi:type="aadl2:IntegerLiteral" xmi:id="_wRLYCFi1EeSrQvninL_KZg" value="1">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" xmi:id="_wRLYCVi1EeSrQvninL_KZg" value="1">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../../ASSAComponents/SAAwarenessAnnunciation.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.1"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance xmi:id="_wFaM4li1EeSrQvninL_KZg" name="Fusion" category="process">
+      <featureInstance xmi:id="_wFtH0Fi1EeSrQvninL_KZg" name="IncomingData" dstConnectionInstance="_wJusMFi1EeSrQvninL_KZg" srcFlowSpec="_wF240Fi1EeSrQvninL_KZg" category="featureGroup" direction="in out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wFtH0Vi1EeSrQvninL_KZg" name="OutgoingCorrelatedTracks" srcConnectionInstance="_wJSAbVi1EeSrQvninL_KZg" dstFlowSpec="_wF240Fi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg" category="featureGroup" direction="in out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wFtH0li1EeSrQvninL_KZg" name="ownAircraftPosition" dstConnectionInstance="_wIsKYFi1EeSrQvninL_KZg" srcFlowSpec="_wF240Vi1EeSrQvninL_KZg">
+        <ownedPropertyAssociation xmi:id="_wRVJAFi1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Element_Names"/>
+          <ownedValue xmi:id="_wRVJAVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wP17Qli1EeSrQvninL_KZg">
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17Q1i1EeSrQvninL_KZg" value="Latitude"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17RFi1EeSrQvninL_KZg" value="Longitude"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17RVi1EeSrQvninL_KZg" value="Altitude"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xmi:id="_wRVJAli1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Data_Representation"/>
+          <ownedValue xmi:id="_wRVJA1i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:NamedValue" xmi:id="_wRVJBFi1EeSrQvninL_KZg">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Data_Model.aadl#//@ownedProperty.4/@ownedPropertyType/@ownedLiteral.8"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedDataPort.0"/>
+      </featureInstance>
+      <flowSpecification xmi:id="_wF240Fi1EeSrQvninL_KZg" name="TrackFusion" source="_wFtH0Fi1EeSrQvninL_KZg" destination="_wFtH0Vi1EeSrQvninL_KZg">
+        <flowSpecification href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <flowSpecification xmi:id="_wF240Vi1EeSrQvninL_KZg" name="AircraftPositionFusion" source="_wFtH0li1EeSrQvninL_KZg" destination="_wFtH0Vi1EeSrQvninL_KZg">
+        <flowSpecification href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFlowSpecification.1"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedProcessSubcomponent.1"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance xmi:id="_wF240li1EeSrQvninL_KZg" name="Assessmnent" category="process">
+      <ownedPropertyAssociation xmi:id="_wRVJBVi1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue xmi:id="_wReS8Fi1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wReS8Vi1EeSrQvninL_KZg" value="100">
+            <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <featureInstance xmi:id="_wF2401i1EeSrQvninL_KZg" name="AssessmentInput" dstConnectionInstance="_wJSAbVi1EeSrQvninL_KZg" srcFlowSpec="_wF241Vi1EeSrQvninL_KZg" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wF241Fi1EeSrQvninL_KZg" name="AssessmentResults" srcConnectionInstance="_wJSAb1i1EeSrQvninL_KZg" dstFlowSpec="_wF241Vi1EeSrQvninL_KZg" category="featureGroup" direction="out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <flowSpecification xmi:id="_wF241Vi1EeSrQvninL_KZg" name="Assessment" source="_wF2401i1EeSrQvninL_KZg" destination="_wF241Fi1EeSrQvninL_KZg">
+        <ownedPropertyAssociation xmi:id="_wRoD8Fi1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue xmi:id="_wRoD8Vi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:RangeValue" xmi:id="_wRoD8li1EeSrQvninL_KZg">
+              <minimum xsi:type="aadl2:IntegerLiteral" xmi:id="_wRoD81i1EeSrQvninL_KZg" value="10">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" xmi:id="_wRoD9Fi1EeSrQvninL_KZg" value="10">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedProcessSubcomponent.2"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance xmi:id="_wF241li1EeSrQvninL_KZg" name="ASSAFormatting" category="process">
+      <ownedPropertyAssociation xmi:id="_wSEv4Fi1EeSrQvninL_KZg">
+        <property href="../../../../Plugin_Resources/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue xmi:id="_wSOg4Fi1EeSrQvninL_KZg">
+          <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wSOg4Vi1EeSrQvninL_KZg" value="100">
+            <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+      </ownedPropertyAssociation>
+      <featureInstance xmi:id="_wF2411i1EeSrQvninL_KZg" name="AssessedInformation" dstConnectionInstance="_wJSAb1i1EeSrQvninL_KZg" srcFlowSpec="_wGACxFi1EeSrQvninL_KZg" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wF242Fi1EeSrQvninL_KZg" name="MFDSAInformation" srcConnectionInstance="_wJbxQFi1EeSrQvninL_KZg" dstFlowSpec="_wGACxFi1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg" category="featureGroup" direction="out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wGACwFi1EeSrQvninL_KZg" name="WeatherInformation">
+        <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wGACwVi1EeSrQvninL_KZg" name="ObstacleInformation">
+        <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.1"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wGACwli1EeSrQvninL_KZg" name="TerrainInformation">
+        <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.2"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wGACw1i1EeSrQvninL_KZg" name="OwnAircraftPosition" dstConnectionInstance="_wIsKY1i1EeSrQvninL_KZg" srcFlowSpec="_wGACxVi1EeSrQvninL_KZg">
+        <ownedPropertyAssociation xmi:id="_wSXq0Fi1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Element_Names"/>
+          <ownedValue xmi:id="_wSXq0Vi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wP17Qli1EeSrQvninL_KZg">
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17Q1i1EeSrQvninL_KZg" value="Latitude"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17RFi1EeSrQvninL_KZg" value="Longitude"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wP17RVi1EeSrQvninL_KZg" value="Altitude"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xmi:id="_wSXq0li1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Data_Representation"/>
+          <ownedValue xmi:id="_wSXq01i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:NamedValue" xmi:id="_wSXq1Fi1EeSrQvninL_KZg">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Data_Model.aadl#//@ownedProperty.4/@ownedPropertyType/@ownedLiteral.8"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.3"/>
+      </featureInstance>
+      <flowSpecification xmi:id="_wGACxFi1EeSrQvninL_KZg" name="AssessedThreatInfo" source="_wF2411i1EeSrQvninL_KZg" destination="_wF242Fi1EeSrQvninL_KZg">
+        <ownedPropertyAssociation xmi:id="_wSXq1Vi1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue xmi:id="_wShb0Fi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:RangeValue" xmi:id="_wShb0Vi1EeSrQvninL_KZg">
+              <minimum xsi:type="aadl2:IntegerLiteral" xmi:id="_wShb0li1EeSrQvninL_KZg" value="1">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" xmi:id="_wShb01i1EeSrQvninL_KZg" value="1">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <flowSpecification xmi:id="_wGACxVi1EeSrQvninL_KZg" name="OwnAircraftInfo" source="_wGACw1i1EeSrQvninL_KZg" destination="_wF242Fi1EeSrQvninL_KZg">
+        <flowSpecification href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFlowSpecification.1"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedProcessSubcomponent.3"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance xmi:id="_wGACxli1EeSrQvninL_KZg" name="Conversion" category="process">
+      <featureInstance xmi:id="_wG5aoFi1EeSrQvninL_KZg" name="SensorSetReadings" srcFlowSpec="_wHDLoli1EeSrQvninL_KZg" category="featureGroup">
+        <featureInstance xmi:id="_wG5aoVi1EeSrQvninL_KZg" name="WWSensorTracks">
+          <ownedPropertyAssociation xmi:id="_wS0WwFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wS-HwFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HwVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wS-Hwli1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.WWTrack"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wS-Hw1i1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wS-HxFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HxVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wS-Hxli1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxWWTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../ASSAMISConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedDataPort.0"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wG5aoli1EeSrQvninL_KZg" name="ATWSensorTracks">
+          <ownedPropertyAssociation xmi:id="_wS-Hx1i1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wS-HyFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HyVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wS-Hyli1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.ATWTrack"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wTHRsFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wTHRsVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTHRsli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wTHRs1i1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxATWTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../ASSAMISConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedDataPort.1"/>
+        </featureInstance>
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wG5ao1i1EeSrQvninL_KZg" name="StdSourceTracks" dstFlowSpec="_wHDLoli1EeSrQvninL_KZg" category="featureGroup" direction="out">
+        <featureInstance xmi:id="_wHDLoFi1EeSrQvninL_KZg" name="WWStdTracks" direction="out">
+          <ownedPropertyAssociation xmi:id="_wTRCsFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wTRCsVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCsli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wTRCs1i1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataImplementation" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.SourceTrack.DCFM"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wTRCtFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wTRCtVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCtli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wTRCt1i1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxDCFMSourceTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wTRCuFi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+            <ownedValue xmi:id="_wTRCuVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCuli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wTRCu1i1EeSrQvninL_KZg" value="MISAPISourceTrackSet"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wTRCvFi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.Description"/>
+            <ownedValue xmi:id="_wTRCvVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:StringLiteral" xmi:id="_wTRCvli1EeSrQvninL_KZg" value="Set of tracks represents a collection of tracked entity at a given point in time"/>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../ASSAMISConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedDataPort.0"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wHDLoVi1EeSrQvninL_KZg" name="ATWStdTracks" direction="out">
+          <ownedPropertyAssociation xmi:id="_wTazsFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wTazsVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCsli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wTRCs1i1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataImplementation" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.SourceTrack.DCFM"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wTazsli1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wTazs1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTaztFi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wTaztVi1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxDCFMSourceTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wTj9oFi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+            <ownedValue xmi:id="_wTj9oVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCuli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wTRCu1i1EeSrQvninL_KZg" value="MISAPISourceTrackSet"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wTj9oli1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.Description"/>
+            <ownedValue xmi:id="_wTj9o1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:StringLiteral" xmi:id="_wTRCvli1EeSrQvninL_KZg" value="Set of tracks represents a collection of tracked entity at a given point in time"/>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../ASSAMISConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedDataPort.1"/>
+        </featureInstance>
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <componentInstance xmi:id="_wGTkwFi1EeSrQvninL_KZg" name="WWConversion">
+        <ownedPropertyAssociation xmi:id="_wTtuoFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+          <ownedValue xmi:id="_wTtuoVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTtuoli1EeSrQvninL_KZg">
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wTtuo1i1EeSrQvninL_KZg" value="AST Manager"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wTtupFi1EeSrQvninL_KZg" value="Weapons Watch Controller"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wTtupVi1EeSrQvninL_KZg" value="Weapons Watch Manager"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <featureInstance xmi:id="_wGcusFi1EeSrQvninL_KZg" name="WWSourceTrackSet">
+          <ownedPropertyAssociation xmi:id="_wT24kFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wT24kVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HwVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wS-Hwli1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.WWTrack"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wT24kli1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wT24k1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wT24lFi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wT24lVi1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxWWTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../../MISDesign/MISDesign.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedDataPort.0"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wGvpoFi1EeSrQvninL_KZg" name="StdSourcetracks" srcConnectionInstance="_wJusMFi1EeSrQvninL_KZg" direction="out">
+          <ownedPropertyAssociation xmi:id="_wUApkFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wUApkVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCsli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wTRCs1i1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataImplementation" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.SourceTrack.DCFM"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wUApkli1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wUApk1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wUAplFi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wUAplVi1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxDCFMSourceTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wUAplli1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+            <ownedValue xmi:id="_wUKakFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCuli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wTRCu1i1EeSrQvninL_KZg" value="MISAPISourceTrackSet"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wUKakVi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.Description"/>
+            <ownedValue xmi:id="_wUKakli1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:StringLiteral" xmi:id="_wTRCvli1EeSrQvninL_KZg" value="Set of tracks represents a collection of tracked entity at a given point in time"/>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../../MISDesign/MISDesign.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedDataPort.1"/>
+        </featureInstance>
+        <subcomponent xsi:type="aadl2:ThreadSubcomponent" href="../ASSAMISConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedThreadSubcomponent.0"/>
+        <index>0</index>
+      </componentInstance>
+      <componentInstance xmi:id="_wGvpoVi1EeSrQvninL_KZg" name="ATWConversion">
+        <ownedPropertyAssociation xmi:id="_wUTkgFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+          <ownedValue xmi:id="_wUTkgVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wUTkgli1EeSrQvninL_KZg">
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wTtuo1i1EeSrQvninL_KZg" value="AST Manager"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wUTkg1i1EeSrQvninL_KZg" value="ATW Controller"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wUTkhFi1EeSrQvninL_KZg" value="ATW Manager"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <featureInstance xmi:id="_wGvpoli1EeSrQvninL_KZg" name="WWSourceTrackSet">
+          <ownedPropertyAssociation xmi:id="_wUdVgFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wUdVgVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HyVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wS-Hyli1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.ATWTrack"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wUdVgli1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wUdVg1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wUdVhFi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wUdVhVi1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxATWTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../../MISDesign/MISDesign.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedDataPort.0"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wGvpo1i1EeSrQvninL_KZg" name="StdSourcetracks" direction="out">
+          <ownedPropertyAssociation xmi:id="_wUdVhli1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wUdVh1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCsli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wTRCs1i1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataImplementation" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.SourceTrack.DCFM"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wUdViFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wUdViVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wUnGgFi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wUnGgVi1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxDCFMSourceTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wUnGgli1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+            <ownedValue xmi:id="_wUnGg1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wTRCuli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wTRCu1i1EeSrQvninL_KZg" value="MISAPISourceTrackSet"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wUnGhFi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.Description"/>
+            <ownedValue xmi:id="_wUnGhVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:StringLiteral" xmi:id="_wTRCvli1EeSrQvninL_KZg" value="Set of tracks represents a collection of tracked entity at a given point in time"/>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../../MISDesign/MISDesign.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedDataPort.1"/>
+        </featureInstance>
+        <subcomponent xsi:type="aadl2:ThreadSubcomponent" href="../ASSAMISConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedThreadSubcomponent.1"/>
+        <index>0</index>
+      </componentInstance>
+      <flowSpecification xmi:id="_wHDLoli1EeSrQvninL_KZg" name="TrackConversion" source="_wG5aoFi1EeSrQvninL_KZg" destination="_wG5ao1i1EeSrQvninL_KZg">
+        <flowSpecification href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../CH47FConfiguration.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedProcessSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance xmi:id="_wHDLo1i1EeSrQvninL_KZg" name="Sensors" category="system">
+      <featureInstance xmi:id="_wHpBgli1EeSrQvninL_KZg" name="SensorSetReadings" dstFlowSpec="_wHyygFi1EeSrQvninL_KZg" category="featureGroup" direction="in out">
+        <featureInstance xmi:id="_wHpBg1i1EeSrQvninL_KZg" name="WWSourceTracks" category="eventDataPort">
+          <ownedPropertyAssociation xmi:id="_wVDLYFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wVDLYVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HwVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wS-Hwli1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.WWTrack"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wVDLYli1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wVDLY1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wVDLZFi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wVDLZVi1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxWWTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:EventDataPort" href="../ASSASensorConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedEventDataPort.0"/>
+        </featureInstance>
+        <featureInstance xmi:id="_wHpBhFi1EeSrQvninL_KZg" name="ATWSourceTracks" category="eventDataPort">
+          <ownedPropertyAssociation xmi:id="_wVM8YFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wVM8YVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HyVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wS-Hyli1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.ATWTrack"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wVWtYFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wVWtYVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wVWtYli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wVWtY1i1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxATWTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:EventDataPort" href="../ASSASensorConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedEventDataPort.1"/>
+        </featureInstance>
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance xmi:id="_wHpBhVi1EeSrQvninL_KZg" name="SensorSetComm" category="featureGroup" direction="in out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <componentInstance xmi:id="_wHMVkFi1EeSrQvninL_KZg" name="WW" category="device">
+        <ownedPropertyAssociation xmi:id="_wVWtZFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue xmi:id="_wVWtZVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wVWtZli1EeSrQvninL_KZg" value="5">
+              <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xmi:id="_wVf3UFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservedObjects"/>
+          <ownedValue xmi:id="_wVf3UVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wVf3Uli1EeSrQvninL_KZg">
+              <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wVf3U1i1EeSrQvninL_KZg">
+                <classifier xsi:type="aadl2:AbstractType" href="../../ASSAComponents/SAObservations.aadl#SAObservations.BallisticWeaponsFire"/>
+              </ownedListElement>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xmi:id="_wVpoUFi1EeSrQvninL_KZg">
+          <property href="../../../../Plugin_Resources/Timing_Properties.aadl#Timing_Properties.Period"/>
+          <ownedValue xmi:id="_wVzZUFi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wVzZUVi1EeSrQvninL_KZg" value="100">
+              <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xmi:id="_wVzZUli1EeSrQvninL_KZg">
+          <property href="../../../propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+          <ownedValue xmi:id="_wVzZU1i1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wVzZVFi1EeSrQvninL_KZg">
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wVzZVVi1EeSrQvninL_KZg" value="ASE"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wVzZVli1EeSrQvninL_KZg" value="AST system"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wVzZV1i1EeSrQvninL_KZg" value="AS system"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xmi:id="_wV8jQFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.SensorKind"/>
+          <ownedValue xmi:id="_wV8jQVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:NamedValue" xmi:id="_wV8jQli1EeSrQvninL_KZg">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../propertysets/JMRMIS.aadl#//@ownedProperty.0/@ownedPropertyType/@ownedLiteral.1"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <featureInstance xmi:id="_wHf3kFi1EeSrQvninL_KZg" name="SourceTracks" dstFlowSpec="_wHf3kVi1EeSrQvninL_KZg" direction="out">
+          <ownedPropertyAssociation xmi:id="_wV8jQ1i1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wV8jRFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HwVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wS-Hwli1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.WWTrack"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wV8jRVi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wV8jRli1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wV8jR1i1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wV8jSFi1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxWWTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wWGUQFi1EeSrQvninL_KZg">
+            <property href="../../../propertysets/ACVIP.aadl#ACVIP.OutputInterval"/>
+            <ownedValue xmi:id="_wWGUQVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wWGUQli1EeSrQvninL_KZg" value="100">
+                <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wWGUQ1i1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Communication_Properties.aadl#Communication_Properties.Transmission_Type"/>
+            <ownedValue xmi:id="_wWGURFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:NamedValue" xmi:id="_wWGURVi1EeSrQvninL_KZg">
+                <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Communication_Properties.aadl#//@ownedProperty.8/@ownedPropertyType/@ownedLiteral.0"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../../ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedDataPort.0"/>
+        </featureInstance>
+        <flowSpecification xmi:id="_wHf3kVi1EeSrQvninL_KZg" name="ThreatObserved" destination="_wHf3kFi1EeSrQvninL_KZg">
+          <ownedPropertyAssociation xmi:id="_wWGURli1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Communication_Properties.aadl#Communication_Properties.Latency"/>
+            <ownedValue xmi:id="_wWGUR1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:RangeValue" xmi:id="_wWGUSFi1EeSrQvninL_KZg">
+                <minimum xsi:type="aadl2:IntegerLiteral" xmi:id="_wWGUSVi1EeSrQvninL_KZg" value="20">
+                  <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+                </minimum>
+                <maximum xsi:type="aadl2:IntegerLiteral" xmi:id="_wWGUSli1EeSrQvninL_KZg" value="30">
+                  <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+                </maximum>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <flowSpecification href="../../ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedFlowSpecification.0"/>
+        </flowSpecification>
+        <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../ASSASensorConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.0"/>
+        <index>0</index>
+      </componentInstance>
+      <componentInstance xmi:id="_wHf3kli1EeSrQvninL_KZg" name="ATW" category="device">
+        <ownedPropertyAssociation xmi:id="_wWQFQFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservedObjects"/>
+          <ownedValue xmi:id="_wWQFQVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wVf3Uli1EeSrQvninL_KZg">
+              <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wVf3U1i1EeSrQvninL_KZg">
+                <classifier xsi:type="aadl2:AbstractType" href="../../ASSAComponents/SAObservations.aadl#SAObservations.BallisticWeaponsFire"/>
+              </ownedListElement>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xmi:id="_wWZPMFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+          <ownedValue xmi:id="_wWZPMVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wWZPMli1EeSrQvninL_KZg">
+              <ownedListElement xsi:type="aadl2:StringLiteral" xmi:id="_wWZPM1i1EeSrQvninL_KZg" value="Advanced Threat Warner"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xmi:id="_wWZPNFi1EeSrQvninL_KZg">
+          <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.SensorKind"/>
+          <ownedValue xmi:id="_wWZPNVi1EeSrQvninL_KZg">
+            <ownedValue xsi:type="aadl2:NamedValue" xmi:id="_wWZPNli1EeSrQvninL_KZg">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../propertysets/JMRMIS.aadl#//@ownedProperty.0/@ownedPropertyType/@ownedLiteral.1"/>
+            </ownedValue>
+          </ownedValue>
+        </ownedPropertyAssociation>
+        <featureInstance xmi:id="_wHpBgFi1EeSrQvninL_KZg" name="SourceTracks" dstFlowSpec="_wHpBgVi1EeSrQvninL_KZg" direction="out">
+          <ownedPropertyAssociation xmi:id="_wWZPN1i1EeSrQvninL_KZg">
+            <property href="../../../propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue xmi:id="_wWjAMFi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:IntegerLiteral" xmi:id="_wWjAMVi1EeSrQvninL_KZg" value="5">
+                <unit href="../../../propertysets/JMRMIS.aadl#//@ownedPropertyType.0/@ownedUnitsType/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wWjAMli1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+            <ownedValue xmi:id="_wWjAM1i1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wS-HyVi1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:ClassifierValue" xmi:id="_wS-Hyli1EeSrQvninL_KZg">
+                  <classifier xsi:type="aadl2:DataType" href="../../ASSAComponents/TrackTypes.aadl#TrackTypes.ATWTrack"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <ownedPropertyAssociation xmi:id="_wWjANFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+            <ownedValue xmi:id="_wWjANVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:ListValue" xmi:id="_wWjANli1EeSrQvninL_KZg">
+                <ownedListElement xsi:type="aadl2:NamedValue" xmi:id="_wWjAN1i1EeSrQvninL_KZg">
+                  <namedValue xsi:type="aadl2:PropertyConstant" href="../../../propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxATWTracks"/>
+                </ownedListElement>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:DataPort" href="../../ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.0"/>
+        </featureInstance>
+        <flowSpecification xmi:id="_wHpBgVi1EeSrQvninL_KZg" name="ThreatObserved" destination="_wHpBgFi1EeSrQvninL_KZg">
+          <ownedPropertyAssociation xmi:id="_wWjAOFi1EeSrQvninL_KZg">
+            <property href="../../../../Plugin_Resources/Communication_Properties.aadl#Communication_Properties.Latency"/>
+            <ownedValue xmi:id="_wWjAOVi1EeSrQvninL_KZg">
+              <ownedValue xsi:type="aadl2:RangeValue" xmi:id="_wWjAOli1EeSrQvninL_KZg">
+                <minimum xsi:type="aadl2:IntegerLiteral" xmi:id="_wWjAO1i1EeSrQvninL_KZg" value="25">
+                  <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+                </minimum>
+                <maximum xsi:type="aadl2:IntegerLiteral" xmi:id="_wWjAPFi1EeSrQvninL_KZg" value="35">
+                  <unit href="../../../../Plugin_Resources/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+                </maximum>
+              </ownedValue>
+            </ownedValue>
+          </ownedPropertyAssociation>
+          <flowSpecification href="../../ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFlowSpecification.0"/>
+        </flowSpecification>
+        <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../ASSASensorConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.1"/>
+        <index>0</index>
+      </componentInstance>
+      <flowSpecification xmi:id="_wHyygFi1EeSrQvninL_KZg" name="sensorReadings" destination="_wHpBgli1EeSrQvninL_KZg">
+        <flowSpecification href="../../CommonArchitecture/ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:SystemSubcomponent" href="../CH47FConfiguration.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedSystemSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <flowSpecification xmi:id="_wIFtdVi1EeSrQvninL_KZg" name="directAircraftpos" source="_wIFtc1i1EeSrQvninL_KZg" destination="_wHyygVi1EeSrQvninL_KZg">
+      <flowSpecification href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+    </flowSpecification>
+    <flowSpecification xmi:id="_wIFtdli1EeSrQvninL_KZg" name="assessedASSAAircraftpos" source="_wIFtc1i1EeSrQvninL_KZg" destination="_wHyygVi1EeSrQvninL_KZg">
+      <flowSpecification href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.1"/>
+    </flowSpecification>
+    <flowSpecification xmi:id="_wIFtd1i1EeSrQvninL_KZg" name="ASSASensorObservations" destination="_wHyygVi1EeSrQvninL_KZg">
+      <flowSpecification href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.2"/>
+    </flowSpecification>
+    <connectionInstance xmi:id="_wJSAbVi1EeSrQvninL_KZg" name="Fusion.OutgoingCorrelatedTracks -> Assessmnent.AssessmentInput" complete="true" kind="featureGroupConnection" destination="_wF2401i1EeSrQvninL_KZg" source="_wFtH0Vi1EeSrQvninL_KZg">
+      <connectionReference xmi:id="_wJSAbli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFtH0Vi1EeSrQvninL_KZg" destination="_wF2401i1EeSrQvninL_KZg">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.2"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance xmi:id="_wJSAb1i1EeSrQvninL_KZg" name="Assessmnent.AssessmentResults -> ASSAFormatting.AssessedInformation" complete="true" kind="featureGroupConnection" destination="_wF2411i1EeSrQvninL_KZg" source="_wF241Fi1EeSrQvninL_KZg">
+      <connectionReference xmi:id="_wJSAcFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wF241Fi1EeSrQvninL_KZg" destination="_wF2411i1EeSrQvninL_KZg">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.3"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance xmi:id="_wJbxQFi1EeSrQvninL_KZg" name="ASSAFormatting.MFDSAInformation -> AirCrewDisplay.MFDSAInformation" complete="true" kind="featureGroupConnection" destination="_wFHR8Fi1EeSrQvninL_KZg" source="_wF242Fi1EeSrQvninL_KZg">
+      <connectionReference xmi:id="_wJbxQVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wF242Fi1EeSrQvninL_KZg" destination="_wFHR8Fi1EeSrQvninL_KZg">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.4"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance xmi:id="_wJusMFi1EeSrQvninL_KZg" name="Conversion.WWConversion.StdSourcetracks -> Fusion.IncomingData" complete="true" kind="featureGroupConnection" destination="_wFtH0Fi1EeSrQvninL_KZg" source="_wGvpoFi1EeSrQvninL_KZg">
+      <connectionReference xmi:id="_wJusMVi1EeSrQvninL_KZg" context="_wGACxli1EeSrQvninL_KZg" source="_wGvpoFi1EeSrQvninL_KZg" destination="_wHDLoFi1EeSrQvninL_KZg">
+        <connection xsi:type="aadl2:PortConnection" href="../ASSAMISConfigurations.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.1"/>
+      </connectionReference>
+      <connectionReference xmi:id="_wJusMli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wHDLoFi1EeSrQvninL_KZg" destination="_wFtH0Fi1EeSrQvninL_KZg">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.1"/>
+      </connectionReference>
+    </connectionInstance>
+    <subcomponent xsi:type="aadl2:SystemSubcomponent" href="../CH47FConfiguration.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedSystemSubcomponent.0"/>
+    <index>0</index>
+  </componentInstance>
+  <endToEndFlow xmi:id="_wJ4dMFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPQFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiEFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_1" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPQ1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiEVi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_2" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPRli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiEli1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_3" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPSVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiE1i1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_4" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPTFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiFFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_5" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPT1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiFVi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_6" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPUli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiFli1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_7" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPVVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiF1i1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_8" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPWFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiGFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_9" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPW1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiGVi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_10" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPXli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiGli1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_11" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPYVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiG1i1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_12" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPZFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiHFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_13" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPZ1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiHVi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_14" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPali1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiHli1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_15" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAQFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiH1i1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_16" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAQ1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiIFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_17" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSARli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiIVi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_18" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSASVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiIli1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_19" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSATFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiI1i1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_20" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAT1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiJFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_21" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAUli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKUiJVi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_22" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAVVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKeTEFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_23" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAWFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKeTEVi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_24" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAW1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKeTEli1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_25" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAXli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKeTE1i1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_26" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAYVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKeTFFi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_27" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAZFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKeTFVi1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_28" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAZ1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKeTFli1EeSrQvninL_KZg" name="DirectOwnAircraftFlow_29" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKY1i1EeSrQvninL_KZg _wGACxVi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAali1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKeTF1i1EeSrQvninL_KZg" name="FusedAircraftPositionSA" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPQFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEEFi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_1" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPQ1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEEVi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_2" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPRli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEEli1EeSrQvninL_KZg" name="FusedAircraftPositionSA_3" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPSVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEE1i1EeSrQvninL_KZg" name="FusedAircraftPositionSA_4" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPTFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEFFi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_5" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPT1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEFVi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_6" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPUli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEFli1EeSrQvninL_KZg" name="FusedAircraftPositionSA_7" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPVVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEF1i1EeSrQvninL_KZg" name="FusedAircraftPositionSA_8" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPWFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEGFi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_9" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPW1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEGVi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_10" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPXli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEGli1EeSrQvninL_KZg" name="FusedAircraftPositionSA_11" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPYVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEG1i1EeSrQvninL_KZg" name="FusedAircraftPositionSA_12" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPZFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEHFi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_13" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPZ1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEHVi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_14" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJIPali1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEHli1EeSrQvninL_KZg" name="FusedAircraftPositionSA_15" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAQFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEH1i1EeSrQvninL_KZg" name="FusedAircraftPositionSA_16" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAQ1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEIFi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_17" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSARli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEIVi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_18" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSASVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEIli1EeSrQvninL_KZg" name="FusedAircraftPositionSA_19" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSATFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEI1i1EeSrQvninL_KZg" name="FusedAircraftPositionSA_20" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAT1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEJFi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_21" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAUli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEJVi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_22" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAVVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEJli1EeSrQvninL_KZg" name="FusedAircraftPositionSA_23" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAWFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEJ1i1EeSrQvninL_KZg" name="FusedAircraftPositionSA_24" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAW1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEKFi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_25" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAXli1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEKVi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_26" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAYVi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEKli1EeSrQvninL_KZg" name="FusedAircraftPositionSA_27" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAZFi1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoEK1i1EeSrQvninL_KZg" name="FusedAircraftPositionSA_28" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAZ1i1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow xmi:id="_wKoELFi1EeSrQvninL_KZg" name="FusedAircraftPositionSA_29" flowElement="_wEqmAFi1EeSrQvninL_KZg _wIsKYFi1EeSrQvninL_KZg _wF240Vi1EeSrQvninL_KZg _wJSAbVi1EeSrQvninL_KZg _wF241Vi1EeSrQvninL_KZg _wJSAb1i1EeSrQvninL_KZg _wGACxFi1EeSrQvninL_KZg _wJbxQFi1EeSrQvninL_KZg _wFQb8Vi1EeSrQvninL_KZg _wJSAali1EeSrQvninL_KZg _wEzv_1i1EeSrQvninL_KZg">
+    <endToEndFlow href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <connectionInstance xmi:id="_wIsKYFi1EeSrQvninL_KZg" name="egi1.airCraftPosition -> assa.Fusion.ownAircraftPosition" complete="true" kind="portConnection" destination="_wFtH0li1EeSrQvninL_KZg" source="_wEg1AFi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wIsKYVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wEg1AFi1EeSrQvninL_KZg" destination="_wIFtc1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:PortConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedPortConnection.0"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wIsKYli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wIFtc1i1EeSrQvninL_KZg" destination="_wFtH0li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:PortConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wIsKY1i1EeSrQvninL_KZg" name="egi1.airCraftPosition -> assa.ASSAFormatting.OwnAircraftPosition" complete="true" kind="portConnection" destination="_wGACw1i1EeSrQvninL_KZg" source="_wEg1AFi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wIsKZFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wEg1AFi1EeSrQvninL_KZg" destination="_wIFtc1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:PortConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedPortConnection.0"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wIsKZVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wIFtc1i1EeSrQvninL_KZg" destination="_wGACw1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:PortConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.1"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPQFi1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalTerrainInformation -> pilot.SAInformation.AircrewSphericalTerrainInformation" complete="true" destination="_wEzv8Fi1EeSrQvninL_KZg" source="_wFQb4Vi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPQVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb4Vi1EeSrQvninL_KZg" destination="_wHyygli1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPQli1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyygli1EeSrQvninL_KZg" destination="_wEzv8Fi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPQ1i1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewSphericalTerrainInformation -> assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalTerrainInformation" complete="true" destination="_wFQb4Vi1EeSrQvninL_KZg" source="_wEzv8Fi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPRFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv8Fi1EeSrQvninL_KZg" destination="_wHyygli1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPRVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyygli1EeSrQvninL_KZg" destination="_wEzv8Fi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPRli1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainLocationAwareness -> pilot.SAInformation.AircrewTerrainLocationAwareness" complete="true" destination="_wEzv8Vi1EeSrQvninL_KZg" source="_wFQb4li1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPR1i1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb4li1EeSrQvninL_KZg" destination="_wHyyg1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPSFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyg1i1EeSrQvninL_KZg" destination="_wEzv8Vi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPSVi1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewTerrainLocationAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainLocationAwareness" complete="true" destination="_wFQb4li1EeSrQvninL_KZg" source="_wEzv8Vi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPSli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv8Vi1EeSrQvninL_KZg" destination="_wHyyg1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPS1i1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyg1i1EeSrQvninL_KZg" destination="_wEzv8Vi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPTFi1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainHeightAwareness -> pilot.SAInformation.AircrewTerrainHeightAwareness" complete="true" destination="_wEzv8li1EeSrQvninL_KZg" source="_wFQb41i1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPTVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb41i1EeSrQvninL_KZg" destination="_wHyyhFi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPTli1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyhFi1EeSrQvninL_KZg" destination="_wEzv8li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPT1i1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewTerrainHeightAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainHeightAwareness" complete="true" destination="_wFQb41i1EeSrQvninL_KZg" source="_wEzv8li1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPUFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv8li1EeSrQvninL_KZg" destination="_wHyyhFi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPUVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyhFi1EeSrQvninL_KZg" destination="_wEzv8li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPUli1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainHazards -> pilot.SAInformation.AircrewTerrainHazards" complete="true" destination="_wEzv81i1EeSrQvninL_KZg" source="_wFQb5Fi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPU1i1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb5Fi1EeSrQvninL_KZg" destination="_wHyyhVi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPVFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyhVi1EeSrQvninL_KZg" destination="_wEzv81i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPVVi1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewTerrainHazards -> assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainHazards" complete="true" destination="_wFQb5Fi1EeSrQvninL_KZg" source="_wEzv81i1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPVli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv81i1EeSrQvninL_KZg" destination="_wHyyhVi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPV1i1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyhVi1EeSrQvninL_KZg" destination="_wEzv81i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPWFi1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalObstacleInformation -> pilot.SAInformation.AircrewSphericalObstacleInformation" complete="true" destination="_wEzv9Fi1EeSrQvninL_KZg" source="_wFQb5Vi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPWVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb5Vi1EeSrQvninL_KZg" destination="_wHyyhli1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPWli1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyhli1EeSrQvninL_KZg" destination="_wEzv9Fi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPW1i1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewSphericalObstacleInformation -> assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalObstacleInformation" complete="true" destination="_wFQb5Vi1EeSrQvninL_KZg" source="_wEzv9Fi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPXFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv9Fi1EeSrQvninL_KZg" destination="_wHyyhli1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPXVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyhli1EeSrQvninL_KZg" destination="_wEzv9Fi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPXli1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeFlightPathObstaclePositionAwareness -> pilot.SAInformation.AircrewRelativeFlightPathObstaclePositionAwareness" complete="true" destination="_wEzv9Vi1EeSrQvninL_KZg" source="_wFQb5li1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPX1i1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb5li1EeSrQvninL_KZg" destination="_wHyyh1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPYFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyh1i1EeSrQvninL_KZg" destination="_wEzv9Vi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPYVi1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewRelativeFlightPathObstaclePositionAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeFlightPathObstaclePositionAwareness" complete="true" destination="_wFQb5li1EeSrQvninL_KZg" source="_wEzv9Vi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPYli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv9Vi1EeSrQvninL_KZg" destination="_wHyyh1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPY1i1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyh1i1EeSrQvninL_KZg" destination="_wEzv9Vi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPZFi1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleHeightAwareness -> pilot.SAInformation.AircrewFlightPathObstacleHeightAwareness" complete="true" destination="_wEzv9li1EeSrQvninL_KZg" source="_wFQb51i1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPZVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb51i1EeSrQvninL_KZg" destination="_wHyyiFi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPZli1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyiFi1EeSrQvninL_KZg" destination="_wEzv9li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPZ1i1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewFlightPathObstacleHeightAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleHeightAwareness" complete="true" destination="_wFQb51i1EeSrQvninL_KZg" source="_wEzv9li1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPaFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv9li1EeSrQvninL_KZg" destination="_wHyyiFi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPaVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyiFi1EeSrQvninL_KZg" destination="_wEzv9li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJIPali1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleSeparationAwareness -> pilot.SAInformation.AircrewFlightPathObstacleSeparationAwareness" complete="true" destination="_wEzv91i1EeSrQvninL_KZg" source="_wFQb6Fi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJIPa1i1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb6Fi1EeSrQvninL_KZg" destination="_wHyyiVi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJIPbFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyiVi1EeSrQvninL_KZg" destination="_wEzv91i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAQFi1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewFlightPathObstacleSeparationAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleSeparationAwareness" complete="true" destination="_wFQb6Fi1EeSrQvninL_KZg" source="_wEzv91i1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAQVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv91i1EeSrQvninL_KZg" destination="_wHyyiVi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAQli1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyiVi1EeSrQvninL_KZg" destination="_wEzv91i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAQ1i1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeWireObstaclePositionAwareness -> pilot.SAInformation.AircrewRelativeWireObstaclePositionAwareness" complete="true" destination="_wEzv-Fi1EeSrQvninL_KZg" source="_wFQb6Vi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSARFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb6Vi1EeSrQvninL_KZg" destination="_wHyyili1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSARVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyili1EeSrQvninL_KZg" destination="_wEzv-Fi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSARli1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewRelativeWireObstaclePositionAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeWireObstaclePositionAwareness" complete="true" destination="_wFQb6Vi1EeSrQvninL_KZg" source="_wEzv-Fi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAR1i1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv-Fi1EeSrQvninL_KZg" destination="_wHyyili1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSASFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyili1EeSrQvninL_KZg" destination="_wEzv-Fi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSASVi1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleHorizontalSeparationAlert -> pilot.SAInformation.AircrewFlightPathObstacleHorizontalSeparationAlert" complete="true" destination="_wEzv-Vi1EeSrQvninL_KZg" source="_wFQb6li1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSASli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb6li1EeSrQvninL_KZg" destination="_wHyyi1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAS1i1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyi1i1EeSrQvninL_KZg" destination="_wEzv-Vi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSATFi1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewFlightPathObstacleHorizontalSeparationAlert -> assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleHorizontalSeparationAlert" complete="true" destination="_wFQb6li1EeSrQvninL_KZg" source="_wEzv-Vi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSATVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv-Vi1EeSrQvninL_KZg" destination="_wHyyi1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSATli1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyi1i1EeSrQvninL_KZg" destination="_wEzv-Vi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAT1i1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleVerticalSeparationAlert -> pilot.SAInformation.AircrewFlightPathObstacleVerticalSeparationAlert" complete="true" destination="_wEzv-li1EeSrQvninL_KZg" source="_wFQb61i1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAUFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb61i1EeSrQvninL_KZg" destination="_wHyyjFi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAUVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyjFi1EeSrQvninL_KZg" destination="_wEzv-li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAUli1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewFlightPathObstacleVerticalSeparationAlert -> assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleVerticalSeparationAlert" complete="true" destination="_wFQb61i1EeSrQvninL_KZg" source="_wEzv-li1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAU1i1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv-li1EeSrQvninL_KZg" destination="_wHyyjFi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAVFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyjFi1EeSrQvninL_KZg" destination="_wEzv-li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAVVi1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalAdjacentAircraftInformation -> pilot.SAInformation.AircrewSphericalAdjacentAircraftInformation" complete="true" destination="_wEzv-1i1EeSrQvninL_KZg" source="_wFQb7Fi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAVli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb7Fi1EeSrQvninL_KZg" destination="_wHyyjVi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAV1i1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyjVi1EeSrQvninL_KZg" destination="_wEzv-1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAWFi1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewSphericalAdjacentAircraftInformation -> assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalAdjacentAircraftInformation" complete="true" destination="_wFQb7Fi1EeSrQvninL_KZg" source="_wEzv-1i1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAWVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv-1i1EeSrQvninL_KZg" destination="_wHyyjVi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAWli1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyjVi1EeSrQvninL_KZg" destination="_wEzv-1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAW1i1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeAdjacentAircraftPositionAwareness -> pilot.SAInformation.AircrewRelativeAdjacentAircraftPositionAwareness" complete="true" destination="_wEzv_Fi1EeSrQvninL_KZg" source="_wFQb7Vi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAXFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb7Vi1EeSrQvninL_KZg" destination="_wHyyjli1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAXVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyjli1EeSrQvninL_KZg" destination="_wEzv_Fi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAXli1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewRelativeAdjacentAircraftPositionAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeAdjacentAircraftPositionAwareness" complete="true" destination="_wFQb7Vi1EeSrQvninL_KZg" source="_wEzv_Fi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAX1i1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv_Fi1EeSrQvninL_KZg" destination="_wHyyjli1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAYFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyjli1EeSrQvninL_KZg" destination="_wEzv_Fi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAYVi1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewOtherAircraftPositionAwareness -> pilot.SAInformation.AircrewOtherAircraftPositionAwareness" complete="true" destination="_wEzv_Vi1EeSrQvninL_KZg" source="_wFQb7li1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAYli1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb7li1EeSrQvninL_KZg" destination="_wHyyj1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAY1i1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyj1i1EeSrQvninL_KZg" destination="_wEzv_Vi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAZFi1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewOtherAircraftPositionAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewOtherAircraftPositionAwareness" complete="true" destination="_wFQb7li1EeSrQvninL_KZg" source="_wEzv_Vi1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAZVi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv_Vi1EeSrQvninL_KZg" destination="_wHyyj1i1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAZli1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyyj1i1EeSrQvninL_KZg" destination="_wEzv_Vi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAZ1i1EeSrQvninL_KZg" name="assa.AirCrewDisplay.AircrewSAInformation.AircrewOtherAircraftAltitudeAwareness -> pilot.SAInformation.AircrewOtherAircraftAltitudeAwareness" complete="true" destination="_wEzv_li1EeSrQvninL_KZg" source="_wFQb71i1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAaFi1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wFQb71i1EeSrQvninL_KZg" destination="_wHyykFi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAaVi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyykFi1EeSrQvninL_KZg" destination="_wEzv_li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance xmi:id="_wJSAali1EeSrQvninL_KZg" name="pilot.SAInformation.AircrewOtherAircraftAltitudeAwareness -> assa.AirCrewDisplay.AircrewSAInformation.AircrewOtherAircraftAltitudeAwareness" complete="true" destination="_wFQb71i1EeSrQvninL_KZg" source="_wEzv_li1EeSrQvninL_KZg">
+    <connectionReference xmi:id="_wJSAa1i1EeSrQvninL_KZg" context="_wE9g8Fi1EeSrQvninL_KZg" source="_wEzv_li1EeSrQvninL_KZg" destination="_wHyykFi1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference xmi:id="_wJSAbFi1EeSrQvninL_KZg" context="_wEEJEFi1EeSrQvninL_KZg" source="_wHyykFi1EeSrQvninL_KZg" destination="_wEzv_li1EeSrQvninL_KZg">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../../CommonArchitecture/AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <systemOperationMode xmi:id="_wIFteFi1EeSrQvninL_KZg" name="No Modes"/>
+  <componentImplementation xsi:type="aadl2:SystemImplementation" href="../CH47FConfiguration.aadl#CH47FConfiguration.AircraftSystem.CH47F"/>
+</instance:SystemInstance>

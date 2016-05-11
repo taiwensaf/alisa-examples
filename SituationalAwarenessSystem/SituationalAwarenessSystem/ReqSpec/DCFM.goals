@@ -1,0 +1,40 @@
+// Copyright 2015 Carnegie Mellon University
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+stakeholder goals DCFMGoals  for DCFM::DataCorrelationAndFusion [
+	goal Goal1 : "Track correlation from single source" 
+	[ issues "DCFM Correlated Track does not have an attribute to distinguish two threat sensor sources."
+	see document MISDOCS.DCFMDataModel MISDOCS.SADS_SDD 
+	stakeholder mrj.noone
+	]
+	goal Goal2 
+	: "Track correlation and fusion from two sources" 
+	[issues "DCFM Correlated Track does not have TrackDataProviderType for radar"
+	stakeholder mrj.noone
+	]
+	
+	goal Goal3
+	: "Time stamp variation on incoming streams" 
+	[ description "Time stamped incoming stream have bounded time stamp variation"
+	rationale "Clocks used for time stamping may be different, or one stream has stale data."
+//	val MaxTimeStampVariation = 25 ms
+//	value predicate JMRMIS::MaxTimeStampVariation == MaxTimeStampVariation
+	stakeholder mrj.noone
+	]
+	goal Goal4
+	: "Radar has its own correlation function" 
+	[issues "DCFM Correlated Track does not have TrackDataProviderType for radar"
+	see document MISDOCS.DCFMDataModel MISDOCS.SADS_SDD 
+	stakeholder mrj.noone
+	]
+	issues	"In DCFM Data Model it is called TrackDataProviderType"
+	"VMF: Variable Message Format"
+	"DCFM TrackDataProviderType: note that the first three are providers while the last two labels characterize the content."
+	"DCFM TrackDataProvider: we can have multiple providers of the same type"
+	"DCFM TrackDataProviderType: note that only three provider types are listed. There is no Radar under threats. There are no labels for obstacles or terrain."
+	"DCFM TrackDataProviderType: this actually does not characterize providers but type of observed object"
+	"limited radius: SADS to send tracks within 25km"
+"uncorrelated source tracks shown to pilot (BAA)"
+"Others seem largely according to different sources, thus would not next a full query mechanism across multiple track sets"
+	
+	]

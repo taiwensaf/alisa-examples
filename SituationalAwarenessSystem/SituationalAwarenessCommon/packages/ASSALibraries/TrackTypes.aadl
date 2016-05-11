@@ -1,0 +1,209 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package TrackTypes
+public
+with JMRMIS,JMRMISConstants,Data_Model,JMRMIS,Base_Types, SAObservations, ACVIP,
+MissionSystemDataTypes;
+--	Description 
+--		This package defines various types of tracks, as well as concepts of track set and track history.
+--		The concepts of track set and history are not described in requirement documents but play an important
+--		role in the specification of the ASSA capabilities.
+--		We also have added fields to reflect time stamping of sampled data. 
+
+
+	data Track
+	properties
+	ACVIP::Description => "Track represents an observed entity at a given point in time";
+	end Track;
+	
+	data implementation Track.basic
+	subcomponents
+		trackID: data Base_Types::Integer_32;
+	end Track.basic;
+	
+	data TrackSet
+	properties
+	ACVIP::Description => "Set of tracks represents a collection of tracked entity at a given point in time";
+	end TrackSet;
+	
+	data implementation TrackSet.basic
+	subcomponents
+		elements: data Track [JMRMISConstants::MaxTracksInSet];
+	end TrackSet.basic;
+	
+	data TrackSetDiff
+	properties
+	ACVIP::Description => "Difference between two track sets expressed as add/update/delete actions";
+	end TrackSetDiff;
+	
+	data TrackSequence
+	properties
+	ACVIP::Description => "TrackSequence represents a tracked entity over time. All elements have the same track ID";
+	end TrackSequence;
+
+	data implementation TrackSequence.basic
+	subcomponents
+		TrackSample: data Track [];
+	end TrackSequence.basic;
+	
+	data TrackHistory
+	properties
+	ACVIP::Description => "TrackHistory represents a tracked entity over bounded time. All elements have the same track ID";
+	end TrackHistory;
+	
+	data SourceTrack extends track
+	properties
+	ACVIP::Description => "SourceTrack represents a tracked entity at a given point in time as detected by a sensor";
+	end SourceTrack;
+
+	data implementation SourceTrack.DCFM
+	subcomponents
+		Position: data MissionSystemDataTypes::Position.world;
+		Velocity: data MissionSystemDataTypes::Velocity;
+		samplingTime: data MissionSystemDataTypes::DateTime;
+	properties
+	ACVIP::Description => "SourceTrack format according to the DFCM data model";
+	end SourceTrack.DCFM;
+	
+	data CorrelatedTrack
+	properties
+	ACVIP::Description => "A track representing an observed entity at a given point in time based on correlation of source tracks form one or several sensors";
+	end CorrelatedTrack;
+	
+	data implementation CorrelatedTrack.DCFMDataModel
+	subcomponents
+		CorrelatedTrackID: data Base_Types::Integer;
+		SourceTracks: data SourceTrack.DCFM [JMRMISConstants::MaxSourceTracksPerCorrelation];
+	end CorrelatedTrack.DCFMDataModel;
+	
+	data implementation CorrelatedTrack.DCFM
+	subcomponents
+		CorrelatedTrackID: data Base_Types::Integer;
+		TimeOfCorrelation: data MissionSystemDataTypes::DateTime;
+		SourceTrackIDs: data Base_Types::Integer [JMRMISConstants::MaxSourceTracksPerCorrelation];
+	properties
+	ACVIP::Description => "Reference source tracks by ID (from supplement)";
+	ACVIP::Rationale => "Source track ID is sufficient for determining uncorrelated source tracks";
+	end CorrelatedTrack.DCFM;
+
+	
+	data CorrelatedTrackSet extends TrackSet
+	properties
+		Data_Model::Base_Type => (classifier (CorrelatedTrack));
+		Data_Model::Dimension => (JMRMISConstants::MaxDCFMCorrelatedTracks);
+	end CorrelatedTrackSet;
+
+	
+	data AssessedTrack extends CorrelatedTrack
+	properties
+	ACVIP::Description => "A track representing an observed entity at a given point in time with assessment result record";
+	end AssessedTrack;
+	
+	data implementation AssessedTrack.DCFMRev extends CorrelatedTrack.DCFM
+	subcomponents
+		AssessmentStatus: data;
+	end AssessedTrack.DCFMRev;
+
+	
+	data AssessedTrackSet extends TrackSet
+	properties
+		Data_Model::Base_Type => (classifier (AssessedTrack));
+		Data_Model::Dimension => (JMRMISConstants::MaxDCFMAssessedTracks);
+	end AssessedTrackSet;
+	
+	data CorrelatedTrackChange
+	properties
+	ACVIP::Description => "Diff command applicable to a track: add, update, delete";
+	end CorrelatedTrackChange;
+	
+	data CorrelatedTrackSetDiff
+	properties
+		Data_Model::Base_Type => (classifier (CorrelatedTrackChange));
+		Data_Model::Dimension => (JMRMISConstants::MaxDCFMCorrelatedTracks);
+	end CorrelatedTrackSetDiff;
+
+	data DCFMSourceTrackSet extends TrackSet
+	properties
+		Data_Model::Base_Type => (classifier (SourceTrack.DCFM));
+		Data_Model::Dimension => (JMRMISConstants::MaxDCFMSourceTracks);
+		ACVIP::aliases =>("MISAPISourceTrackSet");
+	end DCFMSourceTrackSet;
+	
+	data CorrelatedThreatTrackSet extends CorrelatedTrackSet
+	properties
+		Data_Model::Base_Type => (classifier (CorrelatedTrack.DCFM));
+		Data_Model::Dimension => (JMRMISConstants::MaxDCFMCorrelatedTracks);
+	end CorrelatedThreatTrackSet;
+
+	data WWTrack 
+	properties
+		acvip::aliases => ("Hostile Fire Detection message");
+		JMRMIS::ObservedObjects => ( classifier(SAObservations::BallisticWeaponsFire));
+	end WWTrack;
+
+	data WWTrackSet
+	properties
+		Data_Model::Base_Type => (classifier (WWTrack));
+		Data_Model::Dimension => (JMRMISConstants::MaxWWTracks);
+	end WWTrackSet;
+	
+	data CorrelatedRadarTrack
+	properties
+		JMRMIS::ObservedObjects => ( classifier(SAObservations::RadarSystem));
+	end CorrelatedRadarTrack;
+	
+	data CorrelatedRadarTrackSet
+	properties
+		Data_Model::Base_Type => (classifier (CorrelatedRadarTrack));
+		Data_Model::Dimension => (JMRMISConstants::MaxAPR39DTracks);
+	end CorrelatedRadarTrackSet;
+
+data JATASTrack
+	properties
+		JMRMIS::ObservedObjects => ( classifier(SAObservations::BallisticWeaponsFire),
+			classifier(SAObservations::Missile), classifier(SAObservations::LaserDesignator));
+end JATASTrack ;
+
+data JATASTrackSet
+	properties
+		Data_Model::Base_Type => (classifier (JATASTrack));
+		Data_Model::Dimension => (JMRMISConstants::MaxJATASTracks);
+end JATASTrackSet ;
+
+
+data APR39DTrack
+properties
+	JMRMIS::ObservedObjects => ( classifier(SAObservations::RadarSystem));
+end APR39DTrack ;
+
+data APR39DTrackSet
+	properties
+		Data_Model::Base_Type => (classifier (APR39DTrack));
+		Data_Model::Dimension => (JMRMISConstants::MaxAPR39DTracks);
+end APR39DTrackSet ;
+
+data ATWTrack
+properties
+		JMRMIS::ObservedObjects => ( classifier(SAObservations::BallisticWeaponsFire),
+			classifier(SAObservations::Missile), classifier(SAObservations::LaserDesignator));
+end ATWTrack ;
+
+data ATWTrackSet
+	properties
+		Data_Model::Base_Type => (classifier (ATWTrack));
+		Data_Model::Dimension => (JMRMISConstants::MaxATWTracks);
+end ATWTrackSet ;
+
+data ObstacleTrack
+properties
+	JMRMIS::ObservationRadius => 5 NM;
+end ObstacleTrack ;
+
+data ObstacleSourceTrackSet
+	properties
+		Data_Model::Base_Type => (classifier (ObstacleTrack));
+		Data_Model::Dimension => (JMRMISConstants::MaxObstacleTracks);
+end ObstacleSourceTrackSet ;
+
+end TrackTypes;

@@ -1,0 +1,1715 @@
+<?xml version="1.0" encoding="ASCII"?>
+<instance:SystemInstance xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance" name="AircraftSystem_ASSAPlatformConfiguration_Instance" category="system">
+  <componentInstance name="egi1" category="device">
+    <featureInstance name="airCraftPosition" srcConnectionInstance="//@connectionInstance.0 //@connectionInstance.1" dstFlowSpec="//@componentInstance.0/@flowSpecification.0" direction="out">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Element_Names"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="Latitude"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="Longitude"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="Altitude"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/DataModel/MissionSystemDataTypes.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Data_Representation"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:NamedValue">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Data_Model.aadl#//@ownedProperty.4/@ownedPropertyType/@ownedLiteral.8"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/DataModel/MissionSystemDataTypes.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0"/>
+    </featureInstance>
+    <flowSpecification name="ProvideOwnAircraftPos" destination="//@componentInstance.0/@featureInstance.0">
+      <flowSpecification href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+    </flowSpecification>
+    <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedDeviceSubcomponent.0"/>
+    <index>0</index>
+  </componentInstance>
+  <componentInstance name="pilot">
+    <featureInstance name="SAInformation" srcFlowSpec="//@componentInstance.1/@flowSpecification.0" category="featureGroup" direction="in out">
+      <featureInstance name="AircrewSphericalTerrainInformation" dstConnectionInstance="//@connectionInstance.2" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0"/>
+      </featureInstance>
+      <featureInstance name="AircrewTerrainLocationAwareness" dstConnectionInstance="//@connectionInstance.3" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1"/>
+      </featureInstance>
+      <featureInstance name="AircrewTerrainHeightAwareness" dstConnectionInstance="//@connectionInstance.4" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2"/>
+      </featureInstance>
+      <featureInstance name="AircrewTerrainHazards" dstConnectionInstance="//@connectionInstance.5" category="abstractFeature">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.3"/>
+      </featureInstance>
+      <featureInstance name="AircrewSphericalObstacleInformation" dstConnectionInstance="//@connectionInstance.6" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4"/>
+      </featureInstance>
+      <featureInstance name="AircrewRelativeFlightPathObstaclePositionAwareness" dstConnectionInstance="//@connectionInstance.7" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5"/>
+      </featureInstance>
+      <featureInstance name="AircrewFlightPathObstacleHeightAwareness" dstConnectionInstance="//@connectionInstance.8" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6"/>
+      </featureInstance>
+      <featureInstance name="AircrewFlightPathObstacleSeparationAwareness" dstConnectionInstance="//@connectionInstance.9" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7"/>
+      </featureInstance>
+      <featureInstance name="AircrewRelativeWireObstaclePositionAwareness" dstConnectionInstance="//@connectionInstance.10" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8"/>
+      </featureInstance>
+      <featureInstance name="AircrewFlightPathObstacleHorizontalSeparationAlert" dstConnectionInstance="//@connectionInstance.11" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9"/>
+      </featureInstance>
+      <featureInstance name="AircrewFlightPathObstacleVerticalSeparationAlert" dstConnectionInstance="//@connectionInstance.12" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10"/>
+      </featureInstance>
+      <featureInstance name="AircrewSphericalAdjacentAircraftInformation" dstConnectionInstance="//@connectionInstance.13" category="abstractFeature">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11"/>
+      </featureInstance>
+      <featureInstance name="AircrewRelativeAdjacentAircraftPositionAwareness" dstConnectionInstance="//@connectionInstance.14" category="abstractFeature">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.12"/>
+      </featureInstance>
+      <featureInstance name="AircrewOtherAircraftPositionAwareness" dstConnectionInstance="//@connectionInstance.15" category="abstractFeature">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.13"/>
+      </featureInstance>
+      <featureInstance name="AircrewOtherAircraftAltitudeAwareness" dstConnectionInstance="//@connectionInstance.16" category="abstractFeature">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.14"/>
+      </featureInstance>
+      <feature xsi:type="aadl2:FeatureGroup" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroup.0"/>
+    </featureInstance>
+    <flowSpecification name="SeeAssaInfo" source="//@componentInstance.1/@featureInstance.0">
+      <flowSpecification href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFlowSpecification.0"/>
+    </flowSpecification>
+    <subcomponent xsi:type="aadl2:SystemSubcomponent" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedSystemSubcomponent.0"/>
+    <index>0</index>
+  </componentInstance>
+  <componentInstance name="assa" category="system">
+    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+      <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservedObjects"/>
+      <ownedValue>
+        <ownedValue xsi:type="aadl2:ListValue">
+          <ownedListElement xsi:type="aadl2:ClassifierValue">
+            <classifier xsi:type="aadl2:AbstractType" href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/SAObservations.aadl#SAObservations.Threat"/>
+          </ownedListElement>
+          <ownedListElement xsi:type="aadl2:ClassifierValue">
+            <classifier xsi:type="aadl2:AbstractType" href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/SAObservations.aadl#SAObservations.Obstacle"/>
+          </ownedListElement>
+          <ownedListElement xsi:type="aadl2:ClassifierValue">
+            <classifier xsi:type="aadl2:AbstractType" href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/SAObservations.aadl#SAObservations.Terrain"/>
+          </ownedListElement>
+        </ownedValue>
+      </ownedValue>
+      <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+    </ownedPropertyAssociation>
+    <featureInstance name="ASSAAirCrewPresentation" dstFlowSpec="//@componentInstance.2/@flowSpecification.0 //@componentInstance.2/@flowSpecification.1 //@componentInstance.2/@flowSpecification.2" category="featureGroup" direction="out">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+            <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="AircrewSphericalTerrainInformation" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0"/>
+      </featureInstance>
+      <featureInstance name="AircrewTerrainLocationAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1"/>
+      </featureInstance>
+      <featureInstance name="AircrewTerrainHeightAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2"/>
+      </featureInstance>
+      <featureInstance name="AircrewTerrainHazards" category="abstractFeature" direction="out">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.3"/>
+      </featureInstance>
+      <featureInstance name="AircrewSphericalObstacleInformation" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4"/>
+      </featureInstance>
+      <featureInstance name="AircrewRelativeFlightPathObstaclePositionAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5"/>
+      </featureInstance>
+      <featureInstance name="AircrewFlightPathObstacleHeightAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6"/>
+      </featureInstance>
+      <featureInstance name="AircrewFlightPathObstacleSeparationAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7"/>
+      </featureInstance>
+      <featureInstance name="AircrewRelativeWireObstaclePositionAwareness" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8"/>
+      </featureInstance>
+      <featureInstance name="AircrewFlightPathObstacleHorizontalSeparationAlert" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9"/>
+      </featureInstance>
+      <featureInstance name="AircrewFlightPathObstacleVerticalSeparationAlert" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10"/>
+      </featureInstance>
+      <featureInstance name="AircrewSphericalAdjacentAircraftInformation" category="abstractFeature" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11"/>
+      </featureInstance>
+      <featureInstance name="AircrewRelativeAdjacentAircraftPositionAwareness" category="abstractFeature" direction="out">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.12"/>
+      </featureInstance>
+      <featureInstance name="AircrewOtherAircraftPositionAwareness" category="abstractFeature" direction="out">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.13"/>
+      </featureInstance>
+      <featureInstance name="AircrewOtherAircraftAltitudeAwareness" category="abstractFeature" direction="out">
+        <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.14"/>
+      </featureInstance>
+      <feature xsi:type="aadl2:FeatureGroup" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.0"/>
+    </featureInstance>
+    <featureInstance name="ASSAAutoControl" category="abstractFeature" direction="out">
+      <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedAbstractFeature.0"/>
+    </featureInstance>
+    <featureInstance name="toSwitch" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedBusAccess.0"/>
+    </featureInstance>
+    <featureInstance name="IncomingCOP">
+      <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0"/>
+    </featureInstance>
+    <featureInstance name="ThreatAlerts" direction="out">
+      <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.1"/>
+    </featureInstance>
+    <featureInstance name="WireObstaclesForAvoidance" direction="out">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:ClassifierValue">
+              <classifier xsi:type="aadl2:DataType" href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/TrackTypes.aadl#TrackTypes.ObstacleTrack"/>
+            </ownedListElement>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.2/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:NamedValue">
+              <namedValue xsi:type="aadl2:PropertyConstant" href="../../../../SituationalAwarenessCommon/propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxObstacleTracks"/>
+            </ownedListElement>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/TrackTypes.aadl#//@ownedPublicSection/@ownedClassifier.32/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.2"/>
+    </featureInstance>
+    <featureInstance name="FENNLocations">
+      <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.3"/>
+    </featureInstance>
+    <featureInstance name="GeospatialData">
+      <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.4"/>
+    </featureInstance>
+    <featureInstance name="EnvironmentalInformation">
+      <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.5"/>
+    </featureInstance>
+    <featureInstance name="Weather">
+      <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.6"/>
+    </featureInstance>
+    <featureInstance name="OwnAircraftPosition" srcFlowSpec="//@componentInstance.2/@flowSpecification.0 //@componentInstance.2/@flowSpecification.1">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Element_Names"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="Latitude"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="Longitude"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="Altitude"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/DataModel/MissionSystemDataTypes.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Data_Representation"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:NamedValue">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Data_Model.aadl#//@ownedProperty.4/@ownedPropertyType/@ownedLiteral.8"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/DataModel/MissionSystemDataTypes.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.7"/>
+    </featureInstance>
+    <featureInstance name="AMPSInterface" category="eventDataPort" direction="in out">
+      <feature xsi:type="aadl2:EventDataPort" href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedEventDataPort.0"/>
+    </featureInstance>
+    <componentInstance name="AirCrewDisplay" category="device">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Thread_Properties.aadl#Thread_Properties.Dispatch_Protocol"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:NamedValue">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.3/@ownedLiteral.0"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:IntegerLiteral" value="100">
+            <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="MFDSAInformation" dstConnectionInstance="//@componentInstance.2/@connectionInstance.3" srcFlowSpec="//@componentInstance.2/@componentInstance.0/@flowSpecification.0 //@componentInstance.2/@componentInstance.0/@flowSpecification.1" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance name="AircrewSAInformation" dstFlowSpec="//@componentInstance.2/@componentInstance.0/@flowSpecification.1" category="featureGroup" direction="out">
+        <featureInstance name="AircrewSphericalTerrainInformation" srcConnectionInstance="//@connectionInstance.2" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainLocationAwareness" srcConnectionInstance="//@connectionInstance.3" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainHeightAwareness" srcConnectionInstance="//@connectionInstance.4" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainHazards" srcConnectionInstance="//@connectionInstance.5" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.3"/>
+        </featureInstance>
+        <featureInstance name="AircrewSphericalObstacleInformation" srcConnectionInstance="//@connectionInstance.6" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeFlightPathObstaclePositionAwareness" srcConnectionInstance="//@connectionInstance.7" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleHeightAwareness" srcConnectionInstance="//@connectionInstance.8" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleSeparationAwareness" srcConnectionInstance="//@connectionInstance.9" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeWireObstaclePositionAwareness" srcConnectionInstance="//@connectionInstance.10" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleHorizontalSeparationAlert" srcConnectionInstance="//@connectionInstance.11" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleVerticalSeparationAlert" srcConnectionInstance="//@connectionInstance.12" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10"/>
+        </featureInstance>
+        <featureInstance name="AircrewSphericalAdjacentAircraftInformation" srcConnectionInstance="//@connectionInstance.13" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeAdjacentAircraftPositionAwareness" srcConnectionInstance="//@connectionInstance.14" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.12"/>
+        </featureInstance>
+        <featureInstance name="AircrewOtherAircraftPositionAwareness" srcConnectionInstance="//@connectionInstance.15" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.13"/>
+        </featureInstance>
+        <featureInstance name="AircrewOtherAircraftAltitudeAwareness" srcConnectionInstance="//@connectionInstance.16" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.14"/>
+        </featureInstance>
+        <feature xsi:type="aadl2:FeatureGroup" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <featureInstance name="network" category="busAccess" direction="in out">
+        <feature xsi:type="aadl2:BusAccess" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedBusAccess.0"/>
+      </featureInstance>
+      <flowSpecification name="ASSAInfo" source="//@componentInstance.2/@componentInstance.0/@featureInstance.0">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RangeValue">
+              <minimum xsi:type="aadl2:IntegerLiteral" value="1">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.2"/>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <flowSpecification name="ASSAInfoToPilot" source="//@componentInstance.2/@componentInstance.0/@featureInstance.0" destination="//@componentInstance.2/@componentInstance.0/@featureInstance.1">
+        <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.1"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDeviceSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="AircrewAnnunciation" category="device">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Thread_Properties.aadl#Thread_Properties.Dispatch_Protocol"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:NamedValue">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.3/@ownedLiteral.0"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:IntegerLiteral" value="100">
+            <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="MFDSAInformation" srcFlowSpec="//@componentInstance.2/@componentInstance.1/@flowSpecification.0 //@componentInstance.2/@componentInstance.1/@flowSpecification.1" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance name="AircrewSAInformation" dstFlowSpec="//@componentInstance.2/@componentInstance.1/@flowSpecification.1" category="featureGroup" direction="out">
+        <featureInstance name="AircrewSphericalTerrainInformation" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainLocationAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainHeightAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainHazards" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.3"/>
+        </featureInstance>
+        <featureInstance name="AircrewSphericalObstacleInformation" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeFlightPathObstaclePositionAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleHeightAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleSeparationAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeWireObstaclePositionAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleHorizontalSeparationAlert" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleVerticalSeparationAlert" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10"/>
+        </featureInstance>
+        <featureInstance name="AircrewSphericalAdjacentAircraftInformation" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeAdjacentAircraftPositionAwareness" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.12"/>
+        </featureInstance>
+        <featureInstance name="AircrewOtherAircraftPositionAwareness" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.13"/>
+        </featureInstance>
+        <featureInstance name="AircrewOtherAircraftAltitudeAwareness" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.14"/>
+        </featureInstance>
+        <feature xsi:type="aadl2:FeatureGroup" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <featureInstance name="network" category="busAccess" direction="in out">
+        <feature xsi:type="aadl2:BusAccess" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedBusAccess.0"/>
+      </featureInstance>
+      <flowSpecification name="ASSAInfo" source="//@componentInstance.2/@componentInstance.1/@featureInstance.0">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RangeValue">
+              <minimum xsi:type="aadl2:IntegerLiteral" value="1">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.2"/>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <flowSpecification name="ASSAInfoToPilot" source="//@componentInstance.2/@componentInstance.1/@featureInstance.0" destination="//@componentInstance.2/@componentInstance.1/@featureInstance.1">
+        <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.1"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedDeviceSubcomponent.1"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="Conversion" category="process">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Processor_Binding"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="//@componentInstance.3/@componentInstance.4"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="SensorSetReadings" dstConnectionInstance="//@componentInstance.2/@connectionInstance.4" srcFlowSpec="//@componentInstance.2/@componentInstance.2/@flowSpecification.0" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance name="StdSourceTracks" srcConnectionInstance="//@componentInstance.2/@connectionInstance.0" dstFlowSpec="//@componentInstance.2/@componentInstance.2/@flowSpecification.0" category="featureGroup" direction="out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <flowSpecification name="TrackConversion" source="//@componentInstance.2/@componentInstance.2/@featureInstance.0" destination="//@componentInstance.2/@componentInstance.2/@featureInstance.1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RangeValue">
+              <minimum xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" value="10">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedProcessSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="Fusion" category="process">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Processor_Binding"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="//@componentInstance.3/@componentInstance.4"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="IncomingData" dstConnectionInstance="//@componentInstance.2/@connectionInstance.0" srcFlowSpec="//@componentInstance.2/@componentInstance.3/@flowSpecification.0" category="featureGroup" direction="in out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance name="OutgoingCorrelatedTracks" srcConnectionInstance="//@componentInstance.2/@connectionInstance.1" dstFlowSpec="//@componentInstance.2/@componentInstance.3/@flowSpecification.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1" category="featureGroup" direction="in out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <featureInstance name="ownAircraftPosition" dstConnectionInstance="//@connectionInstance.0" srcFlowSpec="//@componentInstance.2/@componentInstance.3/@flowSpecification.1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Element_Names"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="Latitude"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="Longitude"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="Altitude"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/DataModel/MissionSystemDataTypes.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Data_Representation"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:NamedValue">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Data_Model.aadl#//@ownedProperty.4/@ownedPropertyType/@ownedLiteral.8"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/DataModel/MissionSystemDataTypes.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedDataPort.0"/>
+      </featureInstance>
+      <flowSpecification name="TrackFusion" source="//@componentInstance.2/@componentInstance.3/@featureInstance.0" destination="//@componentInstance.2/@componentInstance.3/@featureInstance.1">
+        <flowSpecification href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <flowSpecification name="AircraftPositionFusion" source="//@componentInstance.2/@componentInstance.3/@featureInstance.2" destination="//@componentInstance.2/@componentInstance.3/@featureInstance.1">
+        <flowSpecification href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFlowSpecification.1"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedProcessSubcomponent.1"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="Assessmnent" category="process">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Processor_Binding"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="//@componentInstance.3/@componentInstance.4"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedPropertyAssociation.2"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:IntegerLiteral" value="100">
+            <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="AssessmentInput" dstConnectionInstance="//@componentInstance.2/@connectionInstance.1" srcFlowSpec="//@componentInstance.2/@componentInstance.4/@flowSpecification.0" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance name="AssessmentResults" srcConnectionInstance="//@componentInstance.2/@connectionInstance.2" dstFlowSpec="//@componentInstance.2/@componentInstance.4/@flowSpecification.0" category="featureGroup" direction="out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <flowSpecification name="Assessment" source="//@componentInstance.2/@componentInstance.4/@featureInstance.0" destination="//@componentInstance.2/@componentInstance.4/@featureInstance.1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RangeValue">
+              <minimum xsi:type="aadl2:IntegerLiteral" value="10">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" value="10">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedProcessSubcomponent.2"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="ASSAFormatting" category="process">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Processor_Binding"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="//@componentInstance.3/@componentInstance.3"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedPropertyAssociation.3"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:IntegerLiteral" value="100">
+            <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="AssessedInformation" dstConnectionInstance="//@componentInstance.2/@connectionInstance.2" srcFlowSpec="//@componentInstance.2/@componentInstance.5/@flowSpecification.0" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance name="MFDSAInformation" srcConnectionInstance="//@componentInstance.2/@connectionInstance.3" dstFlowSpec="//@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@componentInstance.5/@flowSpecification.1" category="featureGroup" direction="out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <featureInstance name="WeatherInformation">
+        <feature xsi:type="aadl2:DataPort" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.0"/>
+      </featureInstance>
+      <featureInstance name="ObstacleInformation">
+        <feature xsi:type="aadl2:DataPort" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.1"/>
+      </featureInstance>
+      <featureInstance name="TerrainInformation">
+        <feature xsi:type="aadl2:DataPort" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.2"/>
+      </featureInstance>
+      <featureInstance name="OwnAircraftPosition" dstConnectionInstance="//@connectionInstance.1" srcFlowSpec="//@componentInstance.2/@componentInstance.5/@flowSpecification.1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Element_Names"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="Latitude"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="Longitude"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="Altitude"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/DataModel/MissionSystemDataTypes.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Data_Representation"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:NamedValue">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Data_Model.aadl#//@ownedProperty.4/@ownedPropertyType/@ownedLiteral.8"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/DataModel/MissionSystemDataTypes.aadl#//@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedDataPort.3"/>
+      </featureInstance>
+      <flowSpecification name="AssessedThreatInfo" source="//@componentInstance.2/@componentInstance.5/@featureInstance.0" destination="//@componentInstance.2/@componentInstance.5/@featureInstance.1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RangeValue">
+              <minimum xsi:type="aadl2:IntegerLiteral" value="1">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" value="1">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <flowSpecification name="OwnAircraftInfo" source="//@componentInstance.2/@componentInstance.5/@featureInstance.5" destination="//@componentInstance.2/@componentInstance.5/@featureInstance.1">
+        <flowSpecification href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedFlowSpecification.1"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedProcessSubcomponent.3"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="Sensors" category="system">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Actual_Processor_Binding"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="instance:InstanceReferenceValue" referencedInstanceObject="//@componentInstance.3/@componentInstance.2"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedPropertyAssociation.4"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="SensorSetReadings" srcConnectionInstance="//@componentInstance.2/@connectionInstance.4" dstFlowSpec="//@componentInstance.2/@componentInstance.6/@flowSpecification.0" category="featureGroup" direction="in out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance name="SensorSetComm" category="featureGroup" direction="in out">
+        <feature xsi:type="aadl2:FeatureGroup" href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <flowSpecification name="sensorReadings" destination="//@componentInstance.2/@componentInstance.6/@featureInstance.0">
+        <flowSpecification href="../ASSAServices.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:SystemSubcomponent" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedSystemSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <flowSpecification name="directAircraftpos" source="//@componentInstance.2/@featureInstance.10" destination="//@componentInstance.2/@featureInstance.0">
+      <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+    </flowSpecification>
+    <flowSpecification name="assessedASSAAircraftpos" source="//@componentInstance.2/@featureInstance.10" destination="//@componentInstance.2/@featureInstance.0">
+      <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.1"/>
+    </flowSpecification>
+    <flowSpecification name="ASSASensorObservations" destination="//@componentInstance.2/@featureInstance.0">
+      <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSASystem.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.2"/>
+    </flowSpecification>
+    <connectionInstance name="Conversion.StdSourceTracks -> Fusion.IncomingData" complete="true" kind="featureGroupConnection" destination="//@componentInstance.2/@componentInstance.3/@featureInstance.0" source="//@componentInstance.2/@componentInstance.2/@featureInstance.1">
+      <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.2/@featureInstance.1" destination="//@componentInstance.2/@componentInstance.3/@featureInstance.0">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.1"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="Fusion.OutgoingCorrelatedTracks -> Assessmnent.AssessmentInput" complete="true" kind="featureGroupConnection" destination="//@componentInstance.2/@componentInstance.4/@featureInstance.0" source="//@componentInstance.2/@componentInstance.3/@featureInstance.1">
+      <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.3/@featureInstance.1" destination="//@componentInstance.2/@componentInstance.4/@featureInstance.0">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.2"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="Assessmnent.AssessmentResults -> ASSAFormatting.AssessedInformation" complete="true" kind="featureGroupConnection" destination="//@componentInstance.2/@componentInstance.5/@featureInstance.0" source="//@componentInstance.2/@componentInstance.4/@featureInstance.1">
+      <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.4/@featureInstance.1" destination="//@componentInstance.2/@componentInstance.5/@featureInstance.0">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.3"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="ASSAFormatting.MFDSAInformation -> AirCrewDisplay.MFDSAInformation" complete="true" kind="featureGroupConnection" destination="//@componentInstance.2/@componentInstance.0/@featureInstance.0" source="//@componentInstance.2/@componentInstance.5/@featureInstance.1">
+      <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.5/@featureInstance.1" destination="//@componentInstance.2/@componentInstance.0/@featureInstance.0">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.4"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="Sensors.SensorSetReadings -> Conversion.SensorSetReadings" complete="true" kind="featureGroupConnection" destination="//@componentInstance.2/@componentInstance.2/@featureInstance.0" source="//@componentInstance.2/@componentInstance.6/@featureInstance.0">
+      <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.6/@featureInstance.0" destination="//@componentInstance.2/@componentInstance.2/@featureInstance.0">
+        <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.0"/>
+      </connectionReference>
+    </connectionInstance>
+    <subcomponent xsi:type="aadl2:SystemSubcomponent" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedSystemSubcomponent.0"/>
+    <index>0</index>
+  </componentInstance>
+  <componentInstance name="platform" category="system">
+    <featureInstance name="switchaccess" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedBusAccess.0"/>
+    </featureInstance>
+    <componentInstance name="ChannelA" srcConnectionInstance="//@componentInstance.3/@connectionInstance.0 //@componentInstance.3/@connectionInstance.1" category="bus">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Transmission_Type"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:NamedValue">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#//@ownedProperty.8/@ownedPropertyType/@ownedLiteral.1"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAHardware.aadl#//@ownedPublicSection/@ownedClassifier.6/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Transmission_Time"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:RecordValue">
+            <ownedFieldValue>
+              <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#//@ownedProperty.14/@ownedPropertyType/@ownedField.0"/>
+              <ownedValue xsi:type="aadl2:RangeValue">
+                <minimum xsi:type="aadl2:IntegerLiteral" value="50">
+                  <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.2"/>
+                </minimum>
+                <maximum xsi:type="aadl2:IntegerLiteral" value="50">
+                  <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.2"/>
+                </maximum>
+              </ownedValue>
+            </ownedFieldValue>
+            <ownedFieldValue>
+              <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#//@ownedProperty.14/@ownedPropertyType/@ownedField.1"/>
+              <ownedValue xsi:type="aadl2:RangeValue">
+                <minimum xsi:type="aadl2:IntegerLiteral" value="10">
+                  <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.2"/>
+                </minimum>
+                <maximum xsi:type="aadl2:IntegerLiteral" value="10">
+                  <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.2"/>
+                </maximum>
+              </ownedValue>
+            </ownedFieldValue>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAHardware.aadl#//@ownedPublicSection/@ownedClassifier.6/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <subcomponent xsi:type="aadl2:BusSubcomponent" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedBusSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="Switch" srcConnectionInstance="//@componentInstance.3/@connectionInstance.2 //@componentInstance.3/@connectionInstance.3" category="bus">
+      <subcomponent xsi:type="aadl2:BusSubcomponent" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedBusSubcomponent.1"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="apr39d" category="device">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservedObjects"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:ClassifierValue">
+              <classifier xsi:type="aadl2:AbstractType" href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/SAObservations.aadl#SAObservations.RadarSystem"/>
+            </ownedListElement>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:IntegerLiteral" value="100">
+            <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedPropertyAssociation.3"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../SituationalAwarenessCommon/propertysets/ACVIP.aadl#ACVIP.Aliases"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="APR39"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedPropertyAssociation.2"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.SensorKind"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:NamedValue">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedProperty.0/@ownedPropertyType/@ownedLiteral.1"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="SourceTracks" dstFlowSpec="//@componentInstance.3/@componentInstance.2/@flowSpecification.0" direction="out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+              <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Base_Type"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:ClassifierValue">
+                <classifier xsi:type="aadl2:DataType" href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/TrackTypes.aadl#TrackTypes.APR39DTrack"/>
+              </ownedListElement>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/TrackTypes.aadl#//@ownedPublicSection/@ownedClassifier.28/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Data_Model.aadl#Data_Model.Dimension"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:NamedValue">
+                <namedValue xsi:type="aadl2:PropertyConstant" href="../../../../SituationalAwarenessCommon/propertysets/JMRMISConstants.aadl#JMRMISConstants.MaxAPR39DTracks"/>
+              </ownedListElement>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSALibraries/TrackTypes.aadl#//@ownedPublicSection/@ownedClassifier.28/@ownedPropertyAssociation.1"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedDataPort.0"/>
+      </featureInstance>
+      <featureInstance name="network" dstConnectionInstance="//@componentInstance.3/@connectionInstance.1" category="busAccess" direction="in out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Transmission_Type"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:NamedValue">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#//@ownedProperty.8/@ownedPropertyType/@ownedLiteral.1"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAHardware.aadl#//@ownedPublicSection/@ownedClassifier.6/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:BusAccess" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedBusAccess.0"/>
+      </featureInstance>
+      <flowSpecification name="RadarObserved" destination="//@componentInstance.3/@componentInstance.2/@featureInstance.0">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RangeValue">
+              <minimum xsi:type="aadl2:IntegerLiteral" value="25">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" value="50">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedPropertyAssociation.4"/>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSASensors.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="mfd" category="device">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Thread_Properties.aadl#Thread_Properties.Dispatch_Protocol"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:NamedValue">
+            <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.3/@ownedLiteral.0"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Timing_Properties.aadl#Timing_Properties.Period"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:IntegerLiteral" value="100">
+            <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.1"/>
+      </ownedPropertyAssociation>
+      <featureInstance name="MFDSAInformation" srcFlowSpec="//@componentInstance.3/@componentInstance.3/@flowSpecification.0 //@componentInstance.3/@componentInstance.3/@flowSpecification.1" category="featureGroup">
+        <feature xsi:type="aadl2:FeatureGroup" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.0"/>
+      </featureInstance>
+      <featureInstance name="AircrewSAInformation" dstFlowSpec="//@componentInstance.3/@componentInstance.3/@flowSpecification.1" category="featureGroup" direction="out">
+        <featureInstance name="AircrewSphericalTerrainInformation" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.0"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainLocationAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.1"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainHeightAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.2"/>
+        </featureInstance>
+        <featureInstance name="AircrewTerrainHazards" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.3"/>
+        </featureInstance>
+        <featureInstance name="AircrewSphericalObstacleInformation" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.4"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeFlightPathObstaclePositionAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.5"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleHeightAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.6"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleSeparationAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.7"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeWireObstaclePositionAwareness" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.8"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleHorizontalSeparationAlert" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.9"/>
+        </featureInstance>
+        <featureInstance name="AircrewFlightPathObstacleVerticalSeparationAlert" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.10"/>
+        </featureInstance>
+        <featureInstance name="AircrewSphericalAdjacentAircraftInformation" category="abstractFeature" direction="out">
+          <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+            <property href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#JMRMIS.ObservationRadius"/>
+            <ownedValue>
+              <ownedValue xsi:type="aadl2:IntegerLiteral" value="5">
+                <unit href="../../../../SituationalAwarenessCommon/propertysets/JMRMIS.aadl#//@ownedPropertyType.1/@ownedLiteral.2"/>
+              </ownedValue>
+            </ownedValue>
+            <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11/@ownedPropertyAssociation.0"/>
+          </ownedPropertyAssociation>
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.11"/>
+        </featureInstance>
+        <featureInstance name="AircrewRelativeAdjacentAircraftPositionAwareness" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.12"/>
+        </featureInstance>
+        <featureInstance name="AircrewOtherAircraftPositionAwareness" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.13"/>
+        </featureInstance>
+        <featureInstance name="AircrewOtherAircraftAltitudeAwareness" category="abstractFeature" direction="out">
+          <feature xsi:type="aadl2:AbstractFeature" href="../../../../SituationalAwarenessCommon/packages/ASSAInterfaces.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedAbstractFeature.14"/>
+        </featureInstance>
+        <feature xsi:type="aadl2:FeatureGroup" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroup.1"/>
+      </featureInstance>
+      <featureInstance name="network" dstConnectionInstance="//@componentInstance.3/@connectionInstance.3" category="busAccess" direction="in out">
+        <feature xsi:type="aadl2:BusAccess" href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedBusAccess.0"/>
+      </featureInstance>
+      <flowSpecification name="ASSAInfo" source="//@componentInstance.3/@componentInstance.3/@featureInstance.0">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Latency"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RangeValue">
+              <minimum xsi:type="aadl2:IntegerLiteral" value="1">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </minimum>
+              <maximum xsi:type="aadl2:IntegerLiteral" value="2">
+                <unit href="../../../../Plugin_Resources/Predeclared_Property_Sets/AADL_Project.aadl#//@ownedPropertyType.12/@ownedLiteral.3"/>
+              </maximum>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.2"/>
+        </ownedPropertyAssociation>
+        <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+      </flowSpecification>
+      <flowSpecification name="ASSAInfoToPilot" source="//@componentInstance.3/@componentInstance.3/@featureInstance.0" destination="//@componentInstance.3/@componentInstance.3/@featureInstance.1">
+        <flowSpecification href="../../../../SituationalAwarenessCommon/packages/ASSAComponents/ASSADisplayAnnunication.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.1"/>
+      </flowSpecification>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.1"/>
+      <index>0</index>
+    </componentInstance>
+    <componentInstance name="gpu" category="system">
+      <featureInstance name="ToSwitch" dstConnectionInstance="//@componentInstance.3/@connectionInstance.2" category="busAccess" direction="in out">
+        <feature xsi:type="aadl2:BusAccess" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAHardware.aadl#//@ownedPublicSection/@ownedClassifier.9/@ownedBusAccess.0"/>
+      </featureInstance>
+      <featureInstance name="To1553" dstConnectionInstance="//@componentInstance.3/@connectionInstance.0" category="busAccess" direction="in out">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Transmission_Type"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:NamedValue">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="../../../../Plugin_Resources/Predeclared_Property_Sets/Communication_Properties.aadl#//@ownedProperty.8/@ownedPropertyType/@ownedLiteral.1"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAHardware.aadl#//@ownedPublicSection/@ownedClassifier.6/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:BusAccess" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAHardware.aadl#//@ownedPublicSection/@ownedClassifier.9/@ownedBusAccess.1"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:SystemSubcomponent" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedSystemSubcomponent.0"/>
+      <index>0</index>
+    </componentInstance>
+    <connectionInstance name="ChannelA -> gpu.To1553" complete="true" kind="accessConnection" destination="//@componentInstance.3/@componentInstance.4/@featureInstance.1" bidirectional="true" source="//@componentInstance.3/@componentInstance.0">
+      <connectionReference context="//@componentInstance.3" source="//@componentInstance.3/@componentInstance.0" destination="//@componentInstance.3/@componentInstance.4/@featureInstance.1">
+        <connection xsi:type="aadl2:AccessConnection" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.0"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="ChannelA -> apr39d.network" complete="true" kind="accessConnection" destination="//@componentInstance.3/@componentInstance.2/@featureInstance.1" bidirectional="true" source="//@componentInstance.3/@componentInstance.0">
+      <connectionReference context="//@componentInstance.3" source="//@componentInstance.3/@componentInstance.0" destination="//@componentInstance.3/@componentInstance.2/@featureInstance.1">
+        <connection xsi:type="aadl2:AccessConnection" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.1"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="Switch -> gpu.ToSwitch" complete="true" kind="accessConnection" destination="//@componentInstance.3/@componentInstance.4/@featureInstance.0" bidirectional="true" source="//@componentInstance.3/@componentInstance.1">
+      <connectionReference context="//@componentInstance.3" source="//@componentInstance.3/@componentInstance.1" destination="//@componentInstance.3/@componentInstance.4/@featureInstance.0">
+        <connection xsi:type="aadl2:AccessConnection" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.2"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="Switch -> mfd.network" complete="true" kind="accessConnection" destination="//@componentInstance.3/@componentInstance.3/@featureInstance.2" bidirectional="true" source="//@componentInstance.3/@componentInstance.1">
+      <connectionReference context="//@componentInstance.3" source="//@componentInstance.3/@componentInstance.1" destination="//@componentInstance.3/@componentInstance.3/@featureInstance.2">
+        <connection xsi:type="aadl2:AccessConnection" href="../../../../SituationalAwarenessCommon/packages/ComputePlatform/ASSAPlatform.aadl#//@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.3"/>
+      </connectionReference>
+    </connectionInstance>
+    <subcomponent xsi:type="aadl2:SystemSubcomponent" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.5/@ownedSystemSubcomponent.0"/>
+    <index>0</index>
+  </componentInstance>
+  <endToEndFlow name="DirectOwnAircraftFlow" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.2 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_1" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.3 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_2" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.4 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_3" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.5 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_4" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.6 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_5" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.7 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_6" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.8 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_7" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.9 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_8" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.10 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_9" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.11 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_10" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.12 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_11" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.13 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_12" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.14 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_13" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.15 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="DirectOwnAircraftFlow_14" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.1 //@componentInstance.2/@componentInstance.5/@flowSpecification.1 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.16 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.0"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.2 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_1" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.3 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_2" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.4 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_3" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.5 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_4" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.6 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_5" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.7 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_6" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.8 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_7" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.9 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_8" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.10 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_9" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.11 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_10" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.12 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_11" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.13 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_12" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.14 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_13" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.15 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <endToEndFlow name="FusedAircraftPositionSA_14" flowElement="//@componentInstance.0/@flowSpecification.0 //@connectionInstance.0 //@componentInstance.2/@componentInstance.3/@flowSpecification.1 //@componentInstance.2/@connectionInstance.1 //@componentInstance.2/@componentInstance.4/@flowSpecification.0 //@componentInstance.2/@connectionInstance.2 //@componentInstance.2/@componentInstance.5/@flowSpecification.0 //@componentInstance.2/@connectionInstance.3 //@componentInstance.2/@componentInstance.0/@flowSpecification.1 //@connectionInstance.16 //@componentInstance.1/@flowSpecification.0">
+    <endToEndFlow href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedEndToEndFlow.1"/>
+  </endToEndFlow>
+  <connectionInstance name="egi1.airCraftPosition -> assa.Fusion.ownAircraftPosition" complete="true" kind="portConnection" destination="//@componentInstance.2/@componentInstance.3/@featureInstance.2" source="//@componentInstance.0/@featureInstance.0">
+    <connectionReference context="/" source="//@componentInstance.0/@featureInstance.0" destination="//@componentInstance.2/@featureInstance.10">
+      <connection xsi:type="aadl2:PortConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedPortConnection.0"/>
+    </connectionReference>
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@featureInstance.10" destination="//@componentInstance.2/@componentInstance.3/@featureInstance.2">
+      <connection xsi:type="aadl2:PortConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPortConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="egi1.airCraftPosition -> assa.ASSAFormatting.OwnAircraftPosition" complete="true" kind="portConnection" destination="//@componentInstance.2/@componentInstance.5/@featureInstance.5" source="//@componentInstance.0/@featureInstance.0">
+    <connectionReference context="/" source="//@componentInstance.0/@featureInstance.0" destination="//@componentInstance.2/@featureInstance.10">
+      <connection xsi:type="aadl2:PortConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedPortConnection.0"/>
+    </connectionReference>
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@featureInstance.10" destination="//@componentInstance.2/@componentInstance.5/@featureInstance.5">
+      <connection xsi:type="aadl2:PortConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedPortConnection.1"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalTerrainInformation -> pilot.SAInformation.AircrewSphericalTerrainInformation" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.0" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.0">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.0" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.0">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.0" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.0">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainLocationAwareness -> pilot.SAInformation.AircrewTerrainLocationAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.1" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.1">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.1" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.1">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.1" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.1">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainHeightAwareness -> pilot.SAInformation.AircrewTerrainHeightAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.2">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.2" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.2">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.2" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.2">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewTerrainHazards -> pilot.SAInformation.AircrewTerrainHazards" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.3" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.3">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.3" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.3">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.3" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.3">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalObstacleInformation -> pilot.SAInformation.AircrewSphericalObstacleInformation" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.4" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.4">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.4" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.4">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.4" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.4">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeFlightPathObstaclePositionAwareness -> pilot.SAInformation.AircrewRelativeFlightPathObstaclePositionAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.5" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.5">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.5" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.5">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.5" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.5">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleHeightAwareness -> pilot.SAInformation.AircrewFlightPathObstacleHeightAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.6" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.6">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.6" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.6">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.6" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.6">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleSeparationAwareness -> pilot.SAInformation.AircrewFlightPathObstacleSeparationAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.7" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.7">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.7" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.7">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.7" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.7">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeWireObstaclePositionAwareness -> pilot.SAInformation.AircrewRelativeWireObstaclePositionAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.8" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.8">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.8" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.8">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.8" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.8">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleHorizontalSeparationAlert -> pilot.SAInformation.AircrewFlightPathObstacleHorizontalSeparationAlert" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.9" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.9">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.9" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.9">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.9" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.9">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewFlightPathObstacleVerticalSeparationAlert -> pilot.SAInformation.AircrewFlightPathObstacleVerticalSeparationAlert" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.10" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.10">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.10" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.10">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.10" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.10">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewSphericalAdjacentAircraftInformation -> pilot.SAInformation.AircrewSphericalAdjacentAircraftInformation" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.11" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.11">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.11" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.11">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.11" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.11">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewRelativeAdjacentAircraftPositionAwareness -> pilot.SAInformation.AircrewRelativeAdjacentAircraftPositionAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.12" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.12">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.12" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.12">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.12" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.12">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewOtherAircraftPositionAwareness -> pilot.SAInformation.AircrewOtherAircraftPositionAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.13" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.13">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.13" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.13">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.13" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.13">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="assa.AirCrewDisplay.AircrewSAInformation.AircrewOtherAircraftAltitudeAwareness -> pilot.SAInformation.AircrewOtherAircraftAltitudeAwareness" complete="true" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.14" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.14">
+    <connectionReference context="//@componentInstance.2" source="//@componentInstance.2/@componentInstance.0/@featureInstance.1/@featureInstance.14" destination="//@componentInstance.2/@featureInstance.0/@featureInstance.14">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../ASSASystem_Common.aadl#//@ownedPublicSection/@ownedClassifier.0/@ownedFeatureGroupConnection.5"/>
+    </connectionReference>
+    <connectionReference context="/" source="//@componentInstance.2/@featureInstance.0/@featureInstance.14" destination="//@componentInstance.1/@featureInstance.0/@featureInstance.14">
+      <connection xsi:type="aadl2:FeatureGroupConnection" href="../AircraftSystems.aadl#//@ownedPublicSection/@ownedClassifier.3/@ownedFeatureGroupConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <systemOperationMode name="No Modes"/>
+  <componentImplementation xsi:type="aadl2:SystemImplementation" href="../AircraftSystems.aadl#AircraftSystems.AircraftSystem.ASSAPlatformConfiguration"/>
+</instance:SystemInstance>

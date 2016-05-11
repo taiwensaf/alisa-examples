@@ -1,0 +1,13 @@
+// Copyright 2015 Carnegie Mellon University
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+stakeholder goals ASSASensors.ASSASensor for ASSASensors::ASSASensor [
+	 goal goal1
+	: "Passive ASE (ASSA sensor type}" 
+	[description "MIS shall support passive SA sensors (ASE)"
+	stakeholder mrj.ab
+	see goal MISStakeholderRequirements.SR_13 
+	MISStakeholderRequirements.SR_69 MISStakeholderRequirements.SR_15
+	]
+]
+ 

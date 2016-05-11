@@ -1,0 +1,18 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package HardwareErrorLibrary
+public
+
+-- This package contains a library of error types used for annotating the hardware platform with fault information
+
+annex EMV2{**
+	error types
+		NetworkFailure renames type  ErrorLibrary::ServiceOmission;
+		ProcessorFailure renames type  ErrorLibrary::ServiceOmission;
+		MFDFailure renames type  ErrorLibrary::ServiceOmission;
+		DroppedPacket renames type  ErrorLibrary::ItemOmission;
+		DataCorruption renames type  ErrorLibrary::ValueCorruption;
+	end types;
+**};
+end HardwareErrorLibrary;

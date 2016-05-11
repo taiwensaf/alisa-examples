@@ -1,0 +1,24 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package SensorErrorLibrary
+public
+
+-- This package contains a library of error types used for annotating ASSA sensors with fault information
+
+annex EMV2{**
+	error types
+		SensorLoss renames type ErrorLibrary::ServiceOmission;
+		SensorFailure:type extends SensorLoss; -- physically non-functional
+		SensorNonOperational:type extends SensorLoss; -- non-functional due to other failures, e.g., no power
+		SensorDataOmission:type extends ErrorLibrary::ItemOmission; -- missing sensor reading
+		MissingSensorReading renames type SensorErrorLibrary::SensorDataOmission;
+		SensorDataOutofRange: type extends ErrorLibrary::OutofRange;
+		SensorDataClippedHigh: type extends ErrorLibrary::OutofBounds;
+		SensorDataClippedLow: type extends ErrorLibrary::OutofBounds;
+		SensorDataBiasedHigh: type extends ErrorLibrary::SubtleValueError;
+		SensorDataBiasedLow: type extends ErrorLibrary::SubtleValueError;
+		SensorDataDrifting: type extends ErrorLibrary::SubtleValueError;
+	end types;
+**};
+end SensorErrorLibrary;

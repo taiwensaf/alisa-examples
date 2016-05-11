@@ -1,0 +1,26 @@
+// Copyright 2015 Carnegie Mellon University
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+system requirements MISPushProtocolReqs for MISProtocols::ASSASensorPushProtocol
+[	requirement req1 
+	: "Push protocol for SA sensor data streams"
+	[ description "Represents the handshaking for data received from sensors as specified in MIS SSS"
+	issues  	"Need to see whether it is the same for all sensors, since they describe is separately for each"
+	"Need to make sure the protocol can handle a source track set as a single unit"
+value predicate  #Communication_Properties::Transmission_Type == "push"
+]
+]
+
+
+system requirements MISPullProtocolReqs for MISProtocols::PullDCFMInputDataSetProtocol
+[	requirement SYS_711 
+	: "Pull protocol for (threat) source track requests from DCFM"
+	[ description "Represents the handshaking for source track data requested by DCFM as specified in MIS SSS."
+	issues "Need to determine whether it is the same for correlated track sets and other information from MIS-DM aka SADM."
+"Need to make sure the protocol can handle a source track set as a single unit"
+"DCFM sends three separate requests for data."
+	
+value predicate #Communication_Properties::Transmission_Type == "pull"
+	see document DCFMDataModel.doc
+	]
+]

@@ -1,0 +1,104 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package AircraftSystems
+public
+with MissionSystemDataTypes;
+with ASSASystem;
+with ASSAInterfaces;
+with EMV2;
+with ASSASystem::Common;
+with ASSAPlatform;
+
+-- This package specifies the operational context of ASSA.
+-- The context consists of the EGI providing aircraft position,
+-- the aircrew as recipient of the ASSA output.
+--
+
+device EGI
+features
+	airCraftPosition: out data port MissionSystemDataTypes::Position;
+flows
+	ProvideOwnAircraftPos: flow source airCraftPosition;
+annex EMV2{**
+			use types ErrorLibrary, ExceptionalConditionTypes;
+			use behavior ErrorLibrary::DegradedFailStop;
+			error propagations
+				airCraftPosition: out propagation{ItemOmission,AirspeedValueError,AltitudeValueError,LongitudeValueError,LatitudeValueError};
+			flows
+				e1: error source airCraftPosition{ItemOmission,AirspeedValueError,AltitudeValueError,LongitudeValueError,LatitudeValueError};
+			end propagations;
+			properties
+	--Probability Value arbitrarily assigned. 
+	EMV2::OccurrenceDistribution => [ ProbabilityValue => 0.0001 ; Distribution => Fixed;] applies to FailStop;
+			EMV2::Hazards => ([
+    		crossreference => "N/A";
+    		failure => "Lack of Aircraft Position";
+    		phases => ("all");
+    		developmentassurancelevel => E;
+    		Likelihood => C;
+      		Severity => 3;
+    		description => "Lack of providing aircraft position leads to high risk of loss of aircraft.";  
+			]) applies to airCraftPosition.ItemOmission;
+			
+		**};
+end EGI;
+
+abstract Aircrew
+features
+	SAInformation: feature group inverse of ASSAInterfaces::AirCrewSAInformation;
+flows
+	SeeAssaInfo: flow sink SAInformation;
+end Aircrew;
+
+system AircraftSystem
+end AircraftSystem ;
+
+system implementation AircraftSystem.ASSASystem
+subcomponents
+	pilot: system Aircrew;
+	egi1: device EGI;
+	assa: system ASSASystem::ASSASystem;
+connections
+	aircraftpos: port egi1.airCraftPosition -> assa.OwnAircraftPosition;
+	showinfo: feature group assa.ASSAAirCrewPresentation -> pilot.SAInformation;
+flows
+		DirectOwnAircraftFlow: end to end flow egi1.ProvideOwnAircraftPos ->
+			aircraftpos -> assa.directAircraftpos -> showinfo -> pilot.SeeAssaInfo;
+		FusedAircraftPositionSA: end to end flow egi1.ProvideOwnAircraftPos ->
+				aircraftpos -> assa.assessedASSAAircraftpos -> showinfo -> pilot.SeeAssaInfo;
+annex EMV2{**
+			use types ErrorLibrary, ExceptionalConditionTypes;
+			use behavior ErrorLibrary::DegradedFailStop;
+
+			composite error behavior
+				states
+					[egi1.FailStop]->FailStop;
+					[assa.FailStop]->FailStop;
+			end composite;
+--			properties
+--	--Probability Value arbitrarily assigned. If used here it indicates a value for this specific instance.
+--	-- Otherwise the value could be defined with the classifier (type or implementation)
+--	EMV2::OccurrenceDistribution => [ ProbabilityValue => 0.0001 ; Distribution => Fixed;] applies to egi1.FailStop;
+--	EMV2::OccurrenceDistribution => [ ProbabilityValue => 0.0001 ; Distribution => Fixed;] applies to assa.FailStop;
+		**};
+end AircraftSystem.ASSASystem;
+ 
+system implementation AircraftSystem.ASSASubsystems extends AircraftSystem.ASSASystem
+subcomponents
+	assa: refined to system ASSASystem::Common::ASSASystem.Common;
+end AircraftSystem.ASSASubsystems;
+ 
+system implementation AircraftSystem.ASSAPlatformConfiguration extends AircraftSystem.ASSASubsystems
+subcomponents
+	platform: system ASSAPlatform::ASSAPlatform.Basic;
+	properties
+		Actual_Processor_Binding => (reference(platform.gpu)) applies to assa.Conversion;
+		Actual_Processor_Binding => (reference(platform.gpu)) applies to assa.Fusion;
+		Actual_Processor_Binding => (reference(platform.gpu)) applies to assa.Assessmnent;
+		Actual_Processor_Binding => (reference(platform.mfd)) applies to assa.ASSAFormatting;
+		Actual_Processor_Binding => (reference(platform.apr39d)) applies to assa.Sensors;
+end AircraftSystem.ASSAPlatformConfiguration;
+ 
+
+end AircraftSystems;

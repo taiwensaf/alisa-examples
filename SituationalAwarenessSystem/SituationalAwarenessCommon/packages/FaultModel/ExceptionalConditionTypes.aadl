@@ -1,0 +1,41 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ExceptionalConditionTypes
+public
+
+-- This package contains a library of error types used for annotating ASSA with fault information
+
+annex EMV2 {**
+	error types 
+		ASSALoss: type extends ErrorLibrary::ServiceOmission;
+		InvalidASSAData: type ;
+		DegradedASSAData : type extends InvalidASSAData;
+		StaleASSAData : type extends InvalidASSAData;
+		FalsePositiveASSAData: type;
+		FalseNegativeASSAData: type extends ErrorLibrary::ItemOmission;
+		OutOfRangeASSAData renames type ErrorLibrary::OutOfRange;
+		UntimelyASSAData: type extends ErrorLibrary::LateDelivery;
+		TimeSkewedASSADataAircraftPosition: type extends ErrorLibrary::AsymmetricTiming;
+		InaccurateASSAData: type set {OutOfRangeASSAData, TimeSkewedASSADataAircraftPosition};
+		ASSAFaults: type set {FalsePositiveASSAData,FalseNegativeASSAData, InaccurateASSAData };
+		-- consequent accident
+		AircraftLoss: type extends ErrorLibrary::ServiceOmission;
+		--Geographic error types
+		--Inaccurate and imprecise
+		ObservationsImprecise: type extends ErrorLibrary::ValueError;
+		ObservationsInaccurate: type extends ErrorLibrary::ValueError;
+		--Position errors
+		AircraftPositionError renames type ErrorLibrary::ValueError;
+		AirspeedValueError: type extends AircraftPositionError;
+		AltitudeValueError: type extends AircraftPositionError;
+		LongitudeValueError: type extends AircraftPositionError;
+		LatitudeValueError: type extends AircraftPositionError;
+		-- track set related errors
+		TrackSetIntegrity renames type ErrorLibrary::ValueError;
+		TrackOmission renames type ErrorLibrary::ItemOmission;
+		TrackValueError : type extends ErrorLibrary::ValueError;
+		TrackComputationError : type extends ErrorLibrary::ValueError;
+	end types;
+**};
+end ExceptionalConditionTypes;

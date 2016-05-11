@@ -1,0 +1,58 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package SAAwarenessAnnunciation
+public
+with JMRMIS, MissionSystemDataTypes;
+with TrackTypes;
+	with ASSAHardware;
+	with ASSAInterfaces;
+
+ 
+--	 Description 
+--		This package specifies the annunciation device as well as the situational awareness display.
+--		These are for the ASSA system model created initially.
+-- 		Ports are listed individually. 
+-- 		We have a separate definition for the reference architecture 
+--	
+
+
+device SituationAwarenessDisplay
+features
+	WeatherInformation: in data port;
+	ThreatInformation: in data port TrackTypes::CorrelatedThreatTrackSet;
+--	ThreatInformation: in feature group;--data port TrackTypes::CorrelatedThreatTrackSet;
+	AssessedInformation: in data port; --feature group;
+	RadarInformation: in data port;
+	ObstacleInformation: in data port;
+	TerrainInformation: in data port;
+	AircrewSAInformation: out feature group ASSAInterfaces::AirCrewSAInformation;
+	OwnAircraftPosition: in data port MissionSystemDataTypes::Position;
+
+	network: requires bus access ASSAHardware::ARINC664;
+
+flows
+	ThreatInfo: flow sink ThreatInformation;
+	AssessedThreatInfo: flow sink AssessedInformation;
+	RadarInfo: flow sink ThreatInformation;
+	AssessedRadarInfo: flow sink AssessedInformation;
+	ThreatInfoToPilot: flow path ThreatInformation -> AircrewSAInformation;
+	AssessedThreatInfoToPilot: flow path AssessedInformation -> AircrewSAInformation;
+properties
+	Transmission_Type => pull applies to WeatherInformation, ThreatInformation, ObstacleInformation, TerrainInformation;
+	Dispatch_Protocol => Periodic;
+	Period => 100 ms;
+	Latency => 1ms .. 1ms applies to ThreatInfo, AssessedThreatInfo,RadarInfo,AssessedRadarInfo;
+end SituationAwarenessDisplay;
+
+device SAAnnunciationDevice
+features
+	Alerts: in data port;
+flows
+	SoundAlerts: flow sink Alerts;
+properties
+	Latency => 1 ms .. 1 ms applies to SoundAlerts;
+end SAAnnunciationDevice;
+
+
+end SAAwarenessAnnunciation;

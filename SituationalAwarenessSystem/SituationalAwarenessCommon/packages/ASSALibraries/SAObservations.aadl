@@ -1,0 +1,73 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package SAObservations
+public
+with ACVIP, JMRMIS;
+-- Description 
+--		This package introduces concepts to represent entities in the operational environment.
+--		We use the abstract component type for that purpose and place the concepts into an abstraction hierarchy as appropriate.
+--		The primary situational awareness concepts are threats, obstacles, and terrain.
+--		The primary source of these concepts is the MIS Stakeholder document.
+--
+	abstract Obstacle
+	properties
+		ACVIP::aliases => ("Man Made Obstacle","MMObs");
+		ACVIP::Rationale => "From Stakeholder Requirements: Aircraft lost more often to obstacles than enemy fire";
+	end Obstacle;
+
+	abstract WireObstacle extends FlightPathObstacle
+	end WireObstacle;
+
+	abstract FlightPathObstacle extends Obstacle
+	end FlightPathObstacle;
+
+	abstract Terrain
+	end Terrain;
+
+	abstract Threat
+	end Threat;
+	
+	abstract BallisticWeaponsFire extends Threat
+	properties
+		ACVIP::aliases => ("HostileFire (in DCFM Data Model)",
+		"HostileFireDetectionSystem");
+	end BallisticWeaponsFire;
+	
+	abstract Missile extends Threat
+	properties
+		ACVIP::aliases => ("MissileWarningReceiver (in DCFM Data Model)");
+	end Missile;
+	
+	abstract LaserDesignator extends Threat
+	properties
+		ACVIP::aliases => ("LaserWarningReceiver (in DCFM Data Model)", "IR (in Stakeholder Requirements SR_40)");
+	end LaserDesignator;
+	
+	abstract RadarSystem extends Threat
+	properties
+		ACVIP::aliases => ("RF (in Stakeholder Requirements)");
+		JMRMIS::SensorKind => Active;
+	annex notes {**
+		"from stakeholder reqs", "no corresponding label DCFM in data model"
+	**};
+	end RadarSystem;
+
+	abstract AdjacentAircraft
+	end AdjacentAircraft;
+	
+	abstract OtherAircraft
+	end OtherAircraft;
+
+	abstract COP
+	end COP;
+
+	abstract implementation COP.incoming
+	subcomponents
+		weather : abstract Weather;
+	end COP.incoming;
+
+	abstract Weather
+	end Weather;
+
+end SAObservations;

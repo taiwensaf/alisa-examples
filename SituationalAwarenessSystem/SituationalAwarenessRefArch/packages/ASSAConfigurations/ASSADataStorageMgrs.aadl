@@ -1,0 +1,37 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSADataStorageMgrs
+public
+with ACVIP;
+
+
+abstract RadarDataService
+properties
+	ACVIP::aliases => ("RADataStore(SADS-SDD)");
+end RadarDataService;
+
+
+abstract ObstacleDataService
+properties
+	ACVIP::aliases => ("MMObsDataStore(SADS-SDD)");
+end ObstacleDataService;
+
+abstract OwnAircraftPositionDataService
+properties
+	ACVIP::aliases => ("PlatformDataCache(SADS-SDD)");
+end OwnAircraftPositionDataService;
+
+
+abstract ThreatSourceTrackDataService
+properties
+	ACVIP::aliases => ("SrcTrkDataStore(SADS-SDD)");
+end ThreatSourceTrackDataService;
+
+abstract ThreatCorrelatedTrackDataservice
+properties
+	ACVIP::aliases => ("CorrTrkDataCache(SADS-SDD)");
+end ThreatCorrelatedTrackDataservice;
+
+
+end ASSADataStorageMgrs;

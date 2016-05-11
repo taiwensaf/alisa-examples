@@ -1,0 +1,24 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSASensorConfigurations
+public
+with ASSASensors, ASSAServices;
+with ASSAConfiguredInterfaces;
+-- imitate MDS reference architecture
+
+system ASSASensorConfiguration extends ASSAServices::ASSASensors (SensorSetOutput => feature group ASSAConfiguredInterfaces::CH47FSensorSourceTrackSets)
+end ASSASensorConfiguration;
+
+
+system implementation ASSASensorConfiguration.CH47F 
+subcomponents
+  WW: device ASSASensors::WeaponWatch;
+  ATW: device ASSASensors::ATW;
+connections
+  WWconn : port WW.SourceTracks -> SensorSetReadings.WWSensorTracks;
+  ATWconn : port ATW.SourceTracks -> SensorSetReadings.ATWSensorTracks;
+end ASSASensorConfiguration.CH47F ;
+
+
+end ASSASensorConfigurations;

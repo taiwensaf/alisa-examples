@@ -1,0 +1,70 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package MissionSystemDataTypes
+public
+with Data_Model, TrackTypes, JMRMIS;
+--	
+--	 Description 
+--		This package defines data types used in the mission system specification.
+--	
+
+data PlanningInformation
+end PlanningInformation;
+
+data SphericalTerrainSA
+end SphericalTerrainSA;
+
+data Position
+properties
+	Data_Model::Element_Names => ("Latitude","Longitude","Altitude");
+	Data_Model::Data_Representation => Struct;
+end Position;
+
+data implementation Position.common 
+subcomponents
+	Latitude : data;
+	Longitude : data;
+	Altitude : data;
+properties
+	Data_Model::Measurement_Unit => "Meters"
+		applies to Altitude;
+	Data_Model::Measurement_Unit => "Degrees"
+		applies to Latitude, Longitude;
+end Position.common;
+
+data implementation Position.world extends Position.common
+properties
+	JMRMIS::FrameOfReference => WGS84;
+end Position.world;
+
+data implementation Position.OwnRelative extends Position.common
+properties
+	JMRMIS::FrameOfReference => OwnAircraft;
+end Position.OwnRelative;
+
+data Velocity
+end Velocity;
+
+
+data DateTime
+end DateTime;
+
+data DCFMInputDataSet
+end DCFMInputDataSet;
+
+data implementation DCFMInputDataSet.basic
+subcomponents
+	SourceTracks: data TrackTypes::DCFMSourceTrackSet;
+	PreviousCorrelatedTracks: data TrackTypes::CorrelatedThreatTrackSet;
+	OwnAircraftPosition: data  MissionSystemDataTypes::Position;
+end DCFMInputDataSet.basic;
+
+feature group DCFMInput
+features
+	SourceTracks: in data port TrackTypes::DCFMSourceTrackSet;
+	PreviousCorrelatedTracks: in data port TrackTypes::CorrelatedThreatTrackSet;
+	OwnAircraftPosition: in data port MissionSystemDataTypes::Position;
+end DCFMInput;
+
+end MissionSystemDataTypes;

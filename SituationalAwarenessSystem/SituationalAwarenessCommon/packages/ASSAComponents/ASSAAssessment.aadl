@@ -1,0 +1,57 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+package ASSAAssessment
+public
+with TrackTypes, MissionSystemDataTypes, JMRMIS, ACVIP;
+--	Description 
+--		This package provides a specification of the situation assessment function. 
+--		
+
+	system SituationAssessment
+	features
+		ThreatTracks : in data port TrackTypes::CorrelatedThreatTrackSet;
+		RadarTracks : in data port TrackTypes::CorrelatedRadarTrackSet;
+		ObstacleTracks : in data port TrackTypes::CorrelatedTrackSet;
+		AdjacentAircraftTracks : in data port TrackTypes::CorrelatedTrackSet;
+		OwnAircraftPosition: in data port MissionSystemDataTypes::Position;
+		-- OwnAircraftPosition could be in track standard representation
+		AssessedTracks: out data port TrackTypes::AssessedTrackSet;
+		Alerts : out data port;
+	flows
+		ThreatAssessment: flow path ThreatTracks -> AssessedTracks;
+		RadarAssessment: flow path RadarTracks -> AssessedTracks;
+		ThreatAlerts: flow path ThreatTracks -> Alerts;
+		RadarAlerts: flow path RadarTracks -> Alerts;
+	properties
+	Latency => 10 ms .. 10 ms applies to ThreatAssessment,RadarAssessment,RadarAlerts,ThreatAlerts;
+	Period => 100 ms;
+	
+	annex EMV2{**
+			use types  SensorErrorLibrary,ErrorLibrary;
+			use behavior ErrorLibrary::DegradedFailStop;
+			error propagations
+				RadarTracks:in propagation{SensorDataOmission, SensorDataOutofRange, EarlyDelivery, LateDelivery};
+				flows
+					src1:error sink RadarTracks{SensorDataOmission};
+					src2:error sink RadarTracks{SensorDataOutofRange};
+					src3:error sink RadarTracks{EarlyDelivery,LateDelivery}; 
+--					src4:error sink RadarInformation{EarlyDelivery,LateDelivery};
+--					src4:error path SourceTracks{HighRate,LowRate}->CorrelatedTracks{HighRate,LowRate}; --sequence error
+			end propagations;
+			component error behavior
+			events
+				FailEvent: error event {SensorDataOmission};
+				DegradeEvent: error event{SensorDataOutofRange,EarlyDelivery,LateDelivery};
+			transitions
+				fail: Operational-[FailEvent]->FailStop;
+				degrade: Operational-[DegradeEvent]->Degraded;
+			end component;
+		**};
+
+	
+	end SituationAssessment;
+
+	
+
+end ASSAAssessment;

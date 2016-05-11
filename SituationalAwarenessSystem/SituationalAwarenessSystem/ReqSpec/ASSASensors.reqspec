@@ -1,0 +1,83 @@
+// Copyright 2015 Carnegie Mellon University
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+system requirements PassiveSensorReqs for ASSASensors::PassiveTerrainSensor
+[
+	requirement Req4 : "Passive sensor"
+	[	val EnergyLevel = 0
+		description "Passive sensor radiates " EnergyLevel " energy" 
+		see goal MISStakeholderRequirements.SR_27
+	]
+	requirement Req1 : "Spherical terrain awareness for aircrew"
+	for  TerrainSphere 
+	 [
+		description "Spherical SA of terrain within "DesiredObservationRadius " radius for aircrew"
+		val DesiredObservationRadius = 5 nm 
+		compute  MeasuredDistance : JMRMIS::NauticalDistance
+		value predicate  MeasuredDistance >= DesiredObservationRadius
+		see goal MISStakeholderRequirements.SR_27
+	]
+]
+
+system requirements ActiveSensorReqs for ASSASensors::ActiveTerrainSensor
+[   
+	requirement  Req1  : "Spherical SA of terrain distance"
+	for  TerrainSphere 
+	[	
+		description "Spherical SA of terrain within " DesiredObservationRadius
+		 " radius for aircrew"
+		val  DesiredObservationRadius = 5 nm 
+		compute  MeasuredDistance: JMRMIS::NauticalDistance
+		value predicate  MeasuredDistance >= DesiredObservationRadius
+		see goal MISStakeholderRequirements.SR_87
+	]
+		
+	requirement req2
+		: "Active sensor"
+		[
+		value predicate #JMRMIS::SensorKind == "Active"
+		see goal MISStakeholderRequirements.SR_87
+		]
+		issues "Active sensor is in conflict with ASSASensor.goal1"
+]
+
+
+system requirements WeaponsWatchReqs for ASSASensors::WeaponWatch
+[ requirement req1
+	: "Detect, classify and locate ballistic weapons fire"
+	[ predicate #JMRMIS::ObservedObjects == "SAObservations::BallisticWeaponsFire"
+]
+requirement req2 
+	: "Provide set of WW source tracks" for  SourceTracks
+	[ description "WW shall provide a set of source tracks at every sampling time"
+//	predicate TrackTypes::WWTrackSet == it.classifier
+]
+requirement req3 : "Output interval of WW tracks" for  SourceTracks
+[ 
+	val  output_interval = 100ms
+	description "Output interval of WW tracks is " output_interval 
+]
+requirement req4 : "Processing period of WeaponsWatch"
+[ 
+	val  period = 100ms
+	description "Processing period of WeaponsWatch is " period
+	value predicate #Timing_Properties::Period == period
+	refines WeaponsWatchReqs.req1
+]
+
+requirement req5 : "observation radius of ballistic weapons fire" for  SourceTracks
+[ 
+	val DesiredObservationRadius = 10 km   
+	description "observation radius of ballistic weapons fire shall be " 
+	    DesiredObservationRadius
+	see goal MISStakeholderRequirements.SR_41
+]
+requirement req6 : "response time" 
+[
+	val MaxResponseTime = 25ms
+	compute ActualResponseTime : AADL_Project::Time
+	description "response time for ballistic weapons fire shall be less than " 
+	    MaxResponseTime
+	value predicate ActualResponseTime < MaxResponseTime
+]
+]

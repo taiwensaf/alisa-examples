@@ -1,0 +1,20 @@
+-- Copyright 2015 Carnegie Mellon University
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+property set JMRMISConstants is
+WITH JMRMIS, ACVIP;
+MaxWWTracks: constant aadlinteger => 50;
+MaxJATASTracks: constant aadlinteger => 50;
+MaxAPR39DTracks: constant aadlinteger => 50;
+MaxATWTracks: constant aadlinteger => 50;
+MaxObstacleTracks: constant aadlinteger => 50;
+MaxDCFMCorrelatedTracks: constant aadlinteger => 50;
+MaxDCFMAssessedTracks: constant aadlinteger => 50;
+MaxDCFMSourceTracks: constant aadlinteger => 50;
+
+MaxTracksInSet: constant aadlinteger => 50;
+
+
+MaxSourceTracksPerCorrelation: constant aadlinteger => 5;
+
+end JMRMISConstants;
