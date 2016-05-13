@@ -35,7 +35,7 @@ system requirements ActiveSensorReqs for ASSASensors::ActiveTerrainSensor
 	requirement req2
 		: "Active sensor"
 		[
-		value predicate #JMRMIS::SensorKind == "Active"
+		value predicate #JMRMIS::SensorKind == Active
 		see goal MISStakeholderRequirements.SR_87
 		]
 		issues "Active sensor is in conflict with ASSASensor.goal1"
@@ -45,7 +45,7 @@ system requirements ActiveSensorReqs for ASSASensors::ActiveTerrainSensor
 system requirements WeaponsWatchReqs for ASSASensors::WeaponWatch
 [ requirement req1
 	: "Detect, classify and locate ballistic weapons fire"
-	[ predicate #JMRMIS::ObservedObjects == "SAObservations::BallisticWeaponsFire"
+	[ predicate #JMRMIS::ObservedObjects == "SAObservations::BallisticWeaponsFire" // reference to classifier
 ]
 requirement req2 
 	: "Provide set of WW source tracks" for  SourceTracks
@@ -75,7 +75,7 @@ requirement req5 : "observation radius of ballistic weapons fire" for  SourceTra
 requirement req6 : "response time" 
 [
 	val MaxResponseTime = 25ms
-	compute ActualResponseTime : AADL_Project::Time
+	compute ActualResponseTime : Time
 	description "response time for ballistic weapons fire shall be less than " 
 	    MaxResponseTime
 	value predicate ActualResponseTime < MaxResponseTime

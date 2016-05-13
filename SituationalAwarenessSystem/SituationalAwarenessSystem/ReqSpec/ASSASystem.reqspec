@@ -75,13 +75,13 @@ system requirements ASSASystemDCMReqs for ASSASystem::Functional::ASSASystem.DCM
 	[  
 		requirement req12 : "provide data storage and conversion"for ASSADataService
 		[ description "Provide data service in support of the data flows specified by ConnectionBinding"
-		value predicate  #ACVIP::Service_Binding == "ASSADataService"
+		value predicate  #ACVIP::Service_Binding == this
 		]
 
 	requirement req13 :"monitor the health of the SA components" for ASSAHealthMonitor
 		[
 		description "monitor the health of the SA components identified by Supervise"
-		value predicate #ACVIP::Supervise == "ASSAHealthMonitor"
+		value predicate #ACVIP::Supervise == this
 		]
 		
 		issues 	"ASSA system variant that does correlation of a track stream from a single threat sensor"
