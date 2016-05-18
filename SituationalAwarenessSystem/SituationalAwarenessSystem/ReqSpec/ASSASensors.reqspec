@@ -35,7 +35,7 @@ system requirements ActiveSensorReqs for ASSASensors::ActiveTerrainSensor
 	requirement req2
 		: "Active sensor"
 		[
-		value predicate #JMRMIS::SensorKind == Active
+		informal predicate "#JMRMIS::SensorKind == Active" // TODO value predicate
 		see goal MISStakeholderRequirements.SR_87
 		]
 		issues "Active sensor is in conflict with ASSASensor.goal1"
@@ -45,12 +45,12 @@ system requirements ActiveSensorReqs for ASSASensors::ActiveTerrainSensor
 system requirements WeaponsWatchReqs for ASSASensors::WeaponWatch
 [ requirement req1
 	: "Detect, classify and locate ballistic weapons fire"
-	[ predicate #JMRMIS::ObservedObjects == "SAObservations::BallisticWeaponsFire" // reference to classifier
+	[ informal predicate "#JMRMIS::ObservedObjects == SAObservations::BallisticWeaponsFire" // TODO reference to classifier
 ]
 requirement req2 
 	: "Provide set of WW source tracks" for  SourceTracks
 	[ description "WW shall provide a set of source tracks at every sampling time"
-//	predicate TrackTypes::WWTrackSet == it.classifier
+	informal predicate "TrackTypes::WWTrackSet == it.classifier" // TODO value predicate
 ]
 requirement req3 : "Output interval of WW tracks" for  SourceTracks
 [ 

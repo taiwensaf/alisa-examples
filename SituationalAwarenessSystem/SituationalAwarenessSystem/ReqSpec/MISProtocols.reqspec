@@ -7,7 +7,7 @@ system requirements MISPushProtocolReqs for MISProtocols::ASSASensorPushProtocol
 	[ description "Represents the handshaking for data received from sensors as specified in MIS SSS"
 	issues  	"Need to see whether it is the same for all sensors, since they describe is separately for each"
 	"Need to make sure the protocol can handle a source track set as a single unit"
-value predicate  #Communication_Properties::Transmission_Type == push
+informal predicate  "#Communication_Properties::Transmission_Type == push" // TODO value predicate
 ]
 ]
 
@@ -20,7 +20,7 @@ system requirements MISPullProtocolReqs for MISProtocols::PullDCFMInputDataSetPr
 "Need to make sure the protocol can handle a source track set as a single unit"
 "DCFM sends three separate requests for data."
 	
-value predicate #Communication_Properties::Transmission_Type == pull
+informal predicate  "#Communication_Properties::Transmission_Type == pull" // TODO value predicate
 	see document DCFMDataModel.doc
 	]
 ]

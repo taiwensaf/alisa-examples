@@ -4,12 +4,12 @@
 system requirements TrackSequenceReqs for TrackTypes::TrackSequence
 [requirement Req1
 	[description "track ID same for all track sequence elements"
-	predicate "forall elem in TrackSequence: elem[i].TrackID == elem[j].tracksequence"
+	informal predicate "forall elem in TrackSequence: elem[i].TrackID == elem[j].tracksequence"
 ]]	
 system requirements CorrTrackReqs for TrackTypes::CorrelatedTrack.DCFM
 [requirement Req1  
 	: "maximum number of source tracks used in correlation" for  SourceTrackIDs
 	[description "maximum number of source tracks used in correlation is #JMRMISConstants::MaxSourceTracksPerCorrelation"
-	predicate "cardinality = JMRMISConstants::MaxSourceTracksPerCorrelation" 
+	informal predicate "cardinality = JMRMISConstants::MaxSourceTracksPerCorrelation" 
 ]
 ]
