@@ -6,12 +6,14 @@ system requirements MISDataStorageServiceReqs for MISServices::ASSADataStorage
 			: "Maximum number of source tracks from WW. " for  WWTracks
 	[		description "What is the maximum number of source tracks WW can deliver in a single sample/frame? "
 			informal predicate "#Data_Model::Dimension == 50" // TODO value predicate
+			category Quality.Performance
 	]	
 	requirement SYS_537 
 	    : "Configurable input arrival time range" for  WWTracks
 	[		description "Configured interarrival time must be within 100ms and 1000ms."
 			value predicate #JMRMIS::InputInterval > 100ms  and #JMRMIS::InputInterval <= 1000ms   
 			rationale "Expected tracking rate of 1-10Hz"
+			category Quality.Timing
 			see document SupplementalPackage.doc 
 			see requirement MIS_SSS.SYS_537 MIS_SSS.SYS_538
 	]
@@ -20,6 +22,7 @@ system requirements MISDataStorageServiceReqs for MISServices::ASSADataStorage
 		[	description "Interarrival time of input must be 100 ms"
 			value predicate #JMRMIS::InputInterval == 100 ms   
 			rationale "Expected tracking rate of 1-10Hz"
+			category Quality.Timing
 	]
 	issues 	"The SSDD talks about multiple Data Servers"
 	"SSDD: AST managers produce Create/Update/Delete messages. The requirements document specified it produces standardized source tracks."
