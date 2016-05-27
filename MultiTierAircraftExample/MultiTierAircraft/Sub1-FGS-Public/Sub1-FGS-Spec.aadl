@@ -1,0 +1,21 @@
+package Sub1::FGS::Spec
+public
+with Integrator::FGS::FGS::Spec, Integrator::FGS::AP, Integrator::FGS::AHRS, Integrator::FGS::FGS::ICD, Integrator::FGS::FCP::ICD, Integrator::FGS::Radio::NavRadio, Sub1::FGS::ICD;
+  -- with Integrator::FGS::AP, Integrator::FGS::AHRS, Integrator::FGS::ADC::ICD,
+  --     Integrator::FGS::FGS::ICD,  Integrator::FGS::Radio::NavRadio;
+  process prFlightGuidance
+    extends Integrator::FGS::FGS::Spec::prFlightGuidance
+    features
+      ADC: refined to feature group Sub1::FGS::ICD::ADC_DataSkt;
+    properties
+      Classifier_Substitution_Rule => Type_Extension;
+  end prFlightGuidance;
+  
+  process implementation prFlightGuidance.impl
+    flows
+      fPFCLAWS1: flow path FCP -> AP1;
+      fPFCLAWS2: flow path FCP -> AP2;
+  end prFlightGuidance.impl;
+  
+
+end Sub1::FGS::Spec;

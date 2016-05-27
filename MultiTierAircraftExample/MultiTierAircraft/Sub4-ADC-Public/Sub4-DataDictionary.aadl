@@ -1,0 +1,17 @@
+-- An Air Data Computer.
+-- 
+-- This file wraps up required data type definitions....
+package Sub4::DataDictionary
+public
+	with Data_Model, Base_Types;
+
+  data FaultCondition
+    properties
+      Data_model::Base_Type => (classifier(Base_Types::Integer));
+  end FaultCondition;
+  
+  data ScaledInteger
+    properties
+      Data_model::Base_Type => (classifier(Base_Types::Integer));
+  end ScaledInteger;
+end Sub4::DataDictionary;

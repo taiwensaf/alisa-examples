@@ -1,0 +1,60 @@
+-- This package contains the aircraft system model with its tier 2 systems as AADL subcomponent.
+-- This model is then expanded to include one and two levels of subcomponents of the tier 2 systems.
+package AircraftSystem
+public
+with AircraftSubsystems, Physical, SEI;
+with Modeling;
+  -- with Physical, AircraftSubsystems;
+  -- Aircraft system: the Tier 1 system 
+  system AircraftSystem
+    properties
+      Modeling::System_Tier => Tier1;
+      SEI::WeightLimit => 70000.0 kg;
+  end AircraftSystem;
+  
+  -- Aircraft system with Tier 2 systems as subsystems. 
+  -- This is done only specifying the AADL system type of each Tier 2 system
+  -- Instantiation of this AADL system implementation results in an instance model
+  -- of Tier 1 and Tier 2 systems of the Aircraft.
+  -- This instance model can be analyzed for physical system properties such as weight.
+  -- We can also check for model consistency such as connection to the correct bus type 
+  system implementation AircraftSystem.SubsystemSpec
+    subcomponents
+      FGS: system AircraftSubsystems::FlightGuidance;
+      HYD: system AircraftSubsystems::Hydraulics;
+      LDG: system AircraftSubsystems::LandingGear;
+      NAV: system AircraftSubsystems::Navigation;
+      FUE: system AircraftSubsystems::Fuel;
+      ENG: system AircraftSubsystems::Engines;
+      APU: system AircraftSubsystems::AuxiliaryPowerUnit;
+      BLD: system AircraftSubsystems::Bleed;
+      ACO: system AircraftSubsystems::AirConditioning;
+      CPT: system AircraftSubsystems::Cockpit;
+      ELE: system AircraftSubsystems::ElectricalSystem; -- Sept. 2 .V1;
+    connections
+      FUEtoENG: feature FUE.FuelSupply -> ENG.FuelSupply ;
+      FUEtoAPU: feature FUE.AuxFuelSupply -> APU.FuelSupply ;
+      HYDtoENG: feature ENG.HydraulicPower -> HYD.HydraulicPowerSource;
+      FGStoHYD: feature HYD.FGS_HydraulicPower -> FGS.HydraulicPower;
+      HYDtoLDG: feature HYD.LDG_HydraulicPower -> LDG.HydraulicPower;
+      BLDtoACO: feature BLD.AirDelivery -> ACO.AirPower;
+      BLDtoENG: feature ENG.AirPower -> BLD.AirPowerSource;
+      ENGtoELE: feature ENG.ElectricalPower -> ELE.MainElectricalSupply ;
+	  ELEtoHYD: feature ELE.HYDElecPower -> HYD.ElectricalSupply;
+      ELEtoCPT: feature ELE.CPTElecPower -> CPT.ElectricalSupply;
+      ELEtoNAV: feature ELE.NAVElecPower -> NAV.ElectricalSupply;
+      ELEtoLDG: feature ELE.LDGElecPower -> LDG.ElectricalSupply;
+      APUtoELE: feature APU.ElectricalSupply -> ELE.AuxElectricalSupply ;
+      ELEtoACO: feature ELE.ACOElecPower -> ACO.ElectricalSupply;
+      ELEtoEGS: feature ELE.FGSElecPower -> FGS.ElectricalSupply;
+      ELEtoFUE: feature ELE.FUEElecPower -> FUE.ElectricalSupply;
+      ACOtoSIG: feature ACO.Signals -> FGS.Signals;
+      APUtoSIG: feature APU.Signals -> FGS.Signals;
+      LDGtoSIG: feature LDG.Signals -> FGS.Signals;
+      NAVtoSIG: feature NAV.Signals -> FGS.Signals;
+      ENGtoSIG: feature ENG.Signals -> FGS.Signals;
+      CPTtoSIG: feature  CPT.Signals -> FGS.Signals;
+	properties
+		Classifier_Substitution_RUle => Type_Extension;
+  end AircraftSystem.SubsystemSpec;
+end AircraftSystem;

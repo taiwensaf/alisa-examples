@@ -1,0 +1,34 @@
+system requirements AHRS_SW : "Requirements for the Software Subsystem of the AHRS of the Flight Guidance System"
+for Integrator::FGS::AHRS::prAHRS
+use constants Globals
+[
+
+	val AHRS_ProcessingBudget = 110.0 MIPS
+	val AHRS_RAMBudget = 7.0 MByte
+	val AHRS_ROMBudget = 5.0 KByte
+	
+	requirement R1_1: "AHRS Processing Budget" [
+		description "The processing needs of the Software Subsystem of the AHRS subsystem 
+			shall not exceed "
+			UtilizationRatio " percent of " 
+			AHRS_ProcessingBudget
+		value predicate AHRS_ProcessingBudget <= AHRS_ProcessingCapacity*UtilizationRatio
+	]
+
+	requirement R1_2: "AHRS RAM Memory Budget" [
+		description "The RAM memory needs of the Software Subsystem of the AHRS subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of " 
+			AHRS_RAMBudget
+		value predicate AHRS_RAMBudget <= AHRS_RAMCapacity*UtilizationRatio
+	]
+
+	requirement R1_3: "AHRS ROM Memory Budget" [
+		description "The ROM memory needs of the Software Subsystem of the AHRS subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of " 
+			AHRS_ROMBudget
+		value predicate AHRS_ROMBudget <= AHRS_ROMCapacity*UtilizationRatio
+	]
+
+]

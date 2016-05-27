@@ -1,0 +1,207 @@
+-- This package contains the Tier 2 system specifications.
+-- The AADL system type declarations correspond to spec sheets for these subsystems.
+-- Here we can assign property values for physical system characteristics.
+-- This is illustrated with the pressure property for the hydrolics.
+-- For the engine we illustrate how we can specify mode specific property values.
+package AircraftSubsystems
+public
+with  Physical, SEI, Resources;
+	with Modeling;
+
+	
+  
+  system ElectricalSystem
+  	features
+      MainElectricalSupply: in feature Resources::ElectricalPower;
+      FGSElecPower: out feature Resources::ElectricalPower;
+      CPTElecPower: out feature Resources::ElectricalPower;
+      NAVElecPower: out feature Resources::ElectricalPower;
+      AuxElectricalSupply: in feature Resources::ElectricalPower;
+      ACOElecPower: out feature Hydraulics;
+      BLDElecPower: out feature Resources::ElectricalPower;
+      LDGElecPower: out feature Resources::ElectricalPower;
+      HYDElecPower: out feature Resources::ElectricalPower;
+      FUEElecPower: out feature Resources::ElectricalPower;
+    properties
+      Modeling::System_Tier => Tier2;
+      SEI::GrossWeight => 75.0 kg;
+      SEI::PowerCapacity => 24000.0 W;
+  end ElectricalSystem;
+  
+  system implementation ElectricalSystem.V1
+    properties
+      SEI::GrossWeight => 75.0 kg;
+      SEI::PowerCapacity => 24000.0 W;
+  end ElectricalSystem.V1;
+  
+  system implementation ElectricalSystem.V2
+    properties
+      SEI::GrossWeight => 120.0 kg;
+      SEI::PowerCapacity => 25000.0 W;
+  end ElectricalSystem.V2;
+  
+    
+  system ElectricalSubSystem
+  	features
+      BackBone: in feature Resources::ElectricalPower;
+      Outlet: out feature Resources::ElectricalPower;
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::GrossWeight => 75.0 kg;
+      SEI::PowerCapacity => 2000.0 W;
+  end ElectricalSubSystem;
+  
+  
+  -- SUBSYSTEMS DECLARATIONS --
+  system FlightGuidance
+    features
+      ElectricalSupply: in feature Resources::ElectricalPower
+      {
+        SEI::PowerBudget => 2000.0 W;
+        };
+      HydraulicPower: in feature Resources::HydraulicPressure;
+      Signals: in feature Resources::SignalFlow;
+    properties
+      Modeling::System_Tier => Tier2;
+      SEI::WeightLimit => 300.0 kg;
+      SEI::GrossWeight => 280.0 kg;
+      Classifier_Substitution_Rule => Type_Extension;
+  end FlightGuidance;
+ 
+  
+  system Hydraulics
+    features
+      ElectricalSupply: in feature Resources::ElectricalPower
+      {
+        SEI::PowerBudget => 1000.0 W;
+        };
+      HydraulicPowerSource: in feature Resources::HydraulicPressure;
+      FGS_HydraulicPower: out feature Resources::HydraulicPressure;
+      LDG_HydraulicPower: out feature Resources::HydraulicPressure;
+    properties
+      Modeling::System_Tier => Tier2;
+      SEI::WeightLimit => 500.0 kg;
+      SEI::GrossWeight => 380.0 kg;
+  end Hydraulics;
+  
+  system LandingGear
+    features
+      ElectricalSupply: in feature Resources::ElectricalPower
+      {
+        SEI::PowerBudget => 6000.0 W;
+        };
+      HydraulicPower: in feature Resources::HydraulicPressure
+      {
+        Physical::PressureBudget => 300.0 psi;
+        };
+      Signals: out feature Resources::SignalFlow;
+    properties
+      SEI::WeightLimit => 35000.0 kg;
+      SEI::GrossWeight => 30000.0 kg;
+      Modeling::System_Tier => Tier2;
+  end LandingGear;
+  
+  system Navigation
+    features
+      ElectricalSupply: in feature Resources::ElectricalPower
+      {
+        SEI::PowerBudget => 4500.0 W;
+        };
+      Signals: out feature Resources::SignalFlow;
+    properties
+      Modeling::System_Tier => Tier2;
+      SEI::WeightLimit => 20000.0 kg;
+      SEI::GrossWeight => 10000.0 kg;
+  end Navigation;
+  
+  system Fuel
+    features
+      ElectricalSupply: in feature  --!! Resources::ElectricalPower
+      {
+        SEI::PowerBudget => 1000.0 W;
+        };
+      FuelSupply: out feature Resources::FuelFlow;
+      AuxFuelSupply: out feature Resources::FuelFlow;
+    properties
+      Modeling::System_Tier => Tier2;
+  end Fuel;
+  
+  system Engines
+    features
+      ElectricalPower: out feature Resources::ElectricalPower
+      {
+        SEI::PowerSupply => 20000.0 W;
+        };
+      HydraulicPower: out feature Resources::HydraulicPressure
+      {
+        Physical::PressureCapacity => 5000.0 psi;
+        };
+      AirPower: out feature Resources::AirFlow;
+      FuelSupply: in feature Resources::FuelFlow
+      {
+        Physical::FuelBudget => 5000.0 GalpH;
+        };
+      Signals: out feature Resources::SignalFlow;
+    properties
+      Modeling::System_Tier => Tier2;
+      SEI::GrossWeight => 15000.0 kg;
+      SEI::WeightLimit => 14000.0 kg;
+  end Engines;
+  
+  system implementation Engines.impl
+--    modes
+--      running: mode ;
+--      stopped: initial mode ;
+    properties 
+      Physical::PressureCapacity => 2000.0 psi;
+--        in modes (running)
+--      ,20.0 psi in modes (stopped) applies to HydraulicPower;
+  end Engines.impl;
+  
+  system AuxiliaryPowerUnit
+    features
+      ElectricalSupply: out feature Resources::ElectricalPower
+      {
+        SEI::PowerSupply => 5000.0 W;
+        };
+      FuelSupply: in feature Resources::FuelFlow;
+      Signals: out feature Resources::SignalFlow;
+    properties
+      Modeling::System_Tier => Tier2;
+      SEI::GrossWeight => 10000.0 kg;
+  end AuxiliaryPowerUnit;
+  
+  system Bleed
+    features
+      ElectricalSupply: in feature Resources::ElectricalPower;
+      AirPowerSource: in feature Resources::AirFlow;
+      AirDelivery: out feature Resources::AirFlow;
+    properties
+      Modeling::System_Tier => Tier2;
+  end Bleed;
+  
+  system AirConditioning
+    features
+      ElectricalSupply: in feature Resources::ElectricalPower
+      {
+        SEI::PowerBudget => 8000.0 W;
+        };
+      AirPower: in feature Resources::AirFlow;
+      Signals: out feature Resources::SignalFlow;
+    properties
+      Modeling::System_Tier => Tier2;
+      SEI::GrossWeight => 700.0 kg;
+  end AirConditioning;
+  
+  system Cockpit
+    features
+      ElectricalSupply: in feature Resources::ElectricalPower
+      {
+        SEI::PowerBudget => 2000.0 W;
+        };
+      Signals: out feature Resources::SignalFlow;
+    properties
+      Modeling::System_Tier => Tier2;
+      SEI::GrossWeight => 1500.0 kg;
+  end Cockpit;
+end AircraftSubsystems;

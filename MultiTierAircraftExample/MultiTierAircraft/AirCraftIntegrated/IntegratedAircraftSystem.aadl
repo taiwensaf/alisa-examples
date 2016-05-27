@@ -1,0 +1,42 @@
+-- This package contains a system model of the aircraft that integrates the implementations of subsystems from suppliers.
+-- This package requires supplier packages to be loaded in the same workspace.
+package IntegratedAircraftSystem
+public
+with AircraftSystem, FlightGuidance, AircraftSystem;
+
+AircraftSystem renames system AircraftSystem::AircraftSystem;
+ 
+  
+  -- This system implementation specifies a refinement of the above two tier model.
+  -- Through the "refined to" declaration we are selecting a system implementation of the flight guidance system.
+  -- The selected implementation expands the flight guidance system one level by its subsystems.
+  -- For the other Tier 2 systems we have yet provided an elaboration of their implementations.
+  
+  -- When we create an instance model of this system implementation the first level of the software and the IMA hardware will be included in the model.
+  -- As a result we can perform resource budget analysis for processor (MIPS), memory (MB).
+  -- The flight guidance system also includes two end-to-end flows for stick to surface: 
+  -- one flow is for direct stick to surface bypassing the software based flight guidance
+  -- the second flow goes through the flight guidance system which provides the output to the surface
+  -- This allows to demonstrate a first level of latency analysis
+  -- 
+  -- Once we annotate processes (representing partitions) with execution time budgets we can illustrate automatic allocation of processes (partition) to processors.
+  -- The binpacker tool has been extended to accommodate this.
+  -- Once we provide power to the IMA hardware we can also perform power analysis.
+  -- This configuration uses the top level model with resources represented as systems
+  --  For the POC exercise of weight, power, etc. please use the "Flow" variant
+
+  
+-- SubsystemFGS is equivalent to SubsystemImpl. It uses FGS as consisting of separate HW and SW subcomponents
+  system implementation AircraftSystem.SubsystemFGS
+    extends AircraftSystem::AircraftSystem.SubsystemSpec
+    subcomponents
+      FGS: refined to system FlightGuidance::FlightGuidance.SelfcontainedSWSubsystem;
+  end AircraftSystem.SubsystemFGS;
+  
+    system implementation AircraftSystem.SubsystemFGSPhysical
+    extends AircraftSystem::AircraftSystem.SubsystemSpec
+    subcomponents
+      FGS: refined to system FlightGuidance::FlightGuidanceHW.platform;
+  end AircraftSystem.SubsystemFGSPhysical;
+  
+end IntegratedAircraftSystem;

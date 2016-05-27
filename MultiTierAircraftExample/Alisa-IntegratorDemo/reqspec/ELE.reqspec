@@ -1,0 +1,22 @@
+system requirements ELE : "Requirements for the Electrical System of the Aircraft"
+for AircraftSubsystems::ElectricalSystem
+[
+
+	val ELE_MaxWeight = 75.0 kg
+	val ELE_MaxPowerCapacity = 24000.0 W
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Electrical system 
+			shall not exceed " 
+			ELE_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The Electrical System shall be capable of handling
+			at least " 
+			ELE_MaxPowerCapacity
+		see goal XACStakeholderGoals.XSG_3_1
+	]
+
+]
+// alternative wording: "providing" instead of "handling"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ADC-Spec</name>
+	<comment></comment>
+	<projects>
+		<project>Hardware-Library</project>
+		<project>Integrator-DataDictionary</project>
+		<project>Plugin_Resources</project>
+		<project>SAVICommon</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
+		<nature>org.osate.core.aadlnature</nature>
+	</natures>
+</projectDescription>

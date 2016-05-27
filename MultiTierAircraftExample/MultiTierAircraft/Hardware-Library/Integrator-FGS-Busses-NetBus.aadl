@@ -1,0 +1,13 @@
+-- A busses package...
+package Integrator::FGS::Busses::NetBus
+public
+with SEI;
+  bus NetBus
+    properties
+      SEI::BandWidthCapacity => 10.0 MBytesps;
+        SEI::WeightLimit => 2.0 kg;
+  end NetBus;
+  
+  bus implementation NetBus.impl
+  end NetBus.impl;
+end Integrator::FGS::Busses::NetBus;

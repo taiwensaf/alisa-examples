@@ -1,0 +1,11 @@
+system requirements MDP : "Requirements for the Maintenance Data Panel of the FGS"
+for Integrator::FGS::Displays::MDP::MaintenancePanel
+ [	
+val MDP_MaxWeight = 1.0 kg
+
+	requirement R1 : "Maintenance Data Panel Weight Limit" [
+		description "The weight of the MDP 
+			shall not exceed "
+			MDP_MaxWeight
+	]
+]

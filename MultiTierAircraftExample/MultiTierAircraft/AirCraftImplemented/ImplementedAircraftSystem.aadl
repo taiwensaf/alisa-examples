@@ -1,0 +1,27 @@
+package ImplementedAircraftSystem
+public
+with AircraftSystem;
+with FlightGuidance::BuildConfiguration;
+  -- with AircraftSystem, FlightGuidanceImplementation;
+  system AircraftSystem
+    extends AircraftSystem::AircraftSystem
+  end AircraftSystem;
+    
+--  -- This system implementation selects a different flight guidance model variant that expands some of the flight guidance system subsystems down to threads.
+--  -- This system implementation also includes actual bindings of threads to processors. 
+--  -- This configuration uses the top level model with resources represented as systems
+--  --  For the POC exercise of weight, power, etc. please use the "Flow" variant
+--  system implementation AircraftSystem.SubSubsystemImpl
+--    extends AircraftSystem::AircraftSystem.SubsystemSpec
+--    subcomponents
+--      FGS: refined to system FlightGuidanceImplementation::FlightGuidance.impl;
+--  end AircraftSystem.SubSubsystemImpl;
+  
+  -- This configuration uses the top-level model with buses to represent resources
+  -- It is set up for the POC demo with weight and power requirements
+  system implementation AircraftSystem.SubSubsystemImpl
+    extends AircraftSystem::AircraftSystem.SubsystemSpec
+    subcomponents
+      FGS: refined to system FlightGuidance::BuildConfiguration::FlightGuidance.selfcontainedsubsystemimpl;
+  end AircraftSystem.SubSubsystemImpl;
+end ImplementedAircraftSystem;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Public/ADC-Spec,ADC-Spec"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Public/AircraftSubsystems,AircraftSubsystems"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Public/FCP-Spec,FCP-Spec"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Public/FG-Subsystems,FG-Subsystems"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Public/FGS-Spec,FGS-Spec"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Internal/FlightGuidance,FlightGuidance"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Internal/FlightGuidanceImplementation,FlightGuidanceImplementation"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Public/FMS-Spec,FMS-Spec"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Common-Libraries/Hardware-Library,Hardware-Library"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Integrator/Public/Integrator-DataDictionary,Integrator-DataDicitonary"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/SAVICommon,SAVICommon"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Sub1/Public/Sub1-FGS-Public,Sub1-FGS-Public"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Sub4/Public/Sub4-ADC-Public,Sub4-ADC-Public"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Sub5/Public/Sub5-FMS-Public,Sub5-FMS-Public"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Sub6/Public/Sub6-FCP-Public,Sub6-FCP-Public"/>
+<project reference="0.9.3,https://svn-avsi.tees.tamus.edu/svn/test/trunk/Sub7/Public/Sub7-AP-Public,Sub7-AP-Public"/>
+</provider>
+</psf>

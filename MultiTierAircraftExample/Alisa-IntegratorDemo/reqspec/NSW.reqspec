@@ -1,0 +1,30 @@
+system requirements NSW : "Requirements for the Network Switch subsystem of the Flight Guidance System"
+for Integrator::FGS::NSW::NetworkSwitch
+[
+
+	val NSW_MaxWeight = 2.0 kg
+	val NSW_PowerBudget = 150.0 W
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Network Switch (NSW) subsystem 
+			shall not exceed " 
+			NSW_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The power needs of the Network Switch (NSW) subsystem 
+			shall not exceed " 
+			NSW_PowerBudget
+	]
+
+	requirement R3_1 : "Internal-Computing Self Sufficiency" [
+		description "The software internal to the Network Switch (NSW) subsystem 
+			shall not require any computing resources external to the NSW subsystem."
+	]
+
+	requirement R3_2 : "External-Computing Self Sufficiency" [
+		description "The Network Switch (NSW) subsystem will not make any 
+			computing resources available externally."
+	]
+
+]

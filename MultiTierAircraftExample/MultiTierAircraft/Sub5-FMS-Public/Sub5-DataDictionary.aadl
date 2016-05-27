@@ -1,0 +1,11 @@
+package Sub5::DataDictionary
+public
+  data NavSensorData
+  end NavSensorData;
+  
+  data PerformanceData
+  end PerformanceData;
+  
+  data SharedData
+  end SharedData;
+end Sub5::DataDictionary;

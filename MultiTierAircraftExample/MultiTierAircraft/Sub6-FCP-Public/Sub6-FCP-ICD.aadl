@@ -1,0 +1,14 @@
+package Sub6::FCP::ICD
+public
+with Integrator::FGS::FCP::ICD;
+  feature group FCP_DataPlg
+    extends Integrator::FGS::FCP::ICD::FCP_DataPlg
+    features
+      dmy: out event data port;
+  end FCP_DataPlg;
+   
+  feature group FCP_DataSkt
+--    extends Integrator::FGS::FCP::ICD::FCP_DataSkt
+    inverse of FCP_DataPlg
+  end FCP_DataSkt;
+end Sub6::FCP::ICD;

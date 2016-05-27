@@ -1,0 +1,55 @@
+system requirements SCS : "Requirements for the Surface Control System (SCS) of the Flight Guidance System"
+for Integrator::FGS::SCS::SCS
+use constants Globals
+[
+
+	val SCS_MaxWeight = 5.0 kg
+	val SCS_PowerBudget = 30.0 W
+	val SCS_ProcessingBudget = 10.0 MIPS
+	val SCS_RAMBudget = 64.0 KByte
+	val SCS_ROMBudget = 640.0 KByte
+	val SCS_TotalLatency = 450 ms
+	
+	requirement R1 : "SCS Weight Limit" [
+		description "The weight of the Surface Control System (SCS) 
+			shall not exceed " 
+			SCS_MaxWeight
+
+		issues "We need to ensure that the weight of the flight surfaces is addressed elsewhere."
+	]
+
+	requirement R2 : "SCS Power Budget" [
+		description "The power needs of the Surface Control System (SCS) 
+			shall not exceed " 
+			SCS_PowerBudget
+	]
+
+	requirement R3: "SCS Processing Budget" [
+		description "The processing needs of the Surface Control System (SCS) 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			SCS_ProcessingBudget
+	]
+
+	requirement R4_1: "SCS RAM Memory Budget" [
+		description "The RAM memory needs of the Surface Control System (SCS) 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			SCS_RAMBudget
+	]
+
+	requirement R4_2: "SCS ROM Memory Budget" [
+		description "The ROM memory needs of the Surface Control System (SCS) 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			SCS_ROMBudget
+	]
+
+	requirement R5 : "SCS Flow Path Latency" [
+		description "The time for the flight surfaces to initiate an action directed by the autopilot system, 
+			including transit time through the Surface Control System (SCS), 
+			shall not exceed " 
+			SCS_TotalLatency 
+	]
+
+]

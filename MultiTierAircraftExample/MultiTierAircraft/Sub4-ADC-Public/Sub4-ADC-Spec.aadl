@@ -1,0 +1,29 @@
+-- An Air Data Computer
+package Sub4::ADC::Spec
+public
+with Integrator::FGS::ADC::Spec,Sub4::ADC::ICD;
+  -- ADC Physical (blackbox) Specification
+  -- In this case the ADC functionality (i.e. software) implemented by a
+  -- processor inside the blackbox...
+  device AirDataComputer
+    extends Integrator::FGS::ADC::Spec::AirDataComputer
+    features
+      -- 
+      -- Logical Interfaces
+      oA429_TX_01: refined to feature group Sub4::ADC::ICD::ADC_DataPlg;
+    properties
+      Classifier_Substitution_Rule => Type_Extension;
+  end AirDataComputer;
+  
+  -- ADC Functional Specification
+  process prAirDataFunction
+    extends Integrator::FGS::ADC::Spec::fnAirDataFunction
+    features
+      oA429_TX_01: refined to feature group Sub4::ADC::ICD::ADC_DataPlg;
+    properties
+      Classifier_Substitution_Rule => Type_Extension;
+  end prAirDataFunction;
+  
+  process implementation prAirDataFunction.impl
+  end prAirDataFunction.impl;
+end Sub4::ADC::Spec;

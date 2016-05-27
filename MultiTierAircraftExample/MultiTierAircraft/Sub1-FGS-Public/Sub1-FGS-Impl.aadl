@@ -1,0 +1,75 @@
+--  A Flight Guidance Systems package...
+package Sub1::FGS::Impl
+public
+with Hardware::Library,Integrator::FGS::FGS::Spec, Integrator::FGS::AP, Integrator::FGS::AHRS, Integrator::FGS::ADC::ICD, Integrator::FGS::FGS::ICD, Integrator::FGS::FCP::ICD, Integrator::FGS::Radio::NavRadio,  SEI;
+
+  process prFlightGuidance
+    extends Integrator::FGS::FGS::Spec::prFlightGuidance
+      end prFlightGuidance;
+  
+  process implementation prFlightGuidance.impl
+    subcomponents
+      THR_FGSMain: thread thrFlightGuidance.impl;
+    connections
+      PortGroupConnection1: feature group THR_FGSMain.AP1 <-> AP1;
+      PortGroupConnection2: feature group THR_FGSMain.AP2 <-> AP2;
+      PortGroupConnection3: feature group AHRS <-> THR_FGSMain.AHRS;
+      PortGroupConnection4: feature group ADC <-> THR_FGSMain.ADC;
+      PortGroupConnection5: feature group other_FGS_A <-> THR_FGSMain.other_FGS_A;
+      PortGroupConnection6: feature group THR_FGSMain.other_FGS_B <-> other_FGS_B;
+      PortGroupConnection7: feature group ToFMS <-> THR_FGSMain.FMS;
+      PortGroupConnection8: feature group FCP <-> THR_FGSMain.FCP;
+      PortGroupConnection9: feature group NAV_Radio <-> THR_FGSMain.NAV_Radio;
+    flows
+      fPFCLAWS1: flow path FCP -> PortGroupConnection8 -> THR_FGSMain.fPFCLAWS1
+         -> PortGroupConnection1 -> AP1;
+      fPFCLAWS2: flow path FCP -> PortGroupConnection8 -> THR_FGSMain.fPFCLAWS2
+         -> PortGroupConnection2 -> AP2;
+    properties
+      SEI::MIPSBudget => 50.0 MIPS;
+  end prFlightGuidance.impl;
+  
+  thread thrFlightGuidance
+    features
+      AP1: feature group Integrator::FGS::AP::AP_DataPlg;
+      AP2: feature group Integrator::FGS::AP::AP_DataPlg;
+      AHRS: feature group Integrator::FGS::AHRS::AHRS_DataSkt;
+      ADC: feature group inverse of Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      other_FGS_A: feature group Integrator::FGS::FGS::ICD::FGS_CrossTalk;
+      other_FGS_B: feature group inverse of Integrator::FGS::FGS::ICD::FGS_CrossTalk;
+      FMS: feature group Integrator::FGS::FGS::ICD::FGS_to_FMS;
+      FCP: feature group Integrator::FGS::FCP::ICD::FCP_DataSkt;
+      NAV_Radio: feature group Integrator::FGS::Radio::NavRadio::NavRadio_DataSkt;
+    flows
+      fPFCLAWS1: flow path FCP -> AP1 {
+        Latency => 50 Ms .. 50 Ms;
+        };
+      fPFCLAWS2: flow path FCP -> AP2 {
+        Latency => 50 Ms .. 50 Ms;
+        };
+    properties
+      Dispatch_Protocol => Periodic;
+      Deadline => 50 Ms;
+      Period => 100 Ms;
+      SEI::RAMBudget => 3.0 MByte;
+      SEI::ROMBudget => 30.0 MByte;
+      SEI::MIPSBudget => 50.0 MIPS;
+  end thrFlightGuidance;
+  
+  thread implementation thrFlightGuidance.impl
+    flows
+      fPFCLAWS1: flow path FCP  -> AP1;
+      fPFCLAWS2: flow path FCP  -> AP2;
+    properties
+      Compute_Execution_Time => 40 Ms .. 50 Ms;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+  end thrFlightGuidance.impl;
+  
+  system testharness
+  end testharness;
+  
+  system implementation testharness.impl
+    subcomponents
+      fgs_sw: process prFlightGuidance.impl;
+  end testharness.impl;
+end Sub1::FGS::Impl;

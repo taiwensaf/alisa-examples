@@ -1,0 +1,52 @@
+document XACStakeholderGoals : "X-Aircraft Stakeholder Goals" [
+	description "From file Stakeholder Goals for the X-Aircraft (v3).docx"
+	
+	section section_1 : "Weight Class" [
+		goal XSG_1_1 [
+			description
+					"the aircraft [should] be of a size and weight that 
+could be accommodated at all major city airports--we're still talking something 
+in the Large Jet weight class 41-255K lbs. With many airlines increasingly looking 
+at point-to-point transportation, and given the long-term prospects for fuel supply 
+to surely diminish, our company needs to consider lighter-weight solutions at 
+the midpoint of this range"
+			stakeholder XAircraft.rr 
+		]
+	]
+	section section_3 : "Electric Power" [
+		goal XSG_3_1 [
+			description
+					"Assuming we continue with our mixed-electrical and 
+pneumatics solution and retain our current supplier--we're talking about 
+electrical power systems that distribute about 24.0 K w power. We might want to see 
+if our AC subsystem and subcontractor chief designers can collectively operate 
+within that same power budget, while asking our power system supplier what 
+alternatives they can provide for the X-Aircraft, which might require 
+additional power to address the additional goals identified in our stakeholder 
+interviews."
+			stakeholder XAircraft.rr 
+		]
+	]
+	section section_8 : "Responsiveness" [
+		goal XSG_8_3 [
+			description "sustain the relatively low latencies that we've achieved 
+in the past (Stick-to-Surface direct mode 0.15 ms; normal modes 25.0 ms), we may be 
+well positioned to retain our lead against our main competitor [but] could prove 
+a challenge area for us given the need to adopt superior real-time analytics 
+to dampen turbulence for improved passenger comfort, among other drivers for 
+more functionality in real time."
+			stakeholder XAircraft.rr
+		]
+	]
+	section section_12 : "Computing Platform" [
+		goal XSG_12_1 [
+			description "Assuming the processing (processors and memory) and 
+network (bus) configuration is largely unchanged from Psi-5-6 (that featured 
+1.1 GIPS processing, 2.0/4.0 Gbyte RAM/ROM, and 1.0 Gbyte bandwidth capacity), 
+we should be able to reuse the existing top-level software architecture and 
+still allow for sufficient spare capacity to support growth in functionality 
+in later years."
+			stakeholder XAircraft.rr
+		]
+	]
+]

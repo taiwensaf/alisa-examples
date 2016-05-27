@@ -1,0 +1,277 @@
+package Sub5::FMS::Impl
+public
+with Hardware::Library,Integrator::FGS::FMS::Spec, Integrator::FGS::FMS::ICD, Sub5::FMS::Impl, DataDictionary, Sub5::DataDictionary, SEI;
+  -- with Integrator::FGS::FMS::Spec, DataDictionary, Sub5::DataDictionary, Integrator::FGS::FMS::ICD;
+  process prFlightManager
+    extends Integrator::FGS::FMS::Spec::prFlightManager
+  end prFlightManager;
+  
+  --          this implementation is port-connection based and does not utilize a periodic IO thread
+  process implementation prFlightManager.noPIO
+    subcomponents
+      NSP: thread NavigationSensorProcessing;
+      INav: thread IntegratedNavigation;
+      GP: thread GuidanceProcessing;
+      FPP: thread FlightPlanProcessing;
+      APC: thread AircraftPerformanceCalculation;
+    connections
+      navsensorconn: port NSP.navSensorDataToIN -> INav.navSensorDataFromNSP {
+        Timing => Immediate;
+        };
+      navdataconn1: port INav.navDataToGPAPC -> GP.navDataFromIN {
+        Timing => Immediate;
+        };
+      navdataconn2: port INav.navDataToGPAPC -> APC.navDataFromIN {
+        Timing => Immediate;
+        };
+      guidanceconn1: port GP.guidanceToFPP -> FPP.guidanceFromGP {
+        Timing => Immediate;
+        };
+      performancedataconn: port APC.perfDataToFPP -> FPP.perfDataFromAPC {
+        Timing => Delayed;
+        };
+      fpdataconn1: port FPP.fpDataToGPAPC -> GP.fpDataFromFPP {
+        Timing => Delayed;
+        };
+      fpdataconn2: port FPP.fpDataToGPAPC -> APC.fpDataFromFPP {
+        Timing => Immediate;
+        };
+      fuelflowconn: port ToFGS.fuelFlow -> APC.fuelFlow {
+        Timing => Immediate;
+        };
+      navsignalconn: port ToFGS.navSignal -> NSP.navSignalDataFromSensor {
+        Timing => Immediate;
+        };
+      navdataconn3: port INav.navDataToGPAPC -> ToFGS.navDataOut {
+        Timing => Immediate;
+        };
+      guidanceconn2: port GP.guidanceToFPP -> ToFGS.guidanceOut {
+        Timing => Immediate;
+        };
+      fpdataconn3: port FPP.fpDataToGPAPC -> ToFGS.fpDataOut {
+        Timing => Immediate;
+        };
+  end prFlightManager.noPIO;
+  
+  --          This implementation utilizes a periodic IO thread to perform the communication with other partitions
+  --          This IO is performed as part of the application code
+  --          This adds extra latency to the cross-partition communication
+  process implementation prFlightManager.PIO
+    subcomponents
+      NSP: thread NavigationSensorProcessing;
+      INav: thread IntegratedNavigation;
+      GP: thread GuidanceProcessing;
+      FPP: thread FlightPlanProcessing;
+      APC: thread AircraftPerformanceCalculation;
+      PerIO: thread PeriodicIO;
+    connections
+      navsensorconn: port NSP.navSensorDataToIN -> INav.navSensorDataFromNSP {
+        Timing => Immediate;
+        };
+      navdataconn1: port INav.navDataToGPAPC -> GP.navDataFromIN {
+        Timing => Immediate;
+        };
+      navdataconn2: port INav.navDataToGPAPC -> APC.navDataFromIN {
+        Timing => Immediate;
+        };
+      guidanceconn1: port GP.guidanceToFPP -> FPP.guidanceFromGP {
+        Timing => Immediate;
+        };
+      performancedataconn: port APC.perfDataToFPP -> FPP.perfDataFromAPC {
+        Timing => Delayed;
+        };
+      fpdataconn1: port FPP.fpDataToGPAPC -> GP.fpDataFromFPP {
+        Timing => Delayed;
+        };
+      fpdataconn2: port FPP.fpDataToGPAPC -> APC.fpDataFromFPP {
+        Timing => Immediate;
+        };
+      inflow: feature group ToFGS <-> PerIO.fromOutside;
+      fuelflowconn: port PerIO.fuelFlow -> APC.fuelFlow {
+        Timing => Immediate;
+        };
+      navsignalconn: port PerIO.navSignal -> NSP.navSignalDataFromSensor {
+        Timing => Immediate;
+        };
+      navdataconn3: port INav.navDataToGPAPC -> PerIO.navDataOut {
+        Timing => Delayed;
+        };
+      guidanceconn2: port GP.guidanceToFPP -> PerIO.guidanceOut {
+        Timing => Delayed;
+        };
+      fpdataconn3: port FPP.fpDataToGPAPC -> PerIO.fpDataOut {
+        Timing => Delayed;
+        };
+  end prFlightManager.PIO;
+  
+  --          the components of the flight manager
+  thread NavigationSensorProcessing
+    features
+      navSignalDataFromSensor: in data port DataDictionary::NavSignalData;
+      navSensorDataToIN: out data port Sub5::DataDictionary::NavSensorData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 50 Ms;
+      Compute_Execution_Time => 5 Ms .. 15 Ms;
+      SEI::RAMBudget => 250.0 KByte;
+      SEI::ROMBudget => 2500.0 KByte;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+  end NavigationSensorProcessing;
+  
+  thread IntegratedNavigation
+    features
+      navSensorDataFromNSP: in data port Sub5::DataDictionary::NavSensorData;
+      navDataToGPAPC: out data port DataDictionary::NavData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 100 Ms;
+      Compute_Execution_Time => 10 Ms .. 40 Ms;
+      SEI::RAMBudget => 250.0 KByte;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+      SEI::ROMBudget => 2500.0 KByte;
+  end IntegratedNavigation;
+  
+  thread GuidanceProcessing
+    features
+      navDataFromIN: in data port DataDictionary::NavData;
+      fpDataFromFPP: in data port DataDictionary::FPData;
+      guidanceToFPP: out data port DataDictionary::GuidanceData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 50 Ms;
+      Compute_Execution_Time => 8 Ms .. 30 Ms;
+      SEI::RAMBudget => 250.0 KByte;
+      SEI::ROMBudget => 2500.0 KByte;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+  end GuidanceProcessing;
+  
+  thread FlightPlanProcessing
+    features
+      guidanceFromGP: in data port DataDictionary::GuidanceData;
+      perfDataFromAPC: in data port Sub5::DataDictionary::PerformanceData;
+      fpDataToGPAPC: out data port DataDictionary::FPData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 200 Ms;
+      Compute_Execution_Time => 10 Ms .. 30 Ms;
+      SEI::RAMBudget => 250.0 KByte;
+      SEI::ROMBudget => 2500.0 KByte;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+  end FlightPlanProcessing;
+  
+  thread AircraftPerformanceCalculation
+    features
+      fpDataFromFPP: in data port DataDictionary::FPData;
+      navDataFromIN: in data port DataDictionary::NavData;
+      fuelFlow: in data port DataDictionary::FuelFlowData;
+      perfDataToFPP: out data port Sub5::DataDictionary::PerformanceData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 500 Ms;
+      Compute_Execution_Time => 1 Ms .. 100 Ms;
+      SEI::RAMBudget => 250.0 KByte;
+      SEI::ROMBudget => 2500.0 KByte;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+  end AircraftPerformanceCalculation;
+  
+  thread PeriodicIO
+    features
+      fromOutside: feature group Integrator::FGS::FMS::ICD::FMS_to_FGS;
+      fuelFlow: out data port DataDictionary::FuelFlowData;
+      navSignal: out data port DataDictionary::NavSignalData;
+      guidanceOut: in data port DataDictionary::GuidanceData;
+      fpDataOut: in data port DataDictionary::FPData;
+      navDataOut: in data port DataDictionary::NavData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 50 Ms;
+      Compute_Execution_Time => 1 Ms .. 1 Ms;
+      SEI::RAMBudget => 50.0 KByte;
+      SEI::ROMBudget => 500.0 KByte;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+  end PeriodicIO;
+  
+  --          The following implementation performs all communication within the flight manager partition through a shared data area.
+  --          The threads of the flight manager have explicitly assigned priority.
+  --          Priority assignment achieves the desired flow of data between threads without explictly modeling it.
+  --          When bound to a processor with preemptive scheduling the priority assignment results in priority inversion.
+  --          An OSATE analysis plug-in can identify this priority inversion.
+  process implementation prFlightManager.shareddata
+    subcomponents
+      NSP: thread NavigationSensorProcessingShared;
+      INav: thread IntegratedNavigationShared;
+      GP: thread GuidanceProcessingShared;
+      FPP: thread FlightPlanProcessingShared;
+      APC: thread AircraftPerformanceCalculationShared;
+      PerIO: thread PeriodicIOShared;
+      sharedData: data Sub5::DataDictionary::SharedData;
+    connections
+      sharedNSP: data access sharedData -> NSP.sharedDataArea;
+      sharedINav: data access sharedData -> INav.sharedDataArea;
+      sharedGP: data access sharedData -> GP.sharedDataArea;
+      sharedFPP: data access sharedData -> FPP.sharedDataArea;
+      sharedAPC: data access sharedData -> APC.sharedDataArea;
+      sharedPerIO: data access sharedData -> PerIO.sharedDataArea;
+  end prFlightManager.shareddata;
+  
+  --          the components of the flight manager
+  thread NavigationSensorProcessingShared
+    features
+      sharedDataArea: requires data access Sub5::DataDictionary::SharedData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 50 Ms;
+      Compute_Execution_Time => 1 Ms .. 1 Ms;
+      Priority => 2;
+  end NavigationSensorProcessingShared;
+  
+  thread IntegratedNavigationShared
+    features
+      sharedDataArea: requires data access Sub5::DataDictionary::SharedData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 100 Ms;
+      Compute_Execution_Time => 1 Ms .. 1 Ms;
+      Priority => 3;
+  end IntegratedNavigationShared;
+  
+  thread GuidanceProcessingShared
+    features
+      sharedDataArea: requires data access Sub5::DataDictionary::SharedData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 50 Ms;
+      Compute_Execution_Time => 1 Ms .. 1 Ms;
+      Priority => 4;
+  end GuidanceProcessingShared;
+  
+  thread FlightPlanProcessingShared
+    features
+      sharedDataArea: requires data access Sub5::DataDictionary::SharedData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 200 Ms;
+      Compute_Execution_Time => 1 Ms .. 1 Ms;
+      Priority => 5;
+  end FlightPlanProcessingShared;
+  
+  thread AircraftPerformanceCalculationShared
+    features
+      sharedDataArea: requires data access Sub5::DataDictionary::SharedData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 500 Ms;
+      Compute_Execution_Time => 1 Ms .. 1 Ms;
+      Priority => 6;
+  end AircraftPerformanceCalculationShared;
+  
+  thread PeriodicIOShared
+    features
+      sharedDataArea: requires data access Sub5::DataDictionary::SharedData;
+    properties
+      Dispatch_Protocol => Periodic;
+      Period => 50 Ms;
+      Compute_Execution_Time => 1 Ms .. 1 Ms;
+      Priority => 1;
+  end PeriodicIOShared;
+end Sub5::FMS::Impl;

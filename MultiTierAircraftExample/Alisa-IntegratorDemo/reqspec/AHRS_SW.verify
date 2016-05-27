@@ -1,0 +1,19 @@
+verification plan AHRS_SWPlan for AHRS_SW
+[
+
+	claim AHRS_SW.R1_1 [
+		activities
+		processingbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim AHRS_SW.R1_2: "AHRS RAM Memory Budget" [
+		activities
+		RAMbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim AHRS_SW.R1_3: "AHRS ROM Memory Budget" [
+		activities
+		ROMbudget: Plugins.ResourceAnalysis()
+	]
+
+]

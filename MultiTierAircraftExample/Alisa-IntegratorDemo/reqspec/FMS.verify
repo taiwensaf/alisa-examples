@@ -1,0 +1,19 @@
+verification plan FMSPlan for FMS
+[
+	
+	claim FMS.R1_1 [
+		activities
+			processingbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim FMS.R1_2 [
+		activities
+			RAMbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim FMS.R1_3 [
+		activities
+			ROMbudget: Plugins.ResourceAnalysis()
+	]
+
+]

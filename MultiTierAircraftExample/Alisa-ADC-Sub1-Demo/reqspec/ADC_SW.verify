@@ -1,0 +1,19 @@
+verification plan ADC_SWPlan for Supplier1.ADC_SW
+[
+
+	claim R1_1 [
+		activities
+			processingbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim R1_2 [
+		activities
+			RAMbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim R1_3 [
+		activities
+			ROMbudget: Plugins.ResourceAnalysis()
+	]
+
+]

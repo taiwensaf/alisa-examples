@@ -1,0 +1,18 @@
+--          A Maintenance Data Panel package...
+package Integrator::FGS::Displays::MDP
+public
+with Integrator::FGS::Busses::NetBus, Physical, SEI;
+with Modeling;
+
+  device MaintenancePanel
+    features
+      net1: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      net2: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 1.0 kg;
+  end MaintenancePanel;
+  
+  device implementation MaintenancePanel.impl
+  end MaintenancePanel.impl;
+end Integrator::FGS::Displays::MDP;

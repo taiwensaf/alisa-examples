@@ -1,0 +1,30 @@
+system requirements Supplier1.ADC_SW : "Requirements for the Software Subsystem of the ADC subsystem of the Flight Guidance System"
+for Integrator::FGS::ADC::Spec::fnAirDataFunction
+use constants Globals
+[
+	
+	requirement R1_1: "ADC Processing Budget" [
+		description "The processing needs of the Software Subsystem of the ADC subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			ADC_ProcessingBudget
+		value predicate ADC_ProcessingBudget <= ADC_ProcessingCapacity*UtilizationRatio
+	]
+
+	requirement R1_2: "ADC RAM Memory Budget" [
+		description "The RAM memory needs of the Software Subsystem of the ADC subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			ADC_RAMBudget
+		value predicate ADC_RAMBudget <= ADC_RAMCapacity*UtilizationRatio
+	]
+
+	requirement R1_3: "ADC ROM Memory Budget" [
+		description "The ROM memory needs of the Software Subsystem of the ADC subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			ADC_ROMBudget
+		value predicate ADC_ROMBudget <= ADC_ROMCapacity*UtilizationRatio
+	]
+
+]

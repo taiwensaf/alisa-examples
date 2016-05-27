@@ -1,0 +1,30 @@
+system requirements NavRadio : "Requirements for the Navigation Radio process of the Flight Guidance System"
+for Integrator::FGS::Radio::NavRadio::prNavRadio
+use constants Globals
+[
+	val NavRadio_ProcessingBudget = 15.0 MIPS
+	val NavRadio_RAMBudget = 1.5 MByte
+	val NavRadio_ROMBudget = 0.0 KByte
+	
+	requirement R1: "NavRadio Processing Budget" [
+		description "The processing needs of the Navigation Radio process 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			NavRadio_ProcessingBudget
+	]
+
+	requirement R2_1: "NavRadio RAM Memory Budget" [
+		description "The RAM memory needs of the Navigation Radio process 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			NavRadio_RAMBudget
+	]
+
+	requirement R2_2: "NavRadio ROM Memory Budget" [
+		description "The ROM memory needs of the Navigation Radio process 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			NavRadio_ROMBudget 
+	]
+
+]

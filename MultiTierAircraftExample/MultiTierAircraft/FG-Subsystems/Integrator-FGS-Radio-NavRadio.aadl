@@ -1,0 +1,38 @@
+-- A Specific radios package...
+package Integrator::FGS::Radio::NavRadio
+public
+with  SEI;
+  process prNavRadio
+    features
+      FGS: feature group NavRadio_DataPlg;
+      other_NAV_Radio_A: feature group NavRadio_CrossPlg;
+      other_NAV_Radio_B: feature group NavRadio_CrossSkt;
+    properties
+      SEI::MIPSBudget => 15.0 MIPS;
+  end prNavRadio;
+  
+  process implementation prNavRadio.impl
+  end prNavRadio.impl;
+  
+  feature group NavRadio_DataPlg
+    features
+      dmy: out event data port;
+  end NavRadio_DataPlg;
+  
+  feature group NavRadio_DataSkt
+    features
+      dmy: in event data port;
+    inverse of NavRadio_DataPlg
+  end NavRadio_DataSkt;
+  
+  feature group NavRadio_CrossPlg
+    features
+      dmy: out event data port;
+  end NavRadio_CrossPlg;
+  
+  feature group NavRadio_CrossSkt
+    features
+      dmy: in event data port;
+    inverse of NavRadio_CrossPlg
+  end NavRadio_CrossSkt;
+end Integrator::FGS::Radio::NavRadio;

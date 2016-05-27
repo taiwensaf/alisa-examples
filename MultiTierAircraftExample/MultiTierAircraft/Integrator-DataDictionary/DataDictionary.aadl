@@ -1,0 +1,20 @@
+package DataDictionary
+public
+with Data_Model, Base_Types;
+  data NavSignalData
+    properties
+      Data_Model::Base_Type => (classifier( Base_Types::Unsigned_16 ));
+  end NavSignalData;
+  
+  data NavData
+  end NavData;
+  
+  data FuelFlowData
+  end FuelFlowData;
+  
+  data GuidanceData
+  end GuidanceData;
+  
+  data FPData
+  end FPData;
+end DataDictionary;

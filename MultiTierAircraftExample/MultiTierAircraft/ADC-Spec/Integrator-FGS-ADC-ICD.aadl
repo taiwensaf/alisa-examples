@@ -1,0 +1,72 @@
+package Integrator::FGS::ADC::ICD
+-- The public data provided by the Air Data Computer.
+public
+  feature group ADC_DataPlg
+    features
+      ALT: out event data port;
+      MN: out event data port;
+      TAT: out event data port;
+  end ADC_DataPlg;
+  
+  feature group ADC_DataSkt
+    features
+      ALT: in event data port;
+      MN: in event data port;
+      TAT: in event data port;
+    inverse of ADC_DataPlg
+  end ADC_DataSkt;
+  
+  feature group ADC_CrossPlg
+    features
+      ALT: out event data port;
+      MN: out event data port;
+      TAT: out event data port;
+  end ADC_CrossPlg;
+  
+  feature group ADC_CrossSkt
+    features
+      ALT: in event data port;
+      MN: in event data port;
+      TAT: in event data port;
+    inverse of ADC_CrossPlg
+  end ADC_CrossSkt;
+  
+  feature group ADC_To_PFD_Plg
+    features
+      Altitude: out event data port;
+      Baro_Corrected_Altitude: out event data port;
+      Mach: out event data port;
+      Airspeed: out event data port;
+      Max_Allowable_Airspeed: out event data port;
+      True_Airspeed: out event data port;
+      Total_Air_Temperature: out event data port;
+      Vertical_Speed: out event data port;
+      Static_Air_Temperature: out event data port;
+      Maximum_Mach: out event data port;
+      ISA_XX: out event data port;
+      Static_Pressure_Hg: out event data port;
+      Static_Pressure_mb: out event data port;
+      Baro_Correction_mb: out event data port;
+      Baro_Correction_Hg: out event data port;
+  end ADC_To_PFD_Plg;
+  
+  feature group PFD_To_ADC_Skt
+    features
+      Altitude: in event data port;
+      Baro_Corrected_Altitude: in event data port;
+      Mach: in event data port;
+      Airspeed: in event data port;
+      Max_Allowable_Airspeed: in event data port;
+      True_Airspeed: in event data port;
+      Total_Air_Temperature: in event data port;
+      Vertical_Speed: in event data port;
+      Static_Air_Temperature: in event data port;
+      Maximum_Mach: in event data port;
+      ISA_XX: in event data port;
+      Static_Pressure_Hg: in event data port;
+      Static_Pressure_mb: in event data port;
+      Baro_Correction_mb: in event data port;
+      Baro_Correction_Hg: in event data port;
+    inverse of ADC_To_PFD_Plg
+  end PFD_To_ADC_Skt;
+end Integrator::FGS::ADC::ICD;

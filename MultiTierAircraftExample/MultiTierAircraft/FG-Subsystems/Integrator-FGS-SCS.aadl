@@ -1,0 +1,139 @@
+--      A Surface Control Systems package...
+package Integrator::FGS::SCS
+public
+with  Integrator::FGS::Busses::ARINC429, Integrator::FGS::Busses, SEI, Physical;
+with Modeling;
+  abstract SCS
+  	
+  end SCS;
+  process prServo
+    features
+      iA429_RX_1A: in data port  SCS_Data;
+      iA429_RX_1B: in data port  SCS_Data;
+      cmd: out data port SCS_Data;
+    flows
+      fSurfaceDemandA: flow path iA429_RX_1A -> cmd;
+      fSurfaceDemandB: flow path iA429_RX_1B -> cmd;
+    properties
+      SEI::MIPSBudget => 10.0 MIPS;
+      SEI::RAMBudget => 64.0 KByte;
+      SEI::ROMBudget => 640.0 KByte;
+  end prServo;
+  
+  process implementation prServo.impl
+    subcomponents
+      THR_SERVO: thread thrServo.impl;
+    connections
+      PortGroupConnection1: feature  THR_SERVO.cmd -> cmd;
+      PortGroupConnection2: feature  iA429_RX_1B -> THR_SERVO.iA429_RX_1B;
+      PortGroupConnection3: feature  iA429_RX_1A -> THR_SERVO.iA429_RX_1A;
+    flows
+      fSurfaceDemandA: flow path iA429_RX_1A -> PortGroupConnection3 -> THR_SERVO.fSurfaceDemandA
+         -> PortGroupConnection1 -> cmd;
+      fSurfaceDemandB: flow path iA429_RX_1B -> PortGroupConnection2 -> THR_SERVO.fSurfaceDemandB
+         -> PortGroupConnection1 -> cmd;
+  end prServo.impl;
+  
+  thread thrServo
+    features
+      iA429_RX_1A: in data port SCS_Data;
+      iA429_RX_1B: in data port SCS_Data;
+      cmd: out data port SCS_Data;
+    flows
+      fSurfaceDemandA: flow path iA429_RX_1A -> cmd {
+        Latency => 10 Ms .. 10 Ms;
+        };
+      fSurfaceDemandB: flow path iA429_RX_1B -> cmd {
+        Latency => 10 Ms .. 10 Ms;
+        };
+    properties
+      Dispatch_Protocol => Periodic;
+      Deadline => 10 Ms;
+      Period => 20 Ms;
+  end thrServo;
+  
+  thread implementation thrServo.impl
+  end thrServo.impl;
+  
+  system ServoController
+    features
+      a429port2: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      a429port1: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      analog: requires bus access Integrator::FGS::Busses::Analog.impl;
+      discretes: requires bus access Integrator::FGS::Busses::Discrete.impl;
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 5.0 kg;
+  end ServoController;
+  
+  system implementation ServoController.impl
+  end ServoController.impl;
+  
+  device FlightSurfaces
+    features
+      discretes: requires bus access Integrator::FGS::Busses::Discrete.impl;
+      analog1: requires bus access Integrator::FGS::Busses::Analog.impl;
+      analog2: requires bus access Integrator::FGS::Busses::Analog.impl;
+      enable: in event data port;
+      cmd: in feature ; --SCS_Data;
+    flows
+      fSurface: flow sink cmd {
+        Latency => 100 Us .. 100 Us;
+        };
+  end FlightSurfaces;
+  
+  device implementation FlightSurfaces.physical
+    properties
+      SEI::WeightLimit => 300.0 kg;
+  end FlightSurfaces.physical;
+  
+  device implementation FlightSurfaces.logical
+  end FlightSurfaces.logical;
+   
+  device FlightSurfacesFullSpec extends FlightSurfaces
+  	features
+      cmd: refined to in feature SCS_Data;
+  end FlightSurfacesFullSpec;
+  
+  device implementation FlightSurfaces.impl
+    flows
+      fSurface: flow sink cmd;
+  end FlightSurfaces.impl;
+
+  
+  data SCS_Data
+  	
+  end SCS_Data;
+  
+  data implementation SCS_Data.impl
+    subcomponents
+      AileronDemand: data;
+      ElevatorDemand: data;
+      RudderDemand: data;
+      SpoilerDemand: data;
+      FlapDemand: data;
+      SlatDemand: data;
+  end SCS_Data.impl;
+
+--  
+--  feature group SCS_DataPlg
+--    features
+--      AileronDemand: in event data port;
+--      ElevatorDemand: in event data port;
+--      RudderDemand: in event data port;
+--      SpoilerDemand: in event data port;
+--      FlapDemand: in event data port;
+--      SlatDemand: in event data port;
+--  end SCS_DataPlg;
+--  
+--  feature group SCS_DataSkt 
+--    features
+--      AileronDemand: out event data port;
+--      ElevatorDemand: out event data port;
+--      RudderDemand: out event data port;
+--      SpoilerDemand: out event data port;
+--      FlapDemand: out event data port;
+--      SlatDemand: out event data port;
+--    inverse of SCS_DataPlg
+--  end SCS_DataSkt;
+end Integrator::FGS::SCS;

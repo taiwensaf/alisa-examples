@@ -1,0 +1,16 @@
+verification plan NavRadioVPlan for NavRadio
+[
+	
+	claim NavRadio.R1 [
+		activities
+			processingbudget: Plugins.ResourceAnalysis()
+	]
+	claim NavRadio.R2_1 [
+		activities
+			RAMbudget: Plugins.ResourceAnalysis()
+	]
+	claim NavRadio.R2_2 [
+		activities
+			ROMbudget: Plugins.ResourceAnalysis()
+	]
+]

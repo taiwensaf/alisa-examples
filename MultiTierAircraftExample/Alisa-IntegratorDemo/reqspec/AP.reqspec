@@ -1,0 +1,37 @@
+system requirements AP : "Requirements for the Autopilot subsystem of the Flight Guidance System"
+for Integrator::FGS::AP::prAutoPilot
+use constants Globals
+ [
+val AP_ProcessingBudget = 50.0 MIPS
+val AP_RAMBudget = 1.6 MByte
+val AP_ROMBudget = 16.0 MByte
+val AP_FlowPathLatency =  3.0 ms
+
+	requirement R1: "Processing Budget" [
+		description "The processing needs of the AP subsystem 
+			shall not exceed "
+			UtilizationRatio " percent of "
+			AP_ProcessingBudget
+	]
+
+	requirement R2_1: "RAM Memory Budget" [
+		description "The RAM memory needs of the AP subsystem 
+			shall not exceed "
+			UtilizationRatio " percent of "
+			AP_RAMBudget
+	]
+
+	requirement R2_2: "ROM Memory Budget" [
+		description "The ROM memory needs of the AP subsystem 
+			shall not exceed "
+			UtilizationRatio " percent of "
+			AP_ROMBudget
+	]
+
+	requirement R3: "Flow Path Latency" [
+		description "The transit time through the AP subsystem for the flow path
+			from the FGS subsystem to the Surface Control System servos
+			shall not exceed "
+			AP_FlowPathLatency
+	]
+]

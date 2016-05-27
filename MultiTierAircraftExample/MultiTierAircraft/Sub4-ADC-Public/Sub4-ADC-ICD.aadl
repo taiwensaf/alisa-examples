@@ -1,0 +1,39 @@
+package Sub4::ADC::ICD
+-- The public data provided by the Air Data Computer.
+public
+with Base_Types,Data_Model, SEI, ARINC429, Integrator::FGS::ADC::ICD;
+	with SEI;
+  feature group ADC_DataPlg
+    extends Integrator::FGS::ADC::ICD::ADC_DataPlg
+    features
+      ALT: refined to out event data port  {
+        Data_Model::Base_Type => (classifier( Base_Types::Unsigned_16 ));
+        Data_Size => 16 Bits;
+        SEI::Data_Rate => 2.5 perSecond;
+        Data_Model::Measurement_Unit => "ft";
+        ARINC429::WordID => 13;
+        ARINC429::FirstBit => 0;
+        ARINC429::NumberBits => 16;
+        };
+      MN: refined to out event data port {
+        Data_Model::Base_Type => (classifier( Base_Types::Integer ));
+        Data_Size => 4 Bits;
+        SEI::Data_Rate => 2.5 perSecond;
+        ARINC429::WordID => 13;
+        ARINC429::FirstBit => 16;
+        ARINC429::NumberBits => 4;
+        };
+      TAT: refined to out event data port {
+        Data_Model::Base_Type => (classifier( Base_Types::Integer ));
+        Data_Size => 3 Bits;
+        SEI::Data_Rate => 2.5 perSecond;
+        ARINC429::WordID => 13;
+        ARINC429::FirstBit => 20;
+        ARINC429::NumberBits => 3;
+        };
+  end ADC_DataPlg;
+  
+  feature group ADC_DataSkt
+    inverse of ADC_DataPlg
+  end ADC_DataSkt;
+end Sub4::ADC::ICD;

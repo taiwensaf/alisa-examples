@@ -1,0 +1,36 @@
+-- A Heading Reference System package...
+package Integrator::FGS::AHRS
+public
+with  Integrator::FGS::Busses::ARINC429, Physical, SEI;
+with Modeling;
+  
+  process prAHRS 
+    features
+      oA429_AHRS_1: feature group AHRS_DataPlg;
+  end prAHRS;
+  
+  process implementation prAHRS.impl
+  end prAHRS.impl;
+  
+  device PhysAHRS
+    features
+      aout: requires bus access Integrator::FGS::Busses::ARINC429::AR429;
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 1.0 kg;
+  end PhysAHRS;
+  
+  device implementation PhysAHRS.impl
+  end PhysAHRS.impl;
+  
+  feature group AHRS_DataPlg
+    features
+      HDNG: out event data port;
+  end AHRS_DataPlg;
+  
+  feature group AHRS_DataSkt
+    features
+      HDNG: in event data port;
+    inverse of AHRS_DataPlg
+  end AHRS_DataSkt;
+end Integrator::FGS::AHRS;

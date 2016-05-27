@@ -1,0 +1,53 @@
+--   A Flight Controls Panel package...
+package Integrator::FGS::FCP::Spec
+public
+with Integrator::FGS::Busses::NetBus, Integrator::FGS::Busses::ARINC429, Integrator::FGS::Busses, 
+ Integrator::FGS::FCP::ICD, Integrator::FGS::Controls, SEI, Resources;
+   
+  system FlightControlPanel
+    features
+      netport2: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      a429port1: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      Discretes: requires bus access Integrator::FGS::Busses::Discrete.impl;
+      netport1: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      a429port2: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      Analogs: requires bus access Integrator::FGS::Busses::Analog.impl;
+      power: in data port Resources::ElectricalPower  
+      {
+        SEI::PowerBudget => 150.0 W;
+        };
+    properties 
+      SEI::WeightLimit => 0.5 kg;
+  end FlightControlPanel;
+  
+  system implementation FlightControlPanel.impl
+  end FlightControlPanel.impl;
+  
+  process prFlightControlPanel
+    features
+      FGS_01: feature group Integrator::FGS::FCP::ICD::FCP_DataPlg;
+      FGS_02: feature group Integrator::FGS::FCP::ICD::FCP_DataPlg;
+      iA429_RX_01: feature group Integrator::FGS::FCP::ICD::FCP_DataPlg;
+      iA429_RX_02: feature group Integrator::FGS::FCP::ICD::FCP_DataPlg;
+      YokesCmd: in data port Integrator::FGS::Controls::Yokes_Data;
+      ThrottleCmd: in data port Integrator::FGS::Controls::Throttle_Data;
+      enable: out event data port;
+    flows
+      fYokesToFGS1: flow path YokesCmd -> FGS_01 {
+        Latency => 3 Ms .. 3 Ms;
+        };
+      fYokesToFGS2: flow path YokesCmd -> FGS_02 {
+        Latency =>3 Ms .. 3 Ms;
+        };
+    properties
+      SEI::MIPSBudget => 5.0 MIPS;
+      SEI::RAMBudget => 100.0 KByte;
+      SEI::ROMBudget => 1.0 MByte;
+  end prFlightControlPanel;
+  
+  process implementation prFlightControlPanel.impl
+    flows
+      fYokesToFGS1: flow path YokesCmd -> FGS_01;
+      fYokesToFGS2: flow path YokesCmd -> FGS_02;
+  end prFlightControlPanel.impl;
+end Integrator::FGS::FCP::Spec;

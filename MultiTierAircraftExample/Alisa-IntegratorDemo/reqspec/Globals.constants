@@ -1,0 +1,20 @@
+constants Globals [
+
+	val UtilizationRatio = 80
+
+	val AHRS_MaxWeight = 7.0 kg
+	val AHRS_PowerBudget = 4.5 W
+	val AHRS_ProcessingCapacity = 200 MIPS
+	val AHRS_RAMCapacity = 20.0 MByte
+	val AHRS_ROMCapacity = 20.0 KByte
+	
+	val ADC_MaxWeight = 7.0 kg
+	val ADC_PowerBudget = 4.5 W
+	val ADC_ProcessingCapacity = 200.0 MIPS
+	val ADC_RAMCapacity = 20.0 MByte
+	val ADC_ROMCapacity = 10.0 KByte
+	val ADC_ProcessingBudget = 120.0 MIPS
+	val ADC_RAMBudget = 10.0 MByte
+	val ADC_ROMBudget = 5.0 KByte
+	
+]

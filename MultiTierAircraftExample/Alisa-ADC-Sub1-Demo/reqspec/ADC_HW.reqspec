@@ -1,0 +1,37 @@
+system requirements Supplier1.ADC_HW : "Requirements for the Hardware Subsystem of the ADC subsystem of the Flight Guidance System"
+//for Integrator::FGS::ADC::Spec::AirDataComputer
+for Supplier1::AirDataComputer //(this would include Supplier1::ADC_HW and Supplier1:ADC_SW)
+use constants Globals
+[
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Hardware Subsystem of the ADC subsystem 
+			shall not exceed " 
+			ADC_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The power needs of the Hardware Subsystem of the ADC subsystem 
+			shall not exceed " 
+			ADC_PowerBudget
+	]
+
+	requirement R3_1: "ADC Processing Capacity" [
+		description "The Hardware Subsystem of the ADC subsystem 
+			shall be capable of processing at least "
+			ADC_ProcessingCapacity
+	]
+
+	requirement R3_2: "ADC RAM Capacity" [
+		description "The Hardware Subsystem of the ADC subsystem 
+			shall provide at least " 
+			ADC_RAMCapacity
+	]
+
+	requirement R3_3: "ADC ROM Capacity" [
+		description "The Hardware Subsystem of the ADC subsystem 
+			shall provide at least "
+			ADC_ROMCapacity
+	]
+
+]

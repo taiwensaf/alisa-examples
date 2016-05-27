@@ -1,0 +1,35 @@
+-- This package is used by the subcontractor to propose adjustments to the ICD from the integrator
+-- The subcontractor does this by declaring extends of the port group types
+-- The extension adds features or refines features  
+package Sub1::FGS::ICD
+public 
+with  Base_Types,Data_Model,Integrator::FGS::ADC::ICD, SEI, ARINC429;
+  feature group ADC_DataSkt
+    extends Integrator::FGS::ADC::ICD::ADC_DataSkt
+    features
+      ALT: refined to in event data port {
+        Data_Model::Base_Type => (classifier( Base_Types::Unsigned_16 ));
+        Data_Size => 16 Bits;
+        SEI::Data_Rate => 2.0 perSecond;
+        ARINC429::WordID => 12;
+        ARINC429::FirstBit => 4;
+        ARINC429::NumberBits => 16;
+        };
+      MN: refined to in event data port {
+        Data_Model::Base_Type => (classifier( Base_Types::Integer ));
+        Data_Size => 3 Bits;
+        SEI::Data_Rate => 2.0 perSecond;
+        ARINC429::WordID => 13;
+        ARINC429::FirstBit => 0;
+        ARINC429::NumberBits => 3;
+        };
+      TAT: refined to in event data port {
+        Data_Model::Base_Type => (classifier( Base_Types::Integer ));
+        Data_Size => 4 Bits;
+        SEI::Data_Rate => 2.0 perSecond;
+        ARINC429::WordID => 13;
+        ARINC429::FirstBit => 20;
+        ARINC429::NumberBits => 4;
+        };
+  end ADC_DataSkt;
+end Sub1::FGS::ICD;

@@ -1,0 +1,36 @@
+package Integrator::FGS::FGS::Spec
+public
+with Integrator::FGS::AP, Integrator::FGS::AHRS, Integrator::FGS::ADC::ICD, Integrator::FGS::FGS::ICD, Integrator::FGS::FCP::ICD, Integrator::FGS::Radio::NavRadio, SEI;
+
+  process prFlightGuidance
+    features
+      AP1: feature group Integrator::FGS::AP::AP_DataPlg;
+      AP2: feature group Integrator::FGS::AP::AP_DataPlg;
+      AHRS: feature group Integrator::FGS::AHRS::AHRS_DataSkt;
+      ADC: feature group inverse of Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      other_FGS_A: feature group Integrator::FGS::FGS::ICD::FGS_CrossTalk;
+      other_FGS_B: feature group inverse of Integrator::FGS::FGS::ICD::FGS_CrossTalk;
+      ToFMS: feature group Integrator::FGS::FGS::ICD::FGS_to_FMS;
+      FCP: feature group Integrator::FGS::FCP::ICD::FCP_DataSkt;
+      NAV_Radio: feature group Integrator::FGS::Radio::NavRadio::NavRadio_DataSkt;
+    flows
+      fPFCLAWS1: flow path FCP -> AP1 {
+        Latency => 3 Ms .. 3 Ms;
+        };
+      fPFCLAWS2: flow path FCP -> AP2 {
+        Latency => 3 Ms .. 3 Ms;
+        };
+    properties
+      SEI::MIPSBudget => 200.0 MIPS;
+      SEI::RAMBudget => 3.0 MByte;
+      SEI::ROMBudget => 30.0 MByte;
+      SEI::Is_Partition => true;
+      SEI::Partition_Latency => 2000 Us;
+  end prFlightGuidance;
+  
+  process implementation prFlightGuidance.impl
+    flows
+      fPFCLAWS1: flow path FCP -> AP1;
+      fPFCLAWS2: flow path FCP -> AP2;
+  end prFlightGuidance.impl;
+end Integrator::FGS::FGS::Spec;

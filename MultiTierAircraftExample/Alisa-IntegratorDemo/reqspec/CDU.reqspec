@@ -1,0 +1,58 @@
+system requirements CDU : "Requirements for the Control and Display Unit subsystem of the FGS"
+for Integrator::FGS::Displays::CDU::ControlAndDisplayUnit
+use constants Globals
+[
+
+	val CDU_MaxWeight = 1.5 kg
+	val CDU_PowerBudget = 65.0 W
+	val CDU_PFD_ProcessingBudget = 50.0 MIPS
+	val CDU_PFD_RAMBudget = 64.0 MByte
+	val CDU_PFD_ROMBudget = 256.0 MByte
+	val CDU_Processor_ProcessingCapacity = 100.0 MIPS
+	val CDU_SomeMemory_RAMCapacity = 256.0 MByte
+	val CDU_SomeMemory_ROMCapacity = 512.0 MByte
+
+	requirement R1 : "Weight Limit" [
+		description "The weight of the CDU subsystem 
+			shall not exceed "
+			CDU_MaxWeight
+	]
+	requirement R2: "CDU Power Budget" [
+		description "The power consumed by the CDU subsystem 
+			shall not exceed "
+			CDU_PowerBudget  
+	]
+	requirement R3_1: "CDU PFD Processing Budget" [
+		description "The CDU PFD Process 
+			shall not use more than " 
+			UtilizationRatio " percent of "
+			CDU_PFD_ProcessingBudget
+	]
+	requirement R3_2: "CDU PFD RAM Budget" [
+		description "The CDU PFD Process 
+			shall not require more than " 
+			UtilizationRatio " percent of "
+			CDU_PFD_RAMBudget
+	]
+	requirement R3_3: "CDU PFD ROM Budget" [
+		description "The CDU PFD Process 
+			shall not require more than "
+			UtilizationRatio " percent of "
+			CDU_PFD_ROMBudget
+	]
+	requirement R3: "CDU Processor Data Port ProcessingCapacity" [
+		description " The CDU Processor Process 
+			shall be capable of processing at least "
+			CDU_Processor_ProcessingCapacity
+	]
+	requirement R4_1: "CDU SomeMemory RAM Capacity" [
+		description "The CDU SomeMemory 
+			shall provide at least " 
+			CDU_SomeMemory_RAMCapacity
+	]
+	requirement R4_2: "CDU SomeMemory ROM Capacity" [
+		description "The CDU SomeMemory 
+			shall provide at least "
+			CDU_SomeMemory_ROMCapacity
+	]
+]

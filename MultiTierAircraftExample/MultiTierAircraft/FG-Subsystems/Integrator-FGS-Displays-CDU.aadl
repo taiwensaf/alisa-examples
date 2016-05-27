@@ -1,0 +1,135 @@
+-- A Common Display Systems package...
+package Integrator::FGS::Displays::CDU
+public
+with Integrator::FGS::Busses::NetBus, Integrator::FGS::Busses::ARINC429;
+with  Integrator::FGS::ADC::ICD, Physical, SEI;
+	with Resources;
+with Modeling;
+
+  system ControlAndDisplayUnit
+    features
+      netport1: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      a429port1: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      a429port2: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      netport2: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      a429port3: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      a429port4: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      power: in data port Resources::ElectricalPower 
+	{
+        SEI::PowerBudget => 65.0 W;
+        };
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 1.5 kg;
+  end ControlAndDisplayUnit;
+  
+  system implementation ControlAndDisplayUnit.impl
+    subcomponents
+      cpu: processor aProcessor.impl;
+    connections
+      PowerConnection: feature power -> cpu.power;
+  end ControlAndDisplayUnit.impl;
+  
+  process prPFD
+    features
+      DCP: feature group DCP_DataSkt;
+      iA429_PFD: feature group PFD_InDataPlg;
+      oA429_PFD: feature group PFD_OutDataPlg;
+      iA429_RX_From_R_ADC: feature group Integrator::FGS::ADC::ICD::PFD_To_ADC_Skt;
+    properties
+      SEI::MIPSBudget => 50.0 MIPS;
+      SEI::ROMBudget => 256.0 MByte;
+      SEI::RAMBudget => 64.0 MByte;
+  end prPFD;
+  
+  process implementation prPFD.impl
+    subcomponents
+      THR_PFD: thread thrPFD.impl;
+    connections
+      PortGroupConnection1: feature group DCP <-> THR_PFD.DCP;
+      PortGroupConnection2: feature group iA429_PFD <-> THR_PFD.iA429_PFD;
+      PortGroupConnection3: feature group oA429_PFD <-> THR_PFD.oA429_PFD;
+  end prPFD.impl;
+  
+  process prDCP
+    features
+      oA429_PFD_1: feature group DCP_DataPlg;
+  end prDCP;
+  
+  process implementation prDCP.impl
+  end prDCP.impl;
+  
+  thread thrPFD
+    features
+      DCP: feature group DCP_DataSkt;
+      iA429_PFD: feature group PFD_InDataPlg;
+      oA429_PFD: feature group PFD_OutDataPlg;
+    properties
+      Dispatch_Protocol => Periodic;
+      Deadline => 20 Ms;
+      Period => 40 Ms;
+  end thrPFD;
+  
+  thread implementation thrPFD.impl
+  end thrPFD.impl;
+  
+  feature group PFD_OutDataPlg
+    features
+      dmy: out event data port;
+  end PFD_OutDataPlg;
+  
+  feature group PFD_OutDataSkt
+    features
+      dmy: in event data port;
+    inverse of PFD_OutDataPlg
+  end PFD_OutDataSkt;
+  
+  feature group PFD_InDataPlg
+    features
+      dmy: in event data port;
+  end PFD_InDataPlg;
+  
+  feature group PFD_InDataSkt
+    features
+      dmy: out event data port;
+    inverse of PFD_InDataPlg
+  end PFD_InDataSkt;
+  
+  feature group DCP_DataPlg
+    features
+      dmy: out event data port;
+  end DCP_DataPlg;
+  
+  feature group DCP_DataSkt
+    features
+      dmy: in event data port;
+    inverse of DCP_DataPlg
+  end DCP_DataSkt;
+  
+  processor aProcessor
+    features
+      BusAccess1: requires bus access;
+      power: in data port Resources::ElectricalPower 
+      {
+        SEI::PowerBudget => 65.0 W;
+        };
+    properties
+      SEI::MIPSCapacity => 100.0 MIPS;
+  end aProcessor;
+  
+  processor implementation aProcessor.impl
+    subcomponents
+      mem: memory someMemory.impl;
+  end aProcessor.impl;
+  
+  memory someMemory
+    features
+      BusAccess1: requires bus access;
+    properties
+      SEI::ROMCapacity => 512.0 MByte;
+      SEI::RAMCapacity => 256.0 MByte;
+  end someMemory;
+  
+  memory implementation someMemory.impl
+  end someMemory.impl;
+end Integrator::FGS::Displays::CDU;

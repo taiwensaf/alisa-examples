@@ -1,0 +1,36 @@
+verification plan CDUPlan for CDU
+[
+
+	claim CDU.R1  [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+	claim CDU.R2 [
+		activities
+			powerbudget: Plugins.ElectricalPower()
+	]
+	claim CDU.R3_1 [
+		activities
+			processingbudget: Plugins.ResourceAnalysis()
+	]
+	claim CDU.R3_2 [
+		activities
+			RAMbudget: Plugins.ResourceAnalysis()
+	]
+	claim CDU.R3_3 [
+		activities
+			ROMbudget: Plugins.ResourceAnalysis()
+	]
+	claim CDU.R3 [
+		activities
+			processingcapacity: Plugins.ResourceAnalysis()
+	]
+	claim CDU.R4_1 [
+		activities
+			RAMcapacity: Plugins.ResourceAnalysis()
+	]
+	claim CDU.R4_2 [
+		activities
+			ROMcapacity: Plugins.ResourceAnalysis()
+	]
+]

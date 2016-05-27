@@ -1,0 +1,25 @@
+package Integrator::FGS::FMS::ICD
+public
+with DataDictionary;
+  -- with DataDictionary;
+  feature group FMS_to_FGS
+    features
+      fuelFlow: in data port DataDictionary::FuelFlowData;
+      navSignal: in data port DataDictionary::NavSignalData;
+      guidanceOut: out data port DataDictionary::GuidanceData;
+      fpDataOut: out data port DataDictionary::FPData;
+      navDataOut: out data port DataDictionary::NavData;
+      dmy: out event data port;
+  end FMS_to_FGS;
+  
+  feature group FMS_CrossPlg
+    features
+      dmy: out event data port;
+  end FMS_CrossPlg;
+  
+  feature group FMS_CrossSkt
+    features
+      dmy: in event data port;
+    inverse of FMS_CrossPlg
+  end FMS_CrossSkt;
+end Integrator::FGS::FMS::ICD;

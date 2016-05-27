@@ -1,0 +1,28 @@
+verification plan SCSVplan for SCS [
+	
+	claim SCS.R1 [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+	claim SCS.R2 [
+		activities
+			powerbudget: Plugins.ElectricalPower()
+	]
+	claim SCS.R3 [
+		activities
+			processingcapacity: Plugins.ResourceAnalysis()
+	]
+	claim SCS.R4_1 [
+		activities
+			RAMcapacity: Plugins.ResourceAnalysis()
+	]
+	claim SCS.R4_2 [
+		activities
+			ROMcapacity: Plugins.ResourceAnalysis()
+	]
+	claim SCS.R5 [
+		activities
+			flowlatency: Plugins.FlowLatencyAnalysis()
+	]
+
+]

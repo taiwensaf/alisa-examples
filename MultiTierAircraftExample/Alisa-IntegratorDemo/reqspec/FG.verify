@@ -1,0 +1,54 @@
+verification plan FGplan for FlightGuidance [
+	
+	claim R1 [
+		activities
+			weightlimit 
+//			for FlightGuidance::FlightGuidance.subsystems
+			:
+				Plugins.MassAnalysis() 
+//				when tier2
+	]
+	claim R2 [
+		activities
+			powerbudget: Plugins.ElectricalPower()
+	]
+	claim R3 [
+		activities
+			processingcapacity: Plugins.ResourceAnalysis()
+	]
+	claim R4_1 [
+		activities
+			RAMcapacity: Plugins.ResourceAnalysis()
+	]
+	claim R4_2 [
+		activities
+			ROMcapacity: Plugins.ResourceAnalysis() 
+	]
+	claim R5 [
+		activities
+			bandwidthcapacity //for FlightGuidance::BuildConfiguration::FlightGuidance.bandwidth
+			: Plugins.NetworkUtilizationAnalysis() 
+	]
+	
+]
+
+verification plan FGIplan for FlightGuidanceImpl [
+	claim R6_1 [
+		activities
+			flowlatency1: Plugins.MaxFlowLatencyAnalysis()
+	]
+	claim R6_2 [
+		activities
+			flowlatency2: Plugins.MaxFlowLatencyAnalysis()
+	]
+
+	claim R7 [
+		activities
+			connection_consistency: Plugins.PortDataConsistency()
+	]
+
+	claim R8 [
+		activities
+			protocol_use_consistency: Plugins.A429Mapping()
+	]
+]

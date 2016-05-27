@@ -1,0 +1,9 @@
+package Integrator::FGS::FCP::ICD
+public
+  feature group FCP_DataPlg
+  end FCP_DataPlg;
+  
+  feature group FCP_DataSkt
+    inverse of FCP_DataPlg
+  end FCP_DataSkt;
+end Integrator::FGS::FCP::ICD;

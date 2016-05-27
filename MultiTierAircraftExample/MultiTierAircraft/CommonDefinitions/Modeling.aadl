@@ -1,0 +1,5 @@
+property set Modeling is
+  -- The SystemTier property records the tier level of a system component in the system architecture hierarchy
+  -- We have chosen literals.  AadlIntergers could have been sufficient.
+  System_Tier:  enumeration (Tier1, Tier2, Tier3, Tier4, Tier5) applies to (system, device, bus, processor, memory);
+end Modeling;

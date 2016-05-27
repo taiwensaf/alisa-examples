@@ -1,0 +1,215 @@
+-- This package provides the implementation for the ADC device
+-- documenting the internal system implementation of the device AirDataComputer.
+-- 
+-- It is described as a system, whose implementation consists of the 
+-- ADC software and the ADC hardware.
+-- 
+-- This implementation is associated with the device through the Implemented_As property.
+-- 
+package Sub4::ADC::Impl
+public
+with Integrator::FGS::ADC::Spec, Integrator::FGS::ADC::ICD, Integrator::FGS::Busses::ARINC429, Integrator::FGS::Busses::Serial, Sub4::ADC::Software, Hardware::Library, Sub4::ADC::Impl, Sub4::DataDictionary, Physical, SEI;
+with Modeling;
+  -- with Physical, Integrator::FGS::Busses::ARINC429, Integrator::FGS::Busses::Serial, Sub4::ADC::Software, 
+  --      Hardware::Library, Sub4::ADC::Spec, Integrator::FGS::ADC::ICD;
+  -- 
+  -- This repeats the ADC Spec. at the Integrator level
+  --  but documents the "open box" implementation thereof...
+  -- 
+  device AirDataComputer
+    extends Integrator::FGS::ADC::Spec::AirDataComputer
+    properties
+      Implemented_As => classifier( Sub4::ADC::Impl::ADCSubsystem.impl );
+  end AirDataComputer;
+  
+  -- The system that implements the ADC, i.e. we've now opened the blackbox...
+  -- 
+  -- Note that its interface is not identical to that of the ADC specification by the Integrator
+  -- because we've added open box knowledge...
+  -- 
+  system ADCSubsystem
+    features
+      -- 
+      -- Logical Interfaces
+      oA429_TX_01: feature group Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      oA429_TX_02: feature group Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      otherADC_A: feature group Integrator::FGS::ADC::ICD::ADC_CrossPlg;
+      otherADC_B: feature group Integrator::FGS::ADC::ICD::ADC_CrossSkt;
+      -- 
+      -- Physical Interfaces
+      abus1: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      abus2: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      ADCSerLink: requires bus access Integrator::FGS::Busses::Serial::RS422.impl;
+      -- 
+      -- Additional logical (private) interfaces
+      Po: in data port;
+      Ptot: in data port;
+      Tstc: in data port;
+    flows
+      PoToAlt: flow path Po -> oA429_TX_01;
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 7.0 kg;
+  end ADCSubsystem;
+  
+  system implementation ADCSubsystem.impl
+    subcomponents
+      ADC_CSCI: process Sub4::ADC::Software::prAirDataDetails.ProcessImpl;
+      cpu: processor Hardware::Library::PowerPC.PPC705 {
+        SEI::NetWeight => 0.5 kg;
+        };
+      mem: memory Hardware::Library::Memry.sysmem;
+      BusIF1: device BusIF.impl;
+      BusIF2: device BusIF.impl;
+      AtoD: device AtoD.impl;
+      Backplane: bus Hardware::Library::VME.impl {
+        SEI::NetWeight => 0.5 kg;
+        };
+      SerialIF: device SerialIF.impl;
+      chassis: device Hardware::Library::ARINC600_Chassis.MCU_3;
+      psu: device Hardware::Library::PSU50W.impl;
+      ConnectersAndWiring: device ChassisWiring.impl {
+        SEI::NetWeight => 1.5 kg;
+        };
+      P5V: bus Hardware::Library::PowerRail.impl {
+        SEI::PowerCapacity => 50.0 W;
+        };
+    connections
+      DataConnection1: port Ptot -> AtoD.Ptot_Volts {
+        Timing => Immediate;
+        };
+      DataConnection2: port Po -> AtoD.Po_Volts {
+        Timing => Immediate;
+        };
+      DataConnection3: port Tstc -> AtoD.Tstc_mV {
+        Timing => Immediate;
+        };
+      DataConnection4: port AtoD.Po -> ADC_CSCI.Po {
+        Timing => Immediate;
+        };
+      DataConnection5: port AtoD.Ptot -> ADC_CSCI.Ptot {
+        Timing => Immediate;
+        };
+      DataConnection6: port AtoD.Tstc -> ADC_CSCI.Tstc {
+        Timing => Immediate;
+        };
+      PortGroupConnection1: feature group ADC_CSCI.oA429_TX_01 <-> BusIF1.oA429_TX;
+      PortGroupConnection2: feature group ADC_CSCI.oA429_TX_02 <-> BusIF2.oA429_TX;
+      PortGroupConnection3: feature group ADC_CSCI.otherADC_A <-> SerialIF.SerialOut;
+      PortGroupConnection4: feature group SerialIF.SerialIn <-> ADC_CSCI.otherADC_B;
+      BusAccessConnection4: bus access Backplane -> AtoD.backplane;
+      BusAccessConnection5: bus access Backplane -> BusIF1.backplane;
+      BusAccessConnection6: bus access Backplane -> BusIF2.backplane;
+      BusAccessConnection7: bus access Backplane -> SerialIF.backplane;
+      BusAccessConnection8: bus access Backplane -> cpu.backplane;
+      BusAccessConnection9: bus access Backplane -> mem.backplane;
+      BusAccessConnection10: bus access ADCSerLink -> SerialIF.SerBus;
+      BusAccessConnection1: bus access P5V -> psu.P5V;
+      BusAccessConnection2: bus access P5V -> cpu.P5V;
+      BusAccessConnection3: bus access P5V -> mem.P5V;
+      BusAccessConnection13: bus access P5V -> BusIF1.P5V;
+      BusAccessConnection14: bus access P5V -> BusIF2.P5V;
+      BusAccessConnection15: bus access P5V -> SerialIF.P5V;
+      BusAccessConnection16: bus access P5V -> AtoD.P5V;
+      PortGroupConnection5: feature group SerialIF.SerTX <-> otherADC_A;
+      PortGroupConnection6: feature group SerialIF.SerRX <-> otherADC_B;
+      PortGroupConnection7: feature group BusIF2.A429_Xmt <-> oA429_TX_01;
+      PortGroupConnection8: feature group oA429_TX_02 <-> BusIF1.A429_Xmt;
+      PortGroupConnection9: feature group BusIF1.A429_Xmt <-> oA429_TX_01;
+      PortGroupConnection10: feature group BusIF2.A429_Xmt <-> oA429_TX_02;
+      BusAccessConnection11: bus access abus2 -> BusIF2.abus;
+      BusAccessConnection12: bus access abus1 -> BusIF1.abus;
+    flows
+      PoToAlt: flow path Po -> DataConnection2 -> AtoD.PoConversion
+         -> DataConnection4 -> ADC_CSCI.PoToAlt
+         -> PortGroupConnection1 -> BusIF1.BufferAndXmt
+         -> PortGroupConnection9 -> oA429_TX_01;
+    properties
+      Actual_Processor_Binding => ( reference( cpu ) ) applies to ADC_CSCI.Main;
+      Actual_Processor_Binding => ( reference( cpu ) ) applies to ADC_CSCI.BusPoller;
+      Actual_Processor_Binding => ( reference( cpu ) ) applies to ADC_CSCI.Monitor;
+      Actual_Memory_Binding => ( reference( mem ) ) applies to ADC_CSCI.Main;
+      Actual_Memory_Binding => ( reference( mem ) ) applies to ADC_CSCI.BusPoller;
+      Actual_Memory_Binding => ( reference( mem ) ) applies to ADC_CSCI.Monitor;
+  end ADCSubsystem.impl;
+  
+  device AtoD
+    features
+      Po: out data port Sub4::DataDictionary::ScaledInteger;
+      Ptot: out data port Sub4::DataDictionary::ScaledInteger;
+      Tstc: out data port Sub4::DataDictionary::ScaledInteger;
+      Po_Volts: in data port;
+      Ptot_Volts: in data port;
+      Tstc_mV: in data port;
+      backplane: requires bus access Hardware::Library::VME.impl;
+      P5V: requires bus access Hardware::Library::PowerRail.impl {
+        SEI::PowerBudget => 2.0 W;
+        };
+    flows
+      PoConversion: flow path Po_Volts -> Po {
+        Latency => 10 Us .. 10 Us;
+        };
+      PtotConversion: flow path Ptot_Volts -> Ptot {
+        Latency => 10 Us .. 10 Us;
+        };
+      TstcConversion: flow path Tstc_mV -> Tstc {
+        Latency => 10 Us .. 10 Us;
+        };
+  end AtoD;
+  
+  device implementation AtoD.impl
+    properties
+      SEI::NetWeight => 0.25 kg;
+  end AtoD.impl;
+  
+  device BusIF
+    features
+      oA429_TX: feature group inverse of Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      A429_Xmt: feature group Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      abus: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      backplane: requires bus access Hardware::Library::VME.impl;
+      P5V: requires bus access Hardware::Library::PowerRail.impl {
+        SEI::PowerBudget => 1.0 W;
+        };
+    flows
+      BufferAndXmt: flow path oA429_TX -> A429_Xmt {
+        Latency => 10 Us .. 10 Us;
+        };
+  end BusIF;
+  
+  device implementation BusIF.impl
+    properties
+      SEI::NetWeight => 0.25 kg;
+  end BusIF.impl;
+  
+  device SerialIF
+    features
+      SerBus: requires bus access Integrator::FGS::Busses::Serial::RS422.impl;
+      SerialOut: feature group Integrator::FGS::ADC::ICD::ADC_CrossSkt;
+      SerialIn: feature group Integrator::FGS::ADC::ICD::ADC_CrossPlg;
+      backplane: requires bus access Hardware::Library::VME.impl;
+      P5V: requires bus access Hardware::Library::PowerRail.impl {
+        SEI::PowerBudget => 0.5 W;
+        };
+      SerTX: feature group Integrator::FGS::ADC::ICD::ADC_CrossPlg;
+      SerRX: feature group Integrator::FGS::ADC::ICD::ADC_CrossSkt;
+    flows
+      BufferAndXmt: flow path SerialOut -> SerTX {
+        Latency => 10 Us .. 10 Us;
+        };
+      RcvAndBuffer: flow path SerRX -> SerialIn {
+        Latency => 10 Us .. 10 Us;
+        };
+  end SerialIF;
+  
+  device implementation SerialIF.impl
+    properties
+      SEI::NetWeight => 0.5 kg;
+  end SerialIF.impl;
+  
+  device ChassisWiring
+  end ChassisWiring;
+  
+  device implementation ChassisWiring.impl
+  end ChassisWiring.impl;
+end Sub4::ADC::Impl;

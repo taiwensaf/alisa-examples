@@ -1,0 +1,30 @@
+system requirements FMS : "Requirements for the Flight Manager subsystem of the Flight Guidance System"
+for Integrator::FGS::FMS::Spec::prFlightManager
+use constants Globals
+[
+	val FMS_ProcessingBudget = 120.0 MIPS
+	val FMS_RAMBudget = 2.0 MByte
+	val FMS_ROMBudget = 0.0 KByte
+	
+	requirement R1_1: "FMS Processing Budget" [
+		description "The processing needs of the Flight Management subsystem 
+			shall not exceed "
+			UtilizationRatio " percent of " 
+			FMS_ProcessingBudget
+	]
+
+	requirement R1_2: "FMS RAM Memory Budget" [
+		description "The RAM memory needs of the Flight Management subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of " 
+			FMS_RAMBudget
+	]
+
+	requirement R1_3: "FMS ROM Memory Budget" [
+		description "The ROM memory needs of the Flight Management subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of " 
+			FMS_ROMBudget
+	]
+
+]

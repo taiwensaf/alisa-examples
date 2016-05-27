@@ -1,0 +1,55 @@
+-- A Processor/Computing package...
+package Integrator::FGS::PCU
+public
+with Integrator::FGS::Busses::NetBus,  Physical, SEI;
+with Resources;
+with Modeling;
+  -- with Integrator::FGS::Busses::NetBus;
+  system ProcessorCard
+    features
+      portB: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      portA: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      power: in feature; --!! Resources::ElectricalPower;
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 1.0 kg;
+  end ProcessorCard;
+  
+  system implementation ProcessorCard.impl
+    subcomponents
+      cpu: processor CPUType.impl;
+    connections
+      BusAccessConnection1: bus access portB -> cpu.BusAccessA;
+      BusAccessConnection2: bus access portA -> cpu.BusAccessB;
+      PowerConnection: feature power -> cpu.power;
+  end ProcessorCard.impl;
+  
+  processor CPUType
+    features
+      BusAccessA: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      BusAccessB: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      power: in data port Resources::ElectricalPower 
+{
+        SEI::PowerBudget => 65.0 W;
+        };
+    properties
+      SEI::MIPSCapacity => 200.0 MIPS;
+      SEI::GrossWeight => 0.3 kg;
+  end CPUType;
+  
+  processor implementation CPUType.impl
+    subcomponents
+      mem: memory memoryType.impl;
+  end CPUType.impl;
+  
+  memory memoryType
+    features
+      BusAccess1: requires bus access;
+    properties
+      SEI::RAMCapacity => 512.0 MByte;
+      SEI::ROMCapacity => 1024.0 MByte;
+  end memoryType;
+  
+  memory implementation memoryType.impl
+  end memoryType.impl;
+end Integrator::FGS::PCU;

@@ -1,0 +1,20 @@
+system requirements Radio : "Requirements for the Generic Radio package of the Flight Guidance System"
+for Integrator::FGS::Radio::Radio
+[
+
+	val Radio_MaxWeight = 1.5 kg
+	val Radio_PowerBudget = 1.5 W
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Generic Radio package 
+			shall not exceed " 
+			Radio_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The power needs of the Generic Radio package 
+			shall not exceed " 
+			Radio_PowerBudget
+	]
+
+]

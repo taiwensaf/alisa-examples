@@ -1,0 +1,14 @@
+system requirements SCS_FlightSurfaces : "Requirements for the Flight Surfaces-related portion of the Surface Control System"
+for Integrator::FGS::SCS::FlightSurfaces
+[
+
+	val FlightSurfaces_Latency = 100.0 us
+	
+	requirement R1 : "Flight Surfaces Latency" [
+		description "The time for the flight surfaces 
+			to initiate an action directed by the SCS Servo Controller System subsystem of SCS 
+			shall not exceed " 
+			FlightSurfaces_Latency
+	]
+
+]

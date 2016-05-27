@@ -1,0 +1,57 @@
+system requirements FCP : "Requirements for the Flight Control Panel (FCP) subsystem of the Flight Guidance System"
+for Integrator::FGS::FCP::Spec::FlightControlPanel
+[
+
+	val FCP_MaxWeight = 0.5 kg
+	val FCP_PowerBudget = 150 W
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Flight Control Panel (FCP) subsystem 
+			shall not exceed " 
+			FCP_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The power needs of the Flight Control Panel (FCP) subsystem 
+			shall not exceed " 
+			FCP_PowerBudget
+	]
+	]
+	
+	system requirements FCPpr : "Requirements for the Flight Control Panel (FCP) process of the Flight Guidance System"
+for Integrator::FGS::FCP::Spec::FlightControlPanel
+use constants Globals
+[
+	val FCP_ProcessingBudget = 5.0 MIPS
+	val FCP_RAMBudget = 100.0 KByte
+	val FCP_ROMBudget = 1.0 MByte
+	val FCP_FlowPathLatency = 3 ms
+
+	requirement R3_1: "FCP Processing Budget" [
+		description "The processing needs of the Software Subsystem of the FCP subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			FCP_ProcessingBudget
+	]
+
+	requirement R3_2: "FCP RAM Memory Budget" [
+		description "The RAM memory needs of the Software Subsystem of the FCP subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			FCP_RAMBudget
+	]
+
+	requirement R3_3: "FCP ROM Memory Budget" [
+		description "The ROM memory needs of the Software Subsystem of the FCP subsystem 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			FCP_ROMBudget
+	]
+
+	requirement R4 : "Flow Path Latency" [
+		description "The flow path latency to the yokes of the FCP subsystem 
+			shall not exceed " 
+			FCP_FlowPathLatency
+	]
+
+]

@@ -1,0 +1,18 @@
+system requirements AHRS_HW : "Requirements for the physical Attitude Heading and Reference System (AHRS) of the Flight Guidance System"
+for Integrator::FGS::AHRS::PhysAHRS
+use constants Globals
+[ 
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Hardware Subsystem of the AHRS subsystem 
+			shall not exceed " 
+			AHRS_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The power needs of the Hardware Subsystem of the AHRS subsystem 
+			shall not exceed " 
+			AHRS_PowerBudget
+	]
+
+]

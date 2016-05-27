@@ -1,0 +1,13 @@
+verification plan CTVplan for ControlThrottles [
+	
+	claim ControlThrottles.R1 [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+
+	claim ControlThrottles.R2 [
+		activities
+			flowsource: Plugins.FlowLatencyAnalysis()
+	]
+
+]

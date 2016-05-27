@@ -1,0 +1,15 @@
+-- A busses package...
+package Integrator::FGS::Busses
+public
+  bus Analog
+  end Analog;
+  
+  bus implementation Analog.impl
+  end Analog.impl;
+  
+  bus Discrete
+  end Discrete;
+  
+  bus implementation Discrete.impl
+  end Discrete.impl;
+end Integrator::FGS::Busses;

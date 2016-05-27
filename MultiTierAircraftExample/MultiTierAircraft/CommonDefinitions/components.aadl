@@ -1,0 +1,5 @@
+package components
+public
+  data arinc429_data
+  end arinc429_data;
+end components;

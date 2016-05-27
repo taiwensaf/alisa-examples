@@ -1,0 +1,23 @@
+verification plan APPlan for AP
+ [
+
+	claim AP.R1 [
+		activities
+			processingbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim AP.R2_1 [
+		activities
+			RAMbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim AP.R2_2 [
+		activities
+			ROMbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim AP.R3 [
+		activities
+			flowlatency: Plugins.FlowLatencyAnalysis()
+	]
+]

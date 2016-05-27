@@ -1,0 +1,20 @@
+system requirements ControlThrottles : "Requirements for the Autopilot subsystem of the Flight Guidance System"
+for Integrator::FGS::Controls::ThrottleLever
+ [
+	val CT_WeightLimit =  5.0 kg
+	val CT_FlowSourceLatency =  10.0 us
+
+	requirement R1: "Weight Limit" [
+		description "The weight of the control throttle lever subsystem 
+			shall not exceed "
+			CT_WeightLimit
+	]
+
+	requirement R2: "Flow Source Latency" [
+		description "The command input latency for the control throttle lever subsystems
+			shall not exceed "
+			CT_FlowSourceLatency
+	]
+
+]
+

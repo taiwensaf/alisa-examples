@@ -1,0 +1,20 @@
+package FlightGuidance::SubsystemSpec
+public
+with FlightGuidance, Sub4::ADC::Spec, Sub1::FGS::Spec;
+
+FlightGuidanceSW renames system FlightGuidance::FlightGuidanceSW;
+
+-- This is a system to be instantiated
+ 
+   -- two subsystems with interface specification of measurement units and mapping into A429
+    system implementation FlightGuidanceSW.subcontractorsubsystems
+    extends FlightGuidance::FlightGuidanceSW.embeddedsoftware
+    subcomponents
+      PR_ADC_L: refined to process Sub4::ADC::Spec::prAirDataFunction;
+      PR_ADC_R: refined to process Sub4::ADC::Spec::prAirDataFunction;
+      PR_FGS_L1: refined to process Sub1::FGS::Spec::prFlightGuidance;
+      PR_FGS_R1: refined to process Sub1::FGS::Spec::prFlightGuidance;
+  end FlightGuidanceSW.subcontractorsubsystems;
+  
+  
+end FlightGuidance::SubsystemSpec;

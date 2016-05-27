@@ -1,0 +1,37 @@
+verification plan FCPVplan for FCP
+[
+	
+	claim R1 [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+
+	claim R2 [
+		activities
+			powerbudget: Plugins.ElectricalPower()
+	]
+	]
+	
+	verification plan FCPprVplan for FCPpr
+[
+	claim R3_1 [
+		activities
+			processingbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim R3_2 [
+		activities
+			RAMbudget: Plugins.ResourceAnalysis()
+	]
+
+	claim R3_3 [
+		activities
+			ROMBudget: Plugins.ResourceAnalysis()
+	]
+
+	claim R4 [
+		activities
+			flowpath: Plugins.FlowLatencyAnalysis()
+	]
+
+]

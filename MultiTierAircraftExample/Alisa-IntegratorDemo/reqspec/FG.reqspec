@@ -1,0 +1,80 @@
+system requirements FlightGuidance : "Requirements for the Flight Guidance System"
+for FlightGuidance::FlightGuidance
+use constants Globals
+[ 
+	val FG_MaxWeight = 300.0 kg
+	val FG_PowerBudget = 2000.0 W
+	val FG_ProcessingCapacity = 1100.0 MIPS
+	val FG_RAMCapacity = 2048.0 MByte
+	val FG_ROMCapacity = 4096.0 MByte
+	val FG_BandwidthCapacity = 1000.0 MBytesps
+	
+	requirement R1 : "Weight Limit" [
+		description "The FGS 
+			shall weigh no more than "
+			FG_MaxWeight
+	]
+	requirement R2: "Power Budget" [
+		description "The FGS 
+			shall not draw in excess of "
+			FG_PowerBudget
+	]
+	requirement R3: "Processing Capacity" [
+		description "The FGS 
+			shall be capable of processing at least "
+			FG_ProcessingCapacity
+		see goal XACStakeholderGoals.XSG_12_1
+	]
+	requirement R4_1: "RAM Memory Capacity" [
+		description "The RAM memory needs of the FGS 
+			shall be no more than " 
+			UtilizationRatio " percent of "
+			FG_RAMCapacity
+		see goal XACStakeholderGoals.XSG_12_1
+	]
+	requirement R4_2: "ROM Memory Capacity" [
+		description "The ROM memory needs of the FGS 
+			shall be no more than "
+			UtilizationRatio " percent of "
+			FG_ROMCapacity
+		see goal XACStakeholderGoals.XSG_12_1
+	]
+	requirement R5: "Bandwidth Capacity" [
+		description "The FGS 
+			shall be capable of a sustained Bandwidth demand of at least "
+			FG_BandwidthCapacity
+	]
+	]
+
+system requirements FlightGuidanceImpl : "Requirements for the Flight Guidance System"
+for FlightGuidance::FlightGuidance.subsystems
+[
+	val FG_DirectModeLatency =  0.15 ms
+	val FG_NormalModesLatency =  25.0 ms
+	requirement R6_1: "Stick-to-Surface End-to-End Flow Direct Mode Latency" 
+	for fStickToSurface_DirectMode
+	[
+		description "The stick-to-surface end-to-end flow response of the FGS in Direct Mode 
+			shall be no longer than " FG_DirectModeLatency
+		compute ActualLatency: real units AADL_Project::Time_Units 
+		value predicate ActualLatency <= FG_DirectModeLatency
+		see goal XACStakeholderGoals.XSG_8_3
+	]
+	requirement R6_2: "Stick-to-Surface End-to-End Flow Normal Modes Latency" 
+	for fStickToSurface_NormalModes 
+	[
+		description "The stick-to-surface end-to-end flow response of the FGS in Normal Modes 
+			shall be no longer than " FG_NormalModesLatency
+		see goal XACStakeholderGoals.XSG_8_3
+	]
+	requirement R7: "Consistent Use of Measurement Units" 
+	[
+		description "The measurement units used on both ends of a connection shall be in consistent units"
+	]
+	
+	requirement R8: "Consistent Protocol Mapping" 
+	[
+		description "The mapping into ARINC 429 is consistent between sender and receiver."
+	]
+	
+]

@@ -1,0 +1,19 @@
+-- This package provides the implementation for the ADC device
+-- documenting the internal system implementation of the device AirDataComputer.
+-- 
+package Sub7::AP::Impl
+public
+with Hardware::Library,Integrator::FGS::AP, Integrator::FGS::Displays::CDU, Integrator::FGS::SCS, SEI;
+  process prAutoPilot
+    extends Integrator::FGS::AP::prAutoPilot
+  end prAutoPilot;
+  
+  process implementation prAutoPilot.impl
+    extends Integrator::FGS::AP::prAutoPilot.impl
+    subcomponents
+      THR_AP: refined to thread Integrator::FGS::AP::thrAutoPilot.impl {
+        Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+        Compute_Execution_Time => 2 Ms .. 3 Ms;
+        };
+  end prAutoPilot.impl; 
+end Sub7::AP::Impl;

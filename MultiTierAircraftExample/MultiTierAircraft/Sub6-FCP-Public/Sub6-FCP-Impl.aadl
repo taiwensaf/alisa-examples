@@ -1,0 +1,72 @@
+package Sub6::FCP::Impl
+public
+with Integrator::FGS::FCP::Spec, Integrator::FGS::Controls, Sub6::FCP::ICD, Sub6::FCP::Impl, Integrator::FGS::FCP::ICD;
+  -- with Integrator::FGS::FCP::Spec, Integrator::FGS::Controls;
+  process prFlightControlPanel
+    extends Integrator::FGS::FCP::Spec::prFlightControlPanel
+    features
+      FGS_01: refined to feature group Sub6::FCP::ICD::FCP_DataPlg;
+      FGS_02: refined to feature group Sub6::FCP::ICD::FCP_DataPlg;
+      iA429_RX_01: refined to feature group Sub6::FCP::ICD::FCP_DataPlg;
+      iA429_RX_02: refined to feature group Sub6::FCP::ICD::FCP_DataPlg;
+--    flows
+--      fYokesToFGS1: refined to flow path  {
+--        Latency => 3 Ms .. 3 Ms;
+--        };
+--      fYokesToFGS2: refined to flow path  {
+--        Latency => 3 Ms .. 3 Ms;
+--        };
+    properties
+      Classifier_Substitution_Rule => Type_Extension;
+  end prFlightControlPanel;
+  
+  process implementation prFlightControlPanel.impl
+    subcomponents
+      THR_FCP: thread thrFlightControlPanel.impl;
+    connections
+      PortGroupConnection1: feature group THR_FCP.FGS_01 <-> FGS_01;
+      PortGroupConnection2: feature group THR_FCP.FGS_02 <-> FGS_02;
+      PortGroupConnection3: feature group iA429_RX_01 <-> THR_FCP.iA429_RX_01;
+      PortGroupConnection4: feature group iA429_RX_02 <-> THR_FCP.iA429_RX_02;
+      PortGroupConnection5: feature  YokesCmd <-> THR_FCP.YokesCmd;
+      PortGroupConnection6: feature ThrottleCmd -> THR_FCP.ThrottleCmd;
+      EventDataConnection1: port THR_FCP.enable -> enable;
+    flows
+    -- the issue is that the flow spec is inherited and points to the features
+    -- in the original component type
+      fYokesToFGS1: flow path YokesCmd -> PortGroupConnection5 -> THR_FCP.fYokesToFGS1
+         -> PortGroupConnection1 -> FGS_01;
+      fYokesToFGS2: flow path YokesCmd -> PortGroupConnection5 -> THR_FCP.fYokesToFGS2
+         -> PortGroupConnection2 -> FGS_02;
+--    properties
+--        Classifier_Matching_Rule => Subset;
+  end prFlightControlPanel.impl;
+  
+  thread thrFlightControlPanel
+    features
+      FGS_01: feature group Sub6::FCP::ICD::FCP_DataPlg; --Integrator::FGS::FCP::ICD::FCP_DataPlg;
+      FGS_02: feature group Sub6::FCP::ICD::FCP_DataPlg; --Integrator::FGS::FCP::ICD::FCP_DataPlg;
+      iA429_RX_01: feature group Sub6::FCP::ICD::FCP_DataPlg;--Integrator::FGS::FCP::ICD::FCP_DataPlg;
+      iA429_RX_02: feature group Sub6::FCP::ICD::FCP_DataPlg;--Integrator::FGS::FCP::ICD::FCP_DataPlg;
+      YokesCmd: in data port  Integrator::FGS::Controls::Yokes_Data;
+      ThrottleCmd: in data port Integrator::FGS::Controls::Throttle_Data;
+      enable: out event data port;
+    flows
+      fYokesToFGS1: flow path YokesCmd -> FGS_01 {
+        Latency => 3 Ms .. 3 Ms;
+        };
+      fYokesToFGS2: flow path YokesCmd -> FGS_02 {
+        Latency => 3 Ms .. 3 Ms;
+        };
+    properties
+      Dispatch_Protocol => Periodic;
+      Deadline => 3 Ms;
+      Period => 5 Ms;
+  end thrFlightControlPanel;
+  
+  thread implementation thrFlightControlPanel.impl
+    flows
+      fYokesToFGS1: flow path YokesCmd -> FGS_01;
+      fYokesToFGS2: flow path YokesCmd -> FGS_02;
+  end thrFlightControlPanel.impl;
+end Sub6::FCP::Impl;

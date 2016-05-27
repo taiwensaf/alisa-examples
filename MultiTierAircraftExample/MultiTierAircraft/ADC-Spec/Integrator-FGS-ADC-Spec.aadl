@@ -1,0 +1,32 @@
+-- An Air Data Computer
+package Integrator::FGS::ADC::Spec
+public
+with Integrator::FGS::ADC::ICD, Integrator::FGS::Busses::ARINC429, Integrator::FGS::Busses::Serial, Physical, SEI;
+with Modeling;
+  -- ADC Physical (blackbox) Specification
+  -- In this case the ADC functionality (i.e. software) implemented by a
+  -- processor inside the blackbox...
+  device AirDataComputer extends fnAirDataFunction
+    features
+      -- Physical Interfaces
+      abus1: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      abus2: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      ADCSerLink: requires bus access Integrator::FGS::Busses::Serial::RS422.impl;
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 7.0 kg;
+  end AirDataComputer;
+   
+  -- ADC Functional Specification
+  abstract fnAirDataFunction
+    features
+      oA429_TX_01: feature group Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      oA429_TX_02: feature group Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      otherADC_A: feature group Integrator::FGS::ADC::ICD::ADC_CrossPlg;
+      otherADC_B: feature group Integrator::FGS::ADC::ICD::ADC_CrossSkt;
+      oA429_TX_To_PFD: feature group Integrator::FGS::ADC::ICD::ADC_To_PFD_Plg;
+  end fnAirDataFunction;
+  
+  abstract implementation fnAirDataFunction.impl
+  end fnAirDataFunction.impl;
+end Integrator::FGS::ADC::Spec;

@@ -1,0 +1,16 @@
+assurance case SAVI for AircraftSystem::AircraftSystem [
+assurance plan SaviDemo for AircraftSystem::AircraftSystem.SubsystemSpec [
+	assure AircraftPlan
+	assure subsystem FGS  
+	assume subsystem HYD APU
+]
+assurance plan AircraftTier2 for IntegratedAircraftSystem::AircraftSystem.SubsystemImpl [
+	assure AircraftPlan
+]
+
+assurance task Tier2SafetyNetworkFocus  [
+	category Quality.NetworkUtilization Quality.Safety 
+]
+
+]
+

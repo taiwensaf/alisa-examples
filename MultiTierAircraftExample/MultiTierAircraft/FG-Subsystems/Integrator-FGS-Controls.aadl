@@ -1,0 +1,84 @@
+--  A bunch of pilot controls package...
+package Integrator::FGS::Controls
+public
+with Integrator::FGS::Busses, Integrator::FGS::SCS, Physical, SEI;
+with Modeling;
+  -- with Integrator::FGS::Busses, Integrator::FGS::SCS;
+  device ControlYokes
+    features
+      Analog: requires bus access Integrator::FGS::Busses::Analog.impl;
+      Discretes: requires bus access Integrator::FGS::Busses::Discrete.impl;
+      cmd: out data port Yokes_Data;
+      cmdDirect: out data port  Integrator::FGS::SCS::SCS_Data;
+    flows
+      fCmdInput: flow source cmd {
+        Latency => 500 Us .. 500 Us;
+        }; 
+      fCmdDInput: flow source cmdDirect {
+        Latency => 21 Us .. 21 Us;
+        };
+    properties
+      Modeling::System_Tier => Tier3;
+  end ControlYokes;
+  
+  device implementation ControlYokes.physical
+    properties
+      SEI::WeightLimit => 10.0 kg;
+  end ControlYokes.physical;
+  
+  device implementation ControlYokes.logical
+  end ControlYokes.logical;
+  
+  device ControlYokesFullSpec extends ControlYokes
+  features
+       cmd: refined to out data port Yokes_Data.impl;
+      cmdDirect: refined to out data port  Integrator::FGS::SCS::SCS_Data.impl;
+  end ControlYokesFullSpec;
+  
+  
+  device ThrottleLever
+    features
+      Analog: requires bus access Integrator::FGS::Busses::Analog.impl;
+      Discretes: requires bus access Integrator::FGS::Busses::Discrete.impl;
+      cmd: out data port ; --Throttle_DataPlg;
+    flows
+      fCmdInput: flow source cmd {
+        Latency => 18 Ms .. 18 Ms;
+        };
+    properties
+      Modeling::System_Tier => Tier3;
+  end ThrottleLever;
+  
+  device implementation ThrottleLever.physical
+    properties
+      SEI::WeightLimit => 5.0 kg;
+  end ThrottleLever.physical;
+  
+  device implementation ThrottleLever.logical
+  end ThrottleLever.logical;
+  
+  device ThrottleLeverFullSpec extends ThrottleLever
+    features
+      cmd: refined to out data port Throttle_Data;
+  end ThrottleLeverFullSpec;
+  
+  data Yokes_Data
+  	end Yokes_Data;
+  	
+  data implementation Yokes_Data.impl
+    subcomponents
+      Pitch: data;
+      Roll: data;
+      Yaw: data;
+      GoAround: data;
+      APEngage: data;
+  end Yokes_Data.impl;
+  
+  data Throttle_Data
+  	
+  end Throttle_Data;
+  data implementation Throttle_Data.impl
+    subcomponents
+      TLA: data;
+  end Throttle_Data.impl;
+ end Integrator::FGS::Controls;

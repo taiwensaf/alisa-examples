@@ -1,0 +1,29 @@
+verification plan PCUVplan for PCU [
+	
+	claim PCU.R1 [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+	claim PCU.R2 [
+		activities
+			powerbudget: Plugins.ElectricalPower()
+	]
+	claim PCU.R3 [
+		activities
+		// TODO verify the spec numbers against the properties
+		// in this case we need to sum up the properties of the CPUs nad memory subcomponents
+			processingcapacity: Plugins.ResourceAnalysis()
+	]
+	claim PCU.R4_1 [
+		activities
+		// TODO verify the spec numbers against the properties
+		// in this case we need to sum up the properties of the CPUs nad memory subcomponents
+			RAMcapacity: Plugins.ResourceAnalysis()
+	]
+	claim PCU.R4_2 [
+		activities
+		// TODO verify the spec numbers against the properties
+		// in this case we need to sum up the properties of the CPUs nad memory subcomponents
+			ROMcapacity: Plugins.ResourceAnalysis()
+	]
+]

@@ -1,0 +1,30 @@
+system requirements RDC : "Requirements for the Remote Data Concentrator subsystem of the Flight Guidance System"
+for Integrator::FGS::RDC::DataConcentrator
+[
+
+	val RDC_MaxWeight = 2.0 kg
+	val RDC_PowerBudget = 200.0 W
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Remote Data Concentrator (RDC) subsystem 
+			shall not exceed " 
+			RDC_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The power needs of the Remote Data Concentrator (RDC) subsystem 
+			shall not exceed " 
+			RDC_PowerBudget
+	]
+
+	requirement R3_1 : "Internal-Computing Self Sufficiency" [
+		description "The software internal to the Remote Data Concentrator (RDC) subsystem 
+			shall not require any computing resources external to the RDC subsystem."
+	]
+
+	requirement R3_2 : "External-Computing Self Sufficiency" [
+		description "The Remote Data Concentrator (RDC) subsystem will not make any 
+			computing resources available externally."
+	]
+
+]

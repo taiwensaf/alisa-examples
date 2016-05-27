@@ -1,0 +1,11 @@
+verification plan RadioVplan for Radio [
+	
+	claim Radio.R1 [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+	claim Radio.R2 [
+		activities
+			powerbudget: Plugins.ElectricalPower()
+	]
+]

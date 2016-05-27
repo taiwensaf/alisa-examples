@@ -1,0 +1,29 @@
+-- A Remote Data Concentrator package...
+package Integrator::FGS::RDC
+public
+with Integrator::FGS::Busses::NetBus, Integrator::FGS::Busses::ARINC429, Physical, SEI;
+with Resources;
+with Modeling;
+
+  system DataConcentrator
+    features
+      netport1: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      netport4: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      a429port4: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      a429port1: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      a429port2: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      netport3: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      netport2: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      a429port3: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+      power: in feature Resources::ElectricalPower 
+      {
+        SEI::PowerBudget => 200.0 W;
+        };
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 2.0 kg;
+  end DataConcentrator;
+  
+  system implementation DataConcentrator.impl
+  end DataConcentrator.impl;
+end Integrator::FGS::RDC;

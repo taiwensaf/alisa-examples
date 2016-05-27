@@ -1,0 +1,19 @@
+verification plan AR429 for AR429 [
+	claim R1 [
+			activities
+//	TODO		capacitySpec  
+//			: Resolute.ConsistentProperty() 
+			bandwidthcapacity //for FlightGuidance::BuildConfiguration::FlightGuidance.bandwidth
+			: Plugins.NetworkUtilizationAnalysis() 
+	]
+	
+]
+
+verification plan NetBus for NetBus [
+	claim R1 [ activities
+//	TODO		capacitySpec  
+//			: Resolute.ConsistentProperty() 
+			bandwidthcapacity  
+			: Plugins.NetworkUtilizationAnalysis() 
+	]
+]

@@ -1,0 +1,58 @@
+system requirements SCS_Servo : "Requirements for the Servo Controller subsystem of the Surface Control System"
+for Integrator::FGS::SCS::SCS
+use constants Globals
+[
+//	val Servo_MaxWeight = SCS.SCS_MaxWeight
+//	val Servo_PowerBudget = SCS.SCS_PowerBudget 
+//	val Servo_ProcessingBudget = SCS.SCS_ProcessingBudget
+//	val Servo_RAMBudget = SCS.SCS_RAMBudget
+//	val Servo_ROMBudget = SCS.SCS_RAMBudget
+	val Servo_FlowPathLatency = 10.0 ms
+	
+	requirement R1 : "Servo Weight Limit" [
+		description "The weight of the Servo Controller System 
+			shall not exceed " 
+			SCS_MaxWeight
+			decomposes SCS.R1
+	]
+
+	requirement R2 : "Servo Power Budget" [
+		description "The power needs of the Servo Controller System 
+			shall not exceed " 
+			SCS_PowerBudget
+			decomposes SCS.R2
+	]
+
+	requirement R3: "Servo Processing Budget" [
+		description "The processing needs of the Servo Controller System 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			SCS_ProcessingBudget
+			decomposes SCS.R3
+	]
+
+	requirement R4_1: "Servo RAM Memory Budget" [
+		description "The RAM memory needs of the Servo Controller System 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			SCS_RAMBudget
+			decomposes SCS.R4_1
+	]
+
+	requirement R4_2: "Servo ROM Memory Budget" [
+		description "The ROM memory needs of the Servo Controller System 
+			shall not exceed " 
+			UtilizationRatio " percent of "
+			SCS_ROMBudget
+			decomposes SCS.R4_2
+	]
+
+	requirement R5 : "Servo Flow Path Latency" [
+		description "The transit time through the Servo Controller System 
+			for the flow path from the autopilot system to the flight surfaces 
+			shall not exceed " 
+			Servo_FlowPathLatency
+			decomposes SCS.R5
+	]
+
+]

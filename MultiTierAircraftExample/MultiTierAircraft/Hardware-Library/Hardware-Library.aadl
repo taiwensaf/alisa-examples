@@ -1,0 +1,118 @@
+-- A library of reusable hardware (mechanical and electronic)
+-- parts
+-- 
+package Hardware::Library
+public
+with Hardware::Library, SEI;
+  processor PowerPC
+    features
+      backplane: requires bus access VME.impl;
+      P5V: requires bus access PowerRail.impl {
+        SEI::PowerBudget => 35.0 W;
+        };
+    properties none ;
+  end PowerPC;
+  
+  processor implementation PowerPC.PPC705
+    properties
+      --    Cheddar_Properties::Scheduler_Quantum => 2 Ms;
+      --    Cheddar_Properties::Preemptive_Scheduler => true;
+      --    Scheduling_Protocol => RMS;
+      --    Cheddar_Properties::Scheduling_Protocol => RMS;
+      SEI::MIPSCapacity => 66.0 MIPS;
+  end PowerPC.PPC705;
+  
+  memory Memry
+    features
+      backplane: requires bus access VME.impl;
+      P5V: requires bus access PowerRail.impl {
+        SEI::PowerBudget => 5.0 W;
+        };
+  end Memry;
+  
+  memory implementation Memry.sysmem
+    properties
+      SEI::RAMCapacity => 16.0 MByte;
+      SEI::ROMCapacity => 4.0 MByte;
+  end Memry.sysmem;
+  
+  bus VME
+    properties
+      SEI::BandWidthCapacity => 80.0 MBytesps;
+  end VME;
+  
+  bus implementation VME.impl
+  end VME.impl;
+  
+  -- So that weight summations can be made you can add
+  -- instances of this "device" type to your implementation
+  -- and use the weight property.
+  device Chassis
+    properties none ;
+  end Chassis;
+  
+  device ARINC600_Chassis
+    extends Chassis
+  end ARINC600_Chassis;
+  
+  device implementation ARINC600_Chassis.MCU_2
+    properties
+      SEI::NetWeight => 0.5 kg;
+  end ARINC600_Chassis.MCU_2;
+  
+  device implementation ARINC600_Chassis.MCU_3
+    properties
+      SEI::NetWeight => 0.6 kg;
+  end ARINC600_Chassis.MCU_3;
+  
+  device implementation ARINC600_Chassis.MCU_4
+    properties
+      SEI::NetWeight => 0.7 kg;
+  end ARINC600_Chassis.MCU_4;
+  
+  -- Implementations of this will have differing weights and power capacities.
+  device PSU
+    features
+      BusA28v: requires bus access;
+  end PSU;
+  
+  -- 50W psu variant.
+  device PSU50W
+    extends PSU
+    features
+      P5V: requires bus access PowerRail.impl {
+        SEI::PowerSupply => 50.0 W;
+        -- Assumes 90% efficiency (i.e. 50W PSU consumes 5W)
+        SEI::PowerBudget => 5.0 W;
+        };
+  end PSU50W;
+  
+  -- 100W psu variant
+  device PSU100W
+    extends PSU
+    features
+      P5V: requires bus access PowerRail.impl {
+        SEI::PowerSupply => 100.0 W;
+        -- Assumes 90% efficiency (i.e. 100W PSU consumes 10W)
+        SEI::PowerBudget => 10.0 W;
+        };
+  end PSU100W;
+  
+  device implementation PSU50W.impl
+    properties
+      SEI::NetWeight => 2.0 kg;
+  end PSU50W.impl;
+  
+  device implementation PSU100W.impl
+    properties
+      SEI::NetWeight => 2.5 kg;
+  end PSU100W.impl;
+  
+  bus PowerRail
+    properties
+      SEI::BandWidthCapacity => 1.0 KBytesps;
+  end PowerRail;
+  
+  bus implementation PowerRail.impl
+  end PowerRail.impl;
+end Hardware::Library;

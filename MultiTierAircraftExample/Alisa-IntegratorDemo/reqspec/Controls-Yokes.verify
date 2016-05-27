@@ -1,0 +1,18 @@
+verification plan CYVplan for ControlsYokes [
+	
+	claim ControlsYokes.R1 [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+
+	claim ControlsYokes.R2 [
+		activities
+			flowsource1: Plugins.FlowLatencyAnalysis()
+	]
+
+	claim ControlsYokes.R3 [
+		activities
+			flowsource: Plugins.FlowLatencyAnalysis()
+	]
+
+]

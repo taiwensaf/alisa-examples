@@ -1,0 +1,38 @@
+system requirements PCU : "Requirements for the Processor Card of the Flight Guidance System"
+for Integrator::FGS::PCU::ProcessorCard
+[
+
+	val PCU_ProcessingCapacity = 200.0 MIPS
+	val PCU_RAMCapacity = 512.0 MByte
+	val PCU_ROMCapacity = 1024.0 MByte 
+	val PCU_MaxWeight = 1.0 kg
+	val PCU_PowerBudget = 65.0 W
+		
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Processor Card 
+			shall not exceed "
+			PCU_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The power needs of the Processor Card 
+			shall not exceed " 
+			PCU_PowerBudget
+	]
+
+	requirement R3: "PCU Processing Capacity" [
+		description "The Processor Card shall be capable of processing at least " 
+			PCU_ProcessingCapacity
+	]
+
+	requirement R4_1: "PCU RAM Capacity" [
+		description "The Processor Card shall provide at least " 
+			PCU_RAMCapacity
+	]
+
+	requirement R4_2: "PCU ROM Capacity" [
+		description "The Processor Card shall provide at least " 
+			PCU_ROMCapacity
+	]
+
+]

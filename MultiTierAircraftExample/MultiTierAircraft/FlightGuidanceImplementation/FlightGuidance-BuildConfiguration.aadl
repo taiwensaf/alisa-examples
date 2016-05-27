@@ -1,0 +1,165 @@
+package FlightGuidance::BuildConfiguration
+public
+with AircraftSubsystems, Integrator::FGS::SCS, Integrator::FGS::Displays::CDU, Integrator::FGS::AHRS, Integrator::FGS::ADC::Spec, Integrator::FGS::Radio::NavRadio, Sub7::AP::Impl, Sub5::FMS::Impl, Sub1::FGS::Impl, Sub6::FCP::Impl, Integrator::FGS::PCU, Integrator::FGS::NSW, Integrator::FGS::RDC, Integrator::FGS::FCP::Spec, Integrator::FGS::Displays::MDP, Sub4::ADC::Impl, Integrator::FGS::Radio, Integrator::FGS::Controls, Integrator::FGS::Busses::NetBus, Integrator::FGS::Busses::ARINC429, Integrator::FGS::Busses, Integrator::FGS::Busses::Serial, FlightGuidance::BuildConfiguration, Sub4::ADC::Spec, SEI;
+	with FlightGuidance;
+  -- This declaration makes the Flight Guidance specification visible in this package
+  -- If necessary, the implementor of Flight Guidance may add features and then negotiate
+  -- the additions with the system architect who is responsible for the AircraftSystem
+  -- and the specifications of the major subsystems
+FlightGuidance renames system FlightGuidance::FlightGuidance;
+FlightGuidanceSW renames system FlightGuidance::FlightGuidanceSW;
+  
+  -- a FlightGuidance configuration based on subsystem realisations from subcontractors.
+  --                                                   ~~~~~~~~~~~~
+  -- This allows the system (tier 2) level analyses to be run ON THE PROPOSED BUILD...
+ 
+
+
+  -- a FlightGuidance configuration based on subsystem implementation from subcontractors
+  system implementation FlightGuidanceSW.subsystemimpl
+    extends FlightGuidance::FlightGuidanceSW.embeddedsoftware
+    subcomponents
+
+      PR_SERVO_AIL: refined to process Integrator::FGS::SCS::prServo.impl;
+      PR_SERVO_ELEV: refined to process Integrator::FGS::SCS::prServo.impl;
+      PR_PFD_L: refined to process Integrator::FGS::Displays::CDU::prPFD.impl;
+      PR_PFD_R: refined to process Integrator::FGS::Displays::CDU::prPFD.impl;
+      PR_DCP_L: refined to process Integrator::FGS::Displays::CDU::prDCP.impl;
+      PR_DCP_R: refined to process Integrator::FGS::Displays::CDU::prDCP.impl;
+      PR_AHRS_L: refined to process Integrator::FGS::AHRS::prAHRS.impl;
+      PR_AHRS_R: refined to process Integrator::FGS::AHRS::prAHRS.impl;
+      PR_NAV_RADIO_1: refined to process Integrator::FGS::Radio::NavRadio::prNavRadio.impl;
+      PR_NAV_RADIO_2: refined to process Integrator::FGS::Radio::NavRadio::prNavRadio.impl;
+
+      PR_ADC_L: refined to process Sub4::ADC::Spec::prAirDataFunction.impl;
+      PR_ADC_R: refined to process Sub4::ADC::Spec::prAirDataFunction.impl;
+
+      PR_AP_L: refined to process Sub7::AP::Impl::prAutoPilot.impl;
+      PR_AP_R: refined to process Sub7::AP::Impl::prAutoPilot.impl;
+
+      PR_FMS_1: refined to process Sub5::FMS::Impl::prFlightManager.PIO;
+      PR_FMS_2: refined to process Sub5::FMS::Impl::prFlightManager.PIO;
+      PR_FGS_L1: refined to process Sub1::FGS::Impl::prFlightGuidance.impl;
+      PR_FGS_R1: refined to process Sub1::FGS::Impl::prFlightGuidance.impl;
+      PR_FCP: refined to process Sub6::FCP::Impl::prFlightControlPanel.impl;
+  end FlightGuidanceSW.subsystemimpl;
+   
+-- configuration that permits checking of matching measurement units and mapping into ARINC429  
+  system implementation FlightGuidance.selfcontainedsubsystemimpl extends FlightGuidance::FlightGuidance.SelfcontainedSWSubsystem
+  	subcomponents 
+  		FGSWSystem: refined to system FlightGuidanceSW.subsystemimpl;
+  	properties
+      Allowed_Processor_Binding => ( reference( FGHWPlatform.CPU_3.cpu ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
+      Allowed_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
+      Allowed_Processor_Binding => ( reference( FGHWPlatform.CPU_3.cpu ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
+  end FlightGuidance.selfcontainedsubsystemimpl;
+  
+--  -- a FlightGuidance configuration based on subsystem implementation from subcontractors
+--  system implementation FlightGuidance.subsystemimpl
+--    extends FlightGuidance::FlightGuidance.subsystems
+--    subcomponents
+--
+--      PR_SERVO_AIL: refined to process Integrator::FGS::SCS::prServo.impl;
+--      PR_SERVO_ELEV: refined to process Integrator::FGS::SCS::prServo.impl;
+--      PR_PFD_L: refined to process Integrator::FGS::Displays::CDU::prPFD.impl;
+--      PR_PFD_R: refined to process Integrator::FGS::Displays::CDU::prPFD.impl;
+--      PR_DCP_L: refined to process Integrator::FGS::Displays::CDU::prDCP.impl;
+--      PR_DCP_R: refined to process Integrator::FGS::Displays::CDU::prDCP.impl;
+--      PR_AHRS_L: refined to process Integrator::FGS::AHRS::prAHRS.impl;
+--      PR_AHRS_R: refined to process Integrator::FGS::AHRS::prAHRS.impl;
+--      PR_NAV_RADIO_1: refined to process Integrator::FGS::Radio::NavRadio::prNavRadio.impl;
+--      PR_NAV_RADIO_2: refined to process Integrator::FGS::Radio::NavRadio::prNavRadio.impl;
+--
+--      PR_ADC_L: refined to process Sub4::ADC::Spec::prAirDataFunction.impl;
+--      PR_ADC_R: refined to process Sub4::ADC::Spec::prAirDataFunction.impl;
+--
+--      PR_AP_L: refined to process Sub7::AP::Impl::prAutoPilot.impl;
+--      PR_AP_R: refined to process Sub7::AP::Impl::prAutoPilot.impl;
+--
+--      PR_FMS_1: refined to process Sub5::FMS::Impl::prFlightManager.PIO;
+--      PR_FMS_2: refined to process Sub5::FMS::Impl::prFlightManager.PIO;
+--      PR_FGS_L1: refined to process Sub1::FGS::Impl::prFlightGuidance.impl;
+--      PR_FGS_R1: refined to process Sub1::FGS::Impl::prFlightGuidance.impl;
+--      PR_FCP: refined to process Sub6::FCP::Impl::prFlightControlPanel.impl;
+--  	properties
+--      Allowed_Processor_Binding => ( reference( CPU_3.cpu ) ) applies to PR_FGS_R1.THR_FGSMain;
+--      Allowed_Processor_Binding => ( reference( CPU_1.cpu ) ) applies to PR_AP_L.THR_AP;
+--      Allowed_Processor_Binding => ( reference( CPU_3.cpu ) ) applies to PR_AP_R.THR_AP;
+--  end FlightGuidance.subsystemimpl;
+--    
+--  system implementation FlightGuidance.bandwidth
+--    extends FlightGuidance.subsystemimpl
+--    properties
+--      Actual_Processor_Binding => ( reference( CPU_1.cpu ) ) applies to PR_AP_L.THR_AP;
+--      Actual_Processor_Binding => ( reference( CPU_2.cpu ) ) applies to PR_AP_R.THR_AP;
+--      Actual_Processor_Binding => ( reference( CPU_2.cpu ) ) applies to PR_FGS_L1.THR_FGSMain;
+--      Actual_Processor_Binding => ( reference( CPU_3.cpu ) ) applies to PR_FGS_R1.THR_FGSMain;
+--      Actual_Processor_Binding => ( reference( CPU_1.cpu ) ) applies to PR_FMS_1.NSP;
+--      Actual_Processor_Binding => ( reference( CPU_1.cpu ) ) applies to PR_FMS_1.INav;
+--      Actual_Processor_Binding => ( reference( CPU_3.cpu ) ) applies to PR_FMS_1.GP;
+--      Actual_Processor_Binding => ( reference( CPU_1.cpu ) ) applies to PR_FMS_1.FPP;
+--      Actual_Processor_Binding => ( reference( CPU_1.cpu ) ) applies to PR_FMS_1.APC;
+--      Actual_Processor_Binding => ( reference( CPU_1.cpu ) ) applies to PR_FMS_1.PerIO;
+--      Actual_Processor_Binding => ( reference( CPU_3.cpu ) ) applies to PR_FMS_2.NSP;
+--      Actual_Processor_Binding => ( reference( CPU_2.cpu ) ) applies to PR_FMS_2.INav;
+--      Actual_Processor_Binding => ( reference( CPU_2.cpu ) ) applies to PR_FMS_2.GP;
+--      Actual_Processor_Binding => ( reference( CPU_2.cpu ) ) applies to PR_FMS_2.FPP;
+--      Actual_Processor_Binding => ( reference( CPU_3.cpu ) ) applies to PR_FMS_2.APC;
+--      Actual_Processor_Binding => ( reference( CPU_3.cpu ) ) applies to PR_FMS_2.PerIO;
+--      Actual_Memory_Binding => ( reference( CPU_1.cpu.mem ) ) applies to PR_AP_L.THR_AP;
+--      Actual_Memory_Binding => ( reference( CPU_2.cpu.mem ) ) applies to PR_AP_R.THR_AP;
+--      Actual_Memory_Binding => ( reference( CPU_2.cpu.mem ) ) applies to PR_FGS_L1.THR_FGSMain;
+--      Actual_Memory_Binding => ( reference( CPU_3.cpu.mem ) ) applies to PR_FGS_R1.THR_FGSMain;
+--      Actual_Memory_Binding => ( reference( CPU_1.cpu.mem ) ) applies to PR_FMS_1.NSP;
+--      Actual_Memory_Binding => ( reference( CPU_1.cpu.mem ) ) applies to PR_FMS_1.INav;
+--      Actual_Memory_Binding => ( reference( CPU_3.cpu.mem ) ) applies to PR_FMS_1.GP;
+--      Actual_Memory_Binding => ( reference( CPU_1.cpu.mem ) ) applies to PR_FMS_1.FPP;
+--      Actual_Memory_Binding => ( reference( CPU_1.cpu.mem ) ) applies to PR_FMS_1.APC;
+--      Actual_Memory_Binding => ( reference( CPU_1.cpu.mem ) ) applies to PR_FMS_1.PerIO;
+--      Actual_Memory_Binding => ( reference( CPU_3.cpu.mem ) ) applies to PR_FMS_2.NSP;
+--      Actual_Memory_Binding => ( reference( CPU_2.cpu.mem ) ) applies to PR_FMS_2.INav;
+--      Actual_Memory_Binding => ( reference( CPU_2.cpu.mem ) ) applies to PR_FMS_2.GP;
+--      Actual_Memory_Binding => ( reference( CPU_2.cpu.mem ) ) applies to PR_FMS_2.FPP;
+--      Actual_Memory_Binding => ( reference( CPU_3.cpu.mem ) ) applies to PR_FMS_2.APC;
+--      
+--      Actual_Memory_Binding => ( reference( CPU_3.cpu.mem ) ) applies to PR_FMS_2.PerIO;
+--      Actual_Connection_Binding => ( reference( ADCSerialLink ) ) applies to FGConnection1;
+--      Actual_Connection_Binding => ( reference( ADCSerialLink ) ) applies to FGConnection2;
+--      Actual_Connection_Binding => ( reference( ar429_9 ) ,  reference( ar429_10 ) ) applies to FGConnection5;
+--      Actual_Connection_Binding => ( reference( ar429_9 ) ,  reference( ar429_10 ) ) applies to FGConnection6;
+--      Actual_Connection_Binding => ( reference( net_1 ) ,  reference( net_4 ) ,  reference( net_2 ) ,  reference( net_3 ) ) applies to FGConnection7;
+--      Actual_Connection_Binding => ( reference( net_1 ) ,  reference( net_4 ) ,  reference( net_2 ) ,  reference( net_3 ) ) applies to FGConnection8;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_9 ) ,  reference( ar429_3 ) ,  reference( net_3 ) ,  reference( net_8 ) ,  reference( ar429_4 ) ) applies to FGConnection9;
+--      Actual_Connection_Binding => ( reference( net_1 ) ,  reference( net_9 ) ,  reference( ar429_3 ) ,  reference( net_2 ) ,  reference( net_8 ) ,  reference( ar429_4 ) ) applies to FGConnection10;
+--      Actual_Connection_Binding => ( reference( net_1 ) ,  reference( net_9 ) ,  reference( ar429_3 ) ,  reference( net_2 ) ,  reference( net_8 ) ,  reference( ar429_4 ) ) applies to FGConnection11;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_9 ) ,  reference( ar429_3 ) ,  reference( net_3 ) ,  reference( net_8 ) ,  reference( ar429_4 ) ) applies to FGConnection12;
+--      Actual_Connection_Binding => ( reference( net_1 ) ,  reference( net_4 ) ,  reference( net_2 ) ,  reference( net_3 ) ) applies to FGConnection13;
+--      Actual_Connection_Binding => ( reference( net_1 ) ,  reference( net_4 ) ,  reference( net_2 ) ,  reference( net_3 ) ) applies to FGConnection14;
+--      Actual_Connection_Binding => ( reference( net_13 ) ,  reference( net_1 ) ,  reference( net_15 ) ,  reference( net_2 ) ) applies to FGConnection15;
+--      Actual_Connection_Binding => ( reference( net_13 ) ,  reference( net_1 ) ,  reference( net_15 ) ,  reference( net_2 ) ) applies to FGConnection16;
+--      Actual_Connection_Binding => ( reference( net_14 ) ,  reference( net_4 ) ,  reference( net_11 ) ,  reference( net_3 ) ) applies to FGConnection17;
+--      Actual_Connection_Binding => ( reference( net_14 ) ,  reference( net_4 ) ,  reference( net_11 ) ,  reference( net_3 ) ) applies to FGConnection18;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_6 ) ,  reference( net_3 ) ,  reference( net_5 ) ) applies to FGConnection19;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_6 ) ,  reference( net_3 ) ,  reference( net_5 ) ) applies to FGConnection20;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_4 ) ,  reference( net_3 ) ,  reference( net_3 ) ) applies to FGConnection21;
+--      Actual_Connection_Binding => ( reference( net_1 ) ,  reference( net_6 ) ,  reference( net_2 ) ,  reference( net_5 ) ) applies to FGConnection22;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_1 ) ,  reference( net_3 ) ,  reference( net_2 ) ) applies to FGConnection23;
+--      Actual_Connection_Binding => ( reference( net_6 ) ,  reference( net_4 ) ,  reference( net_5 ) ,  reference( net_3 ) ) applies to FGConnection24;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_9 ) ,  reference( ar429_5 ) ,  reference( net_3 ) ,  reference( net_10 ) ) applies to FGConnection25;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_9 ) ,  reference( ar429_6 ) ,  reference( net_3 ) ,  reference( net_10 ) ) applies to FGConnection26;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_16 ) ,  reference( ar429_9 ) ,  reference( net_3 ) ,  reference( net_12 ) ) applies to FGConnection27;
+--      Actual_Connection_Binding => ( reference( net_4 ) ,  reference( net_1 ) ,  reference( net_3 ) ,  reference( net_2 ) ) applies to FGConnection28;
+--      Actual_Connection_Binding => ( reference( net_6 ) ,  reference( net_7 ) ,  reference( ar429_7 ) ,  reference( net_5 ) ,  reference( net_8 ) ) applies to FGConnection29;
+--      Actual_Connection_Binding => ( reference( net_6 ) ,  reference( net_7 ) ,  reference( ar429_8 ) ,  reference( net_5 ) ,  reference( net_8 ) ) applies to FGConnection30;
+--      Actual_Connection_Binding => ( reference( net_6 ) ,  reference( net_16 ) ,  reference( ar429_10 ) ,  reference( net_5 ) ,  reference( net_12 ) ) applies to FGConnection31;
+--      Actual_Connection_Binding => ( reference( net_6 ) ,  reference( net_4 ) ,  reference( net_5 ) ,  reference( net_3 ) ) applies to FGConnection32;
+--      Actual_Connection_Binding => ( reference( net_16 ) ,  reference( net_4 ) ,  reference( net_12 ) ,  reference( net_3 ) ) applies to FGConnection33;
+--      Actual_Connection_Binding => ( reference( net_16 ) ,  reference( net_6 ) ,  reference( net_12 ) ,  reference( net_5 ) ) applies to FGConnection34;
+--      Actual_Connection_Binding => ( reference( pilot_ctrls ) ) applies to FGConnection35;
+--      Actual_Connection_Binding => ( reference( pilot_ctrls ) ) applies to FGConnection36;
+--      Actual_Connection_Binding => ( reference( ail_ctrls ) ) applies to FGConnection37;
+--      Actual_Connection_Binding => ( reference( elev_ctrls ) ) applies to FGConnection38;
+--  end FlightGuidance.bandwidth;
+  
+   
+end FlightGuidance::BuildConfiguration;

@@ -1,0 +1,15 @@
+-- A busses package...
+package Integrator::FGS::Busses::Serial
+public
+with SEI;
+  bus RS422
+    properties
+      SEI::BandWidthCapacity => 1.0 MBytesps;
+        SEI::WeightLimit => 0.5 kg;
+        SEI::NetWeight => 0.4 kg;
+  end RS422;
+  
+  bus implementation RS422.impl
+  end RS422.impl;
+end Integrator::FGS::Busses::Serial;
+ 

@@ -1,0 +1,29 @@
+-- A network switch package...
+package Integrator::FGS::NSW
+public
+with Integrator::FGS::Busses::NetBus, Physical, SEI, Resources;
+with Modeling;
+  system NetworkSwitch
+    features
+      port1: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port2: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port3: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port4: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port5: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port6: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port7: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port8: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port9: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      port10: requires bus access Integrator::FGS::Busses::NetBus::NetBus.impl;
+      power: in data port Resources::ElectricalPower 
+      {
+        SEI::PowerBudget => 150.0 W;
+        };
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 2.0 kg;
+  end NetworkSwitch;
+  
+  system implementation NetworkSwitch.impl
+  end NetworkSwitch.impl;
+end Integrator::FGS::NSW;

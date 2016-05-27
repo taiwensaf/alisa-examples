@@ -1,0 +1,34 @@
+system requirements FGS : "Requirements for the FG Subsystem of the Flight Guidance System"
+for Integrator::FGS::FGS::Spec::prFlightGuidance
+use constants Globals
+[
+val FGS_ProcessingBudget = 200.0 MIPS
+val FGS_RAMBudget = 3.0 MByte
+val FGS_ROMBudget = 30.0 MByte
+val FGS_FlowPathLatency =  3.0 ms
+
+	requirement R1: "Processing Budget" [
+		description "The processing needs of the FG subsystem 
+			shall not exceed "
+			UtilizationRatio " percent of "
+			FGS_ProcessingBudget
+	]
+	requirement R2_1: "RAM Memory Budget" [
+		description "The RAM memory needs of the FG subsystem 
+			shall not exceed "
+			UtilizationRatio " percent of "
+			FGS_RAMBudget
+	]
+	requirement R2_2: "ROM Memory Budget" [
+		description "The ROM memory needs of the FG subsystem 
+			shall not exceed "
+			UtilizationRatio " percent of "
+			FGS_ROMBudget
+	]
+	requirement R3: "Flow Path Latency" [
+		description "The transit time through the FG subsystem for the flow paths 
+			from the Flight Controls Panel subsystem to the Autopilots 
+			shall not exceed "
+			FGS_FlowPathLatency
+	]
+]

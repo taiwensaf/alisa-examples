@@ -1,0 +1,16 @@
+verification plan AircraftPlan for Aircraft
+ [
+
+	claim Aircraft.R1 [
+		activities
+
+		// conduct mass analysis on the top two levels of the aircraft system (tiers 0 and 1)
+			weightlimit :	Plugins.MassAnalysis() [category Layer.Tier1]
+				
+		// conduct mass analysis on the top three levels of the aircraft system (tiers 0, 1, and 2)
+			weightlimit2 : Plugins.MassAnalysis() [category Layer.Tier2 ]
+
+			consistency: AircraftExampleRegistry.ConsistentElectricalCapacity(30.0)
+	]
+
+]

@@ -1,0 +1,19 @@
+assurance case FlightGuidance for FlightGuidance::FlightGuidance [
+assurance plan FlightGuidanceT2 for FlightGuidance::FlightGuidance.subsystems  [
+	assure  FGplan FGIplan
+]
+
+assurance plan FlightguidanceT3 for FlightGuidance::SubsystemSpec::FlightGuidance.subcontractorsubsystems 
+[
+	assure  FGIplan FGplan
+]
+assurance plan FlightguidanceTb for FlightGuidance::BuildConfiguration::FlightGuidance.bandwidth 
+[
+	assure  FGplan FGIplan
+]
+ 
+assurance task mynetwork  [
+	category Quality.NetworkUtilization
+]
+
+]

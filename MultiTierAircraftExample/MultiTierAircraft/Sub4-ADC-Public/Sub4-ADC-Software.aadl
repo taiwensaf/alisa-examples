@@ -1,0 +1,162 @@
+-- The Air Data Computer software components.
+-- 
+package Sub4::ADC::Software
+public
+with Hardware::Library,Integrator::FGS::ADC::Spec, Integrator::FGS::ADC::ICD, Sub4::DataDictionary, SEI;
+  -- Process prAirDataDetails implements the ADC blackbox spec. function
+  -- "prAirDataFunction".
+  -- The functionality is then addressed in the threads
+  process prAirDataDetails
+    extends Integrator::FGS::ADC::Spec::fnAirDataFunction
+    features
+      Po: in data port Sub4::DataDictionary::ScaledInteger {
+        SEI::Data_Rate => 5.0 perSecond;
+        };
+      Ptot: in data port Sub4::DataDictionary::ScaledInteger;
+      Tstc: in data port Sub4::DataDictionary::ScaledInteger;
+    flows
+      PoToAlt: flow path Po -> oA429_TX_01;
+    properties none ;
+  end prAirDataDetails;
+  
+  process implementation prAirDataDetails.ProcessImpl
+    subcomponents
+      Main: thread thrMain.impl {
+        Compute_Entrypoint_Source_Text => "ComputeAirData";
+        Priority => 1;
+        };
+      BusPoller: thread thrA429Poller.impl {
+        Compute_Entrypoint_Source_Text => "PollBus";
+        Priority => 10;
+        };
+      Monitor: thread thrMonitor.impl {
+        Compute_Entrypoint_Source_Text => "CrossCompare";
+        Priority => 5;
+        };
+    connections
+      PortGroupConnection1: feature group Main.oA429_TX_01 <-> oA429_TX_01;
+      PortGroupConnection2: feature group Main.oA429_TX_02 <-> oA429_TX_02;
+      PortGroupConnection3: feature group Main.otherADCOut <-> otherADC_A;
+      PortGroupConnection4: feature group otherADC_B <-> BusPoller.otherADCIn;
+      DataConnection1: port BusPoller.ALT -> Monitor.ALT2 {
+        Timing => Immediate;
+        };
+      DataConnection2: port BusPoller.MN -> Monitor.MN2 {
+        Timing => Immediate;
+        };
+      DataConnection3: port BusPoller.TAT -> Monitor.TAT2 {
+        Timing => Immediate;
+        };
+      DataConnection4: port Main.ALT -> Monitor.ALT1 {
+        Timing => Immediate;
+        };
+      DataConnection5: port Main.MN -> Monitor.MN1 {
+        Timing => Immediate;
+        };
+      DataConnection6: port Main.TAT -> Monitor.TAT1 {
+        Timing => Immediate;
+        };
+      EventDataConnection1: port Monitor.CompareError -> Main.CompareError {
+        Timing => Immediate;
+        };
+      DataConnection7: port Po -> Main.Po {
+        Timing => Immediate;
+        };
+      DataConnection8: port Ptot -> Main.Ptot {
+        Timing => Immediate;
+        };
+      DataConnection9: port Tstc -> Main.Tstc {
+        Timing => Immediate;
+        };
+    flows
+      PoToAlt: flow path Po -> DataConnection7 -> Main.Computeme
+         -> DataConnection4 -> Monitor.Validate
+         -> EventDataConnection1 -> Main.Enable
+         -> PortGroupConnection1 -> oA429_TX_01;
+  end prAirDataDetails.ProcessImpl;
+  
+  thread thrMain
+    features
+      oA429_TX_01: feature group Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      oA429_TX_02: feature group Integrator::FGS::ADC::ICD::ADC_DataPlg;
+      otherADCOut: feature group Integrator::FGS::ADC::ICD::ADC_CrossPlg;
+      ALT: out data port Sub4::DataDictionary::ScaledInteger;
+      MN: out data port Sub4::DataDictionary::ScaledInteger;
+      TAT: out data port Sub4::DataDictionary::ScaledInteger;
+      CompareError: in data port Sub4::DataDictionary::FaultCondition;
+      Po: in data port Sub4::DataDictionary::ScaledInteger;
+      Ptot: in data port Sub4::DataDictionary::ScaledInteger;
+      Tstc: in data port Sub4::DataDictionary::ScaledInteger;
+    flows
+      Computeme: flow path Po -> ALT;
+      Enable: flow path CompareError -> oA429_TX_01;
+    properties
+      SEI::RAMBudget => 5.0 KByte;
+      SEI::ROMBudget => 1.0 MByte;
+      Dispatch_Protocol => Periodic;
+      Period => 200 Ms;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+      Priority => 1;
+      SEI::MIPSBudget => 30.0 MIPS;
+      Compute_Execution_Time => 50 Ms .. 80 Ms;
+  end thrMain;
+  
+  thread implementation thrMain.impl
+    flows
+      Computeme: flow path Po -> ALT {
+          Latency => 80 Ms .. 80 Ms;
+          };
+      Enable: flow path CompareError -> oA429_TX_01 {
+          Latency => 80 Ms .. 80 Ms;
+          };
+  end thrMain.impl;
+  
+  thread thrA429Poller
+    features
+      otherADCIn: feature group Integrator::FGS::ADC::ICD::ADC_CrossSkt;
+      ALT: out data port Sub4::DataDictionary::ScaledInteger;
+      MN: out data port Sub4::DataDictionary::ScaledInteger;
+      TAT: out data port Sub4::DataDictionary::ScaledInteger;
+    properties
+      SEI::RAMBudget => 0.5 KByte;
+      SEI::ROMBudget => 5.0 KByte;
+      Dispatch_Protocol => Periodic;
+      Period => 100 Ms;
+      Compute_Execution_Time => 13 Us .. 15 Us;
+      SEI::MIPSBudget => 10.0 KIPS;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+      Priority => 1;
+  end thrA429Poller;
+  
+  thread implementation thrA429Poller.impl
+  end thrA429Poller.impl;
+  
+  thread thrMonitor
+    features
+      ALT1: in data port Sub4::DataDictionary::ScaledInteger;
+      MN1: in data port Sub4::DataDictionary::ScaledInteger;
+      TAT1: in data port Sub4::DataDictionary::ScaledInteger;
+      ALT2: in data port Sub4::DataDictionary::ScaledInteger;
+      MN2: in data port Sub4::DataDictionary::ScaledInteger;
+      TAT2: in data port Sub4::DataDictionary::ScaledInteger;
+      CompareError: out data port Sub4::DataDictionary::FaultCondition;
+    flows
+      Validate: flow path ALT1 -> CompareError;
+    properties
+      SEI::MIPSBudget => 5.0 MIPS;
+      SEI::RAMBudget => 10.0 KByte;
+      SEI::ROMBudget => 25.0 KByte;
+      Dispatch_Protocol => Periodic;
+      Period => 100 Ms;
+      Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
+      Priority => 1;
+      Compute_Execution_Time => 4 Ms .. 5 Ms;
+  end thrMonitor;
+  
+  thread implementation thrMonitor.impl
+    flows
+      Validate: flow path ALT1 -> CompareError {
+          Latency => 5 Ms .. 5 Ms;
+          };
+  end thrMonitor.impl;
+end Sub4::ADC::Software;

@@ -1,0 +1,27 @@
+verification methods AircraftExampleRegistry [
+	
+	method ElectricalPowerSelfSufficiency: "Verify that a component is electrical power self sufficient" [
+		java vmlibrary.AircraftConsistency.electricalPowerSelfSufficiency
+		description "Verify that a component takes care of its own electrical power."
+	]
+	method CPUSelfSufficiency: "Verify that a component takes care of its own CPU needs" [
+		java vmlibrary.AircraftConsistency.CPUSelfSufficiency
+		description "Verify that a component does not require external CPU resources and does not provide external CPU resources."
+	]
+
+	method NoExternalCPUDemand: "Verify that a component takes care of its own CPU needs" [
+		java vmlibrary.AircraftConsistency.hasNoExternalCPUDemand
+		description "Verify that a component does not require external CPU resources."
+	]
+
+	method NoCPUCapacityForOthers: "Verify that a component has by CPU external use" [
+		java vmlibrary.AircraftConsistency.providesNoCPUExternally
+		description "Verify that a component does not does not provide external CPU resources."
+	]
+	method ConsistentElectricalCapacity (capacity: real) boolean 
+	:"Ensure capacity is recorded as PowerCapacity property with value" [
+		java vmlibrary.AircraftConsistency.consistentElectricalCapacity(double capacity)
+		description "Verify that the PowerCapacity property has the same value as specified in the requirement"
+	]
+
+]

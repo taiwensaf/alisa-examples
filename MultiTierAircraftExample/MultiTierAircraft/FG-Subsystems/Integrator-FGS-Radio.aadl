@@ -1,0 +1,17 @@
+-- A generic radios package...
+package Integrator::FGS::Radio
+public
+with Integrator::FGS::Busses::ARINC429, Physical, SEI;
+with Modeling;
+
+  device Radio
+    features
+      aout: requires bus access Integrator::FGS::Busses::ARINC429::AR429.impl;
+    properties
+      Modeling::System_Tier => Tier3;
+      SEI::WeightLimit => 1.5 kg;
+  end Radio;
+  
+  device implementation Radio.impl
+  end Radio.impl;
+end Integrator::FGS::Radio;

@@ -1,0 +1,30 @@
+system requirements Supplier1.ADC : "Requirements for the Air Data Computer (ADC) subsystem of the Flight Guidance System"
+for Integrator::FGS::ADC::Spec::AirDataComputer
+[
+
+	val ADC_MaxWeight = 7.0 kg
+	val ADC_PowerBudget = 1.5 W
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Air Data Computer (ADC) subsystem 
+			shall not exceed " 
+			ADC_MaxWeight
+	]
+
+	requirement R2 : "Power Budget" [
+		description "The power needs of the Air Data Computer (ADC) subsystem 
+			shall not exceed " 
+			ADC_PowerBudget
+	]
+
+	requirement R3_1 : "Internal-Computing Self Sufficiency" [
+		description "The software internal to the Air Data Computer (ADC) subsystem 
+			shall not require any computing resources external to the ADC."
+	]
+
+	requirement R3_2 : "External-Computing Self Sufficiency" [
+		description "The Air Data Computer (ADC) will not make any 
+			computing resources available externally."
+	]
+
+]

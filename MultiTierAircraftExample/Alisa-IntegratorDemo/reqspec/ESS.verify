@@ -1,0 +1,13 @@
+verification plan ESSPlan for ESS
+[
+
+	claim ESS.R1  [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+
+	claim ESS.R2 [
+		activities
+			powercapacity: Plugins.ElectricalPower()
+	]	
+]

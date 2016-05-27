@@ -1,0 +1,18 @@
+system requirements ESS : "Requirements for the electrical subsystem of the Flight Guidance System"
+for AircraftSubsystems::ElectricalSubSystem 
+[
+	val ESS_MaxWeight = 75.0 kg
+	val ESS_PowerCapacity  = 2000.0 W
+
+	requirement R1 : "Weight Limit" [
+		description "The weight of the ESS 
+			shall not exceed "
+			ESS_MaxWeight
+	]
+
+	requirement R2: "Power Capacity" [
+		description "The electrical subsystem 
+			shall be capable of producing "
+			ESS_PowerCapacity
+	]	
+]

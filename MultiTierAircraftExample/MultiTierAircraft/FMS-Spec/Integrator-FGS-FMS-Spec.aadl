@@ -1,0 +1,16 @@
+package Integrator::FGS::FMS::Spec
+public
+with Integrator::FGS::FMS::ICD, SEI;
+  -- with Integrator::FGS::FMS::ICD;
+  process prFlightManager
+    features
+      ToFGS: feature group Integrator::FGS::FMS::ICD::FMS_to_FGS;
+      other_FMS_A: feature group Integrator::FGS::FMS::ICD::FMS_CrossPlg;
+      other_FMS_B: feature group Integrator::FGS::FMS::ICD::FMS_CrossSkt;
+    properties
+      SEI::MIPSBudget => 120.0 MIPS;
+  end prFlightManager;
+  
+  process implementation prFlightManager.impl
+  end prFlightManager.impl;
+end Integrator::FGS::FMS::Spec;

@@ -1,0 +1,19 @@
+verification plan RDCVplan for RDC [
+	
+	claim RDC.R1 [
+		activities
+			weightlimit: Plugins.MassAnalysis()
+	]
+	claim RDC.R2 [
+		activities
+			powerbudget: Plugins.ElectricalPower()
+	]
+	claim RDC.R3_1 [
+		activities
+			InternallySelfSufficient: AircraftExampleRegistry.NoExternalCPUDemand()
+	]
+	claim RDC.R3_2 [
+		activities
+			ExternallySelfSufficient: AircraftExampleRegistry.NoCPUCapacityForOthers()
+	]
+]

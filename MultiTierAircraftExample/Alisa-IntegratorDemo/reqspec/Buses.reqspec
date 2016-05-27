@@ -1,0 +1,19 @@
+system requirements AR429 for Integrator::FGS::Busses::ARINC429::AR429 [
+	val AR429_BandwidthCapacity = 100.0 KBytesps
+		requirement R1: "Bandwidth Capacity" [
+		description "The AR429 
+			shall be capable of a sustained Bandwidth demand of at least "
+			AR429_BandwidthCapacity
+	]
+	
+]
+
+system requirements NetBus for Integrator::FGS::Busses::NetBus::NetBus [
+	val NetBus_BandwidthCapacity = 10.0 MBytesps
+		requirement R1: "Bandwidth Capacity" [
+		description "The AR429 
+			shall be capable of a sustained Bandwidth demand of at least "
+			NetBus_BandwidthCapacity
+	]
+	
+]
