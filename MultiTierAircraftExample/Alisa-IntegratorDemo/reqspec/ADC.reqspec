@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements ADC : "Requirements for the Air Data Computer (ADC) subsystem of the Flight Guidance System"
 for Integrator::FGS::ADC::Spec::AirDataComputer
 [

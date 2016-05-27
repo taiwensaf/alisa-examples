@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements AHRS_HW : "Requirements for the physical Attitude Heading and Reference System (AHRS) of the Flight Guidance System"
 for Integrator::FGS::AHRS::PhysAHRS
 use constants Globals

@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 verification plan CYVplan for ControlsYokes [
 	
 	claim ControlsYokes.R1 [

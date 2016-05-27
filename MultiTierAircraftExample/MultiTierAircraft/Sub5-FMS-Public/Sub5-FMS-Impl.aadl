@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 package Sub5::FMS::Impl
 public
 with Hardware::Library,Integrator::FGS::FMS::Spec, Integrator::FGS::FMS::ICD, Sub5::FMS::Impl, DataDictionary, Sub5::DataDictionary, SEI;

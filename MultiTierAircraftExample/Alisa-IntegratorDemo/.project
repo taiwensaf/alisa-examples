@@ -5,6 +5,7 @@
 	<projects>
 		<project>AircraftExampleRegistry</project>
 		<project>Alisa-Utils</project>
+		<project>AlisaBasics</project>
 		<project>MultiTierAircraft</project>
 		<project>Plugin_Resources</project>
 	</projects>

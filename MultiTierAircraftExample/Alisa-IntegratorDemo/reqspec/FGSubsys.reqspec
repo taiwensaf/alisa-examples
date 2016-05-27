@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements FGS : "Requirements for the FG Subsystem of the Flight Guidance System"
 for Integrator::FGS::FGS::Spec::prFlightGuidance
 use constants Globals

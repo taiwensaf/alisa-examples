@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements SCS : "Requirements for the Surface Control System (SCS) of the Flight Guidance System"
 for Integrator::FGS::SCS::SCS
 use constants Globals

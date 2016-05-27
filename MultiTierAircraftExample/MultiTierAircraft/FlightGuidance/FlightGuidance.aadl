@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 -- This package contains implementations of the flight guidance system
 -- The original specification of Flight Guidance is found in AircraftSystems
 package FlightGuidance

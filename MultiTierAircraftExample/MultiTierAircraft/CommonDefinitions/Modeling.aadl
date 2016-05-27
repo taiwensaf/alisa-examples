@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 property set Modeling is
   -- The SystemTier property records the tier level of a system component in the system architecture hierarchy
   -- We have chosen literals.  AadlIntergers could have been sufficient.

@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 -- A busses package...
 package Integrator::FGS::Busses::Serial
 public

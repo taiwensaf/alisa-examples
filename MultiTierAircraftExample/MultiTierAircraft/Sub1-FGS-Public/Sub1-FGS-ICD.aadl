@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 -- This package is used by the subcontractor to propose adjustments to the ICD from the integrator
 -- The subcontractor does this by declaring extends of the port group types
 -- The extension adds features or refines features  

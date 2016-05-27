@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 package Integrator::FGS::FGS::Spec
 public
 with Integrator::FGS::AP, Integrator::FGS::AHRS, Integrator::FGS::ADC::ICD, Integrator::FGS::FGS::ICD, Integrator::FGS::FCP::ICD, Integrator::FGS::Radio::NavRadio, SEI;

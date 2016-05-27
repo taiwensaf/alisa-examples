@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 package Sub6::FCP::Impl
 public
 with Integrator::FGS::FCP::Spec, Integrator::FGS::Controls, Sub6::FCP::ICD, Sub6::FCP::Impl, Integrator::FGS::FCP::ICD;

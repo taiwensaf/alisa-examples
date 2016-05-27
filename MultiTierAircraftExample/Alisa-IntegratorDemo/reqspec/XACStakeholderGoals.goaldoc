@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 document XACStakeholderGoals : "X-Aircraft Stakeholder Goals" [
 	description "From file Stakeholder Goals for the X-Aircraft (v3).docx"
 	

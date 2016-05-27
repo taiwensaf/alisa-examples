@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements AHRS_SW : "Requirements for the Software Subsystem of the AHRS of the Flight Guidance System"
 for Integrator::FGS::AHRS::prAHRS
 use constants Globals

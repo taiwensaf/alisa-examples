@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements NavRadio : "Requirements for the Navigation Radio process of the Flight Guidance System"
 for Integrator::FGS::Radio::NavRadio::prNavRadio
 use constants Globals

@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 -- This package contains a system model of the aircraft that integrates the implementations of subsystems from suppliers.
 -- This package requires supplier packages to be loaded in the same workspace.
 package IntegratedAircraftSystem

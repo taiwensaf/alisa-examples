@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 -- This package contains the aircraft system model with its tier 2 systems as AADL subcomponent.
 -- This model is then expanded to include one and two levels of subcomponents of the tier 2 systems.
 package AircraftSystem

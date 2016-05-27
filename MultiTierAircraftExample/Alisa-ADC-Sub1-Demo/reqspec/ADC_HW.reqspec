@@ -1,3 +1,5 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements Supplier1.ADC_HW : "Requirements for the Hardware Subsystem of the ADC subsystem of the Flight Guidance System"
 //for Integrator::FGS::ADC::Spec::AirDataComputer
 for Supplier1::AirDataComputer //(this would include Supplier1::ADC_HW and Supplier1:ADC_SW)

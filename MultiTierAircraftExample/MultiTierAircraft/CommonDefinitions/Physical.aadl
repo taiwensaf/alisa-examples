@@ -1,3 +1,5 @@
+-- Copyright 2016 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 property set Physical is
   -- pressure capacity specifies the amount of pressure a system can supply to a bus.
   PressureCapacity: aadlreal  units Physical::PressureUnit applies to (system, device, abstract ,bus, bus access, feature);
