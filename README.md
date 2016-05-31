@@ -1,4 +1,4 @@
-# alisa-examples
+# ALISA Examples
 
 The following examples are available to illustrate the use of incremental system assurance with ALISA.
 
@@ -11,3 +11,10 @@ The SituationalAwarenessSystem project contains the AADL model of the system inc
 
 The SituationalAwarenessRefArch project illustrates how a reference runtime architecture can be defined and elaborated into a specific situation awareness system.
 
+This project does not depend on AlisaPredefined.
+
+## AlisaPredefined
+This is a single project that contains a predefined set of categories that can be used on requirements and verification plans.
+It also contains a verification method registry for methods that invoke different analysis plug-ins in OSATE.
+
+These definitions are utilized by some projects. In that case you need to check out this project into your workspace. In the future, the definitions will be automatically be included.
