@@ -1,14 +1,22 @@
 -- Copyright 2016 Carnegie Mellon University. See Notice.txt
 -- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
-package FlightGuidance::BuildConfiguration
+package FlightGuidanceImplementation::BuildConfiguration
 public
-with AircraftSubsystems, Integrator::FGS::SCS, Integrator::FGS::Displays::CDU, Integrator::FGS::AHRS, Integrator::FGS::ADC::Spec, Integrator::FGS::Radio::NavRadio, Sub7::AP::Impl, Sub5::FMS::Impl, Sub1::FGS::Impl, Sub6::FCP::Impl, Integrator::FGS::PCU, Integrator::FGS::NSW, Integrator::FGS::RDC, Integrator::FGS::FCP::Spec, Integrator::FGS::Displays::MDP, Sub4::ADC::Impl, Integrator::FGS::Radio, Integrator::FGS::Controls, Integrator::FGS::Busses::NetBus, Integrator::FGS::Busses::ARINC429, Integrator::FGS::Busses, Integrator::FGS::Busses::Serial, FlightGuidance::BuildConfiguration, Sub4::ADC::Spec, SEI;
-	with FlightGuidance;
-  -- This declaration makes the Flight Guidance specification visible in this package
-  -- If necessary, the implementor of Flight Guidance may add features and then negotiate
-  -- the additions with the system architect who is responsible for the AircraftSystem
-  -- and the specifications of the major subsystems
-FlightGuidance renames system FlightGuidance::FlightGuidance;
+with AircraftSubsystems, 
+
+     Sub7::AP::Impl, 
+     Sub4::ADC::Spec, 
+     Sub5::FMS::Impl, 
+     Sub1::FGS::Impl, 
+     Sub6::FCP::Impl, 
+     Integrator::FGS::PCU, 
+     Integrator::FGS::SCS, 
+	 Integrator::FGS::Displays::CDU,
+     Integrator::FGS::AHRS,
+     Integrator::FGS::Radio::NavRadio, 
+     SEI,      
+     FlightGuidance;
+	FlightGuidance renames system FlightGuidance::FlightGuidance;
 FlightGuidanceSW renames system FlightGuidance::FlightGuidanceSW;
   
   -- a FlightGuidance configuration based on subsystem realisations from subcontractors.
@@ -164,4 +172,4 @@ FlightGuidanceSW renames system FlightGuidance::FlightGuidanceSW;
 --  end FlightGuidance.bandwidth;
   
    
-end FlightGuidance::BuildConfiguration;
+end FlightGuidanceImplementation::BuildConfiguration;

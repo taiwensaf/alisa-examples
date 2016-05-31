@@ -5,11 +5,9 @@ The following examples are available to illustrate the use of incremental system
 ## SituationalAwarenessSystem
 This is the public release version of a situational Awareness System in AADL. It consists of three projects. 
 
-* The *SituationalAwarenessCommon* project contains a set of packages and property sets used by the other two projects.
-
-* The *SituationalAwarenessSystem* project contains the AADL model of the system including a detailed model of pull protocols, and a requirement specification in ReqSpec. The SEI tech Report http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447184 provides some details about the model. The report http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447176 summarizes a number of potential integration issues we have identified in the process of creating and analyzing the model. We have also illustrated safety analysis on a primarily software subsystem with this example (see http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447189).
-
-* The *SituationalAwarenessRefArch* project illustrates how a reference runtime architecture can be defined and elaborated into a specific situation awareness system.
+ * The *SituationalAwarenessCommon* project contains a set of packages and property sets used by the other two projects.
+ * The *SituationalAwarenessSystem* project contains the AADL model of the system including a detailed model of pull protocols, and a requirement specification in ReqSpec. The SEI tech Report http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447184 provides some details about the model. The report http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447176 summarizes a number of potential integration issues we have identified in the process of creating and analyzing the model. We have also illustrated safety analysis on a primarily software subsystem with this example (see http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447189).
+ * The *SituationalAwarenessRefArch* project illustrates how a reference runtime architecture can be defined and elaborated into a specific situation awareness system.
 
 This project does not depend on AlisaPredefined.
 
@@ -33,10 +31,10 @@ We have associated requirement specifications with the aircraft model across the
 The following projects make up the example (note that you must also include the *AlisaPredefined* project.
 
 * The *MultiTierAircraft* project is a collection of projects (check out with nested projects checked). They define common elements, the aircraft and flight guidance in multiple tiers, as well as subsystem specificaitons and supplier elaborations. The top-level packages contain system implementations that can be instantiated and analyzed. They are:
-** *AircraftSpecified*: Tier1 physical system specification of the aircraft. Supports *mass* (weight) and *electrical power* consumption analysis.
-** *AircraftIntegrated*: Tier2 model with the flight guidance IMA elaborated into hardware and subsystem specifications. It adds resource budget analysis for processors, memory, and a first cut at an end to end flow latency analysis.
-** *AircraftImplemented*: Tier3 model with subsystems elaborated with supplier implementations.
-** The *FlightGuidance" and *FlightGuidanceImplementation* projects support analysis of the embedded software system on its hardware platform. *FlightGuidance* consists of one tier of subsystems and supports resoruce budget analysis as well as end-to-edn flow analysis. It is defined as separate embedded software and hardware platform systems. *FlightGuidanceImplementation* defines a *SubsystemSpec* configuration with supplier specifications for subsystems to demonstrate fucntional integrity checks (domain data types, measurement units, mapping the ARINC429 protocol), a *BuildConfiguration* that elaborates subsystems to the task & communication level, and *IMA* configurations with various levels of software to hardware binding.
+  ** *AircraftSpecified*: Tier1 physical system specification of the aircraft. Supports *mass* (weight) and *electrical power* consumption analysis.
+  ** *AircraftIntegrated*: Tier2 model with the flight guidance IMA elaborated into hardware and subsystem specifications. It adds resource budget analysis for processors, memory, and a first cut at an end to end flow latency analysis.
+  ** *AircraftImplemented*: Tier3 model with subsystems elaborated with supplier implementations.
+  ** The *FlightGuidance" and *FlightGuidanceImplementation* projects support analysis of the embedded software system on its hardware platform. *FlightGuidance* consists of one tier of subsystems and supports resoruce budget analysis as well as end-to-edn flow analysis. It is defined as separate embedded software and hardware platform systems. *FlightGuidanceImplementation* defines a *SubsystemSpec* configuration with supplier specifications for subsystems to demonstrate fucntional integrity checks (domain data types, measurement units, mapping the ARINC429 protocol), a *BuildConfiguration* that elaborates subsystems to the task & communication level, and *IMA* configurations with various levels of software to hardware binding.
 * The *Alisa-IntegratorDemo* project contains requirement specifications in *ReqSpec*, verification plans in *Verify*, and assurance plans in *Alisa*. 
 * The *Alisa-ADC-Sub1-Demo* project does the same for a supplier. 
 * The *Alisa-Utils* projects contains examples of additional verificaiton methods that are written in Jave/Xtend or resolute.

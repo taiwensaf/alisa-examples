@@ -1,9 +1,9 @@
 -- Copyright 2016 Carnegie Mellon University. See Notice.txt
 -- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
-package FlightGuidance::IMAConfiguration
+package FlightGuidanceImplementation::IMAConfiguration
 public
 with AircraftSubsystems, Integrator::FGS::PCU, Sub7::AP::Impl, Sub5::FMS::Impl, Sub1::FGS::Impl, Integrator::FGS::Busses::NetBus;
-with FlightGuidance, FlightGuidance::BuildConfiguration;
+with FlightGuidance, FlightGuidanceImplementation::BuildConfiguration;
   -- This declaration makes the Flight Guidance specification visible in this package
 FlightGuidance renames system FlightGuidance::FlightGuidance;
   
@@ -18,7 +18,7 @@ FlightGuidance renames system FlightGuidance::FlightGuidance;
   -- will run on those CPUs (AutoPilot, Flight Management, and Flight Guidance) so that processing and
   -- memory utilisation analyses can be conducted.  
   
-  system implementation FlightGuidance.scheduling extends FlightGuidance::BuildConfiguration::FlightGuidance.selfcontainedsubsystemimpl
+  system implementation FlightGuidance.scheduling extends FlightGuidanceImplementation::BuildConfiguration::FlightGuidance.selfcontainedsubsystemimpl
   
    properties
       Scheduling_Protocol => (RMS) applies to FGHWPlatform.CPU_1.cpu;
@@ -179,4 +179,4 @@ FlightGuidance renames system FlightGuidance::FlightGuidance;
   
   
  
-end FlightGuidance::IMAConfiguration;
+end FlightGuidanceImplementation::IMAConfiguration;
