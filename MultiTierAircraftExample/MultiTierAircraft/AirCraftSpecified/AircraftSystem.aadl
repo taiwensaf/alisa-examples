@@ -11,7 +11,7 @@ with Modeling;
   system AircraftSystem
     properties
       Modeling::System_Tier => Tier1;
-      SEI::WeightLimit => 70000.0 kg;
+      SEI::WeightLimit => 95000.0 kg;
   end AircraftSystem;
   
   -- Aircraft system with Tier 2 systems as subsystems. 

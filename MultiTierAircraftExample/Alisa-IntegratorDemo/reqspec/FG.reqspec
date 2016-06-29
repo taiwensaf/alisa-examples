@@ -49,7 +49,7 @@ use constants Globals
 	]
 
 system requirements FlightGuidanceImpl : "Requirements for the Flight Guidance System"
-for FlightGuidance::FlightGuidance.subsystems
+for FlightGuidance::SubsystemSpec::FlightGuidanceSW.subcontractorsubsystems
 [
 	val FG_DirectModeLatency =  0.15 ms
 	val FG_NormalModesLatency =  25.0 ms
@@ -69,12 +69,13 @@ for FlightGuidance::FlightGuidance.subsystems
 			shall be no longer than " FG_NormalModesLatency
 		see goal XACStakeholderGoals.XSG_8_3
 	]
-	requirement R7: "Consistent Use of Measurement Units" 
+	requirement R7: "Consistent Use of Measurement Units" for FGConnection40
 	[
+		category Kind.Consistency
 		description "The measurement units used on both ends of a connection shall be in consistent units"
 	]
 	
-	requirement R8: "Consistent Protocol Mapping" 
+	requirement R8: "Consistent Protocol Mapping" for FGConnection40
 	[
 		description "The mapping into ARINC 429 is consistent between sender and receiver."
 	]

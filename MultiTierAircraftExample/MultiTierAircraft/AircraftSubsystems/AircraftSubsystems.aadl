@@ -118,7 +118,7 @@ with  Physical, SEI, Resources;
   
   system Fuel
     features
-      ElectricalSupply: in feature  --!! Resources::ElectricalPower
+      ElectricalSupply: in feature  Resources::ElectricalPower
       {
         SEI::PowerBudget => 1000.0 W;
         };
@@ -126,6 +126,7 @@ with  Physical, SEI, Resources;
       AuxFuelSupply: out feature Resources::FuelFlow;
     properties
       Modeling::System_Tier => Tier2;
+      SEI::GrossWeight => 13000.0 kg;
   end Fuel;
   
   system Engines
@@ -180,6 +181,7 @@ with  Physical, SEI, Resources;
       AirDelivery: out feature Resources::AirFlow;
     properties
       Modeling::System_Tier => Tier2;
+      SEI::GrossWeight => 8000.0 kg;
   end Bleed;
   
   system AirConditioning

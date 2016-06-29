@@ -3,12 +3,12 @@
 system requirements Aircraft : "Requirements for the Aircraft System"
 for AircraftSystem::AircraftSystem
 [
-	val Aircraft_MaxWeight = 70000.0 kg
 	
 	requirement R1 : "Weight Limit" [
 		description "The weight of the Aircraft system 
 			shall not exceed " 
 			Aircraft_MaxWeight
+		val Aircraft_MaxWeight = 95000.0 kg
 		see goal XACStakeholderGoals.XSG_1_1
 	]
 

@@ -32,7 +32,13 @@ class AircraftConsistency {
 	def  boolean consistentElectricalCapacity(ComponentInstance ci, double capacity) {
 		val prop = ci.getPowerCapacity( 0.0)
 //		assertEquals("Required capacity as same property value", capacity, prop,0.1)
-		assertThat("Required capacity same as property value",prop, equalTo(capacity))
+		assertThat("Electrical capacity requirement same as property value",prop, equalTo(capacity))
+		return true
+	}
+
+	def  boolean consistentWeightLimit(ComponentInstance ci, double limit) {
+		val prop = ci.getWeightLimit( 0.0)
+		assertThat("Weight limit requirement same as WeightLimit property value",prop, equalTo(limit))
 		return true
 	}
 
