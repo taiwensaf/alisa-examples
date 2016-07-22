@@ -8,20 +8,13 @@ with AircraftSubsystems, Integrator::FGS::SCS, Integrator::FGS::Displays::CDU, I
 with Integrator::FGS::Busses::Serial;
 	with Resources;
 	with Integrator::FGS::RDC;
+with Modeling;
 
 FlightGuidanceHW renames system AircraftSubsystems::FlightGuidance;
-with Modeling;
-	
-  -- This declaration makes the Flight Guidance specification visible in this package
-  -- If necessary, the implementor of Flight Guidance may add features and then negotiate
-  -- the additions with the system architect who is responsible for the AircraftSystem
-  -- and the specifications of the major subsystems
-  system FlightGuidance
-    extends AircraftSubsystems::FlightGuidance
-  properties 
-    Classifier_Substitution_rule => Type_Extension;
-  end FlightGuidance;
   
+-- as extends. it will be referenced from the implementation	
+system FlightGuidance extends AircraftSubsystems::FlightGuidance
+end FlightGuidance;
   -- a configuration of embedded software system with hardware platform as separate systems
   
 -- equivalent to FG.Subsystems but as separate subcomponents for HW and SW
@@ -192,7 +185,7 @@ with Modeling;
       -- set the power requirement for the FG_Power bus
       -- This figure should be the same as the power capacity of FG_Power
       SEI::PowerBudget => 2000.0 W applies to FG_Power.BackBone;
-  end FlightGuidanceHW.platform;
+  end FlightGuidance.platform;
 
 
   system FlightGuidanceSW

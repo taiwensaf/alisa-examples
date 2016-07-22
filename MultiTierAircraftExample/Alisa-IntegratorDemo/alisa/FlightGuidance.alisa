@@ -1,15 +1,15 @@
 // Copyright 2016 Carnegie Mellon University. See Notice.txt
 // Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
-assurance case FlightGuidance for FlightGuidance::FlightGuidance [
-assurance plan FlightGuidanceT2 for FlightGuidance::FlightGuidance.subsystems  [
+assurance case FlightGuidance for AircraftSubsystems::FlightGuidance [
+assurance plan FlightGuidanceT2 for FlightGuidance::FlightGuidance.SelfcontainedSWSubsystem  [
 	assure  FGplan FGIplan
 ]
 
-assurance plan FlightguidanceT3 for FlightGuidance::SubsystemSpec::FlightGuidance.subcontractorsubsystems 
+assurance plan FlightguidanceT3 for FlightGuidance::SubsystemSpec::FlightGuidance.SubcontractorSpec 
 [
 	assure  FGIplan FGplan
 ]
-assurance plan FlightguidanceTb for FlightGuidance::BuildConfiguration::FlightGuidance.bandwidth 
+assurance plan FlightguidanceTb for FlightGuidance::IMAConfiguration::FlightGuidance.fullyconnbound
 [
 	assure  FGplan FGIplan
 ]

@@ -3,7 +3,7 @@
 package ImplementedAircraftSystem
 public
 with AircraftSystem;
-with FlightGuidanceImplementation::BuildConfiguration;
+with FlightGuidance::BuildConfiguration;
   -- with AircraftSystem, FlightGuidanceImplementation;
   system AircraftSystem
     extends AircraftSystem::AircraftSystem
@@ -24,6 +24,6 @@ with FlightGuidanceImplementation::BuildConfiguration;
   system implementation AircraftSystem.SubSubsystemImpl
     extends AircraftSystem::AircraftSystem.SubsystemSpec
     subcomponents
-      FGS: refined to system FlightGuidanceImplementation::BuildConfiguration::FlightGuidance.selfcontainedsubsystemimpl;
+      FGS: refined to system FlightGuidance::BuildConfiguration::FlightGuidance.selfcontainedsubsystemimpl;
   end AircraftSystem.SubSubsystemImpl;
 end ImplementedAircraftSystem;

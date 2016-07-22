@@ -1,25 +1,22 @@
 -- Copyright 2016 Carnegie Mellon University. See Notice.txt
 -- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
-package FlightGuidanceImplementation::BuildConfiguration
+package FlightGuidance::BuildConfiguration
 public
-with AircraftSubsystems, 
-
-     Sub7::AP::Impl, 
+with Sub7::AP::Impl, 
      Sub4::ADC::Spec, 
      Sub5::FMS::Impl, 
      Sub1::FGS::Impl, 
      Sub6::FCP::Impl, 
      Integrator::FGS::PCU, 
      Integrator::FGS::SCS, 
-	 Integrator::FGS::Displays::CDU,
-     Integrator::FGS::AHRS,
-     Integrator::FGS::Radio::NavRadio, 
-     SEI,      
+     Integrator::FGS::Displays::CDU, 
+	 Integrator::FGS::AHRS,
+     Integrator::FGS::Radio::NavRadio,
      FlightGuidance;
 	FlightGuidance renames system FlightGuidance::FlightGuidance;
 FlightGuidanceSW renames system FlightGuidance::FlightGuidanceSW;
   
-  -- a FlightGuidance configuration based on subsystem realisations from subcontractors.
+  -- a FlightGuidance configuration based on subsystem realizations from subcontractors.
   --                                                   ~~~~~~~~~~~~
   -- This allows the system (tier 2) level analyses to be run ON THE PROPOSED BUILD...
  
@@ -172,4 +169,4 @@ FlightGuidanceSW renames system FlightGuidance::FlightGuidanceSW;
 --  end FlightGuidance.bandwidth;
   
    
-end FlightGuidanceImplementation::BuildConfiguration;
+end FlightGuidance::BuildConfiguration;

@@ -1,10 +1,8 @@
 -- Copyright 2016 Carnegie Mellon University. See Notice.txt
 -- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
-package FlightGuidanceImplementation::IMAConfiguration
+package FlightGuidance::IMAConfiguration
 public
-with AircraftSubsystems, Integrator::FGS::PCU, Sub7::AP::Impl, Sub5::FMS::Impl, Sub1::FGS::Impl, Integrator::FGS::Busses::NetBus;
-with FlightGuidance, FlightGuidanceImplementation::BuildConfiguration;
-  -- This declaration makes the Flight Guidance specification visible in this package
+with Integrator::FGS::PCU, Sub7::AP::Impl, Sub5::FMS::Impl, Sub1::FGS::Impl, FlightGuidance, FlightGuidance::BuildConfiguration;
 FlightGuidance renames system FlightGuidance::FlightGuidance;
   
   -- a FlightGuidance configuration based on subsystem realizations from subcontractors.
@@ -14,11 +12,11 @@ FlightGuidance renames system FlightGuidance::FlightGuidance;
   
   -- This models allows the system (tier 2) level IMA-oriented analyses to be run ON THE PROPOSED IMA BUILD...
   
-  -- This model isolates the IMA physical realisation (CPU_1-3) and the various flight guidance apps. that
+  -- This model isolates the IMA physical realization (CPU_1-3) and the various flight guidance apps. that
   -- will run on those CPUs (AutoPilot, Flight Management, and Flight Guidance) so that processing and
-  -- memory utilisation analyses can be conducted.  
+  -- memory utilization analyses can be conducted.  
   
-  system implementation FlightGuidance.scheduling extends FlightGuidanceImplementation::BuildConfiguration::FlightGuidance.selfcontainedsubsystemimpl
+  system implementation FlightGuidance.scheduling extends FlightGuidance::BuildConfiguration::FlightGuidance.selfcontainedsubsystemimpl
   
    properties
       Scheduling_Protocol => (RMS) applies to FGHWPlatform.CPU_1.cpu;
@@ -40,94 +38,94 @@ FlightGuidance renames system FlightGuidance::FlightGuidance;
   system implementation FlightGuidance.a1_bpbound
     extends FlightGuidance.scheduling
     properties
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.NSP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.APC;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.FPP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.GP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.INav;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.PerIO;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.NSP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.APC;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.FPP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.GP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.INav;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.PerIO;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
 
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.NSP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.APC;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.FPP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.GP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.INav;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.PerIO;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FGS_L1.THR_FGSMain;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.NSP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.APC;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.FPP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.GP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.INav;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.PerIO;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FGS_L1.THR_FGSMain;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
   end FlightGuidance.a1_bpbound;
   
   system implementation FlightGuidance.a2_pfbound
     extends FlightGuidance.scheduling
     properties
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.NSP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.APC;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.FPP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.GP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.INav;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.PerIO;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.NSP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.APC;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.FPP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.GP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.INav;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_1.PerIO;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
 
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
 
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.NSP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.APC;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.FPP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.GP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.INav;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.PerIO;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FGS_L1.THR_FGSMain;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.NSP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.APC;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.FPP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.GP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.INav;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_2.PerIO;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FGS_L1.THR_FGSMain;
 
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
   end FlightGuidance.a2_pfbound;
   
   system implementation FlightGuidance.a3_kabound
     extends FlightGuidance.scheduling
     properties
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.NSP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.APC;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.FPP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_3.cpu ) ) applies to FGSWSystem.PR_FMS_1.GP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.INav;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.PerIO;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.NSP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.APC;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.FPP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_3.cpu ) ) applies to FGSWSystem.PR_FMS_1.GP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.INav;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_FMS_1.PerIO;
       
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
 
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_3.cpu ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_3.cpu ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
 
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_3.cpu ) ) applies to FGSWSystem.PR_FMS_2.NSP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_3.cpu ) ) applies to FGSWSystem.PR_FMS_2.APC;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.FPP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.GP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.INav;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_3.cpu ) ) applies to FGSWSystem.PR_FMS_2.PerIO;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_3.cpu ) ) applies to FGSWSystem.PR_FMS_2.NSP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_3.cpu ) ) applies to FGSWSystem.PR_FMS_2.APC;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.FPP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.GP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FMS_2.INav;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_3.cpu ) ) applies to FGSWSystem.PR_FMS_2.PerIO;
       
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_1.cpu ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
-      Actual_Processor_Binding => ( reference( FGHWPlatform.cpu_2.cpu ) ) applies to FGSWSystem.PR_FGS_L1.THR_FGSMain;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_1.cpu ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
+      Actual_Processor_Binding => ( reference( FGHWPlatform.CPU_2.cpu ) ) applies to FGSWSystem.PR_FGS_L1.THR_FGSMain;
   end FlightGuidance.a3_kabound;
   
   -- Adds memory binding to 3 CPU configuration (A3)
   system implementation FlightGuidance.a4_fullybound
     extends FlightGuidance.a3_kabound
     properties
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_1.cpu.mem ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_2.cpu.mem ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_2.cpu.mem ) ) applies to FGSWSystem.PR_FGS_L1.THR_FGSMain;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_3.cpu.mem ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.NSP;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.INav;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_3.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.GP;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.FPP;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.APC;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.PerIO;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_3.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.NSP;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_2.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.INav;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_2.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.GP;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_2.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.FPP;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_3.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.APC;
-      Actual_Memory_Binding => ( reference( FGHWPlatform.cpu_3.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.PerIO;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_1.cpu.mem ) ) applies to FGSWSystem.PR_AP_L.THR_AP;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_2.cpu.mem ) ) applies to FGSWSystem.PR_AP_R.THR_AP;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_2.cpu.mem ) ) applies to FGSWSystem.PR_FGS_L1.THR_FGSMain;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_3.cpu.mem ) ) applies to FGSWSystem.PR_FGS_R1.THR_FGSMain;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.NSP;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.INav;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_3.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.GP;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.FPP;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.APC;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_1.cpu.mem ) ) applies to FGSWSystem.PR_FMS_1.PerIO;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_3.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.NSP;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_2.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.INav;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_2.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.GP;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_2.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.FPP;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_3.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.APC;
+      Actual_Memory_Binding => ( reference( FGHWPlatform.CPU_3.cpu.mem ) ) applies to FGSWSystem.PR_FMS_2.PerIO;
 
 
   end FlightGuidance.a4_fullybound;

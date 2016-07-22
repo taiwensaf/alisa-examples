@@ -4,6 +4,7 @@ package FlightGuidance::SubsystemSpec
 public
 with FlightGuidance, Sub4::ADC::Spec, Sub1::FGS::Spec;
 
+FlightGuidance renames system FlightGuidance::FlightGuidance;
 FlightGuidanceSW renames system FlightGuidance::FlightGuidanceSW;
 
 -- This is a system to be instantiated
@@ -18,5 +19,10 @@ FlightGuidanceSW renames system FlightGuidance::FlightGuidanceSW;
       PR_FGS_R1: refined to process Sub1::FGS::Spec::prFlightGuidance;
   end FlightGuidanceSW.subcontractorsubsystems;
   
+-- equivalent to FG.Subsystems but as separate subcomponents for HW and SW
+  system implementation FlightGuidance.SubcontractorSpec extends FlightGuidance::FlightGuidance.SelfcontainedSWSubsystem
+  	subcomponents
+  		FGSWSystem: refined to system FlightGuidanceSW.subcontractorsubsystems;
+  end FlightGuidance.SubcontractorSpec;
   
 end FlightGuidance::SubsystemSpec;
