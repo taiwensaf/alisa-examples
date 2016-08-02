@@ -185,7 +185,7 @@ end FlightGuidance;
       -- set the power requirement for the FG_Power bus
       -- This figure should be the same as the power capacity of FG_Power
       SEI::PowerBudget => 2000.0 W applies to FG_Power.BackBone;
-  end FlightGuidance.platform;
+  end FlightGuidanceHW.platform;
 
 
   system FlightGuidanceSW
