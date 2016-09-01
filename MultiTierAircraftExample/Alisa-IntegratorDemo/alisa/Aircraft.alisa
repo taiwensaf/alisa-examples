@@ -2,13 +2,13 @@
 // Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 assurance case SAVI for AircraftSystem::AircraftSystem [
 assurance plan SaviDemo for AircraftSystem::AircraftSystem.SubsystemSpec [
-	assure AircraftPlan
+	assure AircraftPlan 
 	assure subsystem FGS  
 	assume subsystem HYD APU
 ]
-//assurance plan AircraftTier2 for IntegratedAircraftSystem::AircraftSystem.SubsystemFGS [
-//	assure AircraftPlan
-//]
+assurance plan AircraftTier2 for IntegratedAircraftSystem::AircraftSystem.SubsystemFGS [
+	assure AircraftPlan
+]
 
 assurance task Tier2SafetyNetworkFocus  [
 	category Quality.NetworkUtilization Quality.Safety 
