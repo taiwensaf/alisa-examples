@@ -49,7 +49,7 @@ use constants Globals
 	]
 
 system requirements FlightGuidanceImpl : "Requirements for the Flight Guidance System"
-for FlightGuidance::SubsystemSpec::FlightGuidanceSW.subcontractorsubsystems
+for FlightGuidance::FlightGuidanceSW.embeddedsoftware
 [
 	val FG_DirectModeLatency =  0.15 ms
 	val FG_NormalModesLatency =  25.0 ms

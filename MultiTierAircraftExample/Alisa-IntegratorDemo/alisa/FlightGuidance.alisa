@@ -2,16 +2,17 @@
 // Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 assurance case FlightGuidance for AircraftSubsystems::FlightGuidance [
 assurance plan FlightGuidanceT2 for FlightGuidance::FlightGuidance.SelfcontainedSWSubsystem  [
-	assure  FGplan FGIplan
+	assure FGplan
+	assure subsystem FGSWSystem
 ]
 
 assurance plan FlightguidanceT3 for FlightGuidance::SubsystemSpec::FlightGuidance.SubcontractorSpec 
 [
-	assure  FGIplan FGplan
+	assure  FGplan //FGIplan 
 ]
 assurance plan FlightguidanceTb for FlightGuidance::IMAConfiguration::FlightGuidance.fullyconnbound
 [
-	assure  FGplan FGIplan
+	assure  FGplan //FGIplan
 ]
  
 assurance task mynetwork  [
