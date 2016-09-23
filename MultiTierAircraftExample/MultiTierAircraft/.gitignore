@@ -1,5 +1,5 @@
 /.aadlbin-gen/
-instances/
+instances/*
 /assure/
 /bin/
 /xtend-gen/
