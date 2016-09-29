@@ -8,7 +8,7 @@ assurance plan FlightGuidanceT2 for FlightGuidance::FlightGuidance.Selfcontained
 
 assurance plan FlightguidanceT3 for FlightGuidance::SubsystemSpec::FlightGuidance.SubcontractorSpec 
 [
-	assure  FGplan //FGIplan 
+	assure  FGplan  //FGIplan 
 ]
 assurance plan FlightguidanceTb for FlightGuidance::IMAConfiguration::FlightGuidance.fullyconnbound
 [

@@ -3,7 +3,6 @@
 	<name>Alisa-IntegratorDemo</name>
 	<comment></comment>
 	<projects>
-		<project>AircraftExampleRegistry</project>
 		<project>Alisa-Utils</project>
 		<project>AlisaPredefined</project>
 		<project>MultiTierAircraft</project>

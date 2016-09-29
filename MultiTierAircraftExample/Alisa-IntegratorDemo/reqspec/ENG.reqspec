@@ -1,0 +1,17 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+system requirements ENG : "Requirements for the Engine of the Aircraft"
+for AircraftSubsystems::Engines
+[
+
+	val ENG_MaxWeight = 14000.0 kg
+	
+	requirement R1 : "Weight Limit" [
+		description "The weight of the Engine 
+			shall not exceed " 
+			ENG_MaxWeight
+	]
+
+
+]
+// alternative wording: "providing" instead of "handling"
