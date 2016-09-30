@@ -1,5 +1,0 @@
-Component, Error, Hazard Description, Crossreference, Functional Failure, Operational Phases, Environment, Severity, Likelihood,Verification, Comment
-egi1, "ItemOmission on airCraftPosition", "Lack of providing aircraft position leads to high risk of loss of aircraft.", "N/A", "Lack of Aircraft Position", "all", , 3, C, , , 
-assa, "InaccurateASSAData on inaccuratedata", "Inaccurate and untimely threat and obstacle position reporting can result in higher risk of aircraft loss.", "N/A", "Inaccurate Reporting of Threats and Obstacles", "all", , 3, C, , , 
-assa, "FalsePositiveASSAData on falsepositives", "Reporting of non-existent threats and obstacles results in higher aircraft loss risk due to unnecessary evasive action.", "N/A", "Non-Existent Threats and Obstacles", "all", , 3, C, , , 
-assa, "FalseNegativeASSAData on falsenegatives", "Failed reporting of threats and obstacles result in higher risk of loss of aircraft.", "N/A", "Failed Reporting of Threats and Obstacles", "all", , 3, C, , , 

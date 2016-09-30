@@ -3,3 +3,6 @@
 /bin/
 /xtend-gen/
 .metadata/
+instances/
+/assure/
+imv/
