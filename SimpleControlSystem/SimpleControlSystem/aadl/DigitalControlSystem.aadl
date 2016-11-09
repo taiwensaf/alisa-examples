@@ -14,7 +14,7 @@ public
 
 	device sensor
 		features
-			power: in data port Power;
+			power: in feature Power;
 			canbusaccess: requires bus access CANbus;
 			sensorSignal: out data port SensorData;
 		flows
@@ -29,7 +29,7 @@ public
 
 	device actuator
 		features
-			power: in data port Power;
+			power: in feature Power;
 			canbusaccess: requires bus access CANbus;
 			actuatorCmd: in data port actuatecmd;
 		flows
@@ -44,7 +44,7 @@ public
 
 	system DCS
 		features
-			power: in data port Power;
+			power: in feature Power;
 			canbusaccess: provides bus access CANbus;
 			sensor1in: in data port SensorData;
 			sensor2In: in data port SensorData;
@@ -61,7 +61,7 @@ public
 			app: system DCA;
 			hw: system platform;
 		connections
-			powerline: port power -> hw.power;
+			powerline: feature power -> hw.power;
 			Signal1Xfer: port sensor1in -> app.sensor1in;
 			Signal2Xfer: port sensor2In -> app.sensor2In;
 			ActuatorCmdXfer: port app.actuatorOut -> actuatorOut;

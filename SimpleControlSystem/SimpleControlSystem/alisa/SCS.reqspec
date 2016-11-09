@@ -4,7 +4,6 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 	val MaximumLatency = 20 ms
 	requirement R1 : "SCS weight limit" [
 		val  MaximumWeight = 1.2 kg
-		compute actualweight: real units SEI::WeightUnits
 		category Quality.Mass
 		description this " shall be within weight of " MaximumWeight
 		// second condition verifies that MaximumWeight is same as the property value WeightLimit
@@ -19,8 +18,8 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 	] 
 	
 	requirement R3 : "SCS inlet voltage" for power [
-		val volts = 12.0 //V
-		compute actualvolt: real //Physical::Voltage_Type
+		val volts = 12.0 
+		compute actualvolt: real 
 		value predicate volts == actualvolt
 		see goal SCSgoals.g3
 	]

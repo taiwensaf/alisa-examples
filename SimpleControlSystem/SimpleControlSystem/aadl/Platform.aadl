@@ -9,7 +9,7 @@ renames PhysicalResources::all;
 		-- computer hardware platform
 	processor powerpc
 		features
-			power: in data port Power;
+			power: in feature Power;
 			canbusaccess: requires bus access CANbus;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
@@ -18,14 +18,14 @@ renames PhysicalResources::all;
 
 	bus CANbus
 		features
-			power: in data port Power;
+			power: in feature Power;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
 	end CANbus;
 
 	memory main_memory
 		features
-			power: in data port Power;
+			power: in feature Power;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
 	end main_memory;
@@ -33,7 +33,7 @@ renames PhysicalResources::all;
 		system platform
 		features
 			canbusaccess: provides bus access CANbus;
-			power: in data port Power;
+			power: in feature Power;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
 			SEI::MIPSCapacity => 2.4 mips;
@@ -48,9 +48,9 @@ renames PhysicalResources::all;
 		connections
 			ExtCanbusaccess: bus access canbus -> canbusaccess;
 			CantoPC1: bus access canbus -> pc1.canbusaccess;
-			PCPower: port power -> pc1.power;
-			BusPower: port power -> canbus.power;
-			MemoryPower: port power -> M.power;
+			PCPower: feature power -> pc1.power;
+			BusPower: feature power -> canbus.power;
+			MemoryPower: feature power -> M.power;
 	end platform.single;
 
 	system implementation platform.dual extends platform.single
