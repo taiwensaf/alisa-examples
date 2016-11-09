@@ -2,10 +2,10 @@ Copyright 2016 Carnegie Mellon University. See Notice.txt
 Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 
 
-The SimplaAlisaExample project illustrates some of the features of ALISA and its different notations.
+The SimplaControlSystem project illustrates some of the features of ALISA and its different notations.
 
-It requires the project AlisaBasics to be included in the  workspace. 
-That project can be found in the alisa folder of the models repository under ssdlabs git.
+It requires the project AlisaPredefined to be included in the  workspace. 
+That project can be found on Github.com/osate under alisa-examples.
 
 It defines goals with reference to stakeholders, and requirements with reference to goals.
 The requirement specifications make use of variables to paramterize requirements.
