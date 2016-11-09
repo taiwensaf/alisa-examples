@@ -26,6 +26,7 @@ The SCS system consists for software, hardware, and physical components."
 		goal ng1_1: "Physical damage"[
 			refines ng1
 			description "The controller shall not cause the simple device to damage objects in its operational environment"
+			stakeholder sei.phf
 		]
 	goal ng2 : "Maximum weight" [
 		description "The system shall stay within a specified weight limit."
