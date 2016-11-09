@@ -1,0 +1,10 @@
+package PhysicalResources
+public
+	
+	abstract Power
+	end Power;
+
+	abstract Mass
+	end Mass;
+	
+end PhysicalResources;

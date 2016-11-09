@@ -1,0 +1,15 @@
+package DataDictionary
+public
+	
+	data SensorData
+		properties
+			Data_Size => 2 KByte;
+	end SensorData;
+
+	data actuatecmd
+		properties
+			Data_Size => 100 Bytes;
+	end actuatecmd;
+
+	
+end DataDictionary;
