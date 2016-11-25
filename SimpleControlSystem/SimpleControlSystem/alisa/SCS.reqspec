@@ -1,7 +1,7 @@
 // Copyright 2016 Carnegie Mellon University. See Notice.txt
 // Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
-system requirements scsreqs for SimpleControlSystem::SCS [
-	val MaximumLatency = 20 ms
+system requirements scsreqs for SimpleControlSystem::SCS [ 
+	description "These are requirement for SCS"
 	requirement R1 : "SCS weight limit" [
 		val  MaximumWeight = 1.2 kg
 		category Quality.Mass
@@ -12,6 +12,7 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 	]
 
 	requirement R2 : "SCS sensor to actuator response time limit" [
+		val MaximumLatency = 20 ms
 		description this " shall have a sensor to actuator response time within " MaximumLatency
 		category Quality.Latency
 		see goal SCSgoals.g1
@@ -27,4 +28,3 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 	include globalReq.Allconnected for self
 	include globalReq.connected
 ]
-

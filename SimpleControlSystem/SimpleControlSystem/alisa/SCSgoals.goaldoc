@@ -12,10 +12,12 @@ The SCS system consists for software, hardware, and physical components."
 		]
 		goal g2: "Digital Feedback Control" [
 			description "The SCS system shall control the SCS device with a digital controller"
+		stakeholder sei.phf
 		]
 		goal g3: "electrical power"
 		[ description "The simple control system shall be supplied with 15V electrical power."
 		stakeholder sei.phf
+		]
 		]
 	section NonfunctionalProperties : "Nonfunctional system requirements"
 	[
@@ -34,4 +36,4 @@ The SCS system consists for software, hardware, and physical components."
 			rationale "The system is part of an aircraft."
 		]
 	]
-] ]
+] 
