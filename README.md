@@ -1,6 +1,6 @@
 # ALISA Examples
 
-The following examples are available to illustrate the use of incremental system assurance with ALISA. The capabilities of ALISA are summarized in the [ERTSS 2016 paper](http://www.erts2016.org/uploads/program/paper_13.pdf) and elaborated in the online help in OSATE.
+The following examples are available to illustrate the use of incremental system assurance with ALISA. The capabilities of ALISA are summarized in the [ERTSS 2016 paper](http://www.erts2016.org/uploads/program/paper_13.pdf) and elaborated in the [ALISA online help in OSATE](https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html).
 
 ## SituationalAwarenessSystem
 This is the public release version of a situational Awareness System in AADL. It consists of three projects. 
@@ -38,3 +38,7 @@ The following projects make up the example (note that you must also include the 
 * The *Alisa-IntegratorDemo* project contains requirement specifications in *ReqSpec*, verification plans in *Verify*, and assurance plans in *Alisa*. 
 * The *Alisa-ADC-Sub1-Demo* project does the same for a supplier. 
 * The *Alisa-Utils* projects contains examples of additional verificaiton methods that are written in Jave/Xtend or resolute.
+
+##SimpleControlSystem
+
+This example illustrates a variety of user-defined verification methods and is used as the basis for a [tutorial on ReqSpec and Verify](https://github.com/osate/alisa-examples/blob/master/Documentation/BasicRequirementSpecificationGuidance.md).
