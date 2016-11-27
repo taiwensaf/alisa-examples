@@ -80,7 +80,6 @@ stakeholder phf [
 stakeholder dpg [
 	full name "David Gluch"
 ]
-
 ```
 
 ##From Goals to System Requirements##
@@ -107,7 +106,6 @@ system requirements scsreqs for SimpleControlSystem::SCS [
         see goal SCSgoals.g1
 	] 
 ]
-
 ```
 ### Dealing with Multiple Terms###
 If we want to keep track of different terms that refer to the same entity, we can make use of a user defined property that lets us associate multiple names with an AADL model element. An example definition is shown here.
@@ -139,7 +137,7 @@ requirement R3 : "SCS inlet voltage" for power [
 We also add the feature as an AADL abstract feature to the component type representing the system (see above). In the end we will have captured all the external interaction points of the system. 
 > When looking at the specification of SCS we may notice that we have an interaction point for incoming electrical power, and for the excerted force, but no representation for observations about the state of the controlled system (observed variable).
 
-### Paramterized Requirements ###
+### Parameterized Requirements ###
 Often you will need to make adjustments to requirements, typically it is the change of a value rather than the full description of the requirement. We support this by allowing you to specify *constants*  that can then be referenced in the requriement description, a predicate specification, and as parameter to the invocation of a verification. 
 Constants can be defined at the beginning of the requirement set to be referenced by any requirement in the set, or they can be defined local to a specific requirement. 
 >We also support the definition of global constants. See [ReqSpec Technical Report](https://resources.sei.cmu.edu/asset_files/TechnicalReport/2016_005_001_464378.pdf) for details.
@@ -260,16 +258,15 @@ global requirements globalReq
 		category Kind.Consistency
 		development stakeholder sei.phf
 	]
-]```
+]
+```
 The first requirement is specified as a conditional requirement to indicate that it applies only for leaf components, i.e., components without subcomponents. The condition is encoded in a Java method that is coded separately. In this case, when we add this reusable requirement to the requirement set of SCS (see the *include* statement below) the requirement gets attached to each leaf component of the AADL instance model whose root system implementation is identified by the assurance plan.
 ```
 	include globalReq.connected
-
 ```
 The second requirement is specified for the system as a whole. In this case it is associated with the top level system and the verification activity will traverse the model and verify each leaf component. The key words **for self** indicate that the requirement is only applied to the target component itself.
 ```
 	include globalReq.Allconnected for self
-
 ```
 The difference between the two is that in the first case there is a separate requirement with the verification result as evidence record in the assurance case instance for each component , while in the second case the requirement is recorded only for the top level system with the verification producing a report detailing any leaf component that does not satisfy the requirement. In other words, in the first case, the verification activity only examines the component that is the target of the verification, while in the second case the verification activity traverses the AADL instance model to find and verify each leaf component.
 
