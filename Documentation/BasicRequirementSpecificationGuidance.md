@@ -8,7 +8,7 @@ An example model called *SimpleControlSystem* used in this guidance is available
 [TOC]
 
 ##Introduction##
-The guidance approach is as follows. Elicitation of stakeholder requirements focuses on capturing the goals and desires of stakeholders. These requirements, which we refer to as **stakeholder goals**, should be traceable to specific stakeholders, may be refined into subgoals, they may evolve, and they may be in conflict with each other. 
+The guidance approach is as follows. Elicitation of stakeholder requirements focuses on capturing the goals and desires of stakeholders. These requirements, which we refer to as **stakeholder goals**, should be traceable to specific stakeholders, may be refined into sub goals, they may evolve, and they may be in conflict with each other. 
 
 In a separate phase we develop **system requirements**. They are derived from the stakeholder goals. System requirements become the contract that must be met by a system implementation, i.e., must be verifiable or satisfiable. Verification plans specify the verification activities necessary to show that a set of requirements are met.
 ReqSpec allows goals and requirements to be organized in a document structure with sections and subsections, or into goal/requirement sets aligned with systems and subsystems expressed in an AADL model. 
@@ -17,7 +17,7 @@ In this guidance we recommend that stakeholder goals be organized in a document 
 We proceed by illustrating each of the two phases. 
 This is followed by a discussion of how verification plans can be specified and how users can define their own verification methods for verifying requirements.
 
-##Stakeholder Goal Eliciation##
+##Stakeholder Goal Elicitation##
 Stakeholder goals are captured in files with the *goaldoc* extension. Users create such files with the *New .. File* command under the *File* menu.
 The content of the file consists of a **document** with a name and a *title* string, followed by the document content in square brackets. 
 > The document name acts the qualifier for external references to goals and is assumed to be unique within the OSATE workspace. 
@@ -29,7 +29,7 @@ A **goal** consists of a name that is unique within the goal document, a *title*
 With these three constructs users can create stakeholder goal documents that follow a traditional document structure that organizes goals into sections and subsections. 
 >Goals have unique names within a goal document. They are referenced by their unique name within the same goal document and by qualifying the name with the goal document name if a goal in a different goal document is referenced. The placement of goals in sections does not affect how goals are referenced.
 
-Stakeholder goals can be divided into sub-goals. We do this by adding the subgoal as goal and referring to the original goal with `refines`.
+Stakeholder goals can be divided into sub goals. We do this by adding the sub goal as goal and referring to the original goal with **refines**.
 
 ```
 document SCSgoals : "SCS stakeholder goals" [
@@ -71,7 +71,7 @@ The SCS system consists for software, hardware, and physical components."
 ] 
 ```
 ### Defining Stakeholders ###
-We can define stakeholders in a file with the extension *org*. Stakeholders are placed into an **organization**. A stakeholder entry has a name and a number of content fields. A stakeholder is referred to in goals by `organizationname.stakeholdername`.
+We can define stakeholders in a file with the extension *org*. Stakeholders are placed into an **organization**. A stakeholder entry has a name and a number of content fields. A stakeholder is referred to in goals by *organizationname.stakeholdername*.
 ```
 organization sei
 stakeholder phf [
@@ -88,13 +88,13 @@ In our above example we have a number of terms that potentially refer to the sam
 ![](images/GoalsMultiTerm.png)
 
 When defining system requirements we want to be explicit about the entity we are referring to. We do so by organizing requirements into **requirement sets**: one set for the system, one for each element in the operational environment, and one for each part within the system. This helps clarify the system boundary, i.e., clearly identifies what the requirement is for. 
-We do this in two steps. One step is to identify the system of interest by name through a **for** statement in the requirement set. If the system of interest does not exist as an AADL model element yet, a warning is provided. In a second step we define a *system type* in an AADL model to represent the ststem of interest. For elements of the operational environment we may use an *abstract type*.
+We do this in two steps. One step is to identify the system of interest by name through a **for** statement in the requirement set. If the system of interest does not exist as an AADL model element yet, a warning is provided. In a second step we define a *system type* in an AADL model to represent the system of interest. For elements of the operational environment we may use an *abstract type*.
 ### Sets of System Requirements ###
 
-We place requirement sets in files with the **reqspec** extension. A requirement set is declared as **system requirements** with a globally unique name (dotted name), a *title* string, a **for** statement identifying a component classifier, and its content in square brackets. The content is a *descrption* of the requiremetn set and a set of **requirement** declarations.
+We place requirement sets in files with the **reqspec** extension. A requirement set is declared as **system requirements** with a globally unique name (dotted name), a *title* string, a **for** statement identifying a component classifier, and its content in square brackets. The content is a *description* of the requirement set and a set of **requirement** declarations.
 Each **requirement** has a name that is unique within the requirement set, a *title* string, an optional **for** statement, and content in square brackets. 
 The content of a requirement consists of a **description**, an optional **rationale**, and an optional traceability link to a stakeholder goal (**see goal**).
-Requirements can be refined into sub-requirements. We do this by adding the subrequirement as requirement and referring to the original requirement with `refines`. In this case both the original requirment and the refined requirement are associated with the same system. 
+Requirements can be refined into sub-requirements. We do this by adding the subrequirement as requirement and referring to the original requirement with **refines**. In this case both the original requirement and the refined requirement are associated with the same system. 
 ReqSpec distinguishes different forms of *derived* requirements, such as refinement, decomposition into requirements on subcomponents (see below), etc. For more details see [ReqSpec Technical Report](https://resources.sei.cmu.edu/asset_files/TechnicalReport/2016_005_001_464378.pdf).
 ```
 system requirements scsreqs for SimpleControlSystem::SCS [ 
@@ -135,14 +135,14 @@ requirement R3 : "SCS inlet voltage" for power [
 ]
 ```
 We also add the feature as an AADL abstract feature to the component type representing the system (see above). In the end we will have captured all the external interaction points of the system. 
-> When looking at the specification of SCS we may notice that we have an interaction point for incoming electrical power, and for the excerted force, but no representation for observations about the state of the controlled system (observed variable).
+> When looking at the specification of SCS we may notice that we have an interaction point for incoming electrical power, and for the applied force, but no representation for observations about the state of the controlled system (observed variable).
 
 ### Parameterized Requirements ###
-Often you will need to make adjustments to requirements, typically it is the change of a value rather than the full description of the requirement. We support this by allowing you to specify *constants*  that can then be referenced in the requriement description, a predicate specification, and as parameter to the invocation of a verification. 
+Often you will need to make adjustments to requirements, typically it is the change of a value rather than the full description of the requirement. We support this by allowing you to specify *constants*  that can then be referenced in the requirement description, a predicate specification, and as parameter to the invocation of a verification. 
 Constants can be defined at the beginning of the requirement set to be referenced by any requirement in the set, or they can be defined local to a specific requirement. 
 >We also support the definition of global constants. See [ReqSpec Technical Report](https://resources.sei.cmu.edu/asset_files/TechnicalReport/2016_005_001_464378.pdf) for details.
 
-A constant declaration consists of the keyword **val**, optionally a type, and the desired value. Numeric values can have measurement units. Any of the unit literals defined by an AADL **units** property typecan be used.
+A constant declaration consists of the keyword **val**, optionally a type, and the desired value. Numeric values can have measurement units. Any of the unit literals defined by an AADL **units** property type can be used.
 
 > The **description** can consists of a sequence of strings, referenced to constants, and the keyword **this**. **this** acts as placeholder for the name of the model element the requirement applies to.
 
@@ -183,7 +183,7 @@ requirement R2 : "SCS sensor to actuator response time limit" [
 ### Component Extensions and Requirement Inheritance ###
 Each component classifier (type or implementation) can have its own requirement set. All the requirements of the type as well as the implementation apply when we verify a particular component implementation.
 
-In AADL a component type can be an extension of another component type. In this case both the orginal component type and the extension can have a requirement set, and the requirement set of the original applies to the extension. 
+In AADL a component type can be an extension of another component type. In this case both the original component type and the extension can have a requirement set, and the requirement set of the original applies to the extension. 
 
 In our example, we have an extension of the SCS that operates with two redundant external power supplies. 
 ```
@@ -192,7 +192,7 @@ system SCSDualPower extends SCS
 		backuppower: in feature PhysicalResources::Power;
 end SCSDualPower;
 ```
-This extension has additional requirements to indicate that we expect two external power supplies that are redundant. They are constraints on the specificaiton of SCS, i.e., on the componenbt type of the dual redundant SCS (see *DualSCS.reqspe*).
+This extension has additional requirements to indicate that we expect two external power supplies that are redundant. They are constraints on the specification of SCS, i.e., on the component type of the dual redundant SCS (see *DualSCS.reqspe*).
 ```
 system requirements DualSCSreqs for SimpleControlSystem::SCSDualPower [
 	requirement SR1: "dual power operation" [
@@ -222,7 +222,7 @@ system requirements DualSCSreqs for SimpleControlSystem::SCSDualPower [
 ### Derived Requirements: Refinement, Decomposition ###
 We distinguish between different types of derivation relationships between requirements.
 
-First, we recognize requirement refinement. This is the case when a requirement is subdivided into one or more more precise or verifiable requirements for the same system. This is expressed by a **refines** reference to another requirement of the same component, as shown in the previous example for requirements SR1_1, SR1_2, SR1_3. 
+First, we recognize requirement refinement. This is the case when a requirement is subdivided into one or more precise or verifiable requirements for the same system. This is expressed by a **refines** reference to another requirement of the same component, as shown in the previous example for requirements SR1_1, SR1_2, SR1_3. 
 
 Second, we recognize requirement decomposition. In this case a requirement for a system determines requirements on subsystems of that system. This is expressed by a **decomposes** reference to the requirement of the enclosing component. More than one requirement can be referenced. We have two ways of recording such a decomposition.
 1. We want to record the requirement in a particular use context, and then find a component from a library for each of those contexts. We do this by defining a requirement for a subcomponent in an implementation and reference a requirement for the enclosing system. We may get different requirements for a subcomponent of the same type in different use contexts. Each subcomponent may reference a component type. The component type with properties acts as a specification that must meet the requirement in each use context. This represents a use scenario where we first decompose the requirements and then try to find a component for each use context that meets those requirements.
@@ -270,10 +270,10 @@ The second requirement is specified for the system as a whole. In this case it i
 ```
 The difference between the two is that in the first case there is a separate requirement with the verification result as evidence record in the assurance case instance for each component , while in the second case the requirement is recorded only for the top level system with the verification producing a report detailing any leaf component that does not satisfy the requirement. In other words, in the first case, the verification activity only examines the component that is the target of the verification, while in the second case the verification activity traverses the AADL instance model to find and verify each leaf component.
 
-In the next section we will show you how such verificaiton methods are written, registered, and used in verification plans.
+In the next section we will show you how such verification methods are written, registered, and used in verification plans.
 
 ## Verification of System Requirements ##
-System requirements are expected to be verified. This is accomplished by defining a verificaiton plan for each of the system requirement sets. A verification plan consists of a claim for each of the requirements. The claim consists of a set of verification activities, and an optional logical expression (**assure** clause) to represent the argument for meeting the claim. By default all verification activities must be met. Otherwise, users can express conditional relations between verification activities, e.g., one must be successful before a second one is performed, or a second verification activity is the backup in case the first does not succeed. For the full set of logic expressions see the [online help for ALISA in OSATE](https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html).
+System requirements are expected to be verified. This is accomplished by defining a verification plan for each of the system requirement sets. A verification plan consists of a claim for each of the requirements. The claim consists of a set of verification activities, and an optional logical expression (**assure** clause) to represent the argument for meeting the claim. By default all verification activities must be met. Otherwise, users can express conditional relations between verification activities, e.g., one must be successful before a second one is performed, or a second verification activity is the backup in case the first does not succeed. For the full set of logic expressions see the [online help for ALISA in OSATE](https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html).
 
 In the example below (found in file *scsvplan.verify*) the first claim consists of two verification activities to verify the weight requirement. Both will be executed when the system is being verified. The first verification activity invokes an OSATE analysis plug-in, while the second invokes a Resolute claim function. The second claim also consists of two verification activities. In this case, the latency analysis is performed on the assumption that the system is schedulable. Therefore, we specify that the *timing* activity must complete successfully before the latency analysis is performed.
 > Note: The call to the verification method does not explicitly specify the component instance on which the verification is performed. It is automatically supplied to the Plugin method or Resolute method as first parameter.
@@ -299,7 +299,7 @@ verification plan scsvplan for scsreqs
 ### Verification Activities and Methods ###
 Verification activities are performed on AADL instance models. The AADL models themselves may be verified, or the verification may be invoked on an artifact referenced by the AADL model, e.g., a Simulink model of a detailed design, or actual source code associated with a thread.
 
-Verification activities invoke verification methods. Method registries identify the methods available to the user. The verificaiton results are tracked in the ALISA assurance case instance (file with the *assure* extension and displayed as assurance result).
+Verification activities invoke verification methods. Method registries identify the methods available to the user. The verification results are tracked in the ALISA assurance case instance (file with the *assure* extension and displayed as assurance result).
 
 One set of verification methods are the analysis plugins of OSATE. Their registry is called *Plugins*. The analysis plugin is called with the system instance (instance model root) as its parameter. OSATE analysis plugins report their results through the Eclipse Marker mechanism - they are mapped into a set of result issues in the ALISA assurance case (Assure file). 
 >Note that we may have several latency requirements. In this case the latency analysis plugin is called only once, and the result for each end to end flow requirement is retrieved from the Eclipse markers. 
@@ -310,7 +310,7 @@ Resolute verification methods are written as *claim functions*. These claim func
 ```
 MaxWeight : Resolute.verifySCSReq1(MaximumWeight in kg) 
 ```
-The claim function is assumed to have at least one parameter, the component instance that is automtaically passed as first parameter. The Resolute claim function may take additional parameters. 
+The claim function is assumed to have at least one parameter, the component instance that is automatically passed as first parameter. The Resolute claim function may take additional parameters. 
 
 The Resolute claim function is defined in a Resolute annex library. Our example function is defined as follows:
 ```
@@ -334,7 +334,7 @@ The method defines the formal parameters (other than the default first parameter
 > Following Resolute conventions for Resolute prove statements claim functions do not have to be qualified by a Resolute library name. 
 
 The method specification in our example includes a **validation** call. The specified method is called to determine the validity of the verification result. Here we assess whether all components with a weight actually had a weight related property. 
->Any issue identified by the validation is included in the assruance case result, e.g., that 70% of components had weight assigned.
+>Any issue identified by the validation is included in the assurance case result, e.g., that 70% of components had weight assigned.
 
 Resolute claim functions report successful (pass) or unsuccessful fail) execution of a predicate. In case of *fail* a specific *fail* message may be added through a resolute **fail** statement (see Resolute documentation). The Resolute results are mapped into the ALISA assurance case instance (Assure file).
 
@@ -345,7 +345,7 @@ A Resolute claim function may call other Resolute claim functions. The results a
 Users can also write verification methods in Java. You do this by creating a Plugin project. In out example Alisa-Consistency is such a project. You define dependencies on plugins from OSATE in MANIFEST.INF to have access to utility methods for operating on AADL models. 
 * The plugin *org.osate.aadl* gives you access to utility methods to access declarative AADL models and AADL instance models. 
 * The plugin *org.osate.xtext.aadl2.properties* gives you access to utility methods for retrieving property values from AADL models.
-* The plugin *org.osate.results* provides methods for a common result reporting format, which we will use in one of our example methods. This format is compatible with the format used in ALISA assurance acse instances (Assure files).
+* The plugin *org.osate.results* provides methods for a common result reporting format, which we will use in one of our example methods. This format is compatible with the format used in ALISA assurance case instances (Assure files).
 
 Java methods can be written as static methods or non-static methods. 
 
@@ -362,7 +362,7 @@ public static boolean hasVoltage(FeatureInstance fi, double v) {
 }
 ```
 The helper method getVoltage is defined as follows.
-> Note that for predefined properties utility methods for retireving property values exist in the class *GetProperties*. A second class *PropertyUtils* provides additional support methods.
+> Note that for predefined properties utility methods for retrieving property values exist in the class *GetProperties*. A second class *PropertyUtils* provides additional support methods.
 
 ```
 public static double getVoltage(final FeatureInstance fi) {
@@ -433,7 +433,7 @@ public static boolean isConnected(FeatureInstance fi) {
        fi.getDstConnectionInstances().isEmpty());
 }
 ```
-This Java method is registered as follows - indicating the the return value is a **report**.
+This Java method is registered as follows - indicating the return value is a **report**.
 ```
 method AllComponentsConnected()report: "Check that all features of all leaf components are connected" [
 	java alisa_consistency.ModelVerifications.allComponentFeaturesConnected
@@ -441,10 +441,10 @@ method AllComponentsConnected()report: "Check that all features of all leaf comp
 ]
 ```
 ### Value Predicates ###
-Users can specify value predicates as part of a requirement specification. This predicate can take one of two forms:
+Users can specify value predicates as part of a requirement specification. 
 
-1. It specifies a condition involving ReqSpec constants and property values in the model. This predicate is evaluated once for the requirement.
-> The first form allows us to specify a condition that the requirement constant **val** value is the same as the value of a property. Here is an example:
+This predicate can specify a condition involving ReqSpec constants and property values in the model. This predicate is evaluated once for the requirement.
+> This allows us to specify a condition that the requirement constant **val** value is the same as the value of a property. Here is an example:
 ```
 requirement R1 : "SCS weight limit" [
 	val  MaximumWeight = 1.2 kg
@@ -457,7 +457,7 @@ requirement R1 : "SCS weight limit" [
 ]
 ```
 
-2. It specifies a condition involving ReqSpec constants, property values, as well as **compute** variable. Compute variables are unbound variables, whose values are bound as result of executing a *compute function* that is called in a verification activity. 
+This predicate can also include **compute** variables. Compute variables are unbound variables, whose values are bound as result of executing a *compute function* that is called in a verification activity. 
 > The second form allows us to specify the predicate condition once as part of the requirement without having to implement the predicate condition in each of the verification methods being called in verification activities.
 
 The following is a requirement that specifies an unbound **compute** variable called *actualvolt*. It is compared in the **value predicate** against the specified *volts*.
@@ -506,7 +506,7 @@ method GetVoltage (feature) properties (Physical::Voltage) returns (volts: real 
 	description "Retrieve the Voltage property from the feature instance"
 ]
 ```
-The call in the verificaiton activity is specified as follows.
+The call in the verification activity is specified as follows.
 ```
 	guaranteedthesame: actualvolt = Alisa_Consistency.SetGetVoltage () property values(volts)
 ```
