@@ -442,6 +442,7 @@ method AllComponentsConnected()report: "Check that all features of all leaf comp
 ```
 ### Value Predicates ###
 Users can specify value predicates as part of a requirement specification. This predicate can take one of two forms:
+
 1. It specifies a condition involving ReqSpec constants and property values in the model. This predicate is evaluated once for the requirement.
 > The first form allows us to specify a condition that the requirement constant **val** value is the same as the value of a property. Here is an example:
 ```
