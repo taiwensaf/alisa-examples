@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>BasicRequirementSpecificationGuidance.html</title>
+  <meta name="generator" content="Haroopad 0.13.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>div.oembedall-githubrepos{border:1px solid #DDD;border-radius:4px;list-style-type:none;margin:0 0 10px;padding:8px 10px 0;font:13.34px/1.4 helvetica,arial,freesans,clean,sans-serif;width:452px;background-color:#fff}div.oembedall-githubrepos .oembedall-body{background:-moz-linear-gradient(center top,#FAFAFA,#EFEFEF);background:-webkit-gradient(linear,left top,left bottom,from(#FAFAFA),to(#EFEFEF));border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top:1px solid #EEE;margin-left:-10px;margin-top:8px;padding:5px 10px;width:100%}div.oembedall-githubrepos h3{font-size:14px;margin:0;padding-left:18px;white-space:nowrap}div.oembedall-githubrepos p.oembedall-description{color:#444;font-size:12px;margin:0 0 3px}div.oembedall-githubrepos p.oembedall-updated-at{color:#888;font-size:11px;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats{border:none;float:right;font-size:11px;font-weight:700;padding-left:15px;position:relative;z-index:5;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats li{border:none;color:#666;display:inline-block;list-style-type:none;margin:0!important}div.oembedall-githubrepos ul.oembedall-repo-stats li a{background-color:transparent;border:none;color:#666!important;background-position:5px -2px;background-repeat:no-repeat;border-left:1px solid #DDD;display:inline-block;height:21px;line-height:21px;padding:0 5px 0 23px}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a{border-left:medium none;margin-right:-3px}div.oembedall-githubrepos ul.oembedall-repo-stats li a:hover{background:5px -27px no-repeat #4183C4;color:#FFF!important;text-decoration:none}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a:hover{border-bottom-left-radius:3px;border-top-left-radius:3px}ul.oembedall-repo-stats li:last-child a:hover{border-bottom-right-radius:3px;border-top-right-radius:3px}span.oembedall-closehide{background-color:#aaa;border-radius:2px;cursor:pointer;margin-right:3px}div.oembedall-container{margin-top:5px;text-align:left}.oembedall-ljuser{font-weight:700}.oembedall-ljuser img{vertical-align:bottom;border:0;padding-right:1px}.oembedall-stoqembed{border-bottom:1px dotted #999;float:left;overflow:hidden;width:730px;line-height:1;background:#FFF;color:#000;font-family:Arial,Liberation Sans,DejaVu Sans,sans-serif;font-size:80%;text-align:left;margin:0;padding:0}.oembedall-stoqembed a{color:#07C;text-decoration:none;margin:0;padding:0}.oembedall-stoqembed a:hover{text-decoration:underline}.oembedall-stoqembed a:visited{color:#4A6B82}.oembedall-stoqembed h3{font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;font-size:130%;font-weight:700;margin:0;padding:0}.oembedall-stoqembed .oembedall-reputation-score{color:#444;font-size:120%;font-weight:700;margin-right:2px}.oembedall-stoqembed .oembedall-user-info{height:35px;width:185px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-gravatar32{float:left;height:32px;width:32px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-details{float:left;margin-left:5px;overflow:hidden;white-space:nowrap;width:145px}.oembedall-stoqembed .oembedall-question-hyperlink{font-weight:700}.oembedall-stoqembed .oembedall-stats{background:#EEE;margin:0 0 0 7px;padding:4px 7px 6px;width:58px}.oembedall-stoqembed .oembedall-statscontainer{float:left;margin-right:8px;width:86px}.oembedall-stoqembed .oembedall-votes{color:#555;padding:0 0 7px;text-align:center}.oembedall-stoqembed .oembedall-vote-count-post{font-size:240%;color:#808185;display:block;font-weight:700}.oembedall-stoqembed .oembedall-views{color:#999;padding-top:4px;text-align:center}.oembedall-stoqembed .oembedall-status{margin-top:-3px;padding:4px 0;text-align:center;background:#75845C;color:#FFF}.oembedall-stoqembed .oembedall-status strong{color:#FFF;display:block;font-size:140%}.oembedall-stoqembed .oembedall-summary{float:left;width:635px}.oembedall-stoqembed .oembedall-excerpt{line-height:1.2;margin:0;padding:0 0 5px}.oembedall-stoqembed .oembedall-tags{float:left;line-height:18px}.oembedall-stoqembed .oembedall-tags a:hover{text-decoration:none}.oembedall-stoqembed .oembedall-post-tag{background-color:#E0EAF1;border-bottom:1px solid #3E6D8E;border-right:1px solid #7F9FB6;color:#3E6D8E;font-size:90%;line-height:2.4;margin:2px 2px 2px 0;padding:3px 4px;text-decoration:none;white-space:nowrap}.oembedall-stoqembed .oembedall-post-tag:hover{background-color:#3E6D8E;border-bottom:1px solid #37607D;border-right:1px solid #37607D;color:#E0EAF1}.oembedall-stoqembed .oembedall-fr{float:right}.oembedall-stoqembed .oembedall-statsarrow{background-image:url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3);background-repeat:no-repeat;overflow:hidden;background-position:0 -435px;float:right;height:13px;margin-top:12px;width:7px}.oembedall-facebook1{border:1px solid #1A3C6C;padding:0;font:13.34px/1.4 verdana;width:500px}.oembedall-facebook2{background-color:#627add}.oembedall-facebook2 a{color:#e8e8e8;text-decoration:none}.oembedall-facebookBody{background-color:#fff;vertical-align:top;padding:5px}.oembedall-facebookBody .contents{display:inline-block;width:100%}.oembedall-facebookBody div img{float:left;margin-right:5px}div.oembedall-lanyard{-webkit-box-shadow:none;-webkit-transition-delay:0s;-webkit-transition-duration:.4000000059604645s;-webkit-transition-property:width;-webkit-transition-timing-function:cubic-bezier(0.42,0,.58,1);background-attachment:scroll;background-clip:border-box;background-color:transparent;background-image:none;background-origin:padding-box;border-width:0;box-shadow:none;color:#112644;display:block;float:left;font-family:'Trebuchet MS',Trebuchet,sans-serif;font-size:16px;height:253px;line-height:19px;margin:0;max-width:none;min-height:0;outline:#112644 0;overflow-x:visible;overflow-y:visible;padding:0;position:relative;text-align:left;vertical-align:baseline;width:804px}div.oembedall-lanyard .tagline{font-size:1.5em}div.oembedall-lanyard .wrapper{overflow:hidden;clear:both}div.oembedall-lanyard .split{float:left;display:inline}div.oembedall-lanyard .prominent-place .flag:active,div.oembedall-lanyard .prominent-place .flag:focus,div.oembedall-lanyard .prominent-place .flag:hover,div.oembedall-lanyard .prominent-place .flag:link,div.oembedall-lanyard .prominent-place .flag:visited{float:left;display:block;width:48px;height:48px;position:relative;top:-5px;margin-right:10px}div.oembedall-lanyard .place-context{font-size:.889em}div.oembedall-lanyard .prominent-place .sub-place{display:block}div.oembedall-lanyard .prominent-place{font-size:1.125em;line-height:1.1em;font-weight:400}div.oembedall-lanyard .main-date{color:#8CB4E0;font-weight:700;line-height:1.1}div.oembedall-lanyard .first{width:48.57%;margin:0 0 0 2.857%}.mermaid .label{color:#333}.node circle,.node polygon,.node rect{fill:#cde498;stroke:#13540c;stroke-width:1px}.edgePath .path{stroke:green;stroke-width:1.5px}.cluster rect{fill:#cdffb2;rx:40;stroke:#6eaa49;stroke-width:1px}.cluster text{fill:#333}.actor{stroke:#13540c;fill:#cde498}text.actor{fill:#000;stroke:none}.actor-line{stroke:grey}.messageLine0{stroke-width:1.5;stroke-dasharray:"2 2";marker-end:"url(#arrowhead)";stroke:#333}.messageLine1{stroke-width:1.5;stroke-dasharray:"2 2";stroke:#333}#arrowhead{fill:#333}#crosshead path{fill:#333!important;stroke:#333!important}.messageText{fill:#333;stroke:none}.labelBox{stroke:#326932;fill:#cde498}.labelText,.loopText{fill:#000;stroke:none}.loopLine{stroke-width:2;stroke-dasharray:"2 2";marker-end:"url(#arrowhead)";stroke:#326932}.note{stroke:#6eaa49;fill:#fff5ad}.noteText{fill:#000;stroke:none;font-family:'trebuchet ms',verdana,arial;font-size:14px}.section{stroke:none;opacity:.2}.section0,.section2{fill:#6eaa49}.section1,.section3{fill:#fff;opacity:.2}.sectionTitle0,.sectionTitle1,.sectionTitle2,.sectionTitle3{fill:#333}.sectionTitle{text-anchor:start;font-size:11px;text-height:14px}.grid .tick{stroke:lightgrey;opacity:.3;shape-rendering:crispEdges}.grid path{stroke-width:0}.today{fill:none;stroke:red;stroke-width:2px}.task{stroke-width:2}.taskText{text-anchor:middle;font-size:11px}.taskTextOutsideRight{fill:#000;text-anchor:start;font-size:11px}.taskTextOutsideLeft{fill:#000;text-anchor:end;font-size:11px}.taskText0,.taskText1,.taskText2,.taskText3{fill:#fff}.task0,.task1,.task2,.task3{fill:#487e3a;stroke:#13540c}.taskTextOutside0,.taskTextOutside1,.taskTextOutside2,.taskTextOutside3{fill:#000}.active0,.active1,.active2,.active3{fill:#cde498;stroke:#13540c}.activeText0,.activeText1,.activeText2,.activeText3{fill:#000!important}.done0,.done1,.done2,.done3{stroke:grey;fill:lightgrey;stroke-width:2}.doneText0,.doneText1,.doneText2,.doneText3{fill:#000!important}.crit0,.crit1,.crit2,.crit3{stroke:#f88;fill:red;stroke-width:2}.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3{stroke:#f88;fill:#cde498;stroke-width:2}.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3{stroke:#f88;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges}.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3{fill:#000!important}.titleText{text-anchor:middle;font-size:18px;fill:#000}text{font-family:'trebuchet ms',verdana,arial;font-size:14px}html{height:100%}body{margin:0!important;padding:5px 20px 26px!important;background-color:#fff;font-family:"Lucida Grande","Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Lucida Sans Unicode",Helvetica,Arial,sans-serif;font-size:.9em;overflow-x:hidden;overflow-y:auto}br,h1,h2,h3,h4,h5,h6{clear:both}hr.page{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x;border:0;height:3px;padding:0}hr.underscore{border-top-style:dashed!important}body >:first-child{margin-top:0!important}img.plugin{box-shadow:0 1px 3px rgba(0,0,0,.1);border-radius:3px}iframe{border:0}figure{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0}kbd{border:1px solid #aaa;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-moz-box-shadow:1px 2px 2px #ddd;-webkit-box-shadow:1px 2px 2px #ddd;box-shadow:1px 2px 2px #ddd;background-color:#f9f9f9;background-image:-moz-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-o-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-webkit-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:linear-gradient(top,#eee,#f9f9f9,#eee);padding:1px 3px;font-family:inherit;font-size:.85em}.oembeded .oembed_photo{display:inline-block}img[data-echo]{margin:25px 0;width:100px;height:100px;background:url(../img/ajax.gif) center center no-repeat #fff}.spinner{display:inline-block;width:10px;height:10px;margin-bottom:-.1em;border:2px solid rgba(0,0,0,.5);border-top-color:transparent;border-radius:100%;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear}.spinner:after{content:'';display:block;width:0;height:0;position:absolute;top:-6px;left:0;border:4px solid transparent;border-bottom-color:rgba(0,0,0,.5);-webkit-transform:rotate(45deg);transform:rotate(45deg)}@-webkit-keyframes spin{to{-webkit-transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}p.toc{margin:0!important}p.toc ul{padding-left:10px}p.toc>ul{padding:10px;margin:0 10px;display:inline-block;border:1px solid #ededed;border-radius:5px}p.toc li,p.toc ul{list-style-type:none}p.toc li{width:100%;padding:0;overflow:hidden}p.toc li a::after{content:"."}p.toc li a:before{content:"• "}p.toc h5{text-transform:uppercase}p.toc .title{float:left;padding-right:3px}p.toc .number{margin:0;float:right;padding-left:3px;background:#fff;display:none}input.task-list-item{margin-left:-1.62em}.markdown{font-family:"Hiragino Sans GB","Microsoft YaHei",STHeiti,SimSun,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",'Segoe UI',AppleSDGothicNeo-Medium,'Malgun Gothic',Verdana,Tahoma,sans-serif;padding:20px}.markdown a{text-decoration:none;vertical-align:baseline}.markdown a:hover{text-decoration:underline}.markdown h1{font-size:2.2em;font-weight:700;margin:1.5em 0 1em}.markdown h2{font-size:1.8em;font-weight:700;margin:1.275em 0 .85em}.markdown h3{font-size:1.6em;font-weight:700;margin:1.125em 0 .75em}.markdown h4{font-size:1.4em;font-weight:700;margin:.99em 0 .66em}.markdown h5{font-size:1.2em;font-weight:700;margin:.855em 0 .57em}.markdown h6{font-size:1em;font-weight:700;margin:.75em 0 .5em}.markdown h1+p,.markdown h1:first-child,.markdown h2+p,.markdown h2:first-child,.markdown h3+p,.markdown h3:first-child,.markdown h4+p,.markdown h4:first-child,.markdown h5+p,.markdown h5:first-child,.markdown h6+p,.markdown h6:first-child{margin-top:0}.markdown hr{border:1px solid #ccc}.markdown p{margin:1em 0;word-wrap:break-word}.markdown ol{list-style-type:decimal}.markdown li{display:list-item;line-height:1.4em}.markdown blockquote{margin:1em 20px}.markdown blockquote>:first-child{margin-top:0}.markdown blockquote>:last-child{margin-bottom:0}.markdown blockquote cite:before{content:'\2014 \00A0'}.markdown .code{border-radius:3px;word-wrap:break-word}.markdown pre{border-radius:3px;word-wrap:break-word;border:1px solid #ccc;overflow:auto;padding:.5em}.markdown pre code{border:0;display:block}.markdown pre>code{font-family:Consolas,Inconsolata,Courier,monospace;font-weight:700;white-space:pre;margin:0}.markdown code{border-radius:3px;word-wrap:break-word;border:1px solid #ccc;padding:0 5px;margin:0 2px}.markdown img{max-width:100%}.markdown mark{color:#000;background-color:#fcf8e3}.markdown table{padding:0;border-collapse:collapse;border-spacing:0;margin-bottom:16px}.markdown table tr td,.markdown table tr th{border:1px solid #ccc;margin:0;padding:6px 13px}.markdown table tr th{font-weight:700}.markdown table tr th>:first-child{margin-top:0}.markdown table tr th>:last-child{margin-bottom:0}.markdown table tr td>:first-child{margin-top:0}.markdown table tr td>:last-child{margin-bottom:0}@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700);.haroopad{padding:20px;color:#222;font-size:15px;font-family:"Roboto Condensed",Tauri,"Hiragino Sans GB","Microsoft YaHei",STHeiti,SimSun,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",'Segoe UI',AppleSDGothicNeo-Medium,'Malgun Gothic',Verdana,Tahoma,sans-serif;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}.haroopad a{color:#3269a0}.haroopad a:hover{color:#4183c4}.haroopad h2{border-bottom:1px solid #e6e6e6}.haroopad h6{color:#777}.haroopad hr{border:1px solid #e6e6e6}.haroopad blockquote>code,.haroopad h1>code,.haroopad h2>code,.haroopad h3>code,.haroopad h4>code,.haroopad h5>code,.haroopad h6>code,.haroopad li>code,.haroopad p>code,.haroopad td>code{font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;font-size:85%;background-color:rgba(0,0,0,.02);padding:.2em .5em;border:1px solid #efefef}.haroopad pre>code{font-size:1em;letter-spacing:-1px;font-weight:700}.haroopad blockquote{border-left:4px solid #e6e6e6;padding:0 15px;color:#777}.haroopad table{background-color:#fafafa}.haroopad table tr td,.haroopad table tr th{border:1px solid #e6e6e6}.haroopad table tr:nth-child(2n){background-color:#f2f2f2}.hljs{display:block;overflow-x:auto;padding:.5em;background:#474949;color:#d1d9e1;-webkit-text-size-adjust:none}.hljs-body,.hljs-collection{color:#d1d9e1}.diff .hljs-header,.hljs-comment,.hljs-doctype,.hljs-javadoc,.lisp .hljs-string{color:#969896;font-style:italic}.clojure .hljs-attribute,.css .hljs-tag,.hljs-addition,.hljs-keyword,.hljs-winutils,.javascript .hljs-title{color:#c9c}.hljs-number{color:#f99157}.hljs-command,.hljs-dartdoc,.hljs-hexcolor,.hljs-phpdoc,.hljs-regexp,.hljs-string,.hljs-tag .hljs-value,.tex .hljs-formula{color:#8abeb7}.hljs-built_in,.hljs-chunk,.hljs-decorator,.hljs-function .hljs-title,.hljs-identifier,.hljs-localvars,.hljs-title{color:#b5bd68}.hljs-class .hljs-keyword{color:#f2777a}.haskell .hljs-label,.hljs-class .hljs-title,.hljs-constant,.hljs-id,.hljs-parent,.hljs-variable,.smalltalk .hljs-number{color:#fc6}.django .hljs-tag .hljs-keyword,.hljs-rules .hljs-property,.hljs-tag .hljs-title{font-weight:700}.hljs-attribute{color:#81a2be}.diff .hljs-change,.hljs-attr_selector,.hljs-cdata,.hljs-important,.hljs-pi,.hljs-pragma,.hljs-preprocessor,.hljs-shebang,.hljs-special,.hljs-subst,.hljs-symbol,.hljs-symbol .hljs-string{color:#f99157}.hljs-deletion{color:#dc322f}.tex .hljs-formula{background:#eee8d5}.MathJax_Hover_Frame{border-radius:.25em;-webkit-border-radius:.25em;-moz-border-radius:.25em;-khtml-border-radius:.25em;box-shadow:0 0 15px #83A;-webkit-box-shadow:0 0 15px #83A;-moz-box-shadow:0 0 15px #83A;-khtml-box-shadow:0 0 15px #83A;border:1px solid #A6D!important;display:inline-block;position:absolute}.MathJax_Hover_Arrow{position:absolute;width:15px;height:11px;cursor:pointer}#MathJax_About{position:fixed;left:50%;width:auto;text-align:center;border:3px outset;padding:1em 2em;background-color:#DDD;color:#000;cursor:default;font-family:message-box;font-size:120%;font-style:normal;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;z-index:201;border-radius:15px;-webkit-border-radius:15px;-moz-border-radius:15px;-khtml-border-radius:15px;box-shadow:0 10px 20px gray;-webkit-box-shadow:0 10px 20px gray;-moz-box-shadow:0 10px 20px gray;-khtml-box-shadow:0 10px 20px gray;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}.MathJax_Menu{position:absolute;background-color:#fff;color:#000;width:auto;padding:2px;border:1px solid #CCC;margin:0;cursor:default;font:menu;text-align:left;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;z-index:201;box-shadow:0 10px 20px gray;-webkit-box-shadow:0 10px 20px gray;-moz-box-shadow:0 10px 20px gray;-khtml-box-shadow:0 10px 20px gray;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}.MathJax_MenuItem{padding:2px 2em;background:0 0}.MathJax_MenuArrow{position:absolute;right:.5em;color:#666}.MathJax_MenuActive .MathJax_MenuArrow{color:#fff}.MathJax_MenuArrow.RTL{left:.5em;right:auto}.MathJax_MenuCheck{position:absolute;left:.7em}.MathJax_MenuCheck.RTL{right:.7em;left:auto}.MathJax_MenuRadioCheck{position:absolute;left:1em}.MathJax_MenuRadioCheck.RTL{right:1em;left:auto}.MathJax_MenuLabel{padding:2px 2em 4px 1.33em;font-style:italic}.MathJax_MenuRule{border-top:1px solid #CCC;margin:4px 1px 0}.MathJax_MenuDisabled{color:GrayText}.MathJax_MenuActive{background-color:Highlight;color:HighlightText}.MathJax_Menu_Close{position:absolute;width:31px;height:31px;top:-15px;left:-15px}#MathJax_Zoom{position:absolute;background-color:#F0F0F0;overflow:auto;display:block;z-index:301;padding:.5em;border:1px solid #000;margin:0;font-weight:400;font-style:normal;text-align:left;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;box-shadow:5px 5px 15px #AAA;-webkit-box-shadow:5px 5px 15px #AAA;-moz-box-shadow:5px 5px 15px #AAA;-khtml-box-shadow:5px 5px 15px #AAA;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}#MathJax_ZoomOverlay{position:absolute;left:0;top:0;z-index:300;display:inline-block;width:100%;height:100%;border:0;padding:0;margin:0;background-color:#fff;opacity:0;filter:alpha(opacity=0)}#MathJax_ZoomFrame{position:relative;display:inline-block;height:0;width:0}#MathJax_ZoomEventTrap{position:absolute;left:0;top:0;z-index:302;display:inline-block;border:0;padding:0;margin:0;background-color:#fff;opacity:0;filter:alpha(opacity=0)}.MathJax_Preview{color:#888}#MathJax_Message{position:fixed;left:1px;bottom:2px;background-color:#E6E6E6;border:1px solid #959595;margin:0;padding:2px 8px;z-index:102;color:#000;font-size:80%;width:auto;white-space:nowrap}#MathJax_MSIE_Frame{position:absolute;top:0;left:0;width:0;z-index:101;border:0;margin:0;padding:0}.MathJax_Error{color:#C00;font-style:italic}footer{position:fixed;font-size:.8em;text-align:right;bottom:0;margin-left:-25px;height:20px;width:100%}</style>
+</head>
+<body class="markdown haroopad">
+<h1 id="requirements-modeling-guidance"><a name="requirements-modeling-guidance" href="#requirements-modeling-guidance"></a>Requirements Modeling Guidance</h1><p>This note provides some guidance on how to capture requirements using the ReqSpec notation and AADL, and to make requirements verifiable through analysis of AADL models through the Architecture-Led Incremental System Assurance (ALISA) capability that is now part of OSATE. For more detailed documentation we refer the user to the <a href="https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html">online help for ALISA in OSATE</a> and the <a href="https://resources.sei.cmu.edu/asset_files/TechnicalReport/2016_005_001_464378.pdf">ReqSpec Technical Report</a>.</p><p>An example model called <em>SimpleControlSystem</em> used in this guidance is available at <a href="https://github.com/osate/alisa-examples">Github.com/osate/alisa-examples</a>.</p><ul>
+<li>Copyright 2016 Carnegie Mellon University. See Notice.txt</li><li>Distribution Statement A: Approved for Public Release; Distribution is Unlimited.</li></ul><h2 id="table-of-content"><a name="table-of-content" href="#table-of-content"></a>Table of Content</h2><p class="toc" style="undefined"></p><ul>
+<li><ul>
+<li><span class="title">
+<a href="#table-of-content" title="Table of Content">Table of Content</a>
+</span>
+<!--span class="number">
+0
+</span-->
+</li>
+<li><span class="title">
+<a href="#introduction" title="Introduction">Introduction</a>
+</span>
+<!--span class="number">
+1
+</span-->
+</li>
+<li><span class="title">
+<a href="#stakeholder-goal-elicitation" title="Stakeholder Goal Elicitation">Stakeholder Goal Elicitation</a>
+</span>
+<!--span class="number">
+2
+</span-->
+<ul>
+<li><span class="title">
+<a href="#defining-stakeholders" title="Defining Stakeholders">Defining Stakeholders</a>
+</span>
+<!--span class="number">
+3
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#from-goals-to-system-requirements" title="From Goals to System Requirements">From Goals to System Requirements</a>
+</span>
+<!--span class="number">
+4
+</span-->
+<ul>
+<li><span class="title">
+<a href="#sets-of-system-requirements" title="Sets of System Requirements">Sets of System Requirements</a>
+</span>
+<!--span class="number">
+5
+</span-->
+</li>
+<li><span class="title">
+<a href="#dealing-with-multiple-terms" title="Dealing with Multiple Terms">Dealing with Multiple Terms</a>
+</span>
+<!--span class="number">
+6
+</span-->
+</li>
+<li><span class="title">
+<a href="#requirements-on-system-input-and-output" title="Requirements on System Input and Output">Requirements on System Input and Output</a>
+</span>
+<!--span class="number">
+7
+</span-->
+</li>
+<li><span class="title">
+<a href="#parameterized-requirements" title="Parameterized Requirements">Parameterized Requirements</a>
+</span>
+<!--span class="number">
+8
+</span-->
+</li>
+<li><span class="title">
+<a href="#requirement-categorization" title="Requirement Categorization">Requirement Categorization</a>
+</span>
+<!--span class="number">
+9
+</span-->
+</li>
+<li><span class="title">
+<a href="#component-extensions-and-requirement-inheritance" title="Component Extensions and Requirement Inheritance">Component Extensions and Requirement Inheritance</a>
+</span>
+<!--span class="number">
+10
+</span-->
+</li>
+<li><span class="title">
+<a href="#derived-requirements:-refinement,-decomposition" title="Derived Requirements: Refinement, Decomposition">Derived Requirements: Refinement, Decomposition</a>
+</span>
+<!--span class="number">
+11
+</span-->
+</li>
+<li><span class="title">
+<a href="#reusable-global-requirements" title="Reusable Global Requirements">Reusable Global Requirements</a>
+</span>
+<!--span class="number">
+12
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#verification-of-system-requirements" title="Verification of System Requirements">Verification of System Requirements</a>
+</span>
+<!--span class="number">
+13
+</span-->
+<ul>
+<li><span class="title">
+<a href="#verification-activities-and-methods" title="Verification Activities and Methods">Verification Activities and Methods</a>
+</span>
+<!--span class="number">
+14
+</span-->
+</li>
+<li><span class="title">
+<a href="#writing-verification-methods-in-resolute" title="Writing Verification Methods in Resolute">Writing Verification Methods in Resolute</a>
+</span>
+<!--span class="number">
+15
+</span-->
+</li>
+<li><span class="title">
+<a href="#writing-verification-methods-in-java" title="Writing Verification Methods in Java">Writing Verification Methods in Java</a>
+</span>
+<!--span class="number">
+16
+</span-->
+</li>
+<li><span class="title">
+<a href="#use-of-result-reports-in-java-methods" title="Use of Result Reports in Java Methods">Use of Result Reports in Java Methods</a>
+</span>
+<!--span class="number">
+17
+</span-->
+</li>
+<li><span class="title">
+<a href="#value-predicates" title="Value Predicates">Value Predicates</a>
+</span>
+<!--span class="number">
+18
+</span-->
+</li>
+<li><span class="title">
+<a href="#junit-verification-methods" title="JUnit Verification Methods">JUnit Verification Methods</a>
+</span>
+<!--span class="number">
+19
+</span-->
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+</ul>
+<p></p><h2 id="introduction"><a name="introduction" href="#introduction"></a>Introduction</h2><p>The guidance approach is as follows. Elicitation of stakeholder requirements focuses on capturing the goals and desires of stakeholders. These requirements, which we refer to as <strong>stakeholder goals</strong>, should be traceable to specific stakeholders, may be refined into sub goals, they may evolve, and they may be in conflict with each other. </p><p>In a separate phase we develop <strong>system requirements</strong>. They are derived from the stakeholder goals. System requirements become the contract that must be met by a system implementation, i.e., must be verifiable or satisfiable. Verification plans specify the verification activities necessary to show that a set of requirements are met.<br>ReqSpec allows goals and requirements to be organized in a document structure with sections and subsections, or into goal/requirement sets aligned with systems and subsystems expressed in an AADL model. </p><p>In this guidance we recommend that stakeholder goals be organized in a document structure, which is a familiar format and does not require the creation of an AADL model. This allows the focus of stakeholder goal elicitation to be on capturing the information provided by the stakeholders. We recommend that in a second phase system requirements be organized around an AADL model of the system of interest, its operational context, and as appropriate any subsystems that are identified in the stakeholder goals. In the process ambiguities with respect to the system boundary, the consistency, completeness, and verifiability of requirements are resolved.<br>We proceed by illustrating each of the two phases.<br>This is followed by a discussion of how verification plans can be specified and how users can define their own verification methods for verifying requirements.</p><h2 id="stakeholder-goal-elicitation"><a name="stakeholder-goal-elicitation" href="#stakeholder-goal-elicitation"></a>Stakeholder Goal Elicitation</h2><p>Stakeholder goals are captured in files with the <em>goaldoc</em> extension. Users create such files with the <em>New .. File</em> command under the <em>File</em> menu.<br>The content of the file consists of a <strong>document</strong> with a name and a <em>title</em> string, followed by the document content in square brackets. </p><blockquote>
+<p>The document name acts the qualifier for external references to goals and is assumed to be unique within the OSATE workspace. </p>
+</blockquote><p>The document content consists of a <strong>description</strong> as a multi-line string, a set of <strong>section</strong>, and <strong>goal</strong>. The description is intended as introductory text for the document before the first section or goal.<br>A <strong>section</strong> consists of a section name, <em>title</em> string, and its content in square brackets. The content is a description, (sub)sections, and goals.<br>A <strong>goal</strong> consists of a name that is unique within the goal document, a <em>title</em> string and its content in square brackets. The goal content is a description and optionally a reference to a stakeholder.</p><p>With these three constructs users can create stakeholder goal documents that follow a traditional document structure that organizes goals into sections and subsections. </p><blockquote>
+<p>Goals have unique names within a goal document. They are referenced by their unique name within the same goal document and by qualifying the name with the goal document name if a goal in a different goal document is referenced. The placement of goals in sections does not affect how goals are referenced.</p>
+</blockquote><p>Stakeholder goals can be divided into sub goals. We do this by adding the sub goal as goal and referring to the original goal with <strong>refines</strong>.</p><pre><code data-origin="<pre><code>document SCSgoals : &quot;SCS stakeholder goals&quot; [
+    description &quot;This document contains the stakeholder requirements for the Simple Control System (SCS).
+The SCS provides control for a simple device (SD). 
+The SCS system consists for software, hardware, and physical components.&quot;
+    section SystemFunctionality : &quot;System Functionality&quot; [
+        goal g1: &quot;Feedback Control&quot;
+        [ description &quot;The simple controller (SC) shall provide stable feedback control of the SD.&quot;
+        rationale &quot;The SD is a safety critical device that cannot tolerate erratic behavior.&quot;
+        stakeholder sei.phf
+        ]
+        goal g2: &quot;Digital Feedback Control&quot; [
+            description &quot;The SCS system shall control the SCS device with a digital controller&quot;
+        stakeholder sei.phf
+        ]
+        goal g3: &quot;electrical power&quot;
+        [ description &quot;The simple control system shall be supplied with 15V electrical power.&quot;
+        stakeholder sei.phf
+        ]
+        ]
+    section NonfunctionalProperties : &quot;Nonfunctional system requirements&quot;
+    [
+        goal ng1 : &quot;Safety&quot; [
+            description &quot;The system shall be safe&quot;
+            rationale &quot;This is a control system, whose failure affects lives. &quot;
+            stakeholder sei.phf sei.dpg
+        ]
+        goal ng1_1: &quot;Physical damage&quot;[
+            refines ng1
+            description &quot;The controller shall not cause the simple device to damage objects in its operational environment&quot;
+        ]
+        goal ng2 : &quot;Maximum weight&quot; [
+            description &quot;The system shall stay within a specified weight limit.&quot;
+            stakeholder sei.phf
+            rationale &quot;The system is part of an aircraft.&quot;
+        ]
+    ]
+]
+</code></pre>">document SCSgoals : "SCS stakeholder goals" [
+    description "This document contains the stakeholder requirements for the Simple Control System (SCS).
+The SCS provides control for a simple device (SD). 
+The SCS system consists for software, hardware, and physical components."
+    section SystemFunctionality : "System Functionality" [
+        goal g1: "Feedback Control"
+        [ description "The simple controller (SC) shall provide stable feedback control of the SD."
+        rationale "The SD is a safety critical device that cannot tolerate erratic behavior."
+        stakeholder sei.phf
+        ]
+        goal g2: "Digital Feedback Control" [
+            description "The SCS system shall control the SCS device with a digital controller"
+        stakeholder sei.phf
+        ]
+        goal g3: "electrical power"
+        [ description "The simple control system shall be supplied with 15V electrical power."
+        stakeholder sei.phf
+        ]
+        ]
+    section NonfunctionalProperties : "Nonfunctional system requirements"
+    [
+        goal ng1 : "Safety" [
+            description "The system shall be safe"
+            rationale "This is a control system, whose failure affects lives. "
+            stakeholder sei.phf sei.dpg
+        ]
+        goal ng1_1: "Physical damage"[
+            refines ng1
+            description "The controller shall not cause the simple device to damage objects in its operational environment"
+        ]
+        goal ng2 : "Maximum weight" [
+            description "The system shall stay within a specified weight limit."
+            stakeholder sei.phf
+            rationale "The system is part of an aircraft."
+        ]
+    ]
+]
+</code></pre><h3 id="defining-stakeholders"><a name="defining-stakeholders" href="#defining-stakeholders"></a>Defining Stakeholders</h3><p>We can define stakeholders in a file with the extension <em>org</em>. Stakeholders are placed into an <strong>organization</strong>. A stakeholder entry has a name and a number of content fields. A stakeholder is referred to in goals by <em>organizationname.stakeholdername</em>.</p><pre><code data-origin="<pre><code>organization sei
+stakeholder phf [
+    full name &quot;Peter Feiler&quot;
+]
+stakeholder dpg [
+    full name &quot;David Gluch&quot;
+]
+</code></pre>">organization sei
+stakeholder phf [
+    full name "Peter Feiler"
+]
+stakeholder dpg [
+    full name "David Gluch"
+]
+</code></pre><h2 id="from-goals-to-system-requirements"><a name="from-goals-to-system-requirements" href="#from-goals-to-system-requirements"></a>From Goals to System Requirements</h2><p>When stakeholder goals are captured the system they apply to may be identified by different names. Figure x illustrates this for our example. Goals sometimes refer to elements in the operational environment or to different parts of a system. When we translate stakeholder goals into system requirements we want to make the requirements verifiable and we want to be clear about the system boundary.<br>In our above example we have a number of terms that potentially refer to the same entity (see highlights).<br><img src="images/GoalsMultiTerm.png" alt=""></p><p>When defining system requirements we want to be explicit about the entity we are referring to. We do so by organizing requirements into <strong>requirement sets</strong>: one set for the system, one for each element in the operational environment, and one for each part within the system. This helps clarify the system boundary, i.e., clearly identifies what the requirement is for.<br>We do this in two steps. One step is to identify the system of interest by name through a <strong>for</strong> statement in the requirement set. If the system of interest does not exist as an AADL model element yet, a warning is provided. In a second step we define a <em>system type</em> in an AADL model to represent the system of interest. For elements of the operational environment we may use an <em>abstract type</em>.</p><h3 id="sets-of-system-requirements"><a name="sets-of-system-requirements" href="#sets-of-system-requirements"></a>Sets of System Requirements</h3><p>We place requirement sets in files with the <strong>reqspec</strong> extension. A requirement set is declared as <strong>system requirements</strong> with a globally unique name (dotted name), a <em>title</em> string, a <strong>for</strong> statement identifying a component classifier, and its content in square brackets. The content is a <em>description</em> of the requirement set and a set of <strong>requirement</strong> declarations.<br>Each <strong>requirement</strong> has a name that is unique within the requirement set, a <em>title</em> string, an optional <strong>for</strong> statement, and content in square brackets.<br>The content of a requirement consists of a <strong>description</strong>, an optional <strong>rationale</strong>, and an optional traceability link to a stakeholder goal (<strong>see goal</strong>).<br>Requirements can be refined into sub-requirements. We do this by adding the subrequirement as requirement and referring to the original requirement with <strong>refines</strong>. In this case both the original requirement and the refined requirement are associated with the same system.<br>ReqSpec distinguishes different forms of <em>derived</em> requirements, such as refinement, decomposition into requirements on subcomponents (see below), etc. For more details see <a href="https://resources.sei.cmu.edu/asset_files/TechnicalReport/2016_005_001_464378.pdf">ReqSpec Technical Report</a>.</p><pre><code data-origin="<pre><code>system requirements scsreqs for SimpleControlSystem::SCS [ 
+    description &quot;These are requirements for SCS&quot;
+    requirement R2 : &quot;SCS response time&quot;
+    [
+        description &quot;The SCS shall have a response time of 25ms&quot;
+        rationale &quot;This response time is necessary to maintain stable control behavior.&quot;
+        see goal SCSgoals.g1
+    ] 
+]
+</code></pre>">system requirements scsreqs for SimpleControlSystem::SCS [ 
+    description "These are requirements for SCS"
+    requirement R2 : "SCS response time"
+    [
+        description "The SCS shall have a response time of 25ms"
+        rationale "This response time is necessary to maintain stable control behavior."
+        see goal SCSgoals.g1
+    ] 
+]
+</code></pre><h3 id="dealing-with-multiple-terms"><a name="dealing-with-multiple-terms" href="#dealing-with-multiple-terms"></a>Dealing with Multiple Terms</h3><p>If we want to keep track of different terms that refer to the same entity, we can make use of a user defined property that lets us associate multiple names with an AADL model element. An example definition is shown here.</p><pre><code data-origin="<pre><code>property set ACVIP is
+Aliases: list of aadlstring applies to (all); 
+
+Author: aadlstring applies to (all);
+end ACVIP;
+</code></pre>">property set ACVIP is
+Aliases: list of aadlstring applies to (all); 
+
+Author: aadlstring applies to (all);
+end ACVIP;
+</code></pre><p>The property is then used in the specification of the system type for SCS.</p><pre><code data-origin="<pre><code>system SCS
+    features
+        power: in feature PhysicalResources::Power;
+        force: out feature;
+    properties
+        ACVIP::Aliases =&amp;gt; (&quot;SCS&quot;, &quot;Simple Controller&quot;);
+end SCS;
+</code></pre>">system SCS
+    features
+        power: in feature PhysicalResources::Power;
+        force: out feature;
+    properties
+        ACVIP::Aliases =&gt; ("SCS", "Simple Controller");
+end SCS;
+</code></pre><h3 id="requirements-on-system-input-and-output"><a name="requirements-on-system-input-and-output" href="#requirements-on-system-input-and-output"></a>Requirements on System Input and Output</h3><p>Some requirements may be for a specific feature of a system, e.g., regarding its input or output. In this case we identify the feature through a <strong>for</strong> statement in the requirement.</p><pre><code data-origin="<pre><code>requirement R3 : &quot;SCS inlet voltage&quot; for power [
+    description &quot;The supplied electrical power shall be 12 volt&quot;
+]
+</code></pre>">requirement R3 : "SCS inlet voltage" for power [
+    description "The supplied electrical power shall be 12 volt"
+]
+</code></pre><p>We also add the feature as an AADL abstract feature to the component type representing the system (see above). In the end we will have captured all the external interaction points of the system. </p><blockquote>
+<p>When looking at the specification of SCS we may notice that we have an interaction point for incoming electrical power, and for the applied force, but no representation for observations about the state of the controlled system (observed variable).</p>
+</blockquote><h3 id="parameterized-requirements"><a name="parameterized-requirements" href="#parameterized-requirements"></a>Parameterized Requirements</h3><p>Often you will need to make adjustments to requirements, typically it is the change of a value rather than the full description of the requirement. We support this by allowing you to specify <em>constants</em>  that can then be referenced in the requirement description, a predicate specification, and as parameter to the invocation of a verification.<br>Constants can be defined at the beginning of the requirement set to be referenced by any requirement in the set, or they can be defined local to a specific requirement. </p><blockquote>
+<p>We also support the definition of global constants. See <a href="https://resources.sei.cmu.edu/asset_files/TechnicalReport/2016_005_001_464378.pdf">ReqSpec Technical Report</a> for details.</p>
+</blockquote><p>A constant declaration consists of the keyword <strong>val</strong>, optionally a type, and the desired value. Numeric values can have measurement units. Any of the unit literals defined by an AADL <strong>units</strong> property type can be used.</p><blockquote>
+<p>The <strong>description</strong> can consists of a sequence of strings, referenced to constants, and the keyword <strong>this</strong>. <strong>this</strong> acts as placeholder for the name of the model element the requirement applies to.</p>
+</blockquote><p>The requirement <em>R2</em> rewritten as parameterized requirement.</p><pre><code data-origin="<pre><code>requirement R2 : &quot;SCS sensor to actuator response time limit&quot; [
+    val MaximumLatency = 20 ms
+    description this &quot; shall have a sensor to actuator response time within &quot; MaximumLatency
+    see goal SCSgoals.g1
+]
+</code></pre>">requirement R2 : "SCS sensor to actuator response time limit" [
+    val MaximumLatency = 20 ms
+    description this " shall have a sensor to actuator response time within " MaximumLatency
+    see goal SCSgoals.g1
+]
+</code></pre><h3 id="requirement-categorization"><a name="requirement-categorization" href="#requirement-categorization"></a>Requirement Categorization</h3><p>ReqSpec offers a way of categorizing requirements. Categories are the requirement <strong>Kind</strong>, <strong>Quality</strong> attribute, development <strong>Phase</strong>. The categories can be used to specify filters for viewing, verifying, and reporting on subsets of requirements.  </p><p>Users can indicate whether a requirement is actually a requirement on the consistency between the requirement specification and the AADL model or of the AADL model (<strong>Kind.Consistency</strong>). In our example, we have a consistency requirement that all ports of leaf components in an AADL model must be connected.</p><pre><code data-origin="<pre><code>requirement Allconnected : &quot;All features of all components are connected&quot;[
+    description &quot;All features of leaf components are connected.&quot;
+    category Kind.Consistency
+    development stakeholder sei.phf
+]
+</code></pre>">requirement Allconnected : "All features of all components are connected"[
+    description "All features of leaf components are connected."
+    category Kind.Consistency
+    development stakeholder sei.phf
+]
+</code></pre><blockquote>
+<p>Note that in this example, we have specified a <em>development stakeholder</em> for the requirement. This requirement did not come from a stakeholder of the system as product, but from the development team and we want to track that as well.</p>
+</blockquote><p>Other requirement kinds are constraints on the implementation (<strong>Kind.Constraint</strong>), assumptions about input or use of resources (<strong>Kind.Assumption</strong>), and guarantees about output made to users of the system (<strong>Kind.Guarantee</strong>).</p><p>We can also categorize requirements according to quality attributes they represent. The example below represents a latency requirement. </p><pre><code data-origin="<pre><code>requirement R2 : &quot;SCS sensor to actuator response time limit&quot; [
+    val MaximumLatency = 20 ms
+    description this &quot; shall have a sensor to actuator response time within &quot; MaximumLatency
+    category Quality.Latency
+    see goal SCSgoals.g1
+]
+</code></pre>">requirement R2 : "SCS sensor to actuator response time limit" [
+    val MaximumLatency = 20 ms
+    description this " shall have a sensor to actuator response time within " MaximumLatency
+    category Quality.Latency
+    see goal SCSgoals.g1
+]
+</code></pre><blockquote>
+<p>Users can introduce their own categories or extend existing categories with additional labels. They are defined in files with the extension <em>cat</em>. See <a href="https://resources.sei.cmu.edu/asset_files/TechnicalReport/2016_005_001_464378.pdf">ReqSpec Technical Report</a> for details. </p>
+</blockquote><h3 id="component-extensions-and-requirement-inheritance"><a name="component-extensions-and-requirement-inheritance" href="#component-extensions-and-requirement-inheritance"></a>Component Extensions and Requirement Inheritance</h3><p>Each component classifier (type or implementation) can have its own requirement set. All the requirements of the type as well as the implementation apply when we verify a particular component implementation.</p><p>In AADL a component type can be an extension of another component type. In this case both the original component type and the extension can have a requirement set, and the requirement set of the original applies to the extension. </p><p>In our example, we have an extension of the SCS that operates with two redundant external power supplies. </p><pre><code data-origin="<pre><code>system SCSDualPower extends SCS
+    features
+        backuppower: in feature PhysicalResources::Power;
+end SCSDualPower;
+</code></pre>">system SCSDualPower extends SCS
+    features
+        backuppower: in feature PhysicalResources::Power;
+end SCSDualPower;
+</code></pre><p>This extension has additional requirements to indicate that we expect two external power supplies that are redundant. They are constraints on the specification of SCS, i.e., on the component type of the dual redundant SCS (see <em>DualSCS.reqspe</em>).</p><pre><code data-origin="<pre><code>system requirements DualSCSreqs for SimpleControlSystem::SCSDualPower [
+    requirement SR1: &quot;dual power operation&quot; [
+        description this &quot; shall operate with two external power supplies&quot;
+        rationale &quot;One power supply acts as backup to the other power supply.&quot;
+        category Kind.Constraint
+        see goal SCSgoals.ng1
+    ]
+    requirement SR1_1: &quot;Two power inlets&quot; [
+        refines SR1
+        description this &quot; shall provide two power inlets&quot;
+        rationale &quot;One power supply acts as backup to the other power supply.&quot;
+        category Kind.Constraint
+    ]
+    requirement SR1_2: &quot;Same voltage&quot; [
+        refines SR1
+        description &quot;Both inlets shall operate with the same voltage&quot;
+        category Kind.Constraint
+    ]
+    requirement SR1_3: &quot;Same wattage&quot; [
+        refines SR1
+        description &quot;Both inlets shall operate with the same wattage&quot;
+        category Kind.Constraint
+    ]
+]
+</code></pre>">system requirements DualSCSreqs for SimpleControlSystem::SCSDualPower [
+    requirement SR1: "dual power operation" [
+        description this " shall operate with two external power supplies"
+        rationale "One power supply acts as backup to the other power supply."
+        category Kind.Constraint
+        see goal SCSgoals.ng1
+    ]
+    requirement SR1_1: "Two power inlets" [
+        refines SR1
+        description this " shall provide two power inlets"
+        rationale "One power supply acts as backup to the other power supply."
+        category Kind.Constraint
+    ]
+    requirement SR1_2: "Same voltage" [
+        refines SR1
+        description "Both inlets shall operate with the same voltage"
+        category Kind.Constraint
+    ]
+    requirement SR1_3: "Same wattage" [
+        refines SR1
+        description "Both inlets shall operate with the same wattage"
+        category Kind.Constraint
+    ]
+]
+</code></pre><h3 id="derived-requirements:-refinement,-decomposition"><a name="derived-requirements:-refinement,-decomposition" href="#derived-requirements:-refinement,-decomposition"></a>Derived Requirements: Refinement, Decomposition</h3><p>We distinguish between different types of derivation relationships between requirements.</p><p>First, we recognize requirement refinement. This is the case when a requirement is subdivided into one or more precise or verifiable requirements for the same system. This is expressed by a <strong>refines</strong> reference to another requirement of the same component, as shown in the previous example for requirements SR1_1, SR1_2, SR1_3. </p><p>Second, we recognize requirement decomposition. In this case a requirement for a system determines requirements on subsystems of that system. This is expressed by a <strong>decomposes</strong> reference to the requirement of the enclosing component. More than one requirement can be referenced. We have two ways of recording such a decomposition.</p><ol>
+<li>We want to record the requirement in a particular use context, and then find a component from a library for each of those contexts. We do this by defining a requirement for a subcomponent in an implementation and reference a requirement for the enclosing system. We may get different requirements for a subcomponent of the same type in different use contexts. Each subcomponent may reference a component type. The component type with properties acts as a specification that must meet the requirement in each use context. This represents a use scenario where we first decompose the requirements and then try to find a component for each use context that meets those requirements.</li><li>We want to accumulate requirements imposed by different use contexts for the same component in one place. In this case all subcomponents reference the same component type, which we may have to create for the first use context. As we identify those derived requirements we associate them with the component type as properties or as ReqSpec declarations associated with the component type. This helps us recognize when different use contexts place competing or conflicting requirements on the same component, and help us decide whether to resort to more than one variant of the component.<br>In the example below (see <em>SCSImplementationReqs.reqspec</em>), we show how we define decomposition requirements on subcomponents.<pre><code data-origin="<pre><code>system requirements SCSImplementationreqs for SimpleControlSystem::SCS.tier0 [
+requirement DCS_R1 : &quot;DCS weight limit&quot; for dcs [
+    val  MaximumWeight = 0.6 kg
+    category Quality.Mass
+    description this &quot; shall be within weight of &quot; MaximumWeight
+    decomposes scsreqs.R1
+]
+</code></pre>">system requirements SCSImplementationreqs for SimpleControlSystem::SCS.tier0 [
+requirement DCS_R1 : "DCS weight limit" for dcs [
+    val  MaximumWeight = 0.6 kg
+    category Quality.Mass
+    description this " shall be within weight of " MaximumWeight
+    decomposes scsreqs.R1
+]
+</code></pre></li></ol><p>Third, a requirement may evolve - expressed by an <strong>evolves</strong> reference to the requirement it evolved from. One example is when the requirement evolves over time with a change in text or in its constant value. In this case the original requirement may be tagged as <strong>dropped</strong>. Another example is when a component type that extends another component type changes a requirement of the original component type, e.g., the constant value. In this case, the requirement associated with the extension sets a new <strong>val</strong> value. </p><h3 id="reusable-global-requirements"><a name="reusable-global-requirements" href="#reusable-global-requirements"></a>Reusable Global Requirements</h3><p>Some requirements are not for a specific system, but should be applied to a system and all its components, or to different systems. An example are consistency requirements on the AADL model such as the one mentioned earlier about all ports being connected.</p><p>Users can define such reusable requirements as <em>global requirement sets</em> in a separate file with the <em>reqspec</em> extension. In the example below (found in file <em>globalreq.reqspec</em>), we show two variants of the requirement that all port are to be connected. </p><pre><code data-origin="<pre><code>global requirements globalReq
+[
+    requirement connected : &quot;All features of a component are connected&quot;[
+        description &quot;All features of a component are connected.&quot;
+        when alisa_consistency.ModelConditions.isLeafComponent()
+        category Kind.Consistency
+        development stakeholder sei.phf
+    ]
+
+    requirement Allconnected : &quot;All features of all components are connected&quot;[
+        description &quot;All features of leaf components are connected.&quot;
+        category Kind.Consistency
+        development stakeholder sei.phf
+    ]
+]
+</code></pre>">global requirements globalReq
+[
+    requirement connected : "All features of a component are connected"[
+        description "All features of a component are connected."
+        when alisa_consistency.ModelConditions.isLeafComponent()
+        category Kind.Consistency
+        development stakeholder sei.phf
+    ]
+
+    requirement Allconnected : "All features of all components are connected"[
+        description "All features of leaf components are connected."
+        category Kind.Consistency
+        development stakeholder sei.phf
+    ]
+]
+</code></pre><p>The first requirement is specified as a conditional requirement to indicate that it applies only for leaf components, i.e., components without subcomponents. The condition is encoded in a Java method that is coded separately. In this case, when we add this reusable requirement to the requirement set of SCS (see the <em>include</em> statement below) the requirement gets attached to each leaf component of the AADL instance model whose root system implementation is identified by the assurance plan.</p><pre><code data-origin="<pre><code>    include globalReq.connected
+</code></pre>">    include globalReq.connected
+</code></pre><p>The second requirement is specified for the system as a whole. In this case it is associated with the top level system and the verification activity will traverse the model and verify each leaf component. The key words <strong>for self</strong> indicate that the requirement is only applied to the target component itself.</p><pre><code data-origin="<pre><code>    include globalReq.Allconnected for self
+</code></pre>">    include globalReq.Allconnected for self
+</code></pre><p>The difference between the two is that in the first case there is a separate requirement with the verification result as evidence record in the assurance case instance for each component , while in the second case the requirement is recorded only for the top level system with the verification producing a report detailing any leaf component that does not satisfy the requirement. In other words, in the first case, the verification activity only examines the component that is the target of the verification, while in the second case the verification activity traverses the AADL instance model to find and verify each leaf component.</p><p>In the next section we will show you how such verification methods are written, registered, and used in verification plans.</p><h2 id="verification-of-system-requirements"><a name="verification-of-system-requirements" href="#verification-of-system-requirements"></a>Verification of System Requirements</h2><p>System requirements are expected to be verified. This is accomplished by defining a verification plan for each of the system requirement sets. A verification plan consists of a claim for each of the requirements. The claim consists of a set of verification activities, and an optional logical expression (<strong>assure</strong> clause) to represent the argument for meeting the claim. By default all verification activities must be met. Otherwise, users can express conditional relations between verification activities, e.g., one must be successful before a second one is performed, or a second verification activity is the backup in case the first does not succeed. For the full set of logic expressions see the <a href="https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html">online help for ALISA in OSATE</a>.</p><p>In the example below (found in file <em>scsvplan.verify</em>) the first claim consists of two verification activities to verify the weight requirement. Both will be executed when the system is being verified. The first verification activity invokes an OSATE analysis plug-in, while the second invokes a Resolute claim function. The second claim also consists of two verification activities. In this case, the latency analysis is performed on the assumption that the system is schedulable. Therefore, we specify that the <em>timing</em> activity must complete successfully before the latency analysis is performed.</p><blockquote>
+<p>Note: The call to the verification method does not explicitly specify the component instance on which the verification is performed. It is automatically supplied to the Plugin method or Resolute method as first parameter.</p>
+</blockquote><pre><code data-origin="<pre><code>verification plan scsvplan for scsreqs 
+[
+    claim R1 [
+        activities
+            actualsystemweight : Plugins.MassAnalysis() 
+               [ category Quality.Mass ]
+            MaxWeight : Resolute.verifySCSReq1(MaximumWeight in kg) [ category Quality.Mass ]
+    ]
+
+    claim R2 [
+        activities
+            responsetime : Plugins.FlowLatencyAnalysis() 
+            timing: Plugins.ResourceAllocationScheduling()
+        assert timing then responsetime
+
+    ]
+</code></pre>">verification plan scsvplan for scsreqs 
+[
+    claim R1 [
+        activities
+            actualsystemweight : Plugins.MassAnalysis() 
+               [ category Quality.Mass ]
+            MaxWeight : Resolute.verifySCSReq1(MaximumWeight in kg) [ category Quality.Mass ]
+    ]
+
+    claim R2 [
+        activities
+            responsetime : Plugins.FlowLatencyAnalysis() 
+            timing: Plugins.ResourceAllocationScheduling()
+        assert timing then responsetime
+
+    ]
+</code></pre><h3 id="verification-activities-and-methods"><a name="verification-activities-and-methods" href="#verification-activities-and-methods"></a>Verification Activities and Methods</h3><p>Verification activities are performed on AADL instance models. The AADL models themselves may be verified, or the verification may be invoked on an artifact referenced by the AADL model, e.g., a Simulink model of a detailed design, or actual source code associated with a thread.</p><p>Verification activities invoke verification methods. Method registries identify the methods available to the user. The verification results are tracked in the ALISA assurance case instance (file with the <em>assure</em> extension and displayed as assurance result).</p><p>One set of verification methods are the analysis plugins of OSATE. Their registry is called <em>Plugins</em>. The analysis plugin is called with the system instance (instance model root) as its parameter. OSATE analysis plugins report their results through the Eclipse Marker mechanism - they are mapped into a set of result issues in the ALISA assurance case (Assure file). </p><blockquote>
+<p>Note that we may have several latency requirements. In this case the latency analysis plugin is called only once, and the result for each end to end flow requirement is retrieved from the Eclipse markers. </p>
+</blockquote><p>Users can write verification methods in Resolute by defining Resolute claim functions, in Java methods, JUnit test suites, and Agree verifications.</p><h3 id="writing-verification-methods-in-resolute"><a name="writing-verification-methods-in-resolute" href="#writing-verification-methods-in-resolute"></a>Writing Verification Methods in Resolute</h3><p>Resolute verification methods are written as <em>claim functions</em>. These claim functions are automatically invoked on the component instance for which the requirement being verified applies. In other words, users do not have to include Resolute annex subclauses with <em>prove</em> statements into the AADL model. Instead the Resolute claim function (registered as verification method) is called on every component instance that has a requirement with a verification activity that calls the registered verification method. An example verification activity calling a registered Resolute verification method.</p><pre><code data-origin="<pre><code>MaxWeight : Resolute.verifySCSReq1(MaximumWeight in kg)
+</code></pre>">MaxWeight : Resolute.verifySCSReq1(MaximumWeight in kg)
+</code></pre><p>The claim function is assumed to have at least one parameter, the component instance that is automatically passed as first parameter. The Resolute claim function may take additional parameters. </p><p>The Resolute claim function is defined in a Resolute annex library. Our example function is defined as follows:</p><pre><code data-origin="<pre><code>SCSReq1(self : component, max :real) &amp;lt;=
+**  &quot;R1: SCS shall be no heavier than &quot; max%kg **
+ AssureSubcomponentTotals(self, max) and
+ AssureRecursivetotals(self, max)
+</code></pre>">SCSReq1(self : component, max :real) &lt;=
+**  "R1: SCS shall be no heavier than " max%kg **
+ AssureSubcomponentTotals(self, max) and
+ AssureRecursivetotals(self, max)
+</code></pre><blockquote>
+<p>In the above example we have specified that the value is to be converted into <em>kg</em> before being passed in the call. The parameter value is a reference to a constant value defined as part of the requirement being verified (see requirement R1 of SCS earlier).</p>
+</blockquote><p>The verification method registry entry - declared in a file with the extension <em>methodregistry</em> is as follows:</p><pre><code data-origin="<pre><code>verification methods Resolute [
+      method verifySCSReq1 (max: real ): &quot;Verify SCS weight is within specified maximum (Req1)&quot; [
+        resolute SCSReq1 
+        description &quot;SCS has a requirement not to exceed a specified weight of 'max' kg. This is verified by summing gross weights of direct subcomponents and by adding up gross weights all parts.&quot;
+    validation validateWeightBudgetCoveragePercent()
+   ]
+</code></pre>">verification methods Resolute [
+      method verifySCSReq1 (max: real ): "Verify SCS weight is within specified maximum (Req1)" [
+        resolute SCSReq1 
+        description "SCS has a requirement not to exceed a specified weight of 'max' kg. This is verified by summing gross weights of direct subcomponents and by adding up gross weights all parts."
+    validation validateWeightBudgetCoveragePercent()
+   ]
+</code></pre><p>The method defines the formal parameters (other than the default first parameter) to be used in the call by a verification activity (in our example a real value). It then identifies the Resolute claim function by name.</p><blockquote>
+<p>Following Resolute conventions for Resolute prove statements claim functions do not have to be qualified by a Resolute library name. </p>
+</blockquote><p>The method specification in our example includes a <strong>validation</strong> call. The specified method is called to determine the validity of the verification result. Here we assess whether all components with a weight actually had a weight related property. </p><blockquote>
+<p>Any issue identified by the validation is included in the assurance case result, e.g., that 70% of components had weight assigned.</p>
+</blockquote><p>Resolute claim functions report successful (pass) or unsuccessful fail) execution of a predicate. In case of <em>fail</em> a specific <em>fail</em> message may be added through a resolute <strong>fail</strong> statement (see Resolute documentation). The Resolute results are mapped into the ALISA assurance case instance (Assure file).</p><p>A Resolute claim function may call other Resolute claim functions. The results are reported back as nested pass or fail results.</p><blockquote>
+<p><strong>NOTE</strong>: Resolute claim functions may query the AADL instance model for all threads, processes, or all component instances and then invoke a claim function on each element. In this case Resolute tracks the application of the actual verification in each element as a Resolute (sub-)result. Again all nested Resolute results are mapped back into the ALISA assurance case instance.</p>
+</blockquote><h3 id="writing-verification-methods-in-java"><a name="writing-verification-methods-in-java" href="#writing-verification-methods-in-java"></a>Writing Verification Methods in Java</h3><p>Users can also write verification methods in Java. You do this by creating a Plugin project. In out example Alisa-Consistency is such a project. You define dependencies on plugins from OSATE in MANIFEST.INF to have access to utility methods for operating on AADL models. </p><ul>
+<li>The plugin <em>org.osate.aadl</em> gives you access to utility methods to access declarative AADL models and AADL instance models. </li><li>The plugin <em>org.osate.xtext.aadl2.properties</em> gives you access to utility methods for retrieving property values from AADL models.</li><li>The plugin <em>org.osate.results</em> provides methods for a common result reporting format, which we will use in one of our example methods. This format is compatible with the format used in ALISA assurance case instances (Assure files).</li></ul><p>Java methods can be written as static methods or non-static methods. </p><p>Methods can be written for verifying component instances, or for instances of elements inside components, i.e., feature instances, flow spec or end to end flow instances, connection instances.  The expected instance model element is defined as first parameter with the appropriate Java class from the AADL instance Meta model, i.e., <em>FeatureInstance</em>, <em>FlowSpecificationInstance</em>, <em>EndToEndFlowInstance</em>, <em>ConnectionInstance</em>.</p><blockquote>
+<p>Note: Instance model elements other than component instance are useful for requirements that are specified for component elements via the <strong>for</strong> statement of the requirement.</p>
+</blockquote><p>Java verification methods are expected to return true if the requirement is met (<em>Pass</em>) and false if not (<em>Fail</em>). They may also throw an <em>AssertionError</em> exception to indicate an unsuccessful evaluation of a condition (<em>Fail</em>). Exceptions of any other kind are interpreted as the method failing to complete execution, i.e., an <em>Error</em>.</p><p>The following example method operates on a Feature Instance, retrieves the property value for voltage and compares it against the value supplied as second parameter.</p><pre><code data-origin="<pre><code>public static boolean hasVoltage(FeatureInstance fi, double v) {
+    double volt = getVoltage(fi);
+    return volt == v;
+}
+</code></pre>">public static boolean hasVoltage(FeatureInstance fi, double v) {
+    double volt = getVoltage(fi);
+    return volt == v;
+}
+</code></pre><p>The helper method getVoltage is defined as follows.</p><blockquote>
+<p>Note that for predefined properties utility methods for retrieving property values exist in the class <em>GetProperties</em>. A second class <em>PropertyUtils</em> provides additional support methods.</p>
+</blockquote><pre><code data-origin="<pre><code>public static double getVoltage(final FeatureInstance fi) {
+    Property voltage = GetProperties.lookupPropertyDefinition(fi, &quot;Physical&quot;, &quot;Voltage&quot;);
+    UnitLiteral volts = GetProperties.findUnitLiteral(voltage, &quot;V&quot;);
+    return PropertyUtils.getScaledNumberValue(fi, voltage, volts, 0.0);
+}
+</code></pre>">public static double getVoltage(final FeatureInstance fi) {
+    Property voltage = GetProperties.lookupPropertyDefinition(fi, "Physical", "Voltage");
+    UnitLiteral volts = GetProperties.findUnitLiteral(voltage, "V");
+    return PropertyUtils.getScaledNumberValue(fi, voltage, volts, 0.0);
+}
+</code></pre><p>The registry entry for this method takes on the following form - indicating that the method will return a <strong>boolean</strong> to report <em>Pass</em> or <em>Fail</em>.</p><pre><code data-origin="<pre><code>method ConsistentVoltage (feature, voltage: real ) boolean 
+    :&quot;Ensure Voltage property value is consistent with required voltage value&quot; [
+    java alisa_consistency.ModelVerifications.hasVoltage(String name, double voltage)
+    description &quot;Verify that the Voltage property has the same value as specified in the requirement&quot;
+]
+</code></pre>">method ConsistentVoltage (feature, voltage: real ) boolean 
+    :"Ensure Voltage property value is consistent with required voltage value" [
+    java alisa_consistency.ModelVerifications.hasVoltage(String name, double voltage)
+    description "Verify that the Voltage property has the same value as specified in the requirement"
+]
+</code></pre><p>This method is then called in a verification activity as follows specifying only the second Java method parameter.</p><pre><code data-origin="<pre><code>hasvoltage: Alisa_Consistency.ConsistentVoltage(volts)
+</code></pre>">hasvoltage: Alisa_Consistency.ConsistentVoltage(volts)
+</code></pre><p>The requirement identifies the model element <em>power</em>.</p><pre><code data-origin="<pre><code>requirement R3 : &quot;SCS inlet voltage&quot; for power [
+    val volts = 12.0 //V
+    compute actualvolt: real //Physical::Voltage_Type
+    value predicate volts == actualvolt
+    see goal SCSgoals.g3
+]
+</code></pre>">requirement R3 : "SCS inlet voltage" for power [
+    val volts = 12.0 //V
+    compute actualvolt: real //Physical::Voltage_Type
+    value predicate volts == actualvolt
+    see goal SCSgoals.g3
+]
+</code></pre><p>The next example illustrates how such a verification can be performed when the target element is the component instance. In this case the feature name is passed in as additional parameter. In the method we search for the feature instance that matches the name and then retrieve the property value and compare it.</p><blockquote>
+<p>Such a method is useful if the requirement was written without identifying the feature with a <strong>for</strong> statement. Such a method is most useful to write in Resolute as Resolute claim functions can only be called on component instances.</p>
+</blockquote><pre><code data-origin="<pre><code>public static boolean hasWattage(ComponentInstance ci, String featurename, double w) {
+    for (FeatureInstance fi : ci.getAllFeatureInstances(FeatureCategory.ABSTRACT_FEATURE)) {
+        if (fi.getName().equalsIgnoreCase(featurename)) {
+            double watt = GetProperties.getPowerBudget(fi, 0.0);
+            return watt == w;
+        }
+    }
+    return false;
+}
+</code></pre>">public static boolean hasWattage(ComponentInstance ci, String featurename, double w) {
+    for (FeatureInstance fi : ci.getAllFeatureInstances(FeatureCategory.ABSTRACT_FEATURE)) {
+        if (fi.getName().equalsIgnoreCase(featurename)) {
+            double watt = GetProperties.getPowerBudget(fi, 0.0);
+            return watt == w;
+        }
+    }
+    return false;
+}
+</code></pre><h3 id="use-of-result-reports-in-java-methods"><a name="use-of-result-reports-in-java-methods" href="#use-of-result-reports-in-java-methods"></a>Use of Result Reports in Java Methods</h3><p>Some Java verification methods may evaluate conditions on multiple model elements. In this case we want to report back all model elements that do not meet the condition. In our example, we check that all leaf components have all their features connected and we want to report any unconnected feature.</p><p>We first create a ResultReport object, which will collect any issues to be reported. We then traverse the instance model starting with the component instance to which the verification activity applies. When we encounter a leaf component instance, i.e., one without sub component instances, we check that all its feature instances have incoming or outgoing connections. If we encounter one without connections we report this as an <em>Fail</em> issue.</p><pre><code data-origin="<pre><code>public static ResultReport allComponentFeaturesConnected (ComponentInstance ci) {
+    ResultReport report = ResultsUtilExtension.createReport(&quot;AllFeaturesConnected&quot;, ci);
+    for (ComponentInstance subi : ci.getAllComponentInstances()) {
+        if (isLeafComponent(subi)) {
+            for (FeatureInstance fi : subi.getAllFeatureInstances()) {
+                if (!isConnected(fi)) {
+                    ResultsUtilExtension.addFail(report.getIssues(),
+                        &quot;Feature &quot; + fi.getName() + &quot; of component &quot;
+                    + fi.getContainingComponentInstance().getName() + &quot; not connected&quot;,
+                    fi, &quot;AllFeatureConnected&quot;);
+                }
+            }
+        }
+    }
+    return report;
+}
+
+public static boolean isConnected(FeatureInstance fi) {
+    return !(fi.getSrcConnectionInstances().isEmpty() &amp;amp;&amp;amp;
+       fi.getDstConnectionInstances().isEmpty());
+}
+</code></pre>">public static ResultReport allComponentFeaturesConnected (ComponentInstance ci) {
+    ResultReport report = ResultsUtilExtension.createReport("AllFeaturesConnected", ci);
+    for (ComponentInstance subi : ci.getAllComponentInstances()) {
+        if (isLeafComponent(subi)) {
+            for (FeatureInstance fi : subi.getAllFeatureInstances()) {
+                if (!isConnected(fi)) {
+                    ResultsUtilExtension.addFail(report.getIssues(),
+                        "Feature " + fi.getName() + " of component "
+                    + fi.getContainingComponentInstance().getName() + " not connected",
+                    fi, "AllFeatureConnected");
+                }
+            }
+        }
+    }
+    return report;
+}
+
+public static boolean isConnected(FeatureInstance fi) {
+    return !(fi.getSrcConnectionInstances().isEmpty() &amp;&amp;
+       fi.getDstConnectionInstances().isEmpty());
+}
+</code></pre><p>This Java method is registered as follows - indicating the return value is a <strong>report</strong>.</p><pre><code data-origin="<pre><code>method AllComponentsConnected()report: &quot;Check that all features of all leaf components are connected&quot; [
+    java alisa_consistency.ModelVerifications.allComponentFeaturesConnected
+    description &quot;Check that all features of all leaf components are connected.&quot;
+]
+</code></pre>">method AllComponentsConnected()report: "Check that all features of all leaf components are connected" [
+    java alisa_consistency.ModelVerifications.allComponentFeaturesConnected
+    description "Check that all features of all leaf components are connected."
+]
+</code></pre><h3 id="value-predicates"><a name="value-predicates" href="#value-predicates"></a>Value Predicates</h3><p>Users can specify value predicates as part of a requirement specification. </p><p>This predicate can specify a condition involving ReqSpec constants and property values in the model. This predicate is evaluated once for the requirement.</p><blockquote>
+<p>This allows us to specify a condition that the requirement constant <strong>val</strong> value is the same as the value of a property. Here is an example:</p>
+<pre><code data-origin="<pre><code>requirement R1 : &quot;SCS weight limit&quot; [
+    val  MaximumWeight = 1.2 kg
+    compute actualweight: real units SEI::WeightUnits
+    category Quality.Mass
+    description this &quot; shall be within weight of &quot; MaximumWeight
+    // verify that MaximumWeight is same as the property value WeightLimit
+    value predicate MaximumWeight == #SEI::WeightLimit
+    see goal SCSgoals.ng2
+]
+</code></pre>">requirement R1 : "SCS weight limit" [
+    val  MaximumWeight = 1.2 kg
+    compute actualweight: real units SEI::WeightUnits
+    category Quality.Mass
+    description this " shall be within weight of " MaximumWeight
+    // verify that MaximumWeight is same as the property value WeightLimit
+    value predicate MaximumWeight == #SEI::WeightLimit
+    see goal SCSgoals.ng2
+]
+</code></pre></blockquote><p>This predicate can also include <strong>compute</strong> variables. Compute variables are unbound variables, whose values are bound as result of executing a <em>compute function</em> that is called in a verification activity. </p><blockquote>
+<p>The second form allows us to specify the predicate condition once as part of the requirement without having to implement the predicate condition in each of the verification methods being called in verification activities.</p>
+</blockquote><p>The following is a requirement that specifies an unbound <strong>compute</strong> variable called <em>actualvolt</em>. It is compared in the <strong>value predicate</strong> against the specified <em>volts</em>.</p><pre><code data-origin="<pre><code>    requirement R3 : &quot;SCS inlet voltage&quot; for power [
+        val volts = 12.0 //V
+        compute actualvolt: real //Physical::Voltage_Type
+        value predicate volts == actualvolt
+        see goal SCSgoals.g3
+    ]
+</code></pre>">    requirement R3 : "SCS inlet voltage" for power [
+        val volts = 12.0 //V
+        compute actualvolt: real //Physical::Voltage_Type
+        value predicate volts == actualvolt
+        see goal SCSgoals.g3
+    ]
+</code></pre><p>In the claim for this requirement (below) the second verification activity calls a <em>compute function</em> that returns a real value that gets bound to <em>actualvolt</em>. During the execution of the verification activity, the compute function is called and then the predicate is evaluated to determine the <em>Pass</em>/<em>Fail</em> result.</p><pre><code data-origin="<pre><code>claim R3  [
+    activities
+        hasvoltage: Alisa_Consistency.ConsistentVoltage(volts) 
+        consistentvoltage: actualvolt = Alisa_Consistency.GetVoltage()
+    ]
+</code></pre>">claim R3  [
+    activities
+        hasvoltage: Alisa_Consistency.ConsistentVoltage(volts) 
+        consistentvoltage: actualvolt = Alisa_Consistency.GetVoltage()
+    ]
+</code></pre><p>The compute function <em>GetVoltage</em> is registered by indicating that a <em>real</em> value is returned. </p><blockquote>
+<p>The method can return more than one value and each value will be bound to a separate <strong>compute</strong> variable specified in the call.</p>
+</blockquote><pre><code data-origin="<pre><code>method GetVoltage (feature) returns (volts: real )
+    :&quot;Return the Voltage property value&quot; [
+    java alisa_consistency.ModelVerifications.getVoltage
+    description &quot;Retrieve the Voltage property from the feature instance&quot;
+]
+</code></pre>">method GetVoltage (feature) returns (volts: real )
+    :"Return the Voltage property value" [
+    java alisa_consistency.ModelVerifications.getVoltage
+    description "Retrieve the Voltage property from the feature instance"
+]
+</code></pre><p>The Java method implementation looks like this.</p><pre><code data-origin="<pre><code>public static double getVoltage(final FeatureInstance fi) {
+    Property voltage = GetProperties.lookupPropertyDefinition(fi, &quot;Physical&quot;, &quot;Voltage&quot;);
+    UnitLiteral volts = GetProperties.findUnitLiteral(voltage, &quot;V&quot;);
+    return PropertyUtils.getScaledNumberValue(fi, voltage, volts, 0.0);
+}
+</code></pre>">public static double getVoltage(final FeatureInstance fi) {
+    Property voltage = GetProperties.lookupPropertyDefinition(fi, "Physical", "Voltage");
+    UnitLiteral volts = GetProperties.findUnitLiteral(voltage, "V");
+    return PropertyUtils.getScaledNumberValue(fi, voltage, volts, 0.0);
+}
+</code></pre><h3 id="junit-verification-methods"><a name="junit-verification-methods" href="#junit-verification-methods"></a>JUnit Verification Methods</h3><p>ALISA supports running of JUnit tests as verification activities. This is accomplished by registering a JUnit test class. In our example we have a JUnit test class called <em>testme</em>.</p><pre><code data-origin="<pre><code>verification methods mymethods [
+    method testJunit : &quot;Run JUnit4&quot; [
+        junit junittest.testme 
+
+    ]
+]
+</code></pre>">verification methods mymethods [
+    method testJunit : "Run JUnit4" [
+        junit junittest.testme 
+
+    ]
+]
+</code></pre><p>The primary purpose is to support execution of Java based tests of source code related to the system. JUnit test results are mapped into the ALISA assurance case instance representation. An exmple JUnitb test is shown here.</p><pre><code data-origin="<pre><code>@Test
+public void testingCrunchifyAddition() {
+    assertEquals(&quot;Here is test for Addition Result: &quot;, 30, addition(27, 3));
+}
+</code></pre>">@Test
+public void testingCrunchifyAddition() {
+    assertEquals("Here is test for Addition Result: ", 30, addition(27, 3));
+}
+</code></pre><blockquote>
+<p>JUnit tests are currently called without parameters. In other words, the test method is not passed a component instance to be verified.</p>
+</blockquote>
+
+<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
+</body>
+</html>

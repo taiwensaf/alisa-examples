@@ -3,6 +3,10 @@ This note provides some guidance on how to capture requirements using the ReqSpe
 
 An example model called *SimpleControlSystem* used in this guidance is available at [Github.com/osate/alisa-examples](https://github.com/osate/alisa-examples).
 
+* Copyright 2016 Carnegie Mellon University. See Notice.txt
+* Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+
+
 ##Table of Content ##
 
 [TOC]
@@ -495,7 +499,26 @@ public static double getVoltage(final FeatureInstance fi) {
 	return PropertyUtils.getScaledNumberValue(fi, voltage, volts, 0.0);
 }
 ```
-### Verification Parameters Passed via Properties ###
+### JUnit Verification Methods ###
+ALISA supports running of JUnit tests as verification activities. This is accomplished by registering a JUnit test class. In our example we have a JUnit test class called *testme*.
+```
+verification methods mymethods [
+	method testJunit : "Run JUnit4" [
+		junit junittest.testme 
+		
+	]
+] 
+```
+The primary purpose is to support execution of Java based tests of source code related to the system. JUnit test results are mapped into the ALISA assurance case instance representation. An exmple JUnitb test is shown here.
+```
+@Test
+public void testingCrunchifyAddition() {
+	assertEquals("Here is test for Addition Result: ", 30, addition(27, 3));
+}
+```
+> JUnit tests are currently called without parameters. In other words, the test method is not passed a component instance to be verified.
+
+<!--### Verification Parameters Passed via Properties ###
 In some cases the verification method expects the values it operates on to be available as property values in the model. We can specify this fact as part of the verification method registration.
 
 We use the *GetVoltage* Java method to illustrate this capability. We register a new method *SetGetVoltage* that will set the property value that is specified as part of a call and then call the GetVoltage Java method to retrieve it.  The registration is as follows.
@@ -511,3 +534,4 @@ The call in the verification activity is specified as follows.
 	guaranteedthesame: actualvolt = Alisa_Consistency.SetGetVoltage () property values(volts)
 ```
 > Note: The model element must not have a property value for the specified property or the value must be the same as the one specified in the call. If a property value already exists and it differs an *Error* issue will be reported.
+-->
