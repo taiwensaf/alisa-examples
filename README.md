@@ -1,12 +1,12 @@
 # ALISA Examples
 
-The following examples are available to illustrate the use of incremental system assurance with ALISA. The capabilities of ALISA are summarized in the ERTSS 2016 paper http://www.erts2016.org/uploads/program/paper_13.pdf and elaborated in the online help in OSATE.
+The following examples are available to illustrate the use of incremental system assurance with ALISA. The capabilities of ALISA are summarized in the [ERTSS 2016 paper](http://www.erts2016.org/uploads/program/paper_13.pdf) and elaborated in the [ALISA online help in OSATE](https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html).
 
 ## SituationalAwarenessSystem
 This is the public release version of a situational Awareness System in AADL. It consists of three projects. 
 
  * The *SituationalAwarenessCommon* project contains a set of packages and property sets used by the other two projects.
- * The *SituationalAwarenessSystem* project contains the AADL model of the system including a detailed model of pull protocols, and a requirement specification in ReqSpec. The SEI tech Report http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447184 provides some details about the model. The report http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447176 summarizes a number of potential integration issues we have identified in the process of creating and analyzing the model. We have also illustrated safety analysis on a primarily software subsystem with this example (see http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447189).
+ * The *SituationalAwarenessSystem* project contains the AADL model of the system including a detailed model of pull protocols, and a requirement specification in ReqSpec. The [SEI Tech Report CMU/SEI-2015-SR-031](http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447184) provides some details about the model. The [SEI Tech Report CMU/SEI-2015-SR-030](http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447176) summarizes a number of potential integration issues we have identified in the process of creating and analyzing the model. We have also illustrated safety analysis on a primarily software subsystem with this example (see [SEI Tech Report CMU/SEI-2015-SR-032](http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447189) ).
  * The *SituationalAwarenessRefArch* project illustrates how a reference runtime architecture can be defined and elaborated into a specific situation awareness system.
 
 This project does not depend on AlisaPredefined.
@@ -20,7 +20,7 @@ These definitions are utilized by some projects. In that case you need to check 
 ## MultiTierAircraftExample
 *Note: The Alisa automated verification portion of this model is still work in progress.*
 
-This is an example of a multi-tier AADL model of an aircraft system. The model originally was developed as a proof of concept demo for the SAVI initiative using AADL V1 (http://resources.sei.cmu.edu/asset_files/technicalreport/2009_005_001_435167.pdf).
+This is an example of a multi-tier AADL model of an aircraft system. The model originally was developed as a proof of concept demo for the SAVI initiative using AADL V1 (see [SEI Technical Report CMU/SEI-2009-TR-01](http://resources.sei.cmu.edu/asset_files/technicalreport/2009_005_001_435167.pdf) ).
 
 We have translated the model into AADL V2.2. We are using *abstract* components to represent physical resource types, generic *features* as access points for these resources, and *system* to define systems that supply these resources. We have also separated the hardware platform and applicaiton software elements of the flight guidance IMA system into two subsystems instead of the original single subsystem, which used the graphcial editor to create a logical, hardware, and electrial supply view of the IMA.
 
@@ -38,3 +38,7 @@ The following projects make up the example (note that you must also include the 
 * The *Alisa-IntegratorDemo* project contains requirement specifications in *ReqSpec*, verification plans in *Verify*, and assurance plans in *Alisa*. 
 * The *Alisa-ADC-Sub1-Demo* project does the same for a supplier. 
 * The *Alisa-Utils* projects contains examples of additional verificaiton methods that are written in Jave/Xtend or resolute.
+
+##SimpleControlSystem
+
+This example illustrates a variety of user-defined verification methods and is used as the basis for a [tutorial on ReqSpec and Verify](https://github.com/osate/alisa-examples/blob/master/Documentation/BasicRequirementSpecificationGuidance.html).
