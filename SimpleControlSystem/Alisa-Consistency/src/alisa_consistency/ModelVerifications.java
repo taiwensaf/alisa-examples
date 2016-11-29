@@ -48,7 +48,7 @@ public class ModelVerifications {
 			if (isLeafComponent(subi)) {
 				for (FeatureInstance fi : subi.getAllFeatureInstances()) {
 					if (!isConnected(fi)) {
-						ResultsUtilExtension.addError(report.getIssues(),
+						ResultsUtilExtension.addFail(report.getIssues(),
 								"Feature " + fi.getName() + " of component "
 										+ fi.getContainingComponentInstance().getName() + " not connected",
 								fi, "AllFeatureConnected");
