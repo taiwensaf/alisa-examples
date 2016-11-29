@@ -9,7 +9,7 @@ renames PhysicalResources::all;
 		-- computer hardware platform
 	processor powerpc
 		features
-			power: in feature Power;
+			power: in feature PhysicalResources::ElectricalPower;
 			canbusaccess: requires bus access CANbus;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
@@ -18,14 +18,14 @@ renames PhysicalResources::all;
 
 	bus CANbus
 		features
-			power: in feature Power;
+			power: in feature PhysicalResources::ElectricalPower;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
 	end CANbus;
 
 	memory main_memory
 		features
-			power: in feature Power;
+			power: in feature PhysicalResources::ElectricalPower;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
 	end main_memory;
@@ -33,7 +33,7 @@ renames PhysicalResources::all;
 		system platform
 		features
 			canbusaccess: provides bus access CANbus;
-			power: in feature Power;
+			power: in feature PhysicalResources::ElectricalPower;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
 			SEI::MIPSCapacity => 2.4 mips;

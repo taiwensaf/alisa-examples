@@ -3,6 +3,7 @@
 	<name>Alisa-Consistency</name>
 	<comment></comment>
 	<projects>
+		<project>CyberPhysical</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

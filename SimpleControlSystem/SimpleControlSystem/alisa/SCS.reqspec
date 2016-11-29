@@ -19,10 +19,8 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 	] 
 	
 	requirement R3 : "SCS inlet voltage" for power [
-//	PHF Units Value	val volts = 12.0 V
-		val volts = 12.0
-//	PHF Units Value		compute actualvolt: Physical::Voltage_Type 
-		compute actualvolt: real 
+		val volts = 12.0 V
+		compute actualvolt: Physical::Voltage_Type 
 		value predicate volts == actualvolt
 		see goal SCSgoals.g3
 	]

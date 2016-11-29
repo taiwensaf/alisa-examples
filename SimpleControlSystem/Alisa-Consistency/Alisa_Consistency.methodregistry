@@ -27,25 +27,23 @@ verification methods Alisa_Consistency [
 		description "Check that both power inlets of " this " have the same wattage."
 	]
 	
-// PHF LUTZ	method ConsistentVoltage (feature, voltage: Physical::Voltage_Type ) boolean 
-	method ConsistentVoltage (feature, voltage: real ) boolean 
+method ConsistentVoltage (feature, voltage: Physical::Voltage_Type ) boolean 
 	:"Ensure Voltage property value is consistent with required voltage value" [
 		java alisa_consistency.ModelVerifications.hasVoltage(String name, double voltage)
 		description "Verify that the Voltage property has the same value as specified in the requirement"
 	]
 	
-	method GetVoltage (feature) returns (volts: real )
+	method GetVoltage (feature) returns (volts: Physical::Voltage_Type in V )
 	:"Ensure Voltage property value is consistent with required voltage value" [
 		java alisa_consistency.ModelVerifications.getVoltage
 		description "Verify that the Voltage property has the same value as specified in the requirement"
 	]
 	
-// PHF: property values
-//	method SetGetVoltage (feature) properties(Physical::Voltage)returns (volts: real )
-//	:"Ensure Voltage property value is consistent with required voltage value" [
-//		java alisa_consistency.ModelVerifications.getVoltage
-//		description "Verify that the Voltage property has the same value as specified in the requirement"
-//	]
+	method SetGetVoltage (feature) properties(Physical::Voltage)returns (volts: Physical::Voltage_Type in V )
+	:"Ensure Voltage property value is consistent with required voltage value" [
+		java alisa_consistency.ModelVerifications.getVoltage
+		description "Verify that the Voltage property has the same value as specified in the requirement"
+	]
 	
 	method ConsistentWattage (name: string, wattage: real) boolean 
 	:"Ensure Voltage property value is consistent with required wattage value" [

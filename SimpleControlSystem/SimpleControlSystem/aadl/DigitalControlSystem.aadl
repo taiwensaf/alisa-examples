@@ -14,7 +14,7 @@ public
 
 	device sensor
 		features
-			power: in feature Power;
+			power: in feature PhysicalResources::ElectricalPower;
 			canbusaccess: requires bus access CANbus;
 			sensorSignal: out data port SensorData;
 		flows
@@ -29,7 +29,7 @@ public
 
 	device actuator
 		features
-			power: in feature Power;
+			power: in feature PhysicalResources::ElectricalPower;
 			canbusaccess: requires bus access CANbus;
 			actuatorCmd: in data port actuatecmd;
 		flows
@@ -44,7 +44,7 @@ public
 
 	system DCS
 		features
-			power: in feature Power;
+			power: in feature PhysicalResources::ElectricalPower;
 			canbusaccess: provides bus access CANbus;
 			sensor1in: in data port SensorData;
 			sensor2In: in data port SensorData;
