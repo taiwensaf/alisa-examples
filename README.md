@@ -9,13 +9,20 @@ This is the public release version of a situational Awareness System in AADL. It
  * The *SituationalAwarenessSystem* project contains the AADL model of the system including a detailed model of pull protocols, and a requirement specification in ReqSpec. The [SEI Tech Report CMU/SEI-2015-SR-031](http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447184) provides some details about the model. The [SEI Tech Report CMU/SEI-2015-SR-030](http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447176) summarizes a number of potential integration issues we have identified in the process of creating and analyzing the model. We have also illustrated safety analysis on a primarily software subsystem with this example (see [SEI Tech Report CMU/SEI-2015-SR-032](http://resources.sei.cmu.edu/library/asset-view.cfm?assetid=447189) ).
  * The *SituationalAwarenessRefArch* project illustrates how a reference runtime architecture can be defined and elaborated into a specific situation awareness system.
 
-This project does not depend on AlisaPredefined.
+This set of projects does not depend on *AlisaPredefined*.
 
 ## AlisaPredefined
 This is a single project that contains a predefined set of categories that can be used on requirements and verification plans.
 It also contains a verification method registry for methods that invoke different analysis plug-ins in OSATE.
 
 These definitions are utilized by some projects. In that case you need to check out this project into your workspace. In the future, the definitions will be automatically be included.
+
+## CyberPhysical
+This project contains property types, measurement units, and abstract classifiers to represent physical system concepts. 
+
+Initially, it has *Mass*, *ElectricalPower*, *HydraulicFlow*, and *PhysicalForce* as concepts. They are typically used to identify the type of physical interaction through abstract features.
+
+It also defines *Voltage* as property, *Voltage_Type* as type, and *Voltage_Units* as measurement units. Other properties from the *SEI* property set will be moved to this set.
 
 ## MultiTierAircraftExample
 *Note: The Alisa automated verification portion of this model is still work in progress.*
@@ -42,3 +49,8 @@ The following projects make up the example (note that you must also include the 
 ##SimpleControlSystem
 
 This example illustrates a variety of user-defined verification methods and is used as the basis for a [tutorial on ReqSpec and Verify](https://github.com/osate/alisa-examples/blob/master/Documentation/BasicRequirementSpecificationGuidance.html).
+
+The example consists of three projects found inside [github.com/osate/alisa-examples/SimpleControlSystem](https://github.com/osate/alisa-examples/tree/master/SimpleControlSystem).
+
+This project set depends on *AlisaPredefined* as well as on *CyberPhysical*, i.e., you will have to check those two projects out as well.
+
