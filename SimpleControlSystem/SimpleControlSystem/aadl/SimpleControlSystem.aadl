@@ -24,7 +24,7 @@ with Physical;
 			ACVIP::Aliases => ("SCS", "Simple Controller");
 			SEI::PowerBudget => 2.5 w applies to power;
 			SEI::WeightLimit => 1.2 kg;
-			Physical::Voltage => 13.0V applies to power;
+			Physical::Voltage => 12.0V applies to power;
 		annex emv2 {**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 				use types ErrorLibrary;
 				use behavior ErrorLibrary::FailStop;
