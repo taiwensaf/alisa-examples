@@ -2,6 +2,8 @@
 
 The following examples are available to illustrate the use of incremental system assurance with ALISA. The capabilities of ALISA are summarized in the [ERTSS 2016 paper](http://www.erts2016.org/uploads/program/paper_13.pdf) and elaborated in the [ALISA online help in OSATE](https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html).
 
+**Note**: Change for SimpleControlSystem. It now uses a separate project called CyberPhysical that contains definitions for physical concepts. See below.
+
 ## SituationalAwarenessSystem
 This is the public release version of a situational Awareness System in AADL. It consists of three projects. 
 
@@ -25,8 +27,6 @@ Initially, it has *Mass*, *ElectricalPower*, *HydraulicFlow*, and *PhysicalForce
 It also defines *Voltage* as property, *Voltage_Type* as type, and *Voltage_Units* as measurement units. Other properties from the *SEI* property set will be moved to this set.
 
 ## MultiTierAircraftExample
-*Note: The Alisa automated verification portion of this model is still work in progress.*
-
 This is an example of a multi-tier AADL model of an aircraft system. The model originally was developed as a proof of concept demo for the SAVI initiative using AADL V1 (see [SEI Technical Report CMU/SEI-2009-TR-01](http://resources.sei.cmu.edu/asset_files/technicalreport/2009_005_001_435167.pdf) ).
 
 We have translated the model into AADL V2.2. We are using *abstract* components to represent physical resource types, generic *features* as access points for these resources, and *system* to define systems that supply these resources. We have also separated the hardware platform and applicaiton software elements of the flight guidance IMA system into two subsystems instead of the original single subsystem, which used the graphcial editor to create a logical, hardware, and electrial supply view of the IMA.
@@ -46,11 +46,13 @@ The following projects make up the example (note that you must also include the 
 * The *Alisa-ADC-Sub1-Demo* project does the same for a supplier. 
 * The *Alisa-Utils* projects contains examples of additional verificaiton methods that are written in Jave/Xtend or resolute.
 
+**Note**: This project set depends on *AlisaPredefined*, i.e., you will have to check this project out as well.
+
 ##SimpleControlSystem
 
 This example illustrates a variety of user-defined verification methods and is used as the basis for a [tutorial on ReqSpec and Verify](https://github.com/osate/alisa-examples/blob/master/Documentation/BasicRequirementSpecificationGuidance.html).
 
 The example consists of three projects found inside [github.com/osate/alisa-examples/SimpleControlSystem](https://github.com/osate/alisa-examples/tree/master/SimpleControlSystem).
 
-This project set depends on *AlisaPredefined* as well as on *CyberPhysical*, i.e., you will have to check those two projects out as well.
+**Note**: This project set depends on *AlisaPredefined* as well as on *CyberPhysical*, i.e., you will have to check those two projects out as well.
 
