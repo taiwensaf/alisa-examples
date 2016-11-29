@@ -20,5 +20,6 @@ claim R3  [
 	activities
 		hasvoltage: Alisa_Consistency.ConsistentVoltage(volts) 
 		consistentvoltage: actualvolt = Alisa_Consistency.GetVoltage()
+// PHF: property values		matchvoltage: actualvolt = Alisa_Consistency.SetGetVoltage()property values (12 V)
 	]
 ] 
