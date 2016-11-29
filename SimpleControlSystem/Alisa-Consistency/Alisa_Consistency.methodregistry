@@ -42,13 +42,8 @@ method ConsistentVoltage (feature, voltage: Physical::Voltage_Type ) boolean
 	method SetGetVoltage (feature) properties(Physical::Voltage)returns (volts: Physical::Voltage_Type in V )
 	:"Ensure Voltage property value is consistent with required voltage value" [
 		java alisa_consistency.ModelVerifications.getVoltage
-		description "Verify that the Voltage property has the same value as specified in the requirement"
+		description "Verify that the Voltage property has the same value as specified in the requirement, and set the property value if not present."
 	]
 	
-	method ConsistentWattage (name: string, wattage: real) boolean 
-	:"Ensure Voltage property value is consistent with required wattage value" [
-		java alisa_consistency.ModelVerifications.hasWattage(String name, double wattage)
-		description "Verify that the Wattage property has the same value as specified in the requirement"
-	]
 
 ]

@@ -150,10 +150,17 @@
 </span-->
 </li>
 <li><span class="title">
-<a href="#junit-verification-methods" title="JUnit Verification Methods">JUnit Verification Methods</a>
+<a href="#verification-parameters-passed-via-properties" title="Verification Parameters Passed via Properties">Verification Parameters Passed via Properties</a>
 </span>
 <!--span class="number">
 19
+</span-->
+</li>
+<li><span class="title">
+<a href="#junit-verification-methods" title="JUnit Verification Methods">JUnit Verification Methods</a>
+</span>
+<!--span class="number">
+20
 </span-->
 </li>
 </ul>
@@ -445,7 +452,9 @@ requirement DCS_R1 : "DCS weight limit" for dcs [
         development stakeholder sei.phf
     ]
 ]
-</code></pre><p>The first requirement is specified as a conditional requirement to indicate that it applies only for leaf components, i.e., components without subcomponents. The condition is encoded in a Java method that is coded separately. In this case, when we add this reusable requirement to the requirement set of SCS (see the <em>include</em> statement below) the requirement gets attached to each leaf component of the AADL instance model whose root system implementation is identified by the assurance plan.</p><pre><code data-origin="<pre><code>    include globalReq.connected
+</code></pre><p>The first requirement is specified as a conditional requirement to indicate that it applies only for leaf components, i.e., components without subcomponents. In this case, when we add this reusable requirement to the requirement set of SCS (see the <em>include</em> statement below) the requirement gets attached to each leaf component of the AADL instance model whose root system implementation is identified by the assurance plan.</p><blockquote>
+<p>Note: The condition is encoded in a Java method that is referenced by the <strong>when</strong> statement. In our example we have written the condition method in a separate Java class <em>ModelConditions</em>, found in the <em>Alisa-Consistency</em> project. See below on writing Java based verification methods.</p>
+</blockquote><pre><code data-origin="<pre><code>    include globalReq.connected
 </code></pre>">    include globalReq.connected
 </code></pre><p>The second requirement is specified for the system as a whole. In this case it is associated with the top level system and the verification activity will traverse the model and verify each leaf component. The key words <strong>for self</strong> indicate that the requirement is only applied to the target component itself.</p><pre><code data-origin="<pre><code>    include globalReq.Allconnected for self
 </code></pre>">    include globalReq.Allconnected for self
@@ -655,14 +664,14 @@ public static boolean isConnected(FeatureInstance fi) {
 </code></pre></blockquote><p>This predicate can also include <strong>compute</strong> variables. Compute variables are unbound variables, whose values are bound as result of executing a <em>compute function</em> that is called in a verification activity. </p><blockquote>
 <p>The second form allows us to specify the predicate condition once as part of the requirement without having to implement the predicate condition in each of the verification methods being called in verification activities.</p>
 </blockquote><p>The following is a requirement that specifies an unbound <strong>compute</strong> variable called <em>actualvolt</em>. It is compared in the <strong>value predicate</strong> against the specified <em>volts</em>.</p><pre><code data-origin="<pre><code>    requirement R3 : &quot;SCS inlet voltage&quot; for power [
-        val volts = 12.0 //V
-        compute actualvolt: real //Physical::Voltage_Type
+        val volts = 12.0 V
+        compute actualvolt: Physical::Voltage_Type
         value predicate volts == actualvolt
         see goal SCSgoals.g3
     ]
 </code></pre>">    requirement R3 : "SCS inlet voltage" for power [
-        val volts = 12.0 //V
-        compute actualvolt: real //Physical::Voltage_Type
+        val volts = 12.0 V
+        compute actualvolt: Physical::Voltage_Type
         value predicate volts == actualvolt
         see goal SCSgoals.g3
     ]
@@ -678,12 +687,12 @@ public static boolean isConnected(FeatureInstance fi) {
     ]
 </code></pre><p>The compute function <em>GetVoltage</em> is registered by indicating that a <em>real</em> value is returned. </p><blockquote>
 <p>The method can return more than one value and each value will be bound to a separate <strong>compute</strong> variable specified in the call.</p>
-</blockquote><pre><code data-origin="<pre><code>method GetVoltage (feature) returns (volts: real )
+</blockquote><pre><code data-origin="<pre><code>method GetVoltage (feature) returns (volts: Physical::Voltage_Type in V )
     :&quot;Return the Voltage property value&quot; [
     java alisa_consistency.ModelVerifications.getVoltage
     description &quot;Retrieve the Voltage property from the feature instance&quot;
 ]
-</code></pre>">method GetVoltage (feature) returns (volts: real )
+</code></pre>">method GetVoltage (feature) returns (volts: Physical::Voltage_Type in V )
     :"Return the Voltage property value" [
     java alisa_consistency.ModelVerifications.getVoltage
     description "Retrieve the Voltage property from the feature instance"
@@ -698,7 +707,23 @@ public static boolean isConnected(FeatureInstance fi) {
     UnitLiteral volts = GetProperties.findUnitLiteral(voltage, "V");
     return PropertyUtils.getScaledNumberValue(fi, voltage, volts, 0.0);
 }
-</code></pre><h3 id="junit-verification-methods"><a name="junit-verification-methods" href="#junit-verification-methods"></a>JUnit Verification Methods</h3><p>ALISA supports running of JUnit tests as verification activities. This is accomplished by registering a JUnit test class. In our example we have a JUnit test class called <em>testme</em>.</p><pre><code data-origin="<pre><code>verification methods mymethods [
+</code></pre><h3 id="verification-parameters-passed-via-properties"><a name="verification-parameters-passed-via-properties" href="#verification-parameters-passed-via-properties"></a>Verification Parameters Passed via Properties</h3><p>In some cases the verification method expects the values it operates on to be available as property values in the model. We can specify this fact as part of the verification method registration.</p><p>We use the <em>GetVoltage</em> Java method to illustrate this capability. We register a new method <em>SetGetVoltage</em> that will set the property value that is specified as part of a call and then call the GetVoltage Java method to retrieve it.  The registration is as follows.</p><pre><code data-origin="<pre><code>method SetGetVoltage (feature) properties(Physical::Voltage)returns (volts: Physical::Voltage_Type in V )
+    :&quot;Ensure Voltage property value is consistent with required voltage value&quot; [
+    java alisa_consistency.ModelVerifications.getVoltage
+    description &quot;Verify that the Voltage property has the same value as specified in the requirement, and set the property value if not present.&quot;
+]
+</code></pre>">method SetGetVoltage (feature) properties(Physical::Voltage)returns (volts: Physical::Voltage_Type in V )
+    :"Ensure Voltage property value is consistent with required voltage value" [
+    java alisa_consistency.ModelVerifications.getVoltage
+    description "Verify that the Voltage property has the same value as specified in the requirement, and set the property value if not present."
+]
+</code></pre><blockquote>
+<p>Note: We register the getVoltage method from above. The property will be set automatically as part of the verification activity execution. Then the <em>getVoltage</em> method is called and the predicate evaluated.</p>
+</blockquote><p>The call in the verification activity is specified as follows.</p><pre><code data-origin="<pre><code>matchvoltage: actualvolt = Alisa_Consistency.SetGetVoltage() property values (volts)
+</code></pre>">matchvoltage: actualvolt = Alisa_Consistency.SetGetVoltage() property values (volts)
+</code></pre><blockquote>
+<p>Note: The model element must not have a property value for the specified property or the value must be the same as the one specified in the call. If a property value already exists and it differs an <em>Error</em> issue will be reported.</p>
+</blockquote><h3 id="junit-verification-methods"><a name="junit-verification-methods" href="#junit-verification-methods"></a>JUnit Verification Methods</h3><p>ALISA supports running of JUnit tests as verification activities. This is accomplished by registering a JUnit test class. In our example we have a JUnit test class called <em>testme</em>.</p><pre><code data-origin="<pre><code>verification methods mymethods [
     method testJunit : &quot;Run JUnit4&quot; [
         junit junittest.testme 
 

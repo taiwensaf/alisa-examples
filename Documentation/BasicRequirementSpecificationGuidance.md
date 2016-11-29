@@ -264,7 +264,9 @@ global requirements globalReq
 	]
 ]
 ```
-The first requirement is specified as a conditional requirement to indicate that it applies only for leaf components, i.e., components without subcomponents. The condition is encoded in a Java method that is coded separately. In this case, when we add this reusable requirement to the requirement set of SCS (see the *include* statement below) the requirement gets attached to each leaf component of the AADL instance model whose root system implementation is identified by the assurance plan.
+The first requirement is specified as a conditional requirement to indicate that it applies only for leaf components, i.e., components without subcomponents. In this case, when we add this reusable requirement to the requirement set of SCS (see the *include* statement below) the requirement gets attached to each leaf component of the AADL instance model whose root system implementation is identified by the assurance plan.
+> Note: The condition is encoded in a Java method that is referenced by the **when** statement. In our example we have written the condition method in a separate Java class *ModelConditions*, found in the *Alisa-Consistency* project. See below on writing Java based verification methods.
+
 ```
 	include globalReq.connected
 ```
@@ -467,8 +469,8 @@ This predicate can also include **compute** variables. Compute variables are unb
 The following is a requirement that specifies an unbound **compute** variable called *actualvolt*. It is compared in the **value predicate** against the specified *volts*.
 ```
 	requirement R3 : "SCS inlet voltage" for power [
-		val volts = 12.0 //V
-		compute actualvolt: real //Physical::Voltage_Type
+		val volts = 12.0 V
+		compute actualvolt: Physical::Voltage_Type
 		value predicate volts == actualvolt
 		see goal SCSgoals.g3
 	]
@@ -485,7 +487,7 @@ The compute function *GetVoltage* is registered by indicating that a *real* valu
 >The method can return more than one value and each value will be bound to a separate **compute** variable specified in the call.
 
 ```
-method GetVoltage (feature) returns (volts: real )
+method GetVoltage (feature) returns (volts: Physical::Voltage_Type in V )
 	:"Return the Voltage property value" [
 	java alisa_consistency.ModelVerifications.getVoltage
 	description "Retrieve the Voltage property from the feature instance"
@@ -499,6 +501,26 @@ public static double getVoltage(final FeatureInstance fi) {
 	return PropertyUtils.getScaledNumberValue(fi, voltage, volts, 0.0);
 }
 ```
+
+### Verification Parameters Passed via Properties ###
+In some cases the verification method expects the values it operates on to be available as property values in the model. We can specify this fact as part of the verification method registration.
+
+We use the *GetVoltage* Java method to illustrate this capability. We register a new method *SetGetVoltage* that will set the property value that is specified as part of a call and then call the GetVoltage Java method to retrieve it.  The registration is as follows.
+```
+method SetGetVoltage (feature) properties(Physical::Voltage)returns (volts: Physical::Voltage_Type in V )
+	:"Ensure Voltage property value is consistent with required voltage value" [
+	java alisa_consistency.ModelVerifications.getVoltage
+	description "Verify that the Voltage property has the same value as specified in the requirement, and set the property value if not present."
+]
+```
+> Note: We register the getVoltage method from above. The property will be set automatically as part of the verification activity execution. Then the *getVoltage* method is called and the predicate evaluated.
+
+The call in the verification activity is specified as follows.
+```
+matchvoltage: actualvolt = Alisa_Consistency.SetGetVoltage() property values (volts)
+```
+> Note: The model element must not have a property value for the specified property or the value must be the same as the one specified in the call. If a property value already exists and it differs an *Error* issue will be reported.
+
 ### JUnit Verification Methods ###
 ALISA supports running of JUnit tests as verification activities. This is accomplished by registering a JUnit test class. In our example we have a JUnit test class called *testme*.
 ```
@@ -517,21 +539,3 @@ public void testingCrunchifyAddition() {
 }
 ```
 > JUnit tests are currently called without parameters. In other words, the test method is not passed a component instance to be verified.
-
-<!--### Verification Parameters Passed via Properties ###
-In some cases the verification method expects the values it operates on to be available as property values in the model. We can specify this fact as part of the verification method registration.
-
-We use the *GetVoltage* Java method to illustrate this capability. We register a new method *SetGetVoltage* that will set the property value that is specified as part of a call and then call the GetVoltage Java method to retrieve it.  The registration is as follows.
-```
-method GetVoltage (feature) properties (Physical::Voltage) returns (volts: real )
-	:"Return the Voltage property value" [
-	java alisa_consistency.ModelVerifications.getVoltage
-	description "Retrieve the Voltage property from the feature instance"
-]
-```
-The call in the verification activity is specified as follows.
-```
-	guaranteedthesame: actualvolt = Alisa_Consistency.SetGetVoltage () property values(volts)
-```
-> Note: The model element must not have a property value for the specified property or the value must be the same as the one specified in the call. If a property value already exists and it differs an *Error* issue will be reported.
--->

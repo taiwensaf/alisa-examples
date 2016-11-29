@@ -75,7 +75,7 @@ public class ModelVerifications {
 			return volt == v;
 	}
 
-	public static boolean hasWattage(ComponentInstance ci, String featurename, double w) {
+	public static boolean hasWattageBudget(ComponentInstance ci, String featurename, double w) {
 		for (FeatureInstance fi : ci.getAllFeatureInstances(FeatureCategory.ABSTRACT_FEATURE)) {
 			if (fi.getName().equalsIgnoreCase(featurename)) {
 				double watt = GetProperties.getPowerBudget(fi, 0.0);
