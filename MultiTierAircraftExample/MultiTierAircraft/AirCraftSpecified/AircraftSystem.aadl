@@ -32,12 +32,11 @@ with Modeling;
       BLD: system AircraftSubsystems::Bleed;
       ACO: system AircraftSubsystems::AirConditioning;
       CPT: system AircraftSubsystems::Cockpit;
-      ELE: system AircraftSubsystems::ElectricalSystem; -- Sept. 2 .V1;
+      ELE: system AircraftSubsystems::ElectricalSystem.V2; -- Sept. 2 .V1;
     connections
       FUEtoENG: feature FUE.FuelSupply -> ENG.FuelSupply ;
       FUEtoAPU: feature FUE.AuxFuelSupply -> APU.FuelSupply ;
       HYDtoENG: feature ENG.HydraulicPower -> HYD.HydraulicPowerSource;
-      FGStoHYD: feature HYD.FGS_HydraulicPower -> FGS.HydraulicPower;
       HYDtoLDG: feature HYD.LDG_HydraulicPower -> LDG.HydraulicPower;
       BLDtoACO: feature BLD.AirDelivery -> ACO.AirPower;
       BLDtoENG: feature ENG.AirPower -> BLD.AirPowerSource;
@@ -56,7 +55,8 @@ with Modeling;
       NAVtoSIG: feature NAV.Signals -> FGS.Signals;
       ENGtoSIG: feature ENG.Signals -> FGS.Signals;
       CPTtoSIG: feature  CPT.Signals -> FGS.Signals;
-	properties
-		Classifier_Substitution_RUle => Type_Extension;
+	ELEtoBLD: feature ELE.BLDElecPower -> BLD.ElectricalSupply;
+		properties
+			Classifier_Substitution_RUle => Type_Extension;
   end AircraftSystem.SubsystemSpec;
 end AircraftSystem;

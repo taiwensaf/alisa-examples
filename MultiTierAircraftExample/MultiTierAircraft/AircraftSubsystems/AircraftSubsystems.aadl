@@ -61,7 +61,6 @@ with  Physical, SEI, Resources;
       {
         SEI::PowerBudget => 2000.0 W;
         };
-      HydraulicPower: in feature Resources::HydraulicPressure;
       Signals: in feature Resources::SignalFlow;
     properties
       Modeling::System_Tier => Tier2;
@@ -78,7 +77,6 @@ with  Physical, SEI, Resources;
         SEI::PowerBudget => 1000.0 W;
         };
       HydraulicPowerSource: in feature Resources::HydraulicPressure;
-      FGS_HydraulicPower: out feature Resources::HydraulicPressure;
       LDG_HydraulicPower: out feature Resources::HydraulicPressure;
     properties
       Modeling::System_Tier => Tier2;

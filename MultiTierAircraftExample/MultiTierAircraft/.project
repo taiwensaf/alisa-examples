@@ -3,7 +3,6 @@
 	<name>MultiTierAircraft</name>
 	<comment></comment>
 	<projects>
-		<project>AlisaBasics</project>
 		<project>Plugin_Resources</project>
 	</projects>
 	<buildSpec>
