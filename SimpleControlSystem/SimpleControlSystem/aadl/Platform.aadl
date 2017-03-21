@@ -14,6 +14,7 @@ renames PhysicalResources::all;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
 			SEI::MIPSCapacity => 1.2 mips;
+			SEI::Grossweight => 0.7 kg;
 	end powerpc;
 
 	bus CANbus
@@ -21,6 +22,7 @@ renames PhysicalResources::all;
 			power: in feature PhysicalResources::ElectricalPower;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
+			SEI::Grossweight => 0.2 kg;
 	end CANbus;
 
 	memory main_memory
@@ -28,6 +30,7 @@ renames PhysicalResources::all;
 			power: in feature PhysicalResources::ElectricalPower;
 		properties
 			SEI::PowerBudget => 0.8 w applies to power;
+			SEI::Grossweight => 0.1 kg;
 	end main_memory;
 	
 		system platform

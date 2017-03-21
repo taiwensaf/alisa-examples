@@ -7,6 +7,6 @@ system requirements dcsreqs for DigitalControlSystem::DCS [
 		category Quality.Mass
 		compute  actualweight : real units SEI::WeightUnits 
 		description this " shall be within weight of " MaximumWeight 
-		value predicate actualweight <= MaximumWeight
+//		value predicate actualweight <= MaximumWeight
 	]
 ]

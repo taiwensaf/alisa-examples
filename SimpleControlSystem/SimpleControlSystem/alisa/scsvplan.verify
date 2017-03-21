@@ -6,7 +6,7 @@ verification plan scsvplan for scsreqs
 		activities
 			actualsystemweight : Plugins.MassAnalysis() 
 			   [ category Quality.Mass ]
-			MaxWeight : Resolute.verifySCSReq1(MaximumWeight in kg) [ category Quality.Mass ]
+			MaxWeight : Resolute.verifyAllWeights(MaximumWeight in kg) [ category Quality.Mass ]
 	]
 	
 claim R2 [

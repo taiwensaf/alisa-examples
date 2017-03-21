@@ -35,7 +35,7 @@ public
 		flows
 			actuatoraction: flow sink actuatorCmd;
 		properties
-		--			SEI::GrossWeight => 0.3 kg;
+--			SEI::GrossWeight => 0.3 kg;
 			SEI::PowerBudget => 0.8 w applies to power;
 			Period => 25 ms;
 			Latency => 3 ms .. 5 ms applies to actuatoraction;

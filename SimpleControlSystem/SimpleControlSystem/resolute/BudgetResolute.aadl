@@ -67,10 +67,11 @@ annex Resolute {**
 	-- recursively total of weight budgets of all components
 	AddAllBudgets(self : component) : real = 
 	let subs :{component} = subcomponents(self);
-	if (length(subs) = 0) then
+	let totals: real = sum({AddAllBudgets(t) for (t: subs)}) + NetWeight(self);
+	if (length(subs) = 0 or totals = 0.0) then
 		WeightBudget(self)
 	else
-		sum({AddAllBudgets(t) for (t: subs)}) + NetWeight(self)
+		totals
 
 -- retrieves weight budget or 0.0 if no budget was assigned
 WeightBudget(self:component): real =
@@ -109,6 +110,16 @@ SubcomponentWeightBudgetCoveragePercent(self:component): int = let subs: {compon
  
  HasPeriod(t : thread) <= ** "Thread " t " has a period" ** 
  has_property(t,Timing_Properties::Period)
+
+print(element: aadl)<= 
+** element **
+true
+
+printValue(value :  real)<= 
+** value **
+true
 	
 **};
+
+
 end BudgetResolute ;

@@ -3,7 +3,7 @@
 assurance case SCSCase for SimpleControlSystem::SCS [
 	assurance plan SCSPlan for SimpleControlSystem::SCS.tier1 [
 		description "my plan"
-		assure scsvplan 
+		assure scsvplan
 		assure subsystem dcs
 		assume subsystem sensor1 sensor2 actuator
 	]

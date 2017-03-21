@@ -21,7 +21,8 @@ verification methods Resolute [
 	]
 		
 	method verifyAllWeights ( max: real ) : "Verify sum of all component weights do not exceed maximum" [
-		resolute  AssureRecursivetotals
+		resolute  AssureRecursivetotals 
+	validation validateWeightBudgetCoveragePercent()
 	]
 		
 	method validateSubcomponentsHaveWeight : "Check that direct subcomponents have gross weight" [
