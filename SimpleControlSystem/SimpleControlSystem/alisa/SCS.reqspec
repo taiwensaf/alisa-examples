@@ -7,7 +7,7 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 		category Quality.Mass
 		description this " shall be within weight of " MaximumWeight
 		// condition verifies that MaximumWeight is same as the property value WeightLimit
-//		value predicate MaximumWeight == #SEI::WeightLimit
+		value predicate MaximumWeight == #SEI::WeightLimit
 		see goal SCSgoals.ng2
 	]
 
@@ -21,7 +21,7 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 	requirement R3 : "SCS inlet voltage" for power [
 		val volts = 12.0 V
 		compute actualvolt: Physical::Voltage_Type 
-//		value predicate volts == actualvolt
+		value predicate volts == actualvolt
 		see goal SCSgoals.g3
 	]
 	include Peter.req1 for self
