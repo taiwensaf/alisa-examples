@@ -58,8 +58,8 @@ for FlightGuidance::FlightGuidanceSW.embeddedsoftware
 	[
 		description "The stick-to-surface end-to-end flow response of the FGS in Direct Mode 
 			shall be no longer than " FG_DirectModeLatency
-		compute ActualLatency: real units AADL_Project::Time_Units 
-		value predicate ActualLatency <= FG_DirectModeLatency
+//		compute ActualLatency: real units AADL_Project::Time_Units 
+//		value predicate ActualLatency <= FG_DirectModeLatency
 		see goal XACStakeholderGoals.XSG_8_3
 	]
 	requirement R6_2: "Stick-to-Surface End-to-End Flow Normal Modes Latency" 

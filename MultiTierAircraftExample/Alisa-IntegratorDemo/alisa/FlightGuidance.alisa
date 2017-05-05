@@ -3,7 +3,7 @@
 assurance case FlightGuidance for AircraftSubsystems::FlightGuidance [
 assurance plan FlightGuidanceT2 for FlightGuidance::FlightGuidance.SelfcontainedSWSubsystem  [
 	assure FGplan
-	assure subsystem FGSWSystem
+assume subsystem FGHWPlatform FGSWSystem
 ]
 
 assurance plan FlightguidanceT3 for FlightGuidance::SubsystemSpec::FlightGuidance.SubcontractorSpec 
