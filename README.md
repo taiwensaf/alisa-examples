@@ -48,7 +48,7 @@ The following projects make up the example (note that you must also include the 
 
 **Note**: This project set depends on *AlisaPredefined*, i.e., you will have to check this project out as well.
 
-##SimpleControlSystem
+## SimpleControlSystem
 
 This example illustrates a variety of user-defined verification methods and is used as the basis for a [tutorial on ReqSpec and Verify](https://github.com/osate/alisa-examples/blob/master/Documentation/BasicRequirementSpecificationGuidance.html).
 
