@@ -1,6 +1,13 @@
 // Copyright 2016 Carnegie Mellon University. See Notice.txt
 // Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements SCSImplementationreqs for SimpleControlSystem::SCS.tier0 [
+
+	requirement R2 : "SCS sensor to actuator response time limit" for sensortoactuatorresponse[
+		val MaximumLatency = 20 ms
+		description this " shall have a sensor to actuator response time within " MaximumLatency
+		category Quality.Latency
+		see goal SCSgoals.g1
+		]
 	requirement DCS_R1 : "DCS weight limit" for dcs [
 		val  MaximumWeight = 0.6 kg
 		compute actualweight: real units SEI::WeightUnits

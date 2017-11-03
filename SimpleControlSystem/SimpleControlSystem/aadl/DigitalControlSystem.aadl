@@ -81,6 +81,8 @@ public
 			app: refined to system DCA.tier2;
 		properties
 			Reference_Processor => classifier (powerpc);
+			Actual_Processor_Binding => (reference (hw.pc1)) applies to app;
+--			Actual_Processor_Binding => (reference (hw.pc1)) applies to iop;
 	end DCS.singletier2;
 
 	system implementation DCS.dualtier2 extends DCS.singletier2

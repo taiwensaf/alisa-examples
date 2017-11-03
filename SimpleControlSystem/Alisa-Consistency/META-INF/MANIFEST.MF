@@ -4,9 +4,8 @@ Bundle-Name: Alisa-Consistency
 Bundle-SymbolicName: Alisa-Consistency
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: alisa_consistency.Activator
-Require-Bundle: org.eclipse.core.runtime,
- org.osate.aadl2;bundle-version="1.0.0",
- org.osate.results;bundle-version="1.0.0",
- org.osate.xtext.aadl2.properties;bundle-version="1.0.0"
+Require-Bundle: org.osate.aadl2;bundle-version="1.0.0",
+ org.osate.xtext.aadl2.properties;bundle-version="1.0.0",
+ org.osate.results;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

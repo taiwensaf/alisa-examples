@@ -13,9 +13,9 @@ import org.osate.aadl2.instance.ComponentInstance;
 import org.osate.aadl2.instance.FeatureCategory;
 import org.osate.aadl2.instance.FeatureInstance;
 import org.osate.aadl2.instance.InstanceObject;
-import org.osate.results.results.ResultReport;
-import org.osate.alisa.common.common.ResultIssue;
-import org.osate.results.util.ResultsUtilExtension;
+import org.osate.result.Issue;
+import org.osate.result.Result;
+import org.osate.result.util.ResultUtil;
 import org.osate.xtext.aadl2.properties.util.GetProperties;
 import org.osate.xtext.aadl2.properties.util.PropertyUtils;
 
@@ -42,16 +42,17 @@ public class ModelVerifications {
 	 * Recursively consistency check that all leaf components have all features
 	 * connected. Get report back on details of which ones do not.
 	 */ // EList<ResultIssue>
-	public static ResultReport allComponentFeaturesConnected(ComponentInstance ci) {
-		ResultReport report = ResultsUtilExtension.createReport("AllFeaturesConnected", ci);
+	public static Result allComponentFeaturesConnected(ComponentInstance ci) {
+		Result report = ResultUtil.createResult("AllFeaturesConnected", ci);
 		for (ComponentInstance subi : ci.getAllComponentInstances()) {
 			if (isLeafComponent(subi)) {
 				for (FeatureInstance fi : subi.getAllFeatureInstances()) {
 					if (!isConnected(fi)) {
-						ResultsUtilExtension.addFail(report.getIssues(),
+						Issue issue = ResultUtil.createFail(
 								"Feature " + fi.getName() + " of component "
 										+ fi.getContainingComponentInstance().getName() + " not connected",
 								fi, "AllFeatureConnected");
+						report.getIssues().add(issue);
 					}
 				}
 			}

@@ -38,7 +38,7 @@ method ConsistentVoltage (feature, voltage: Physical::Voltage_Type ) boolean
 		java alisa_consistency.ModelVerifications.getVoltage
 		description "Verify that the Voltage property has the same value as specified in the requirement"
 	]
-	
+	 
 	method SetGetVoltage (feature) properties(Physical::Voltage)returns (volts: Physical::Voltage_Type in V )
 	:"Ensure Voltage property value is consistent with required voltage value" [
 		java alisa_consistency.ModelVerifications.getVoltage
