@@ -114,7 +114,7 @@ properties
 		CorrelatedThreatTracks : port ThreatDCFM.CorrelatedTracks -> AirCrewDisplay.ThreatInformation;
 	flows
 		HostileFireAlert: end to end flow WW.ThreatObserved -> WWTracks ->ThreatDCFM.ThreatConversion1 -> 
-		CorrelatedThreats -> SAAssessment.ThreatAssessment -> SAAlerts ->
+		CorrelatedThreats -> SAAssessment.ThreatAlerts -> SAAlerts ->
 		 AircrewAnnunciation.SoundAlerts;
 	properties
 		ACVIP::Supervise => (reference (APR39D), reference (JATAS), reference(WW))

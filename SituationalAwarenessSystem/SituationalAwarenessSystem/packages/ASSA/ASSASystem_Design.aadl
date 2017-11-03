@@ -79,9 +79,9 @@ flows
 		APRSensorTracks : port APR39D.SourceTracks ->  ASSADataConversion.APR39DTracks {Transmission_Type => push;};
 		StoreRadarSourceTracks: port ASSADataConversion.RadarSourceTracks -> ASSADataStorage.APR39DTracks {Transmission_Type => push;};
 		WWSensorTracks : port WW.SourceTracks -> ASSADataConversion.WWTracks {Transmission_Type => push;};
-		StoreThreatSourceTracks: port ASSADataConversion.RadarSourceTracks -> ASSADataStorage.WWTracks {Transmission_Type => push;};
+		StoreThreatSourceTracks: port ASSADataConversion.ThreatSourceTracks -> ASSADataStorage.WWTracks {Transmission_Type => push;};
 		RadarSourceTracks : port ASSADataStorage.OutgoingRadarSourceTracks -> RadarDCM.Sourcetracks {Transmission_Type => pull;};
-		ThreatSourceTracks : port ASSADataStorage.DCFMSourceTracks -> ThreatDCM.Sourcetracks {Transmission_Type => pull;};
+		ThreatSourceTracks : port ASSADataStorage.OutgoingThreatSourceTracks -> ThreatDCM.Sourcetracks {Transmission_Type => pull;};
 		RadarCorrelatedTracks: port RadarDCM.CorrelatedTracks -> ASSADataStorage.IncomingRadarCorrelatedTracks {Transmission_Type => push;};
 		ThreatCorrelatedTracks: port ThreatDCM.CorrelatedTracks -> ASSADataStorage.IncomingThreatCorrelatedTracks {Transmission_Type => push;};
 		AssessThreats: port ASSADataStorage.OutgoingThreatCorrelatedTracks -> SAAssessment.ThreatTracks{Transmission_Type => pull;};
