@@ -4,8 +4,6 @@ import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.hamcrest.core.IsEqual;
-import org.junit.Assert;
 import org.osate.aadl2.ComponentCategory;
 import org.osate.aadl2.instance.ComponentInstance;
 import org.osate.aadl2.instance.FeatureCategory;
@@ -14,18 +12,6 @@ import org.osate.xtext.aadl2.properties.util.GetProperties;
 
 @SuppressWarnings("all")
 public class AircraftConsistency {
-  public boolean consistentElectricalBudget(final ComponentInstance ci, final double budget) {
-    final EList<FeatureInstance> fil = ci.getFeatureInstances();
-    for (final FeatureInstance fi : fil) {
-      {
-        final double prop = GetProperties.getPowerBudget(ci, 0.0);
-        if ((prop == budget)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
   
   public boolean consistentElectricalBudget(final ComponentInstance ci, final String fname, final double budget) {
     final EList<FeatureInstance> fil = ci.getFeatureInstances();
@@ -43,14 +29,12 @@ public class AircraftConsistency {
   
   public boolean consistentElectricalCapacity(final ComponentInstance ci, final double capacity) {
     final double prop = GetProperties.getPowerCapacity(ci, 0.0);
-    Assert.<Double>assertThat("Electrical capacity requirement same as property value", Double.valueOf(prop), IsEqual.<Double>equalTo(Double.valueOf(capacity)));
-    return true;
+    return prop == capacity;
   }
   
   public boolean consistentWeightLimit(final ComponentInstance ci, final double limit) {
     final double prop = GetProperties.getWeightLimit(ci, 0.0);
-    Assert.<Double>assertThat("Weight limit requirement same as WeightLimit property value", Double.valueOf(prop), IsEqual.<Double>equalTo(Double.valueOf(limit)));
-    return true;
+    return prop == limit;
   }
   
   public boolean electricalPowerSelfSufficiency(final ComponentInstance ci) {
