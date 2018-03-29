@@ -51,7 +51,7 @@ public class ModelVerifications {
 						Issue issue = ResultUtil.createFail(
 								"Feature " + fi.getName() + " of component "
 										+ fi.getContainingComponentInstance().getName() + " not connected",
-								fi, "AllFeatureConnected");
+								fi);
 						report.getIssues().add(issue);
 					}
 				}
