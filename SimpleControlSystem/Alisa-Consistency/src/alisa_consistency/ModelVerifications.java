@@ -48,6 +48,9 @@ public class ModelVerifications {
 			if (isLeafComponent(subi)) {
 				for (FeatureInstance fi : subi.getAllFeatureInstances()) {
 					if (!isConnected(fi)) {
+						// PHF: in the next stable release (2.3.3) createFail will take only two parameters.
+						// PHF: The last parameter will need to be deleted
+						// PHF: change is supported by nightly build
 						Issue issue = ResultUtil.createFail(
 								"Feature " + fi.getName() + " of component "
 										+ fi.getContainingComponentInstance().getName() + " not connected",
