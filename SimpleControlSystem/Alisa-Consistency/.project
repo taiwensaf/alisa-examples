@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>CyberPhysical</project>
-		<project>Plugin_Resources</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
