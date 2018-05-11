@@ -31,7 +31,7 @@ with Physical;
 				error propagations
 					force: out propagation {ServiceOmission};
 					flows
-						es1: error source force;
+						es1: error source force if "ModelConditions.isLeafComponent";
 				end propagations;**};
 	end SCS;
 	

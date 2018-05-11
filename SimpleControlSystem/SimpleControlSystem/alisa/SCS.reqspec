@@ -24,6 +24,8 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 		value predicate volts == actualvolt
 		see goal SCSgoals.g3
 	]
-	include Peter.req1 for self
-	include globalReq.Allconnected for self
+
+//	include Peter.req1 for self
+//	include globalReq.Allconnected for self
+include globalReq.connected
 ]
