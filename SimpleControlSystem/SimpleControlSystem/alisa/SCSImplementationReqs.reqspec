@@ -2,7 +2,7 @@
 // Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
 system requirements SCSImplementationreqs for SimpleControlSystem::SCS.tier0 [
 
-	requirement R2 : "SCS sensor to actuator response time limit" for sensortoactuatorresponse[
+	requirement R2_Lat : "SCS sensor to actuator response time limit" for sensortoactuatorresponse[
 		val MaximumLatency = 20 ms
 		description this " shall have a sensor to actuator response time within " MaximumLatency
 		category Quality.Latency

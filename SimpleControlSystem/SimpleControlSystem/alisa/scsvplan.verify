@@ -12,15 +12,15 @@ verification plan scsvplan for scsreqs
 	
 claim R2 [
 		activities
-			responsetime : Plugins.FlowLatencyAnalysis() 
+//			responsetime : Plugins.FlowLatencyAnalysis() 
 			timing: Plugins.ResourceAllocationScheduling()
-		assert timing then responsetime
+//		assert timing then responsetime
 
 	]
 claim R3  [
 	activities
-//		hasvoltage: Alisa_Consistency.ConsistentVoltage(volts) 
+		hasvoltage: Alisa_Consistency.ConsistentVoltage(volts)
 		consistentvoltage: actualvolt = Alisa_Consistency.GetVoltage()
-//		matchvoltage: actualvolt = Alisa_Consistency.SetGetVoltage()property values (volts)
+		matchvoltage: actualvolt = Alisa_Consistency.SetGetVoltage()property values (volts)
 	]
 ] 
