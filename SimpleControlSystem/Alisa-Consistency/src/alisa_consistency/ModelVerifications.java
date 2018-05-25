@@ -3,18 +3,13 @@ package alisa_consistency;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.osate.aadl2.Classifier;
-import org.osate.aadl2.ComponentCategory;
-import org.osate.aadl2.ComponentImplementation;
-import org.osate.aadl2.ComponentType;
-import org.osate.aadl2.NamedElement;
 import org.osate.aadl2.Property;
 import org.osate.aadl2.UnitLiteral;
 import org.osate.aadl2.instance.ComponentInstance;
 import org.osate.aadl2.instance.FeatureCategory;
 import org.osate.aadl2.instance.FeatureInstance;
-import org.osate.aadl2.instance.InstanceObject;
-import org.osate.result.Issue;
-import org.osate.result.Result;
+import org.osate.result.AnalysisResult;
+import org.osate.result.Diagnostic;
 import org.osate.result.util.ResultUtil;
 import org.osate.xtext.aadl2.properties.util.GetProperties;
 import org.osate.xtext.aadl2.properties.util.PropertyUtils;
@@ -42,8 +37,8 @@ public class ModelVerifications {
 	 * Recursively consistency check that all leaf components have all features
 	 * connected. Get report back on details of which ones do not.
 	 */ // EList<ResultIssue>
-	public static Result allComponentFeaturesConnected(ComponentInstance ci) {
-		Result report = ResultUtil.createResult("AllFeaturesConnected", ci);
+	public static AnalysisResult allComponentFeaturesConnected(ComponentInstance ci) {
+		AnalysisResult report = ResultUtil.createAnalysisResult("AllFeaturesConnected", ci);
 		for (ComponentInstance subi : ci.getAllComponentInstances()) {
 			if (isLeafComponent(subi)) {
 				for (FeatureInstance fi : subi.getAllFeatureInstances()) {
@@ -51,11 +46,11 @@ public class ModelVerifications {
 						// PHF: in the next stable release (2.3.3) createFail will take only two parameters.
 						// PHF: The last parameter will need to be deleted
 						// PHF: change is supported by nightly build
-						Issue issue = ResultUtil.createFail(
+						Diagnostic issue = ResultUtil.createFailure(
 								"Feature " + fi.getName() + " of component "
 										+ fi.getContainingComponentInstance().getName() + " not connected",
-								fi, "AllFeatureConnected");
-						report.getIssues().add(issue);
+								fi);
+						report.getDiagnostics().add(issue);
 					}
 				}
 			}

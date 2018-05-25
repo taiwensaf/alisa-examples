@@ -66,7 +66,7 @@ annex Resolute {**
 -- PHF: {} will need to be changed to []
 -- PHF: change is supported by nightly build
 	AddSubcomponentWeightBudgets(self: component) : real = 
-		sum({WeightBudget(t) for (t: subcomponents(self))})
+		sum([WeightBudget(t) for (t: subcomponents(self))])
 
 	-- recursively total of weight budgets of all components
 	AddAllBudgets(self : component) : real = 
@@ -75,7 +75,7 @@ annex Resolute {**
 -- PHF: The sum operator will only work on lists.
 -- PHF: {} will need to be changed to []
 -- PHF: change is supported by nightly build
-	let totals: real = sum({AddAllBudgets(t) for (t: subs)}) + NetWeight(self);
+	let totals: real = sum([AddAllBudgets(t) for (t: subs)]) + NetWeight(self);
 	if (length(subs) = 0 or totals = 0.0) then
 		WeightBudget(self)
 	else
@@ -107,7 +107,7 @@ SubcomponentsHaveWeightBudget(self:component): bool =
 -- PHF: {} will need to be changed to []
 -- PHF: change is supported by nightly build
 SubcomponentWeightBudgetCoveragePercent(self:component): int = let subs: {component} = subcomponents(self); 
- sum({ 100 for (sub : subs) | has_property(sub,SEI::GrossWeight)})/ (length(subs))
+ sum([100 for (sub : subs) | has_property(sub,SEI::GrossWeight)])/ (length(subs))
  
  
  AllComponentsHaveGrossWeight(self : component) <= ** "Component " self " shall have a weight budget" ** 
