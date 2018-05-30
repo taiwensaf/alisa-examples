@@ -5,6 +5,10 @@ verification methods Resolute [
 	method hasWeightBudgets : "Determine weight budget coverage" [
 		resolute SubcomponentWeightBudgetCoverage
 	]
+// return values other than boolean on compute functions not supported yet
+//	method getWeightBudget () returns (wei : real units SEI::WeightUnits in kg): "Get weight budget" [
+//		resolute WeightBudget 
+//	]
  
  	method verifySCSReq1 (max: real ): "Verify SCS weight is within specified maximum (Req1)" [
 		resolute SCSReq1 
@@ -48,6 +52,16 @@ verification methods Resolute [
 	method allConnected : "Component is connected" [
 		description "Check that component is connected if it is a leaf in the instance model"
 		resolute isConnectedClaim
+	]
+	
+	method isFeatureConnected (feature): "Feature is connected" [
+		description "Check that feature is connected"
+		resolute isFeatureConnected
+	]
+	
+	method isComponentConnected : "Component is connected" [
+		description "Check that component is connected CF"
+		resolute isConnected
 	]
 
 ]
