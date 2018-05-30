@@ -6,7 +6,7 @@ annex Resolute {**
 
  
  allComponentsConnected(root : component)<= ** "All components have connections" **
- forall(c: component). (subcomponents(c) = {}) => isConnectedClaim(c)
+ forall(c: component). (subcomponents(c) = {}) => isConnectedLeafClaim(c)
  
  
  isConnectedClaim(c: component) <= ** "Component " c " has all features connected" **
