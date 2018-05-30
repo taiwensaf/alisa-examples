@@ -10,6 +10,8 @@ import org.osate.aadl2.instance.FeatureCategory;
 import org.osate.aadl2.instance.FeatureInstance;
 import org.osate.result.AnalysisResult;
 import org.osate.result.Diagnostic;
+import org.osate.result.Result;
+import org.osate.result.ResultFactory;
 import org.osate.result.util.ResultUtil;
 import org.osate.xtext.aadl2.properties.util.GetProperties;
 import org.osate.xtext.aadl2.properties.util.PropertyUtils;
@@ -37,11 +39,11 @@ public class ModelVerifications {
 	 * Recursively consistency check that all leaf components have all features
 	 * connected. Get report back on details of which ones do not.
 	 */ 
-//	public static Result allComponentFeaturesConnected(ComponentInstance ci) {
-//		Result res = ResultFactory.eINSTANCE.createResult();
+//	public static AnalysisResult allComponentFeaturesConnected(ComponentInstance ci) {
+//		AnalysisResult res = ResultFactory.eINSTANCE.createResult();
 //=======
-	public static AnalysisResult allComponentFeaturesConnected(ComponentInstance ci) {
-		AnalysisResult res = ResultUtil.createAnalysisResult("AllFeaturesConnected", ci);
+	public static Result allComponentFeaturesConnected(ComponentInstance ci) {
+		Result res = ResultFactory.eINSTANCE.createResult();
 		for (ComponentInstance subi : ci.getAllComponentInstances()) {
 			if (isLeafComponent(subi)) {
 				for (FeatureInstance fi : subi.getAllFeatureInstances()) {
