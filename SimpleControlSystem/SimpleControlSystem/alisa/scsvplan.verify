@@ -7,16 +7,17 @@ verification plan scsvplan for scsreqs
 			actualsystemweight : Plugins.MassAnalysis() 
 			   [ category Quality.Mass ]
 			MaxWeight : Resolute.verifyAllWeights(MaximumWeight in kg) [ category Quality.Mass ]
-//			SCSReq1act : Resolute.verifySCSReq1(MaximumWeight in kg) [ category Quality.Mass ]
+			SCSReq1act : Resolute.verifySCSReq1(MaximumWeight in kg) [ category Quality.Mass ]
 	]
 	
-claim R2 [
-		activities
-			responsetime : Plugins.FlowLatencyAnalysis() 
-			timing: Plugins.ResourceAllocationScheduling()
-		assert timing then responsetime
+//claim R2 [
+//		activities
+//			responsetime : Plugins.FlowLatencyAnalysis() 
+//			timing: Plugins.ResourceAllocationScheduling()
+//		assert timing then responsetime
+//
+//	]
 
-	]
 claim R3  [
 	activities
 		hasvoltage: Alisa_Consistency.ConsistentVoltage(volts)

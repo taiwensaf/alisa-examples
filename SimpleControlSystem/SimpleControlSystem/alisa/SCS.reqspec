@@ -11,12 +11,12 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 		see goal SCSgoals.ng2
 	]
 
-	requirement R2 : "SCS sensor to actuator response time limit" [
-		val MaximumLatency = 20 ms
-		description this " shall have a sensor to actuator response time within " MaximumLatency
-		category Quality.Latency
-		see goal SCSgoals.g1
-	] 
+//	requirement R2 : "SCS sensor to actuator response time limit" [
+//		val MaximumLatency = 20 ms
+//		description this " shall have a sensor to actuator response time within " MaximumLatency
+//		category Quality.Latency
+//		see goal SCSgoals.g1
+//	] 
 	
 	requirement R3 : "SCS inlet voltage" for power [
 		val volts = 12.0 V
