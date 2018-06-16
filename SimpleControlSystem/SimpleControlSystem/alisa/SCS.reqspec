@@ -11,6 +11,8 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 		see goal SCSgoals.ng2
 	]
 
+// a requirement on an end ot end flow which exists only in implementations
+// moved to SCSImplementationReqs
 //	requirement R2 : "SCS sensor to actuator response time limit" [
 //		val MaximumLatency = 20 ms
 //		description this " shall have a sensor to actuator response time within " MaximumLatency

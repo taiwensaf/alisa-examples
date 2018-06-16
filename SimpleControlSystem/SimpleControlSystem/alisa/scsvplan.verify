@@ -9,7 +9,8 @@ verification plan scsvplan for scsreqs
 			MaxWeight : Resolute.verifyAllWeights(MaximumWeight in kg) [ category Quality.Mass ]
 			SCSReq1act : Resolute.verifySCSReq1(MaximumWeight in kg) [ category Quality.Mass ]
 	]
-	
+
+// end to end flows only exist in requirements	
 //claim R2 [
 //		activities
 //			responsetime : Plugins.FlowLatencyAnalysis() 
