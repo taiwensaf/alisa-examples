@@ -5,6 +5,7 @@ verification methods Resolute [
 	method hasWeightBudgets : "Determine weight budget coverage" [
 		resolute BudgetResolute.BudgetResolute_public.Resolute.Resolute.SubcomponentWeightBudgetCoverage
 	]
+
 // return values other than boolean on compute functions not supported yet
 //	method getWeightBudget () returns (wei : real units SEI::WeightUnits in kg): "Get weight budget" [
 //		resolute BudgetResolute.BudgetResolute_public.Resolute.Resolute.WeightBudget 

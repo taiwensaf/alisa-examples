@@ -61,7 +61,7 @@ annex Resolute {**
  	ratio = 100  
    	orelse fail ** ratio "% of subcomponents have weight" **
        	
-	-- c omputational function to calculate total of weight budget from subcomponents
+	-- computational function to calculate total of weight budget from subcomponents
 	AddSubcomponentWeightBudgets(self: component) : real = 
 		sum([WeightBudget(t) for (t: subcomponents(self))])
 

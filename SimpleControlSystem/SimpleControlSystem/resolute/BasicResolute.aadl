@@ -3,30 +3,22 @@
 package BasicResolute
 public 
 annex Resolute {**
-
  
  allComponentsConnected(root : component)<= ** "All components have connections" **
- forall(c: component). is_empty_subcomponents(c) => isConnectedLeafClaim(c)
- 
+ forall(c: component). subcomponents(c) = {} => isConnectedLeafClaim(c)
  
  isConnectedClaim(c: component) <= ** "Component " c " has all features connected" **
- is_empty_subcomponents(c) => forall (f : features(c)). isFeatureConnected(f)
+ subcomponents(c) = {} => forall (f : features(c)). isFeatureConnected(f)
  
  isConnectedLeafClaim(c: component) <= ** "Component " c " has all features connected" **
  forall (f : features(c)). isFeatureConnected(f)
  
  isConnected(c : component): bool =
- forall (f : features(c)). not is_empty_connections(f) 
+ forall (f : features(c)). connections(f) <> {}  
   
  isFeatureConnected(f : feature)<= ** "Feature " f " is connected" **
-    not is_empty_connections(f)
+    connections(f) <> {}
  	orelse fail ** "Feature " f " is not connected" **
-
-is_empty_connections(element: aadl): bool =
-	(connections(element) = [] or connections(element) = {})
-
-is_empty_subcomponents(element: component): bool =
-	(subcomponents(element) = [] or subcomponents(element) = {})
 
 **};
 end BasicResolute ;

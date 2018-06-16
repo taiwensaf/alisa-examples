@@ -5,4 +5,6 @@ property set ACVIP is
 Aliases: list of aadlstring applies to (all); 
 
 Author: aadlstring applies to (all);
+
+names : constant list of aadlstring => ("one","two"); 
 end ACVIP;
