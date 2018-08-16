@@ -3,10 +3,29 @@
 	<name>Alisa-IntegratorDemo</name>
 	<comment></comment>
 	<projects>
+		<project>ADC-Spec</project>
+		<project>AirCraftImplemented</project>
+		<project>AirCraftIntegrated</project>
+		<project>AirCraftSpecified</project>
+		<project>AircraftSubsystems</project>
 		<project>Alisa-Utils</project>
 		<project>AlisaPredefined</project>
+		<project>CyberPhysical</project>
+		<project>FCP-Spec</project>
+		<project>FG-Subsystems</project>
+		<project>FGS-Spec</project>
+		<project>FlightGuidance</project>
+		<project>FlightGuidanceImplementation</project>
+		<project>FMS-Spec</project>
+		<project>Hardware-Library</project>
+		<project>Integrator-DataDictionary</project>
 		<project>MultiTierAircraft</project>
-		<project>Plugin_Resources</project>
+		<project>SAVICommon</project>
+		<project>Sub1-FGS-Public</project>
+		<project>Sub4-ADC-Public</project>
+		<project>Sub5-FMS-Public</project>
+		<project>Sub6-FCP-Public</project>
+		<project>Sub7-AP-Public</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
