@@ -20,12 +20,12 @@ verification methods AircraftExampleRegistry [
 		java vmlibrary.AircraftConsistency.providesNoCPUExternally
 		description "Verify that a component does not does not provide external CPU resources."
 	]
-	method ConsistentElectricalCapacity (capacity: integer) boolean 
+	method ConsistentElectricalCapacity (capacity: integer)  
 	:"Ensure capacity is recorded correctly as PowerCapacity property with value" [
 		java vmlibrary.AircraftConsistency.consistentElectricalCapacity(double capacity)
 		description "Verify that the PowerCapacity property has the same value as specified in the requirement"
 	]
-	method ConsistentWeightLimit (limit: real units SEI::WeightUnits) boolean 
+	method ConsistentWeightLimit (limit: real units SEI::WeightUnits)  
 	:"Ensure weight limit is recorded correctly as WeightLimit property with value" [
 		java vmlibrary.AircraftConsistency.consistentWeightLimit(double limit)
 		description "Verify that the WeightLimit property has the same value as specified in the requirement"

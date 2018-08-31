@@ -1,11 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Alisa-Consistency
-Bundle-SymbolicName: Alisa-Consistency
+Bundle-SymbolicName: Alisa-Consistency;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.osate.aadl2;bundle-version="1.0.0";visibility:=reexport,
  org.osate.xtext.aadl2.properties;bundle-version="1.0.0",
- org.osate.results;bundle-version="1.0.0"
+ org.osate.results;bundle-version="1.0.0",
+ org.osate.pluginsupport;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: alisa_consistency

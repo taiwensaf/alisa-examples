@@ -3,7 +3,6 @@ package alisa_consistency;
 import org.eclipse.emf.ecore.EObject;
 import org.osate.aadl2.ComponentImplementation;
 import org.osate.aadl2.ComponentType;
-import org.osate.aadl2.NamedElement;
 
 public class ModelConditions {
 
