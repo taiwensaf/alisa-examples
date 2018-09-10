@@ -1,0 +1,9 @@
+// Copyright 2016 Carnegie Mellon University. See Notice.txt
+// Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+verification methods Python [
+
+//	method DoCount : "Count model elements" [
+//		python SimpleControlSystem.Python.modelstatistics2
+//	]
+
+]
