@@ -17,9 +17,9 @@ with Physical;
 		features
 			power: in feature PhysicalResources::ElectricalPower;
 			force: out feature;
-		modes
-			operational: initial mode;
-			standby: mode;
+--		modes
+--			operational: initial mode;
+--			standby: mode;
 		properties
 			ACVIP::Aliases => ("SCS", "Simple Controller");
 			SEI::PowerBudget => 2.5 w applies to power;

@@ -5,7 +5,7 @@ verification plan scsimplvplan for SCSImplementationreqs
 	
 claim R2_Lat [
 		activities
-			responsetime : Plugins.FlowLatencyAnalysis()
+			responsetime : Plugins.EndToEndFlowLatencyAnalysis()
 			timing: Plugins.ResourceAllocationScheduling()
 		assert timing then responsetime
 
