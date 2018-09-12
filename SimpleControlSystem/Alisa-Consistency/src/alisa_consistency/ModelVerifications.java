@@ -62,12 +62,12 @@ public class ModelVerifications {
 			if (isLeafComponent(subi)) {
 				for (FeatureInstance fi : subi.getAllFeatureInstances()) {
 					if (!isConnected(fi)) {
-						Diagnostic issue = ResultUtil.createFailure(
+						Result issue = ResultUtil.createFailureResult(
 							"Feature " + fi.getName() + " of component "
 							+ fi.getContainingComponentInstance().getName()
 							+ " not connected",
 								fi);
-						res.getDiagnostics().add(issue);
+						res.getSubResults().add(issue);
 					}
 				}
 			}
