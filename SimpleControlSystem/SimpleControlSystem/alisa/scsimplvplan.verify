@@ -6,9 +6,14 @@ verification plan scsimplvplan for SCSImplementationreqs
 claim R2_Lat [
 		activities
 			responsetime : Plugins.EndToEndFlowLatencyAnalysis()
+			responsetimewithProperty : Plugins.EndToEndFlowLatencyAnalysisWithProperty() property values (ExpectedLatency)
 			timing: Plugins.ResourceAllocationScheduling()
-		assert timing then responsetime
+		assert timing then responsetimewithProperty
 
+	]
+claim R2_LatCompute [
+	activities
+		computeLatency: MinLatency, MaxLatency = Plugins.ComputeEndToEndFlowLatency()
 	]
 claim DCS_R1 [
 	]

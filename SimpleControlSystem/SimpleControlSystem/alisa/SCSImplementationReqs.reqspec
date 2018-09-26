@@ -4,8 +4,18 @@ system requirements SCSImplementationreqs for SimpleControlSystem::SCS.tier0 [
 
 	requirement R2_Lat : "SCS sensor to actuator response time limit" for sensortoactuatorresponse[
 		val MaximumLatency = 20 ms
+		val ExpectedLatency = #MyConstants::ExpectedLatency
 		description this " shall have a sensor to actuator response time within " MaximumLatency
 		category Quality.Latency
+		see goal SCSgoals.g1
+		]
+	requirement R2_LatCompute: "SCS sensor to actuator response time limit" for sensortoactuatorresponse[
+		val ExpectedMaximumLatency = 20 ms
+		compute MinLatency : Time
+		compute MaxLatency : Time
+		description this " shall have a sensor to actuator response time within " ExpectedMaximumLatency
+		category Quality.Latency
+		value predicate MaxLatency <= ExpectedMaximumLatency
 		see goal SCSgoals.g1
 		]
 	requirement DCS_R1 : "DCS weight limit" for dcs [

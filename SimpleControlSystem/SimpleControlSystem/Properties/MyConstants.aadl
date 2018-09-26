@@ -1,0 +1,3 @@
+property set MyConstants is
+	ExpectedLatency : constant AADL_Project::Time_Range => 12 ms .. 18 ms;
+end MyConstants;
