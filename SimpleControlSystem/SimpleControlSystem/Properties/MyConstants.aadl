@@ -1,3 +1,4 @@
 property set MyConstants is
-	ExpectedLatency : constant AADL_Project::Time_Range => 12 ms .. 18 ms;
+	MaximumLatency : constant AADL_Project::Time => 20 ms;
+	ExpectedLatencyRange : constant AADL_Project::Time_Range => MyConstants::MaximumLatency .. MyConstants::MaximumLatency;
 end MyConstants;
