@@ -12,10 +12,11 @@ for Integrator::FGS::Controls::ThrottleLever
 			CT_WeightLimit
 	]
 
-	requirement R2: "Flow Source Latency" [
+	requirement R2: "Flow Source Latency" for fCmdInput [
 		description "The command input latency for the control throttle lever subsystems
 			shall not exceed "
 			CT_FlowSourceLatency
+		value predicate #Latency <= CT_FlowSourceLatency
 	]
 
 ]
