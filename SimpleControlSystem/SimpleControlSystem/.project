@@ -6,7 +6,6 @@
 		<project>Alisa-Consistency</project>
 		<project>AlisaPredefined</project>
 		<project>CyberPhysical</project>
-		<project>JUnitTest</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
