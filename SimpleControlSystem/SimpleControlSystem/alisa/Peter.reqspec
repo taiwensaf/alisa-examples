@@ -6,4 +6,8 @@ use constants authors
 	requirement req1 : "Check author" [ 
 		description "The author is " firstauthor 
 	]
+//	requirement modelsize : "Check model size" [ 
+//		compute count: integer
+//		value predicate count == 12
+//	]
 ]

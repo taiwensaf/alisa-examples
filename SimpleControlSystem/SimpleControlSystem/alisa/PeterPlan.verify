@@ -5,4 +5,7 @@ verification plan  PeterPlan for Peter
 	claim req1 [
 		activities checkAuthor: Resolute.checkAuthor(firstauthor)
 		]
+//claim modelsize [
+//		activities checkModelSize: count = Python.DoCount()
+//	]
 ]
