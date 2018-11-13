@@ -4,7 +4,7 @@ verification plan SCSVplan for SCS [
 	
 	claim SCS.R1 [
 		activities
-			weightlimit: Plugins.MassAnalysis()
+			weightlimit: Plugins.ComponentMassAnalysis()
 	]
 	claim SCS.R2 [
 		activities
@@ -24,7 +24,7 @@ verification plan SCSVplan for SCS [
 	]
 	claim SCS.R5 [
 		activities
-			flowlatency: Plugins.FlowLatencyAnalysis()
+			flowlatency: Plugins.ComponentFlowLatencyAnalysis()
 	]
 
 ]

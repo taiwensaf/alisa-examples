@@ -17,6 +17,6 @@ verification plan FGSPlan for FGS
 	]
 	claim FGS.R3 [
 		activities
-			flowlatency: Plugins.FlowLatencyAnalysis()
+			flowlatency: Plugins.ComponentFlowLatencyAnalysis()
 	]
 ]

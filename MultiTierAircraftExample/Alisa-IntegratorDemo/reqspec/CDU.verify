@@ -5,7 +5,7 @@ verification plan CDUPlan for CDU
 
 	claim CDU.R1  [
 		activities
-			weightlimit: Plugins.MassAnalysis()
+			weightlimit: Plugins.ComponentMassAnalysis()
 	]
 	claim CDU.R2 [
 		activities

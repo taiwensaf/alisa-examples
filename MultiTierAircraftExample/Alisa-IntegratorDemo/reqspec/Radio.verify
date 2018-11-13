@@ -4,7 +4,7 @@ verification plan RadioVplan for Radio [
 	
 	claim Radio.R1 [
 		activities
-			weightlimit: Plugins.MassAnalysis()
+			weightlimit: Plugins.ComponentMassAnalysis()
 	]
 	claim Radio.R2 [
 		activities

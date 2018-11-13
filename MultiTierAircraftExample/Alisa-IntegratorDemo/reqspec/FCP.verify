@@ -5,7 +5,7 @@ verification plan FCPVplan for FCP
 	
 	claim R1 [
 		activities
-			weightlimit: Plugins.MassAnalysis()
+			weightlimit: Plugins.ComponentMassAnalysis()
 	]
 
 	claim R2 [
@@ -33,7 +33,7 @@ verification plan FCPVplan for FCP
 
 	claim R4 [
 		activities
-			flowpath: Plugins.FlowLatencyAnalysis()
+			flowpath: Plugins.ComponentFlowLatencyAnalysis()
 	]
 
 ]
