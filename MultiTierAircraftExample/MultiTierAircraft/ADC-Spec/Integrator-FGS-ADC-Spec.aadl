@@ -18,6 +18,9 @@ with Modeling;
       Modeling::System_Tier => Tier3;
       SEI::WeightLimit => 7.0 kg;
   end AirDataComputer;
+  
+  device implementation AirDataComputer.impl
+   end AirDataComputer.impl;
    
   -- ADC Functional Specification
   abstract fnAirDataFunction
