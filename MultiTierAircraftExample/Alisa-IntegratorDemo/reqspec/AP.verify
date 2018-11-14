@@ -19,7 +19,5 @@ verification plan APPlan for AP
 	]
 
 	claim AP.R3 [
-		activities
-			flowlatency: Plugins.ComponentFlowLatencyAnalysis()
 	]
 ]
