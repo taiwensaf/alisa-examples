@@ -3,8 +3,6 @@
 verification plan SCS_FlightSurfacesVplan for SCS_FlightSurfaces [
 	
 	claim SCS_FlightSurfaces.R1 [
-		activities
-			flowlatency: Plugins.ComponentFlowLatencyAnalysis()
 	]
 
 ]

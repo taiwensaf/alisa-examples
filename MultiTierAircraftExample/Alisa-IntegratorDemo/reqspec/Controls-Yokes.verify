@@ -8,13 +8,9 @@ verification plan CYVplan for ControlsYokes [
 	]
 
 	claim ControlsYokes.R2 [
-		activities
-			flowsource1: Plugins.ComponentFlowLatencyAnalysis()
 	]
 
 	claim ControlsYokes.R3 [
-		activities
-			flowsource: Plugins.ComponentFlowLatencyAnalysis()
 	]
 
 ]

@@ -26,6 +26,7 @@ with Integrator::FGS::Displays::CDU, Integrator::FGS::SCS,  SEI;
       SEI::ROMBudget => 16.0 MByte;
       SEI::Is_Partition => true;
       SEI::Partition_Latency => 2000 us;
+      Latency => 3 ms..3ms applies to fAPCLAWS1,fAPCLAWS2 ;
   end prAutoPilot;
   
   process implementation prAutoPilot.impl

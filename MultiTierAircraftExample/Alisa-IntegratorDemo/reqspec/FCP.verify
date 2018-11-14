@@ -32,8 +32,6 @@ verification plan FCPVplan for FCP
 	]
 
 	claim R4 [
-		activities
-			flowpath: Plugins.ComponentFlowLatencyAnalysis()
 	]
 
 ]

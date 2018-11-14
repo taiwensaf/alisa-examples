@@ -16,7 +16,5 @@ verification plan FGSPlan for FGS
 			ROMbudget: Plugins.ResourceAnalysis()
 	]
 	claim FGS.R3 [
-		activities
-			flowlatency: Plugins.ComponentFlowLatencyAnalysis()
 	]
 ]

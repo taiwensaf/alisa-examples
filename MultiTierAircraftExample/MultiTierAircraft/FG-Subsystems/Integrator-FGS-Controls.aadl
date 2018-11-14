@@ -45,7 +45,7 @@ with Modeling;
       cmd: out data port ; --Throttle_DataPlg;
     flows
       fCmdInput: flow source cmd {
-        Latency => 18 Ms .. 18 Ms;
+        Latency => 18 us .. 18 us;
         };
     properties
       Modeling::System_Tier => Tier3;

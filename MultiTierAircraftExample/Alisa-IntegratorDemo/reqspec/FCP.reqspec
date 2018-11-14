@@ -21,13 +21,13 @@ for Integrator::FGS::FCP::Spec::FlightControlPanel
 	]
 	
 	system requirements FCPpr : "Requirements for the Flight Control Panel (FCP) process of the Flight Guidance System"
-for Integrator::FGS::FCP::Spec::FlightControlPanel
+for Integrator::FGS::FCP::Spec::prFlightControlPanel
 use constants Globals
 [
 	val FCP_ProcessingBudget = 5.0 MIPS
 	val FCP_RAMBudget = 100.0 KByte
 	val FCP_ROMBudget = 1.0 MByte
-	val FCP_FlowPathLatency = 3 ms
+	val FCP_FlowPathLatency = [3 ms..3ms]
 
 	requirement R3_1: "FCP Processing Budget" [
 		description "The processing needs of the Software Subsystem of the FCP subsystem 
@@ -50,10 +50,11 @@ use constants Globals
 			FCP_ROMBudget
 	]
 
-	requirement R4 : "Flow Path Latency" [
+	requirement R4 : "Flow Path Latency" for fYokesToFGS1[
 		description "The flow path latency to the yokes of the FCP subsystem 
 			shall not exceed " 
 			FCP_FlowPathLatency
+		value predicate #Latency == FCP_FlowPathLatency
 	]
 
 ]

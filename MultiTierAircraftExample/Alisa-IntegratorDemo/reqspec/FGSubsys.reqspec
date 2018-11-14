@@ -7,7 +7,7 @@ use constants Globals
 val FGS_ProcessingBudget = 200.0 MIPS
 val FGS_RAMBudget = 3.0 MByte
 val FGS_ROMBudget = 30.0 MByte
-val FGS_FlowPathLatency =  3.0 ms
+val FGS_FlowPathLatency =  [3.0 ms..3.0ms]
 
 	requirement R1: "Processing Budget" [
 		description "The processing needs of the FG subsystem 
@@ -27,10 +27,11 @@ val FGS_FlowPathLatency =  3.0 ms
 			UtilizationRatio " percent of "
 			FGS_ROMBudget
 	]
-	requirement R3: "Flow Path Latency" [
+	requirement R3: "Flow Path Latency" for fPFCLAWS1 [
 		description "The transit time through the FG subsystem for the flow paths 
 			from the Flight Controls Panel subsystem to the Autopilots 
 			shall not exceed "
 			FGS_FlowPathLatency
+		value predicate #Latency == FGS_FlowPathLatency
 	]
 ]

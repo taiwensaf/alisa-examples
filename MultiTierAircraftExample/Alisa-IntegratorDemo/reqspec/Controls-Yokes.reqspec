@@ -4,8 +4,8 @@ system requirements ControlsYokes : "Requirements for the Autopilot subsystem of
 for Integrator::FGS::Controls::ControlYokes
  [
 	val CY_WeightLimit =  10.0 kg
-	val CY_Direct_FlowSourceLatency =  21.0 us
-	val CY_FlowSourceLatency =  500.0 us
+	val CY_Direct_FlowSourceLatency =  [21.0 us..21us]
+	val CY_FlowSourceLatency =  [500.0 us..500.0 us]
 
 	requirement R1: "Weight Limit" [
 		description "The weight of the control yokes subsystem 
@@ -13,15 +13,17 @@ for Integrator::FGS::Controls::ControlYokes
 			CY_WeightLimit
 	]
 
-	requirement R2: "Flow Source Latency" [
+	requirement R2: "Flow Source Latency" for fCmdInput [
 		description "The command input latency for the control yokes subsystems
 			shall not exceed "
 			CY_FlowSourceLatency
+		value predicate #Latency == CY_FlowSourceLatency
 	]
 
-	requirement R3: "Flow Source Direct Latency" [
+	requirement R3: "Flow Source Direct Latency" for fCmdDInput [
 		description "The command input latency in direct mode for the control yokes subsystems
 			shall not exceed "
 			CY_Direct_FlowSourceLatency
+		value predicate #Latency == CY_Direct_FlowSourceLatency
 	]
 ]
