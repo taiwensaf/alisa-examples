@@ -1,9 +1,6 @@
 package vmlibrary;
 
-import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.osate.aadl2.ComponentCategory;
 import org.osate.aadl2.instance.ComponentInstance;
 import org.osate.aadl2.instance.FeatureCategory;
@@ -47,11 +44,13 @@ public class AircraftConsistency {
   }
   
   public boolean electricalPowerSelfSufficiency1(final ComponentInstance ci) {
-    final Function1<FeatureInstance, Boolean> _function = (FeatureInstance fi) -> {
-      return Boolean.valueOf(((GetProperties.getPowerBudget(fi, 0.0) != 0.0) || 
-        (GetProperties.getPowerSupply(fi, 0.0) != 0.0)));
-    };
-    return IterableExtensions.<FeatureInstance>exists(ci.getFeatureInstances(), _function);
+	  for (FeatureInstance fi : ci.getFeatureInstances()) {
+		  if (((GetProperties.getPowerBudget(fi, 0.0) != 0.0) || 
+			        (GetProperties.getPowerSupply(fi, 0.0) != 0.0))) {
+			  return false;
+		  }
+	  }
+    return true;
   }
   
   public boolean CPUSelfSufficiency(final ComponentInstance ci) {
@@ -75,19 +74,21 @@ public class AircraftConsistency {
   }
   
   public boolean isRavenscarCompliant(final ComponentInstance ci) {
-    final Function1<ComponentInstance, Boolean> _function = (ComponentInstance thread) -> {
-      return Boolean.valueOf(this.hasOnlySamplingPorts(thread));
-    };
-    IterableExtensions.<ComponentInstance>forall(this.allThreads(ci), _function);
+	  for (ComponentInstance thr : allThreads(ci)) {
+		  if (!hasOnlySamplingPorts(thr)) {
+			  return false;
+		  }
+	  }
     return true;
   }
   
   public boolean hasOnlySamplingPorts(final ComponentInstance thread) {
-    final Function1<FeatureInstance, Boolean> _function = (FeatureInstance fi) -> {
-      FeatureCategory _category = fi.getCategory();
-      return Boolean.valueOf(Objects.equal(_category, FeatureCategory.DATA_PORT));
-    };
-    return IterableExtensions.<FeatureInstance>forall(thread.getAllFeatureInstances(), _function);
+	  for (FeatureInstance fi: thread.getAllFeatureInstances()) {
+		  if (fi.getCategory() != FeatureCategory.DATA_PORT) {
+			  return false;
+		  }
+	  }
+	  return true;
   }
   
   public EList<ComponentInstance> allThreads(final ComponentInstance ci) {
