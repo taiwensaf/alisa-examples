@@ -11,6 +11,7 @@ import org.osate.aadl2.instance.FeatureInstance;
 import org.osate.result.Diagnostic;
 import org.osate.result.Result;
 import org.osate.result.ResultFactory;
+import org.osate.result.ResultType;
 import org.osate.result.util.ResultUtil;
 import org.osate.xtext.aadl2.properties.util.GetProperties;
 import org.osate.xtext.aadl2.properties.util.PropertyUtils;
@@ -58,6 +59,7 @@ public class ModelVerifications {
 //=======
 	public static Result allComponentFeaturesConnected(ComponentInstance ci) {
 		Result res = ResultFactory.eINSTANCE.createResult();
+		res.setMessage("All components are fully connected");
 		for (ComponentInstance subi : ci.getAllComponentInstances()) {
 			if (isLeafComponent(subi)) {
 				for (FeatureInstance fi : subi.getAllFeatureInstances()) {
@@ -68,11 +70,12 @@ public class ModelVerifications {
 							+ " not connected",
 								fi);
 						res.getSubResults().add(issue);
+						res.setResultType(ResultType.FAILURE);
 					}
 				}
 			}
 		}
-		return res;
+        return res;
 	}
 
 	/**

@@ -28,6 +28,6 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 	]
 
 //	include Peter.modelsize for self
-//	include globalReq.Allconnected for self
-include globalReq.connected
+	include globalReq.Allconnected for self
+//include globalReq.connected
 ]
