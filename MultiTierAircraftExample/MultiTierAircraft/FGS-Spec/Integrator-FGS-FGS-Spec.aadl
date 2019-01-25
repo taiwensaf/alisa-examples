@@ -31,8 +31,5 @@ with Integrator::FGS::AP, Integrator::FGS::AHRS, Integrator::FGS::ADC::ICD, Inte
   end prFlightGuidance;
   
   process implementation prFlightGuidance.impl
-    flows
-      fPFCLAWS1: flow path FCP -> AP1;
-      fPFCLAWS2: flow path FCP -> AP2;
   end prFlightGuidance.impl;
 end Integrator::FGS::FGS::Spec;

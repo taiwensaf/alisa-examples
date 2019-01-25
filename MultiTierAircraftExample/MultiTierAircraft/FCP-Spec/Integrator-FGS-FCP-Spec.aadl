@@ -48,8 +48,5 @@ with Integrator::FGS::Busses::NetBus, Integrator::FGS::Busses::ARINC429, Integra
   end prFlightControlPanel;
   
   process implementation prFlightControlPanel.impl
-    flows
-      fYokesToFGS1: flow path YokesCmd -> FGS_01;
-      fYokesToFGS2: flow path YokesCmd -> FGS_02;
   end prFlightControlPanel.impl;
 end Integrator::FGS::FCP::Spec;

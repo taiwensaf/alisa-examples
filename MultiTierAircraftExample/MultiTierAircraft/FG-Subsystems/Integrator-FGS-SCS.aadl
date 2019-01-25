@@ -98,8 +98,6 @@ with Modeling;
   end FlightSurfacesFullSpec;
   
   device implementation FlightSurfaces.impl
-    flows
-      fSurface: flow sink cmd;
   end FlightSurfaces.impl;
 
   

@@ -104,14 +104,10 @@ with Hardware::Library,Integrator::FGS::ADC::Spec, Integrator::FGS::ADC::ICD, Su
   end thrMain;
   
   thread implementation thrMain.impl
-    flows
-      Computeme: flow path Po -> ALT {
-          Latency => 80 Ms .. 80 Ms;
-          };
-      Enable: flow path CompareError -> oA429_TX_01 {
-          Latency => 80 Ms .. 80 Ms;
-          };
-  end thrMain.impl;
+    properties
+          Latency => 80 Ms .. 80 Ms applies to Computeme;
+          Latency => 80 Ms .. 80 Ms applies to Enable;
+   end thrMain.impl;
   
   thread thrA429Poller
     features
@@ -156,9 +152,7 @@ with Hardware::Library,Integrator::FGS::ADC::Spec, Integrator::FGS::ADC::ICD, Su
   end thrMonitor;
   
   thread implementation thrMonitor.impl
-    flows
-      Validate: flow path ALT1 -> CompareError {
-          Latency => 5 Ms .. 5 Ms;
-          };
+    properties
+          Latency => 5 Ms .. 5 Ms applies to Validate;
   end thrMonitor.impl;
 end Sub4::ADC::Software;

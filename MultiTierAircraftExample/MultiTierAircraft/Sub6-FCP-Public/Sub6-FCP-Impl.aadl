@@ -67,8 +67,5 @@ with Integrator::FGS::FCP::Spec, Integrator::FGS::Controls, Sub6::FCP::ICD, Sub6
   end thrFlightControlPanel;
   
   thread implementation thrFlightControlPanel.impl
-    flows
-      fYokesToFGS1: flow path YokesCmd -> FGS_01;
-      fYokesToFGS2: flow path YokesCmd -> FGS_02;
   end thrFlightControlPanel.impl;
 end Sub6::FCP::Impl;
