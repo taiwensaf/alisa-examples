@@ -31,7 +31,7 @@ with Integrator::FGS::Displays::CDU, Integrator::FGS::SCS,  SEI;
   
   process implementation prAutoPilot.impl
     subcomponents
-      THR_AP: thread thrAutoPilot.impl;
+      THR_AP: thread thrAutoPilot;
     connections
       PortGroupConnection1: feature group pfd1In <-> THR_AP.pfd1In;
       PortGroupConnection2: feature group pfd1Out <-> THR_AP.pfd1Out;
@@ -77,12 +77,12 @@ with Integrator::FGS::Displays::CDU, Integrator::FGS::SCS,  SEI;
       Deadline => 3 ms;
       Period => 5 ms;
   end thrAutoPilot;
-  
-  thread implementation thrAutoPilot.impl
-    flows
-      fAPCLAWS1: flow path FGS1 -> servo1;
-      fAPCLAWS2: flow path FGS1 -> servo2;
-  end thrAutoPilot.impl;
+--  
+--  thread implementation thrAutoPilot.impl
+----    flows
+----      fAPCLAWS1: flow path FGS1 -> servo1;
+----      fAPCLAWS2: flow path FGS1 -> servo2;
+--  end thrAutoPilot.impl;
   
   feature group AP_DataPlg
     features
