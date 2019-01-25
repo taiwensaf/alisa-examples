@@ -19,7 +19,7 @@ with Integrator::FGS::Displays::CDU, Integrator::FGS::SCS,  SEI;
       FGS1: feature group AP_DataSkt;
     flows
       fAPCLAWS1: flow path FGS1 -> servo1;
-      fAPCLAWS2: flow path FGS1 -> servo2;
+      fAPCLAWS2: flow path FGS2 -> servo2;
     properties
       SEI::MIPSBudget => 50.0 MIPS;
       SEI::RAMBudget => 1.6 MByte;
@@ -33,20 +33,20 @@ with Integrator::FGS::Displays::CDU, Integrator::FGS::SCS,  SEI;
     subcomponents
       THR_AP: thread thrAutoPilot;
     connections
-      PortGroupConnection1: feature group pfd1In <-> THR_AP.pfd1In;
-      PortGroupConnection2: feature group pfd1Out <-> THR_AP.pfd1Out;
-      PortGroupConnection3: feature group pfd2In <-> THR_AP.pfd2In;
-      PortGroupConnection4: feature group pfd2Out <-> THR_AP.pfd2Out;
+--      PortGroupConnection1: feature group pfd1In <-> THR_AP.pfd1In;
+--      PortGroupConnection2: feature group pfd1Out <-> THR_AP.pfd1Out;
+--      PortGroupConnection3: feature group pfd2In <-> THR_AP.pfd2In;
+--      PortGroupConnection4: feature group pfd2Out <-> THR_AP.pfd2Out;
       PortGroupConnection5: feature  THR_AP.servo1 -> servo1;
       PortGroupConnection6: feature  THR_AP.servo2 -> servo2;
-      PortGroupConnection7: feature group otherAP_A <-> THR_AP.otherAP_A;
-      PortGroupConnection8: feature group THR_AP.otherAP_B <-> otherAP_B;
-      PortGroupConnection9: feature group FGS2 <-> THR_AP.FGS2;
-      PortGroupConnection10: feature group FGS1 <-> THR_AP.FGS1;
+--      PortGroupConnection7: feature group otherAP_A <-> THR_AP.otherAP_A;
+--      PortGroupConnection8: feature group THR_AP.otherAP_B <-> otherAP_B;
+      PortGroupConnection9: feature group FGS2 -> THR_AP.FGS2;
+      PortGroupConnection10: feature group FGS1 -> THR_AP.FGS1;
     flows
       fAPCLAWS1: flow path FGS1 -> PortGroupConnection10 -> THR_AP.fAPCLAWS1
          -> PortGroupConnection5 -> servo1;
-      fAPCLAWS2: flow path FGS1 -> PortGroupConnection10 -> THR_AP.fAPCLAWS2
+      fAPCLAWS2: flow path FGS2 -> PortGroupConnection9 -> THR_AP.fAPCLAWS2
          -> PortGroupConnection6 -> servo2;
   end prAutoPilot.impl;
   
@@ -66,7 +66,7 @@ with Integrator::FGS::Displays::CDU, Integrator::FGS::SCS,  SEI;
       fAPCLAWS1: flow path FGS1 -> servo1 {
         Latency => 3 ms .. 3 ms;
         };
-      fAPCLAWS2: flow path FGS1 -> servo2 {
+      fAPCLAWS2: flow path FGS2 -> servo2 {
         Latency => 3 ms .. 3 ms;
         };
     properties
@@ -77,12 +77,6 @@ with Integrator::FGS::Displays::CDU, Integrator::FGS::SCS,  SEI;
       Deadline => 3 ms;
       Period => 5 ms;
   end thrAutoPilot;
---  
---  thread implementation thrAutoPilot.impl
-----    flows
-----      fAPCLAWS1: flow path FGS1 -> servo1;
-----      fAPCLAWS2: flow path FGS1 -> servo2;
---  end thrAutoPilot.impl;
   
   feature group AP_DataPlg
     features
