@@ -13,19 +13,19 @@ with Hardware::Library,Integrator::FGS::FGS::Spec, Integrator::FGS::AP, Integrat
     subcomponents
       THR_FGSMain: thread thrFlightGuidance.impl;
     connections
-      PortGroupConnection1: feature group THR_FGSMain.AP1 <-> AP1;
+      PortGroupConnection1: feature group THR_FGSMain.AP1 -> AP1;
       PortGroupConnection2: feature group THR_FGSMain.AP2 <-> AP2;
       PortGroupConnection3: feature group AHRS <-> THR_FGSMain.AHRS;
       PortGroupConnection4: feature group ADC <-> THR_FGSMain.ADC;
       PortGroupConnection5: feature group other_FGS_A <-> THR_FGSMain.other_FGS_A;
       PortGroupConnection6: feature group THR_FGSMain.other_FGS_B <-> other_FGS_B;
       PortGroupConnection7: feature group ToFMS <-> THR_FGSMain.FMS;
-      PortGroupConnection8: feature group FCP <-> THR_FGSMain.FCP;
+      PortGroupConnection8: feature group FCP -> THR_FGSMain.FCP;
       PortGroupConnection9: feature group NAV_Radio <-> THR_FGSMain.NAV_Radio;
     flows
-      fPFCLAWS1: flow path FCP -> PortGroupConnection8 -> THR_FGSMain.fPFCLAWS1
+      fPFCLAWS1: flow path FCP -> PortGroupConnection8 -> THR_FGSMain.fTPFCLAWS1
          -> PortGroupConnection1 -> AP1;
-      fPFCLAWS2: flow path FCP -> PortGroupConnection8 -> THR_FGSMain.fPFCLAWS2
+      fPFCLAWS2: flow path FCP -> PortGroupConnection8 -> THR_FGSMain.fTPFCLAWS2
          -> PortGroupConnection2 -> AP2;
     properties
       SEI::MIPSBudget => 50.0 MIPS;
@@ -43,10 +43,10 @@ with Hardware::Library,Integrator::FGS::FGS::Spec, Integrator::FGS::AP, Integrat
       FCP: feature group Integrator::FGS::FCP::ICD::FCP_DataSkt;
       NAV_Radio: feature group Integrator::FGS::Radio::NavRadio::NavRadio_DataSkt;
     flows
-      fPFCLAWS1: flow path FCP -> AP1 {
+      fTPFCLAWS1: flow path FCP -> AP1 {
         Latency => 50 Ms .. 50 Ms;
         };
-      fPFCLAWS2: flow path FCP -> AP2 {
+      fTPFCLAWS2: flow path FCP -> AP2 {
         Latency => 50 Ms .. 50 Ms;
         };
     properties
@@ -59,9 +59,6 @@ with Hardware::Library,Integrator::FGS::FGS::Spec, Integrator::FGS::AP, Integrat
   end thrFlightGuidance;
   
   thread implementation thrFlightGuidance.impl
-    flows
-      fPFCLAWS1: flow path FCP  -> AP1;
-      fPFCLAWS2: flow path FCP  -> AP2;
     properties
       Compute_Execution_Time => 40 Ms .. 50 Ms;
       Reference_Processor => classifier( Hardware::Library::PowerPC.PPC705 );
