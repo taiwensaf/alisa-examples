@@ -1,6 +1,6 @@
 # ALISA Examples
 
-The following examples are available to illustrate the use of incremental system assurance with ALISA. The capabilities of ALISA are summarized in the [ERTSS 2016 paper](http://www.erts2016.org/uploads/program/paper_13.pdf) and elaborated in the [ALISA online help in OSATE](https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html).
+The following examples are available to illustrate the use of incremental system assurance with ALISA. The capabilities of ALISA are summarized in the [ERTSS 2016 paper](https://www.archives-ouvertes.fr/hal-01289468/document) and elaborated in the [ALISA online help in OSATE](https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html).
 
 **Note**: Change for SimpleControlSystem. It now uses a separate project called CyberPhysical that contains definitions for physical concepts. See below.
 
