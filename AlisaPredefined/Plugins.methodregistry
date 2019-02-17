@@ -80,14 +80,4 @@ For details see https://wiki.sei.cmu.edu/aadl/index.php/Latency_Analysis "
 		category Quality.Timing
 		description "Bind all threads to processors while maintaining schedulability and meeting binding constraints. This analysis uses a BinPacking technique by Dio DeNiz."
 	]
-	method CheckSecurityLevels: "Check security levels for information flow across port connections." [
-		plugin CheckSecurity
-		category Quality.Security
-		description "Check that for all port connections information flows only from lower to higher or between same levels according to SecurityLevel property."
-	]
-	method CheckSafetyLevels: "Check safety levels for information flow across port connections." [
-		plugin CheckSafety
-		category Quality.Safety
-		description "Check that for all port connections information flows only from lower to higher or between same levels according to SafetyLevel property."
-	]
 ]
