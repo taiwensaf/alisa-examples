@@ -12,10 +12,10 @@ verification plan RDCVplan for RDC [
 	]
 	claim RDC.R3_1 [
 		activities
-			InternallySelfSufficient: AircraftExampleRegistry.NoExternalCPUDemand()
+			InternallySelfSufficient: Alisa_Consistency.NoExternalCPUDemand()
 	]
 	claim RDC.R3_2 [
 		activities
-			ExternallySelfSufficient: AircraftExampleRegistry.NoCPUCapacityForOthers()
+			ExternallySelfSufficient: Alisa_Consistency.NoCPUCapacityForOthers()
 	]
 ]

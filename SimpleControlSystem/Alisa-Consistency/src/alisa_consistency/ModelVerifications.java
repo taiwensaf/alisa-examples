@@ -3,6 +3,7 @@ package alisa_consistency;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.osate.aadl2.Classifier;
+import org.osate.aadl2.ComponentCategory;
 import org.osate.aadl2.Property;
 import org.osate.aadl2.UnitLiteral;
 import org.osate.aadl2.instance.ComponentInstance;
@@ -102,7 +103,7 @@ public class ModelVerifications {
 	 * @param v
 	 * @return
 	 */
-	public static boolean hasVoltage(FeatureInstance fi, double v) {
+	public static boolean hasVoltageValue(FeatureInstance fi, double v) {
 			double volt = getVoltage(fi);
 			return volt == v;
 	}
@@ -114,13 +115,11 @@ public class ModelVerifications {
 	 * @param w
 	 * @return
 	 */
-	public static boolean hasWattageBudget(ComponentInstance ci, String featurename, double w) {
-		for (FeatureInstance fi : ci.getAllFeatureInstances(FeatureCategory.ABSTRACT_FEATURE)) {
-			if (fi.getDirection().incoming() && fi.getName().equalsIgnoreCase(featurename)) {
+	public static boolean hasWattageBudgetValue(FeatureInstance fi, double w) {
+			if (fi.getDirection().incoming()) {
 				double watt = GetProperties.getPowerBudget(fi, 0.0);
 				return watt == w;
 			}
-		}
 		return false;
 	}
 
@@ -177,5 +176,76 @@ public class ModelVerifications {
 		return PropertyUtils.getScaledNumberValue(fi, voltage, volts, 0.0);
 	}
 
+		  
+		  public boolean hasWattageCapacityValue(final ComponentInstance ci, final double capacity) {
+		    final double prop = GetProperties.getPowerCapacity(ci, 0.0);
+		    return prop == capacity;
+		  }
+		  
+		  public boolean consistentWeightLimit(final ComponentInstance ci, final double limit) {
+		    final double prop = GetProperties.getWeightLimit(ci, 0.0);
+		    return prop == limit;
+		  }
+		  
+		  public boolean electricalPowerSelfSufficiency(final ComponentInstance ci) {
+		    final EList<FeatureInstance> fil = ci.getFeatureInstances();
+		    for (final FeatureInstance fi : fil) {
+		      return ((GetProperties.getPowerBudget(fi, 0.0) != 0.0) || 
+		        (GetProperties.getPowerSupply(fi, 0.0) != 0.0));
+		    }
+		    return false;
+		  }
+		  
+		  public boolean electricalPowerSelfSufficiency1(final ComponentInstance ci) {
+			  for (FeatureInstance fi : ci.getFeatureInstances()) {
+				  if (((GetProperties.getPowerBudget(fi, 0.0) != 0.0) || 
+					        (GetProperties.getPowerSupply(fi, 0.0) != 0.0))) {
+					  return false;
+				  }
+			  }
+		    return true;
+		  }
+		  
+		  public boolean CPUSelfSufficiency(final ComponentInstance ci) {
+		    return (this.hasNoExternalCPUDemand(ci) && this.providesNoCPUExternally(ci));
+		  }
+		  
+		  public boolean hasNoExternalCPUDemand(final ComponentInstance ci) {
+		    if ((GetProperties.hasAssignedPropertyValue(ci, "SEI::MIPSBudget") && 
+		      (GetProperties.getPowerBudget(ci, 0.0) != 0.0))) {
+		      return false;
+		    }
+		    return true;
+		  }
+		  
+		  public boolean providesNoCPUExternally(final ComponentInstance ci) {
+		    if ((GetProperties.hasAssignedPropertyValue(ci, "SEI::MIPSCapacity") && 
+		      (GetProperties.getPowerSupply(ci, 0.0) != 0.0))) {
+		      return false;
+		    }
+		    return true;
+		  }
+		  
+		  public boolean isRavenscarCompliant(final ComponentInstance ci) {
+			  for (ComponentInstance thr : allThreads(ci)) {
+				  if (!hasOnlySamplingPorts(thr)) {
+					  return false;
+				  }
+			  }
+		    return true;
+		  }
+		  
+		  public boolean hasOnlySamplingPorts(final ComponentInstance thread) {
+			  for (FeatureInstance fi: thread.getAllFeatureInstances()) {
+				  if (fi.getCategory() != FeatureCategory.DATA_PORT) {
+					  return false;
+				  }
+			  }
+			  return true;
+		  }
+		  
+		  public EList<ComponentInstance> allThreads(final ComponentInstance ci) {
+		    return ci.getAllComponentInstances(ComponentCategory.THREAD);
+		  }
 
 }

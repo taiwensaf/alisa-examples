@@ -3,9 +3,9 @@
 	<name>Alisa-ADC-Sub1-Demo</name>
 	<comment></comment>
 	<projects>
-		<project>AircraftExampleRegistry</project>
+		<project>Alisa_Consistency</project>
+		<project>Alisa-Consistency</project>
 		<project>Alisa-IntegratorDemo</project>
-		<project>Alisa-Utils</project>
 		<project>AlisaPredefined</project>
 		<project>MultiTierAircraft</project>
 		<project>Plugin_Resources</project>
