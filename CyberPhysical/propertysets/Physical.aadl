@@ -3,9 +3,14 @@
 
 property set Physical is
 
-Voltage: Physical::Voltage_Type applies to (all); 
+  Voltage: Physical::Voltage_Type applies to (all); 
 
   Voltage_Type: type aadlreal units Physical::Voltage_Units;
   Voltage_Units: type units (mV, V => mV * 1000, KV => V * 1000);
+
+  Wattage: Physical::Wattage_Type applies to (all); 
+
+  Wattage_Type: type aadlreal units Physical::Wattage_Units;
+  Wattage_Units: type units (mW, W => mW * 1000, KW => W * 1000);
 
 end Physical;
