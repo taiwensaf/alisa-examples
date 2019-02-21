@@ -3,12 +3,11 @@
 	<name>Alisa-ADC-Sub1-Demo</name>
 	<comment></comment>
 	<projects>
-		<project>Alisa_Consistency</project>
 		<project>Alisa-Consistency</project>
 		<project>Alisa-IntegratorDemo</project>
 		<project>AlisaPredefined</project>
+		<project>CyberPhysical</project>
 		<project>MultiTierAircraft</project>
-		<project>Plugin_Resources</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
