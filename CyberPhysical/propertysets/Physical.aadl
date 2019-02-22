@@ -13,4 +13,10 @@ property set Physical is
   Wattage_Type: type aadlreal units Physical::Wattage_Units;
   Wattage_Units: type units (mW, W => mW * 1000, KW => W * 1000);
 
+  Weight_Type: type aadlreal units Physical::Weight_Units;
+  Weight_Units: type units (g, kg => g * 1000, t => kg * 1000);
+
+ Weight: Physical::Weight_Type applies to (all); 
+
+
 end Physical;
