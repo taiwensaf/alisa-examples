@@ -3,7 +3,7 @@
 	<name>AlisaPredefined</name>
 	<comment></comment>
 	<projects>
-		<project>Plugin_Resources</project>
+		<project>CyberPhysical</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
