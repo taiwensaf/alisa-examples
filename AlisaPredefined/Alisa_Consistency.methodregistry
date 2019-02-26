@@ -25,17 +25,17 @@ verification methods Alisa_Consistency [
 		java alisa_consistency.ModelVerifications.twoPowerInlets
 		description "Check that " this " has two power inlets."
 	]
-method ConsistentPowerBudget (feature, wattage: Physical::Wattage_Type in W)  
-	:"Ensure PowerBudget property value is consistent with required voltage value" [
-		java alisa_consistency.ModelVerifications.hasWattageBudgetValue
-		description "Verify that the PowerBudget property has the same value as specified in the requirement"
-	]
-	
-	method ConsistentPowerCapacity (wattage: Physical::Wattage_Type in W)  
-	:"Ensure capacity is recorded correctly as PowerCapacity property with value" [
-		java alisa_consistency.ModelVerifications.hasWattageCapacityValue
-		description "Verify that the PowerCapacity property has the same value as specified in the requirement"
-	]
+//method ConsistentPowerBudget (feature, wattage: Physical::Wattage_Type in W)  
+//	:"Ensure PowerBudget property value is consistent with required voltage value" [
+//		java alisa_consistency.ModelVerifications.hasWattageBudgetValue
+//		description "Verify that the PowerBudget property has the same value as specified in the requirement"
+//	]
+//	
+//	method ConsistentPowerCapacity (wattage: Physical::Wattage_Type in W)  
+//	:"Ensure capacity is recorded correctly as PowerCapacity property with value" [
+//		java alisa_consistency.ModelVerifications.hasWattageCapacityValue
+//		description "Verify that the PowerCapacity property has the same value as specified in the requirement"
+//	]
 	
 	method SameVoltage(): "Check that both power inlets have same voltage" [
 		java alisa_consistency.ModelVerifications.sameVoltage
