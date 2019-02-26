@@ -2,7 +2,7 @@
 
 The following examples are available to illustrate the use of incremental system assurance with ALISA. The capabilities of ALISA are summarized in the [ERTSS 2016 paper](https://www.archives-ouvertes.fr/hal-01289468/document) and elaborated in the [ALISA online help in OSATE](https://rawgit.com/osate/alisa/develop/org.osate.alisa.help/contents/00-Main.html).
 
-**Note**: Cyber-Physical Systems properties are now provided automatically as an OSATE contribution. Java based consistency analysis verification methods are now provided as an installed plugin as part of ALISA. 
+**Note**: As of OSATE 2.4 Cyber-Physical Systems properties are provided automatically as an OSATE contribution. Java based consistency analysis verification methods are now provided as an installed plugin as part of ALISA. 
 
 **Note**: We keep a version of the example models consistent with stable releases of OSATE (2.3.5, 2.3.6, 2.3.7, 2.4.0) in seprate branches. The master branch has the most recent updates, which may require the nightly build version of OSATE to accommodate new features and bug fixes.
 
