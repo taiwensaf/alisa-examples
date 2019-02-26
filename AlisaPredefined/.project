@@ -3,7 +3,6 @@
 	<name>AlisaPredefined</name>
 	<comment></comment>
 	<projects>
-		<project>CyberPhysical</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
