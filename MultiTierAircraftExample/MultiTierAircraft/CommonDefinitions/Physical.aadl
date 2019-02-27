@@ -1,19 +1,19 @@
 -- Copyright 2016 Carnegie Mellon University. See Notice.txt
 -- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
-property set Physical is
+property set SAVIPhysical is
   -- pressure capacity specifies the amount of pressure a system can supply to a bus.
-  PressureCapacity: aadlreal  units Physical::PressureUnit applies to (system, device, abstract ,bus, bus access, feature);
+  PressureCapacity: aadlreal  units SAVIPhysical::PressureUnit applies to (system, device, abstract ,bus, bus access, feature);
   -- pressure budget specifies the amount of pressure a system can draw from a bus.
-  PressureBudget: aadlreal  units Physical::PressureUnit applies to (system, device, abstract ,bus, bus access, feature);
+  PressureBudget: aadlreal  units SAVIPhysical::PressureUnit applies to (system, device, abstract ,bus, bus access, feature);
   -- pressure limit specifies the maximum amount of pressure a bus can support.
   -- A positive number indicatets supply and a negative number indicates draw
-  PressureLimit: aadlreal -5000.0 psi .. 5000.0 psi units Physical::PressureUnit applies to (system, device, abstract ,bus, bus access, feature);
+  PressureLimit: aadlreal -5000.0 psi .. 5000.0 psi units SAVIPhysical::PressureUnit applies to (system, device, abstract ,bus, bus access, feature);
   -- Fuel capacity specifies the amount of fuel a fuel system can hold.
-  FuelCapacity: aadlreal  units Physical::FuelUnit applies to (system, device, abstract ,bus, bus access, feature);
+  FuelCapacity: aadlreal  units SAVIPhysical::FuelUnit applies to (system, device, abstract ,bus, bus access, feature);
   -- fuel budget specifies the amount of fuel a system can consume (per hour)..
-  FuelBudget: aadlreal  units Physical::FuelUsageUnit applies to (system, device, abstract ,bus, bus access, feature);
+  FuelBudget: aadlreal  units SAVIPhysical::FuelUsageUnit applies to (system, device, abstract ,bus, bus access, feature);
   -- fuel limit specifies the maximum amount of fuel a bus can support.
-  FuelLimit: aadlreal  units Physical::FuelUsageUnit applies to (system, device, abstract ,bus, bus access, feature); -- 0.0 GalpH .. 5000.0 GalpH
+  FuelLimit: aadlreal  units SAVIPhysical::FuelUsageUnit applies to (system, device, abstract ,bus, bus access, feature); -- 0.0 GalpH .. 5000.0 GalpH
   RenamesAndID: list of aadlstring  applies to (all);
   data_summary: list of aadlreal  applies to (data); 
   -- This defines the pressure units. At this time there is only a single unit
@@ -22,4 +22,4 @@ property set Physical is
   FuelUnit: type units (Gal);
   -- This defines the pressure units. At this time there is only a single unit
   FuelUsageUnit: type units (GalpH);
-end Physical;
+end SAVIPhysical;
