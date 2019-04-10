@@ -1,22 +1,19 @@
 verification methods Plugins [
 	method ComponentFlowLatencyAnalysis: "Verify all flow latencies in system instance" [
 		 category Quality.Latency
-		description "Analysis of all end-to-end flows in a system instance or for a specific end-to-end flow. 
-For details see https://wiki.sei.cmu.edu/aadl/index.php/Latency_Analysis "
+		description "Analysis of all end-to-end flows in a system instance or for a specific end-to-end flow."
 		java org.osate.analysis.flows.FlowLatencyAnalysisSwitch.invoke
 	]
 	
 	method EndToEndFlowLatencyAnalysis (flow): "Verify all flow latencies in system instance" [
 		 category Quality.Latency
-		description "Analysis of all end-to-end flows in a system instance or for a specific end-to-end flow. 
-For details see https://wiki.sei.cmu.edu/aadl/index.php/Latency_Analysis "
+		description "Analysis of all end-to-end flows in a system instance or for a specific end-to-end flow."
 		java org.osate.analysis.flows.FlowLatencyAnalysisSwitch.invoke
 	]
 	
 	method ComputeEndToEndFlowLatency (flow) returns (MinLatency : Time, MaxLatency:Time ): "Verify all flow latencies in system instance" [
 		 category Quality.Latency
-		description "Analysis of all end-to-end flows in a system instance or for a specific end-to-end flow. 
-For details see https://wiki.sei.cmu.edu/aadl/index.php/Latency_Analysis "
+		description "Analysis of all end-to-end flows in a system instance or for a specific end-to-end flow."
 		java org.osate.analysis.flows.FlowLatencyAnalysisSwitch.invoke
 	]
 	
