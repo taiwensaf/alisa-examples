@@ -11,7 +11,7 @@ verification methods Plugins [
 		java org.osate.analysis.flows.FlowLatencyAnalysisSwitch.invoke
 	]
 	
-	method ComputeEndToEndFlowLatency (flow) returns (MinLatency : Time, MaxLatency:Time ): "Verify all flow latencies in system instance" [
+	method ComputeEndToEndFlowLatency (flow) returns (SOM: string,MinLatency : Time in ms, MaxLatency:Time in ms): "Verify all flow latencies in system instance" [
 		 category Quality.Latency
 		description "Analysis of all end-to-end flows in a system instance or for a specific end-to-end flow."
 		java org.osate.analysis.flows.FlowLatencyAnalysisSwitch.invoke
