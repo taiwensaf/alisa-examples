@@ -70,4 +70,19 @@ verification methods Plugins [
 		category Quality.Timing
 		description "Bind all threads to processors while maintaining schedulability and meeting binding constraints. This analysis uses a BinPacking technique by Dio DeNiz."
 	]
+	
+		
+	method FaultTreeProbability (component, startingPoint: string ) returns (ComputedOccurence : real, AssignedOccurrence: real): "Determine occurrence probability " [
+		 category Quality.Latency
+		description "Determine occurrence probability for fault tree. Startingpoint indicates the error state or propagation as root event."
+		java org.osate.aadl2.errormodel.faulttree.generation.CreateFTAModel.invokeFaultTree
+	]
+		
+	method PartsFaultTreeProbability (component, startingPoint: string ) returns (ComputedOccurence : real, AssignedOccurrence: real): "Determine occurrence probability " [
+		 category Quality.Latency
+		description "Determine occurrence probability for parts fault tree. Startingpoint indicates the error state or propagation as root event."
+		java org.osate.aadl2.errormodel.faulttree.generation.CreateFTAModel.invokePartsFaultTree
+	]
+	
+	
 ]
