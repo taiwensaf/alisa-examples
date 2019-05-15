@@ -25,4 +25,9 @@ claim R3  [
 		consistentvoltage: actualvolt = Alisa_Consistency.GetVoltage()
 		matchvoltage: actualvolt = Alisa_Consistency.SetGetVoltage()property values (volts)
 	]
+claim S1 [
+	activities
+	computeProb: actualprob, specprob = Plugins.FaultTreeProbability("state FailStop")
+	]
 ] 
+

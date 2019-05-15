@@ -26,6 +26,12 @@ system requirements scsreqs for SimpleControlSystem::SCS [
 		value predicate volts == actualvolt
 		see goal SCSgoals.g3
 	]
+	
+	requirement S1 : "Failure probability" [
+		compute actualprob: real
+		compute specprob : real
+		value predicate specprob < 0.00004
+	]
 
 //	include Peter.modelsize for self
 	include globalReq.Allconnected for self

@@ -32,7 +32,11 @@ with Physical;
 					force: out propagation {ServiceOmission};
 					flows
 						es1: error source force if "ModelConditions.isLeafComponent";
-				end propagations;**};
+				end propagations;
+		properties
+			emv2::OccurrenceDistribution => [ ProbabilityValue => 0.8e-7 ; ] applies to FailStop;
+					
+				**};
 	end SCS;
 	
 	system SCSDualPower extends SCS
