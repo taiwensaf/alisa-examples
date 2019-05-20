@@ -32,6 +32,25 @@ public
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ProcessingRate;
+		annex EMV2 {**
+			use types ErrorLibrary, isoletteEM;
+			use behavior IsoletteEM::FailStop;
+			error propagations
+--				upper_desired_temp: in propagation {InvalidTemperature};
+--				lower_desired_temp: in propagation {InvalidTemperature};
+--				valid_current_temp: out propagation {InvalidTemperature};
+--				regulator_status: out propagation {RegulatorStatusError};
+				current_temp: in propagation {SensorError};
+				heat_control: out propagation {RegulatorError};
+			flows
+				badTempControl : error path current_temp{SensorError} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
+				regulatorFails : error source heat_control{RegulatorError}; -- Intenral regaulator error
+--				badDesired : error path lower_desired_temperature{InvalidTemperature} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
+			end propagations;
+  		properties
+  	      EMV2::OccurrenceDistribution => [ProbabilityValue => Isolette_Constants::TemperatureRegulatorFailureRateValue; ]
+      	applies to failed, regulatorFails.RegulatorError;      
+		**};
 	end Regulate_Temperature;
 	
 	process Regulate_Temperature_Pr extends Regulate_Temperature

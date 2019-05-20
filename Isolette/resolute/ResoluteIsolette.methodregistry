@@ -98,6 +98,7 @@ verification methods ResoluteIsolette [
 		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.assert_True
 	]
 
+
 	method ComponentsAreConnected ( element, c1: model element, c2 : model element): "Components are connected" [
 		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.components_Are_Connected
 	]

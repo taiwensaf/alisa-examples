@@ -12,7 +12,9 @@ property set Isolette_Constants is
   Initialization_Timeout_Default : constant --Timing_Properties::
     Time => 1 sec;
 
---    (Room::manage_regulator_mode_mrm,Room::manage_monitor_mode);
+
+-- worst case failure rate for Isolette
+  ExpectedIsoletteFailureRateValue : constant aadlreal => 1.0E-9;
 
 --rate at which user interface fails
   InterfaceFailureRateValue : constant aadlreal => 1.0E-7;

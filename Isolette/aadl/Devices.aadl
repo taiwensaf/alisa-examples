@@ -129,13 +129,13 @@ public
 			use types IsoletteEM;
 			use behavior IsoletteEM::FailStop;
 			error propagations
-				visual_info: out propagation {InterfaceError};
+				visual_info: out propagation {DisplayError};
 				touch_key_command: out propagation {InterfaceError};
 			end propagations;
 			properties
 				EMV2::OccurrenceDistribution => [
 							ProbabilityValue => Isolette_Constants::InterfaceFailureRateValue;]
-							applies to failed, visual_info.InterfaceError, touch_key_command.InterfaceError;
+							applies to failed, visual_info.DisplayError, touch_key_command.InterfaceError;
 		**};
 	end TouchScreen;
 

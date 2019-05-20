@@ -49,7 +49,7 @@ system requirements IsoletteReqs for Isolette::isolette  [
 	// A.4 Safety Requirements
 	
 	requirement REQ_H1 [
-		val InfantExposureHazardRate = 1.0e-9
+		val InfantExposureHazardRate = #Isolette_Constants::ExpectedIsoletteFailureRateValue
 		compute actualprob: real
 		compute specprob : real
 		description "Prolonged exposure of Infant to unsafe heat or cold. Classification: catastrophic. Probability: < " InfantExposureHazardRate " per hour of operation"

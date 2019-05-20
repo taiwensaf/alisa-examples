@@ -8,6 +8,7 @@ public
 	  RegulatorError : type ;  
 	  MonitorError : type ;  
 	  InterfaceError : type ;  
+	  DisplayError : type ;  
 	  SensorError : type ;  
 	  OperatorError : type ;  
 
@@ -33,6 +34,7 @@ public
 	  states 
 	    working: initial state; 
 	    failed : state;
+	    badfail : state;
 	  transitions
 	    working -[fail]-> failed;
 	end behavior;

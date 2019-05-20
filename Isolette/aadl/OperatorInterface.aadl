@@ -44,10 +44,14 @@ package OperatorInterface
 			use types IsoletteEM;
 			use behavior IsoletteEM::FailStop;
 			error propagations
+				valid_current_temp: in propagation {RegulatorError}; 
+				alarm_control: in propagation {MonitorError}; 
 				alarm_sound: out propagation {AlarmError}; --{ServiceOmission, ServiceCommission};
+				operator_visual_information: out propagation {DisplayError};
 				-- may deliver no sound or erroneous sound
 				flows
 					alarmfails: error source alarm_sound{AlarmError};
+					badTemp: error path valid_current_temp{RegulatorError}-> operator_visual_information{DisplayError};
 			end propagations;
 			properties
 				EMV2::OccurrenceDistribution => [
