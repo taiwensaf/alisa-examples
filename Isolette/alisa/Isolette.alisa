@@ -1,0 +1,6 @@
+assurance case IsoletteCase for Isolette::isolette [
+	assurance plan SCSPlanT1 for Isolette::isolette.SingleSensor_Functional [
+		assure IsoletteVPlan IsoletteImplVPlan
+		assure subsystem operator_interface isolette_monitor temperature_regulator temperature_sensor heat_source
+] 
+]

@@ -1,0 +1,151 @@
+system requirements IsoletteReqs for Isolette::isolette  [
+	
+	requirement REQ_GL1_Fahrenheit [
+		description "All temperature measurements are in Fahrenheit."
+		category Kind.Constraint
+		val TemperatureUnitProperty = #Data_Model::Measurement_Unit
+	]
+
+// environmental assumptions
+	requirement REQ_IS_EA1 [
+		val TempIncreaseRate = 1.0 Fdeg_Minute
+		// parameterized limit value. used in text and in predicate
+		description "When the heat source is on and the isolette is properly shut, the current temperature increases no more than " TempIncreaseRate " deg F per minute." 
+		rationale "If the current temperature can increase at a rate of more than 1 deg F per minute, the thermostat may not be able to turn the heat source off quickly enough to maintain the desired temperature range unless the allowed latency specified for the heat control is reduced"
+ 		category Kind.Assumption
+        // predicate ensures that the limit value is correctly reflected in the property value in the model
+		value predicate #Isolette_Properties::Temperature_Change_Rate <= TempIncreaseRate
+	]
+	requirement REQ_IS_EA2 [
+		val TempDecreaseRate = 1.0 Fdeg_Minute
+		description "When the heat source is off and the isolette is properly shut, the current temperature decreases no more than "TempDecreaseRate" deg F per minute."
+		rationale "If the current temperature can decrease at a rate of more than 1 deg F per minute, the thermostat may not be able to turn the heat source on quickly enough to maintain the desired temperature range unless the allowed latency specified for the heat control is reduced"
+ 		category Kind.Assumption
+		value predicate #Isolette_Properties::Temperature_Change_Rate <= TempDecreaseRate
+	]
+	
+	
+		requirement REQ_IS_P1_Lat for command_response [
+		description "Max Operator Response Time less or equal to " MaxOperatorResponseTime ". The time an operator will tolerate between an operator request or a change in the Thermostat state and the visible response."
+		rationale "A trade study has shown that this lag should be no more than 0.5 second."
+		// validation: compare to spec
+		decomposes IsoletteEnvironmentReqs.OE_IS_P1_Lat
+	]
+	
+	requirement REQ_IS_P2_Lat for raise_alarm [
+		description "The Infant should be removed from the Isolette within " NurseAlarmResponse "after the Current Temperature falls below or rises above the Alarm Temperature Range."
+		see requirement IsoletteReqs.REQ_H1
+		see goal IsoletteGoals.SR_2
+		decomposes IsoletteEnvironmentReqs.OE_IS_SR2_Lat
+	]
+	requirement REQ_IS_P3_Lat for extreme_air_alarm [
+		description "The Infant should be removed from the Isolette within " NurseAlarmResponse "after the Current Temperature falls below or rises above the Alarm Temperature Range."
+		see requirement IsoletteReqs.REQ_H1
+		see goal IsoletteGoals.SR_2
+		decomposes IsoletteEnvironmentReqs.OE_IS_SR2_Lat
+	]
+	
+
+	// A.4 Safety Requirements
+	
+	requirement REQ_H1 [
+		val InfantExposureHazardRate = 1.0e-9
+		compute actualprob: real
+		compute specprob : real
+		description "Prolonged exposure of Infant to unsafe heat or cold. Classification: catastrophic. Probability: < " InfantExposureHazardRate " per hour of operation"
+ 		category Quality.Safety
+ 		see goal IsoletteGoals.Hazard1
+ 		value predicate actualprob <= InfantExposureHazardRate 
+	]
+]
+
+	
+system requirements IsoletteImplReqs for Isolette::isolette.SingleSensor_Functional  [
+	requirement SR_0   [  // independence of monitor and regulator
+		category Kind.Constraint
+		// monitor and regulator exist
+		val monitor = this.isolette_monitor
+		val regulator = this.temperature_regulator
+		description "The Isolette shall include a monitor function that is independent of the regulator function"
+		rationale "We want to use a lower cost thermostat (regulator) which has a higher failure rate. To compensate we add an independent monitor function."
+		see requirement IsoletteReqs.REQ_H1
+		see goal IsoletteGoals.COST_1
+		// validation: They do not depend on each other's output
+		// validation: Regulator and monitor function must not be bound to the same physical component (common cause)
+	]
+	
+		
+	requirement SR_1_Prob  for temperature_regulator [  // for regulate_temperature requirement on implementation
+		category Kind.Constraint
+	val TemperatureRegulatorFailureRate = 1.0e-5
+		description "The Isolette shall include an independent regulator function that maintains the Current Temperature inside the Isolette within the Desired Temperature Range. Allowed probability of failure: < " TemperatureRegulatorFailureRate " per hour"
+		rationale "The Desired Temperature Range will be set by the Nurse to the ideal range based on the Infant's weight and health. The regulator should maintain the Current Temperature within this range under normal operation."
+		see requirement IsoletteReqs.REQ_H1
+		see goal IsoletteGoals.SR_1
+		value predicate #Isolette_Constants::TemperatureRegulatorFailureRateValue <= TemperatureRegulatorFailureRate
+	]
+	
+	
+	requirement SR_2_Prob  for isolette_monitor [  
+		category Kind.Constraint
+	val IsoletteMonitorFailureRate = 1.0e-5
+		description "The Isolette shall include an independent monitor function that activates an Alarm when failure conditions occur. Allowed probability of monitor failure: < " IsoletteMonitorFailureRate " per hour."
+		rationale "The Alarm Temperature Range will be set by the Nurse based on the Infant's weight and health. The Infant should be removed from the Isolette within 15 seconds after the Current Temperature falls below or rises above this range. With the normal monitoring provided by the Nurse, this can be accomplished within 10 seconds, leaving 5 seconds for the system to activate the Alarm. Activating the Alarm in less time is desirable. If the Current Temperature or the Alarm Temperature Range provided to the monitor function are flagged as invalid or if an internal failure is detected in the monitor function, the monitor function should not be trusted to perform correctly." 
+		see requirement IsoletteReqs.REQ_H1
+		see goal IsoletteGoals.SR_2
+		value predicate #Isolette_Constants::IsoletteMonitorFailureRateValue <= IsoletteMonitorFailureRate
+	]
+
+
+	// consistent alarm temp and desired temp upper/lower limit value ranges.
+	requirement REQ_IsoI_LD_Cons for ldt [
+		category Kind.Consistency
+		description "operator interface lower desired temp value range same as expected by regulator"
+	] 
+	requirement REQ_IsoI_UD_Cons for udt [
+		category Kind.Consistency
+		description "operator interface upper desired temp value range same as expected by regulator"
+	] 
+	requirement REQ_IsoI_AL_Cons for lat [
+		category Kind.Consistency
+		description "operator interface lower alarm temp value range same as expected by monitor"
+	] 
+	requirement REQ_IsoI_AU_Cons for uat [
+		category Kind.Consistency
+		description "operator interface upper alarm temp value range same as expected by monitor"
+	] 
+	requirement REQ_IsoI_CTR_Cons for ctr [
+		category Kind.Consistency
+		description "temperature sensor current temp value range same as expected by regulator"
+	] 
+	requirement REQ_IsoI_CTM_Cons for ctm [
+		category Kind.Consistency
+		description "temperature sensor current temp value range same as expected by monitor"
+	] 
+	
+	requirement REQ_IsoI_CTR_Sampled for ctr [
+		category Kind.Constraint
+		description "temperature sensor current temp is sampled by the regulator"
+	] 
+	requirement REQ_IsoI_CTM_Sampled for ctm [
+		category Kind.Constraint
+		description "temperature sensor current temp is sampled by the monitor"
+	] 
+
+	requirement REQ_IsoI_HCHS_Sampled for hc [
+		category Kind.Constraint
+		description "heat control state (cmd) is periodically sampled by the heat source"
+	] 
+
+	requirement REQ_IsoI_Alarm_Triggered for al [
+		category Kind.Constraint
+		description "Alarm command is sent as trigger event"
+	] 
+
+	requirement REQ_IsoI_Alarm_S1 for al [
+		category Kind.Constraint
+		description "Alarm command must be sent with guaranteed delivery."
+	] 
+	
+]
+

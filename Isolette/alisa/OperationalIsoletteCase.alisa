@@ -1,0 +1,13 @@
+assurance case OperationalIsoletteCase for Isolette_Environment::Isolette_Environment [  
+	assurance plan OpIsoletteT1 for Isolette_Environment::Isolette_Environment.tier1 [
+		assure IsoletteEnvVPlan
+		assure subsystem anIncubator
+		]
+	assurance plan OpIsoletteFunctional for Isolette_Environment::Isolette_Environment.functional [
+		assure IsoletteEnvVPlan
+		assure subsystem anIncubator
+		]
+//	assurance plan OpIsoletteEmbeddedSW for Isolette_Environment::Isolette_Environment.EmbeddedSW [
+//		assure IsoletteEnvVPlan
+//		]
+]

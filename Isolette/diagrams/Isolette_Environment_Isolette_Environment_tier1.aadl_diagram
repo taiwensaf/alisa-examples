@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://osate.org/diagram" formatVersion="7">
+  <element uuid="3b11ae0c-d1f6-4309-8560-c2a120e33ecb" manual="true">
+    <element uuid="fa6d3260-c556-45ef-b803-9c970534806c">
+      <bo>
+        <seg>connection</seg>
+        <seg>a2i</seg>
+      </bo>
+      <contentFilters/>
+    </element>
+    <element uuid="9eccbbfd-0e49-42d9-a134-1a462f5bc39f">
+      <element uuid="a6ee4b18-99e2-46ca-8dc8-414e586c725f">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>hl</seg>
+      </bo>
+      <contentFilters/>
+    </element>
+    <element uuid="b460c7bd-f18c-4f14-85e5-3fb04aecc8be">
+      <element uuid="fed8a434-8b61-4e3f-a350-9d51f10279d0">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>hs2a</seg>
+      </bo>
+      <contentFilters/>
+    </element>
+    <element uuid="4724799f-0a4a-4e7a-bd8a-f8c03668a7c2">
+      <element uuid="5711db01-68a5-49eb-b781-889081437423">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>n2i</seg>
+      </bo>
+      <contentFilters/>
+    </element>
+    <element uuid="f6cd41b3-1526-4182-82d2-79cbb81f0bc6">
+      <element uuid="09c4a503-e2a9-48cc-b523-204cdcfc2585">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>n2ioa</seg>
+      </bo>
+      <contentFilters/>
+    </element>
+    <element uuid="b99f5708-a83e-4b29-9b3d-6b950a04c059">
+      <element uuid="d3452527-297c-4aed-a1f0-09480f6e40eb">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>n2ioc</seg>
+      </bo>
+      <contentFilters/>
+    </element>
+    <element uuid="08813ce8-4a25-46eb-8b95-90e143e6d97a">
+      <element uuid="534e6899-9792-477d-b719-20b9ba5acefb">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>n2iovi</seg>
+      </bo>
+      <contentFilters/>
+    </element>
+    <element uuid="ea16db2e-0f7d-4e02-b389-dc0468bc0687">
+      <element uuid="89bb7750-1017-4da6-ae2d-f696e3eb78db">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>tmp</seg>
+      </bo>
+      <contentFilters/>
+    </element>
+    <element uuid="df80cbb3-bb03-42c7-8114-e7d786170809" dockArea="right">
+      <bo>
+        <seg>feature</seg>
+        <seg>heat_loss</seg>
+      </bo>
+      <position x="984.0" y="40.0"/>
+      <contentFilters/>
+    </element>
+    <element uuid="58a4ee6d-6dc7-4aea-b7bb-817c35dd42fc">
+      <element uuid="4252195b-91df-4aca-9494-f67ea81cdd2e" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>air_temperature</seg>
+        </bo>
+        <position y="30.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="76b1c8e6-addc-4959-8e38-935836fa2b49" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>alarm_sound</seg>
+        </bo>
+        <position y="248.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="63c78d7c-f66e-4f7e-8672-6e30be483c17" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>heat_out</seg>
+        </bo>
+        <position y="90.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="d8a5a7e7-67a4-423f-87f3-b33a6c6d69f4" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>operator_input</seg>
+        </bo>
+        <position y="140.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="6f581c73-8459-47ab-801b-deda12b64821" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>operator_visual_information</seg>
+        </bo>
+        <position y="200.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="bc0f76b3-b23e-498c-a655-3dd3d9a9b012">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>command_response</seg>
+        </bo>
+        <bendpoints>
+          <point x="785.0" y="292.0"/>
+          <point x="785.0" y="352.0"/>
+        </bendpoints>
+        <contentFilters/>
+      </element>
+      <element uuid="ac7f25eb-b169-4274-aded-6bc289ce29a0">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>extreme_air_alarm</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <element uuid="ed65ef7c-f047-4b34-96c0-62dd21e87de0">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>raise_alarm</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>subcomponent</seg>
+        <seg>anincubator</seg>
+      </bo>
+      <position x="650.0" y="120.0"/>
+      <size width="311.0" height="288.0"/>
+      <contentFilters>
+        <filter>features</filter>
+        <filter>internalFeatures</filter>
+        <filter>processorFeatures</filter>
+        <filter>connections</filter>
+        <filter>flowSpecifications</filter>
+      </contentFilters>
+    </element>
+    <element uuid="6a590d30-19b0-4155-871b-8c4863da0f9b">
+      <element uuid="166e39dd-ef81-44ec-b84e-7093c65dc7b4" dockArea="top">
+        <bo>
+          <seg>feature</seg>
+          <seg>air_interaction</seg>
+        </bo>
+        <position x="210.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="596d5405-e2d7-4baf-84de-9764d15938f8" dockArea="bottom">
+        <bo>
+          <seg>feature</seg>
+          <seg>nurse_interaction</seg>
+        </bo>
+        <position x="30.0" y="86.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="1cd617e1-6110-4b40-be06-8a9cc22d4911">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>removefromincubator</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>subcomponent</seg>
+        <seg>aninfant</seg>
+      </bo>
+      <position x="70.0" y="260.0"/>
+      <size width="372.0" height="110.0"/>
+      <contentFilters>
+        <filter>features</filter>
+        <filter>internalFeatures</filter>
+        <filter>processorFeatures</filter>
+        <filter>connections</filter>
+        <filter>flowSpecifications</filter>
+      </contentFilters>
+    </element>
+    <element uuid="2843f8b8-0dba-47c5-8011-f6bddf2da1b3">
+      <element uuid="45f7b98e-fe5b-4dd2-9758-96f41e9eb3bf" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>alarm_sound</seg>
+        </bo>
+        <position x="420.0" y="111.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="147967c2-35ae-42a2-8bb2-19d512e84d74" dockArea="top">
+        <bo>
+          <seg>feature</seg>
+          <seg>infant_interaction</seg>
+        </bo>
+        <position x="69.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="a71ea0d0-fee4-463f-acf6-f6b621a88e7d" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>operator_commands</seg>
+        </bo>
+        <position x="370.0" y="19.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="fbbf8c0f-bc6b-48ef-bde1-448b8e5521af" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>operator_visual_information</seg>
+        </bo>
+        <position x="312.0" y="64.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="c307992a-91d0-4eae-bc3c-182fe391c2e0">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>operator_hears_alarm</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <element uuid="e812d7aa-4b0b-4848-b4d4-acff6807776c">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>operator_reads_visuals</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <element uuid="f0f1bbe1-2f73-4219-99a8-5d0b19738b41">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>operator_responds_to_alarm</seg>
+        </bo>
+        <bendpoints>
+          <point x="250.0" y="552.0"/>
+        </bendpoints>
+        <contentFilters/>
+      </element>
+      <element uuid="df77d3de-8a62-46a2-b35b-c5e51fb3c2ee">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>operator_sends_commands</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>subcomponent</seg>
+        <seg>anurse</seg>
+      </bo>
+      <position x="41.0" y="469.0"/>
+      <size width="520.0" height="163.0"/>
+      <contentFilters>
+        <filter>features</filter>
+        <filter>internalFeatures</filter>
+        <filter>processorFeatures</filter>
+        <filter>connections</filter>
+        <filter>flowSpecifications</filter>
+      </contentFilters>
+    </element>
+    <element uuid="b393db2e-dbe2-46aa-a26b-41c6dd8b4603">
+      <element uuid="46241242-cd3a-44cd-b6f6-b6c96e1376eb" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>air_temperature</seg>
+        </bo>
+        <position x="242.0" y="110.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="1badbece-0889-4e25-bddc-357e0646ed35" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>heat_in</seg>
+        </bo>
+        <position x="297.0" y="160.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="18b676ee-7498-4db8-ace2-09a71e64b8eb" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>heat_out</seg>
+        </bo>
+        <position x="289.0" y="30.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="b9b9b98e-da7b-4f45-bf95-96dd77d1194f" dockArea="bottom">
+        <bo>
+          <seg>feature</seg>
+          <seg>infant_interaction</seg>
+        </bo>
+        <position x="80.0" y="186.0"/>
+        <contentFilters/>
+      </element>
+      <element uuid="0328ace7-a1c4-4004-843f-7316f01c2cea">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>heat_flow_sink</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <element uuid="16b9141c-f66d-4716-8c87-4d0ed1066b68">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>temp_source</seg>
+        </bo>
+        <contentFilters/>
+      </element>
+      <bo>
+        <seg>subcomponent</seg>
+        <seg>theair</seg>
+      </bo>
+      <position x="170.0" y="20.0"/>
+      <size width="362.0" height="210.0"/>
+      <contentFilters>
+        <filter>features</filter>
+        <filter>internalFeatures</filter>
+        <filter>processorFeatures</filter>
+        <filter>connections</filter>
+        <filter>flowSpecifications</filter>
+      </contentFilters>
+    </element>
+    <bo>
+      <seg>classifier</seg>
+      <seg>isolette_environment.tier1</seg>
+    </bo>
+    <position/>
+    <size width="1061.0" height="661.0"/>
+    <contentFilters>
+      <filter>subcomponents</filter>
+      <filter>features</filter>
+      <filter>processorFeatures</filter>
+      <filter>connections</filter>
+      <filter>flowSpecifications</filter>
+    </contentFilters>
+  </element>
+  <config type="structure" connectionPrimaryLabelsVisible="false">
+    <enabledAadlProperties/>
+    <context>
+      <seg>classifier</seg>
+      <seg>isolette_environment::isolette_environment.tier1</seg>
+    </context>
+  </config>
+</diagram:Diagram>

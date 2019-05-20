@@ -1,0 +1,23 @@
+--Building_Properties.aadl
+--these properties are used by building-control
+property set Isolette_Properties is
+-- properties to support modeling of data representations
+	Regulator_Modes_Type: type enumeration (Init, Normal, Failed);
+	Regulator_Mode: Isolette_Properties::Regulator_Modes_Type applies to (all);
+	
+	Validity_Type: type enumeration (Valid, Invalid);
+	Validity: Isolette_Properties::Validity_Type applies to (all);
+	
+	Temperature_Change_Rate_Units: type units (Fdeg_Minute);
+	Temperature_Units: type units (Fahrenheit, Celcius => Fahrenheit * 0.5555);
+	Temperature_Type: type aadlreal units Isolette_Properties::Temperature_Units;
+	Temperature_Change_Type: type aadlreal units Isolette_Properties::Temperature_Change_Rate_Units;
+	
+	Temperature_Accuracy: Isolette_Properties::Temperature_Type applies to (all);
+	Temperature_Change_Rate: Isolette_Properties::Temperature_Change_Type applies to (all);
+	
+	
+	  Initialization_Timeout : Time applies to (all);
+	  
+	  Component_Reference: type reference(subcomponent);
+end Isolette_Properties;

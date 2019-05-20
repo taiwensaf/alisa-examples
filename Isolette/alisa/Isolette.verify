@@ -1,0 +1,101 @@
+verification plan IsoletteVPlan for IsoletteReqs [
+	
+claim REQ_IS_EA1 [
+	//#Isolette_Properties::Temperature_Increase_Rate <= TempIncreaseRate
+	]
+
+	claim REQ_IS_EA2 [
+	//	value predicate #Isolette_Properties::Temperature_Change_Rate <= TempDecreaseRate
+	]
+
+	claim REQ_H1 [
+		activities 
+			assertPartFailureRate: 	actualprob, specprob = Plugins.FaultTreeProbability("state failed")
+			assertFunctionalFailureRate: 	actualprob, specprob = Plugins.FaultTreeProbability("outgoing propagation on infantExposure{DangerousInfantExposure}")
+			
+	]
+claim REQ_IS_P1_Lat [
+	activities
+	maxresponse: ResoluteIsolette.IsMaxLatencyValue(MaxOperatorResponseTime)
+	]
+
+	claim REQ_IS_P2_Lat [
+	activities
+	maxresponse: ResoluteIsolette.IsMaxLatencyValue(NurseAlarmResponse)
+	]
+	claim REQ_IS_P3_Lat [
+	activities
+	maxresponse: ResoluteIsolette.IsMaxLatencyValue(NurseAlarmResponse)
+	]
+claim REQ_GL1_Fahrenheit [
+	]
+]
+
+verification plan IsoletteImplVPlan for IsoletteImplReqs [
+    claim SR_0 [
+	activities
+	noConnectionRegMon: ResoluteIsolette.ComponentsAreNotConnected(monitor, regulator)
+	noCommonBinding: ResoluteIsolette.ComponentsHaveNoCommonProcessor(monitor, regulator)
+	]
+    claim SR_1_Prob [
+//		value predicate #Isolette_Constants::RegulatorFailureRateValue <= TemperatureRegulatorFailureRate
+	]
+
+	claim SR_2_Prob [
+//		value predicate #Isolette_Constants::IsoletteMonitorFailureRateValue <= IsoletteMonitorFailureRate
+	]
+
+
+	claim REQ_IsoI_LD_Cons [
+		activities
+		checkBound: ResoluteIsolette.IsConsistentConnectionIntegerRange()
+	]
+
+	claim REQ_IsoI_UD_Cons [
+		activities
+		checkBound: ResoluteIsolette.IsConsistentConnectionIntegerRange()
+	]
+
+	claim REQ_IsoI_AL_Cons [
+		activities
+		checkBound: ResoluteIsolette.IsConsistentConnectionIntegerRange()
+	]
+
+	claim REQ_IsoI_AU_Cons [
+		activities
+		checkBound: ResoluteIsolette.IsConsistentConnectionIntegerRange()
+	]
+
+	claim REQ_IsoI_CTR_Cons [
+		activities
+		checkBound: ResoluteIsolette.IsConsistentConnectionRealRange()
+	]
+
+	claim REQ_IsoI_CTM_Cons [
+		activities
+		checkBound: ResoluteIsolette.IsConsistentConnectionRealRange()
+	]
+	claim REQ_IsoI_CTR_Sampled [
+		activities
+		checkSampled: ResoluteIsolette.IsSamplingDataPortConnection()
+	]
+
+	claim REQ_IsoI_CTM_Sampled [
+		activities
+		checkSampled: ResoluteIsolette.IsSamplingDataPortConnection()
+	]
+
+	claim REQ_IsoI_HCHS_Sampled [
+		activities
+		checkSampled: ResoluteIsolette.IsSamplingDataPortConnection()
+	]
+
+	claim REQ_IsoI_Alarm_Triggered [
+		activities
+		checkTriggered: ResoluteIsolette.IsTriggeringEventDataPortConnection()
+	]
+	claim REQ_IsoI_Alarm_S1 [
+		activities
+		checkQoS: ResoluteIsolette.IsGuaranteedDelivery()
+	]
+]

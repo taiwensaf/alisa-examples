@@ -1,0 +1,140 @@
+-- Isolette_Environment.aadl
+--
+-- =====================================================================================================================
+--
+--   I s o l e t t e     E n v i r o n m e n t     P a c k a g e 
+-- 
+--
+--   Modeling of environment for Isolette
+--
+--   Note:  These models contribute nothing to the Isolette implementation.
+--          They are included here to support model-based hazard analysis activities 
+--          as well support Concept of Operations and Use Case modeling 
+--
+-- =====================================================================================================================
+package Isolette_Environment
+public
+	with Isolette, Isolette_Data_Model;
+
+
+--@description air inside room
+	abstract Air
+		features
+				--warming of air by heat source		
+			heat_in: in feature Isolette_Data_Model::Heat;
+					--heat-loss of incubator air to room
+			heat_out: out feature Isolette_Data_Model::Heat;
+					--air contact with infant			
+					-- TODO: This is currently modeled as a bi-directional feature, which might cause problems
+					--  with the EMv2/hazard analysis
+			infant_interaction: feature Isolette_Data_Model::Air_Exposure;
+					--actual air temperature that the sensor measures			
+			air_temperature: out feature Isolette_Data_Model::PhysicalTemp;
+		flows
+			heat_flow_sink: flow sink heat_in;
+			temp_source: flow source air_temperature { Latency => 1 ms.. 5 ms;};
+	end Air;
+
+--@description nurse controlling room	
+	abstract Nurse
+		features
+				-- ==== INPUTS ====
+				-- models (abstractly) visual information presented to the operator on Isolette operator interface
+			operator_visual_information: in feature Isolette_Data_Model::Interface_Display;
+					-- models (abstraction) audio information presented to the operator on Isolette operator interface
+			alarm_sound: in feature Isolette_Data_Model::Alarm_Sound;
+					-- ==== OUTPUTS ====
+					-- models (abstractly) commands given by the operator to Isolette operator interface
+			operator_commands: out feature Isolette_Data_Model::Interface_Touch;
+			infant_interaction: feature;
+		flows
+				-- nurse is sink for alarms and current temp reading
+			operator_hears_alarm: flow sink alarm_sound;
+			operator_responds_to_alarm: flow path alarm_sound -> infant_interaction { Latency => 500 ms.. 750 ms;};
+			operator_reads_visuals: flow sink operator_visual_information;
+					-- nurse is source for control
+			operator_sends_commands: flow source operator_commands;
+		properties
+			Latency => 10 sec .. 30 sec applies to operator_responds_to_alarm; -- time it takes to respond by identifying and walking to the correct incubator
+			Latency => 10ms .. 30ms applies to operator_reads_visuals;
+			Latency => 100ms .. 100ms applies to operator_sends_commands;
+		annex EMV2 {**
+			use types IsoletteEM;
+			use behavior IsoletteEM::FailStop;
+			error propagations
+				operator_commands: out propagation {OperatorError};
+			-- may deliver bad or no reading without being aware of it.
+				flows
+					nurse_bad_command: error source operator_commands{OperatorError};
+			end propagations;
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::OperatorErrorRateValue;]
+							applies to failed, nurse_bad_command.OperatorError;
+		**};
+	end Nurse;
+
+--@description infant in room
+	abstract Infant
+		features
+			air_interaction: feature Isolette_Data_Model::Air_Exposure;
+			nurse_interaction: feature;
+		flows
+			removeFromIncubator: flow sink nurse_interaction {Latency => 10 sec .. 10 sec;};
+			 -- time it takes to open incubator and remove the infant
+	end Infant;
+
+
+--@description nursery room that contains room, infant, nurse, and air
+	system Isolette_Environment
+		features
+--models heat-loss of incubator to (presumably) cooler room		
+			heat_loss: out data port Isolette_Data_Model::Heat;
+	end Isolette_Environment;
+
+--@description implementation of Room that contains incubator, infant, nurse, and air  
+	system implementation Isolette_Environment.tier1
+		subcomponents
+--incubator that keeps air within prescribed range		
+			anIncubator: system Isolette::isolette;
+--air warmed by heat source, breathed by infant			
+			theAir: abstract Air;
+--new-born human child often premature			
+			anInfant: abstract Infant;
+--human attendant and operator of incubator			
+			aNurse: abstract Nurse;
+		connections
+--air with infant interaction	 
+			a2i: feature theAir.infant_interaction <-> anInfant.air_interaction;
+--heating source warming air interaction
+			hs2a: feature anIncubator.heat_out -> theAir.heat_in;
+			tmp: feature theAir.air_temperature -> anIncubator.air_temperature;
+--heat-loss
+			hl: feature theAir.heat_out -> heat_loss;
+--nurse with control-panel interaction
+			n2iovi: feature anIncubator.operator_visual_information -> aNurse.operator_visual_information;
+			n2ioa: feature anIncubator.alarm_sound -> aNurse.alarm_sound;
+			n2ioc: feature aNurse.operator_commands -> anIncubator.operator_input;
+			n2i: feature aNurse.infant_interaction -> anInfant.nurse_interaction;
+		flows
+			extremeAirAlarmResponse: end to end flow theAir.temp_source -> tmp -> anIncubator.extreme_air_alarm -> n2ioa -> aNurse.operator_responds_to_alarm -> n2i -> anInfant.removeFromIncubator;
+			alarmResponse: end to end flow anIncubator.raise_alarm -> n2ioa -> aNurse.operator_responds_to_alarm -> n2i -> anInfant.removeFromIncubator;
+			operatorCommandResponse: end to end flow aNurse.operator_sends_commands -> n2ioc -> anIncubator.command_response -> n2iovi -> aNurse.operator_reads_visuals {Latency => 500ms .. 500ms;};
+		properties
+-- recorded in reqspec. Added here for analysis without ALISA
+			Latency => 15 sec .. 15 sec applies to extremeAirAlarmResponse;
+			Latency => 15 sec .. 15 sec applies to alarmResponse;
+--			Latency => 500ms .. 500ms applies to operatorCommandResponse;
+	end Isolette_Environment.tier1;
+
+	system implementation Isolette_Environment.functional extends Isolette_Environment.tier1
+		subcomponents
+			anIncubator: refined to system Isolette::isolette.SingleSensor_Functional;
+	end Isolette_Environment.functional;
+
+	system implementation Isolette_Environment.EmbeddedSW extends Isolette_Environment.tier1
+		subcomponents
+			anIncubator: refined to system Isolette::isolette.SingleSensor_EmbeddedSW;
+	end Isolette_Environment.EmbeddedSW;
+	
+end Isolette_Environment;

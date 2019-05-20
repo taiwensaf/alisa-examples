@@ -1,0 +1,93 @@
+--Building_Properties.aadl
+--these properties are used by building-control
+
+property set Isolette_Constants is
+  with 
+    --Physical_Properties,  --AADL property types  
+    EMV2;  --error modeling annex V2 predeclared properties
+    -- Timing_Properties;
+   
+ 
+  --Table A-9. The Manage Regulator Mode Function Constant
+  Initialization_Timeout_Default : constant --Timing_Properties::
+    Time => 1 sec;
+
+--    (Room::manage_regulator_mode_mrm,Room::manage_monitor_mode);
+
+--rate at which user interface fails
+  InterfaceFailureRateValue : constant aadlreal => 1.0E-7;
+
+
+--rate at which the alarm sound generator fails
+  AlarmSoundFailureRateValue : constant aadlreal => 1.0E-7;
+
+--error rate of detection of interface failure   
+  DetectionInterfaceFailureRate : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.0E-10; Distribution => Fixed;];
+
+--likelihood that the temperature sensor will fail such that its value is out of range
+  TemperatureSensorOutOfRange : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.0E-8; Distribution => Fixed;];
+
+--likelihood that the temperature sensor will provide incorrect value but is not out of range
+  TemperatureSensorUndetectableValueError : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.0E-8; Distribution => Fixed;];
+
+--likelihood that the temperature sensor breaks
+  TemperatureSensorFailureRateValue : constant aadlreal =>  1.3E-7; 
+
+
+--rate at which manage_regulator_mode_mrm fails
+  MRMFailureRate : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.0E-9; Distribution => Fixed;];
+
+--rate at which manage_heat_source_mhs fails
+  MHSFailureRate : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.1E-9; Distribution => Fixed;];
+
+--rate at which regulator fails
+  TemperatureRegulatorFailureRateValue : constant aadlreal => 1.2E-7;
+ 
+
+--error rate of detection of regulator failure   
+  DetectionRegulatorFailureRate : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.3E-10; Distribution => Fixed;];
+
+--rate at which manage_monitor_mode fails
+  MMMFailureRate : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.4E-9; Distribution => Fixed;];
+
+--rate at which manage_alarm fails
+  MAFailureRate : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.5E-9; Distribution => Fixed;];
+
+--rate at which temp monitor fails
+  IsoletteMonitorFailureRateValue : constant aadlreal => 1.6E-7;
+
+     
+--error rate of detection of temp monitor failure   
+  DetectionMonitorFailureRate : constant EMV2::DistributionSpecification => 
+    [ProbabilityValue => 1.7E-10; Distribution => Fixed;];
+
+--rate at which the heat source fails
+  HeatSourceFailureRateValue : constant aadlreal => 1.8E-7;
+ 
+--rate at which the operator makes errors
+  OperatorErrorRateValue : constant aadlreal =>  1.2E-5;
+ 
+--hysteresis temperature offset, once sounded over-temp alarm must
+--be 0.5F inside alarm range before stopping
+  --HysteresisTemperatureOffset : constant Physical_Properties::Fahrenheit => 0.5 F;    
+    
+--Allowed Heat Source Latency; Table A-11
+  AllowedHeatSourceLatency : constant Time => 6 sec;   
+ 
+--thread period
+  ThreadPeriod : constant Time => 1000 ms;     
+  ProcessingRate : constant Time => 1000 ms;     
+
+  
+    
+end Isolette_Constants;  
+
+

@@ -1,0 +1,61 @@
+stakeholder goals IsoletteGoals for Isolette::isolette 
+[
+	
+	goal G1 [ 
+		description "The infant should be kept at a safe and comfortable temperature"
+		stakeholder hospital.MarketingTeam hospital.SafetyAssessmentTeam
+	]
+	
+	goal G2 [
+		description "The nurse should be warned if the infant becomes too hot or too cold"
+		stakeholder hospital.SafetyAssessmentTeam
+	]
+	
+	goal G3 [
+		description "The cost of manufacturing the thermostat should be as low as possible"
+		stakeholder hospital.MarketingTeam
+	]
+	
+	// A.4 Safety Requirements
+	
+	goal Hazard1 [
+		description "Prolonged exposure of Infant to unsafe heat or cold. Classification: catastrophic. Probability: < 10-9 per hour of operation"
+ 		category Quality.Safety
+		stakeholder hospital.SafetyAssessmentTeam
+	]
+	
+			
+	goal COST_1 [
+		description "Reduce cost by allowing higher failure probability for the temperature regulator and other components"
+		stakeholder hospital.MarketingTeam
+	]
+	
+	goal SR_1 [  
+		category Quality.Safety
+		description "The Isolette shall include an independent regulator function that maintains the Current Temperature inside the Isolette within the Desired Temperature Range. Allowed probability of failure: < 1.0e-5 per hour"
+		rationale "The Desired Temperature Range will be set by the Nurse to the ideal range based on the Infant's weight and health. The regulator should maintain the Current Temperature within this range under normal operation."
+		refines Hazard1 COST_1
+		stakeholder hospital.SafetyAssessmentTeam
+	]
+	
+	goal SR_2 [
+		category Quality.Safety
+		description "The Isolette shall include an independent monitor function that activates an Alarm within a maximum of 5 seconds whenever
+- the Current Temperature falls below or rises above the Alarm Temperature Range. 
+- the Current Temperature is missing or invalid.
+- no regulator output
+- an internal failure has been detected in the monitor function." "Allowed probability of monitor failure: < 1.0E-5 per hour."
+		refines Hazard1 COST_1
+		stakeholder hospital.DesignTeam hospital.SafetyAssessmentTeam
+	]
+	
+	
+	goal TH_AG1 [ // actor goal
+		description "Table A-2: Maintain current temperature in the Isolette within desired temperature range"
+		stakeholder hospital.DesignTeam hospital.SafetyAssessmentTeam
+	]
+	
+
+]
+
+

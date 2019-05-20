@@ -1,0 +1,171 @@
+verification methods ResoluteIsolette [
+
+
+	method IsMaxLatencyValue (element, ub: Time): 
+	"Is latency value" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Max_Latency_Value
+	]
+	method IsValid (element): 
+	"Validity is set" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Valid
+	]
+	method IsFahrenheit (feature): 
+	"Measurement unit is Fahrenheit" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Fahrenheit
+	]
+	method IsElementFahrenheit (component, target: model element): 
+	"Measurement unit is Fahrenheit" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Element_Fahrenheit
+	]
+	
+	method IsMeasuredTemperature (feature): 
+	"Data type is iso_variables::measured_temperature" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Measured_Temperature
+	]
+	
+	method ElementTemperatureAccuracyOne (component, target: model element): 
+	"Temperature accuracy is 1.0 F" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.element_temperature_Accuracy_IsOne
+	]
+	
+	method TemperatureAccuracyOne (feature): 
+	"Temperature accuracy is 1.0 F" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.temperature_Accuracy_IsOne
+	]
+	method TemperatureAccuracyPointOne (feature): 
+	"Temperature accuracy is 0.1 F" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.temperature_Accuracy_IsPointOne
+	]
+	
+		method IsWithinIntegerRange (feature, lb: integer, ub: integer): 
+	"Value range " [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Within_Integer_Range
+	]
+		method WithinIntegerRangeLowerBound (feature, lb: integer): 
+	"Value range lower bound "  [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.within_IntegerRange_LowerBound
+	]
+		method WithinIntegerRangeUpperBound (feature,  ub: integer): 
+	"Value range upper bound " [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.within_IntegerRange_UpperBound
+	]
+		method WithinRealRangeLowerBound (feature, lb: real): 
+	"Value range lower bound "  [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.within_RealRange_LowerBound
+	]
+		method WithinRealRangeUpperBound (feature,  ub: real): 
+	"Value range upper bound " [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.within_RealRange_UpperBound
+	]
+	
+	
+	method RangesWithinBounds (component, ldb: model element, ldbv: integer,udb: model element, udbv: integer,lab: model element, labv: integer,uab: model element, uabv: integer): 
+	"Ranges are within bounds" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.ranges_Within_Bounds
+	]
+	
+	method ConsistentRanges (component, ldb: model element, udb: model element,lab: model element, uab: model element): 
+	"Consistent Ranges" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.consistent_Ranges
+	]
+	
+	method DesiredRangesWithinAlarmRanges (component, ldb: model element, udb: model element,lab: model element, uab: model element): 
+	"Desired Ranges within Alarm Ranges" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.desired_Ranges_Within_Alarm_Ranges
+	]
+	
+		
+		method IsConsistentConnectionIntegerRange (connection):	"Connection integer value range " [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Consistent_Connection_IntegerRange
+	]
+	
+		
+		method IsConsistentConnectionRealRange (connection):	"Connection integer value range " [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Consistent_Connection_RealRange
+	]
+
+	method IsValidFlag (feature): 
+	"Type is Valid_Flag" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Type_Valid_Flag
+	]
+
+	method IsOnOff (feature): 
+	"Type is Valid_Flag" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Type_On_Off
+	]
+
+	method AssertChangeRate ( element) properties (Isolette_Properties::Temperature_Change_Rate): "Assure change rate is set" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.assert_True
+	]
+
+	method ComponentsAreConnected ( element, c1: model element, c2 : model element): "Components are connected" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.components_Are_Connected
+	]
+
+	method ComponentsAreNotConnected ( element, c1: model element, c2 : model element): "Components are connected" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.components_Are_Not_Connected
+	]
+	
+
+	method ComponentsHaveCommonProcessor ( element, c1: model element, c2 : model element): "Components with common processor" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.have_common_bound_processor
+	]
+
+	method ComponentsHaveNoCommonProcessor ( element, c1: model element, c2 : model element): "Components without common processor" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.have_no_common_bound_processor
+	]
+	
+	method IsPeriodic (component): 
+	"Is periodic" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Periodic
+	]
+	
+	method IsAperiodic (component): 
+	"Is aperiodic" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Aperiodic
+	]
+	
+	method IsEventDataPort (feature): 
+	"Is event data port" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_EventDataPort
+	]
+
+	method IsDataPort (feature): 
+	"Is data port" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_DataPort
+	]
+	
+	method IsTriggeringPort (feature): 
+	"Is port triggering an aperiodic component" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_TriggeringPort
+	]
+	
+	method IsSampledPort (feature): 
+	"Is port sampled by an aperiodic component" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_SampledPort
+	]
+
+	
+	method PortOutputRate (feature, interval: Time): 
+	"Port output at interval" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Port_Output_Rate
+	]
+
+	method IsTriggeringEventDataPortConnection (connection): 
+	"Is triggering message connection" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Triggering_EventDataPortConnection
+	]
+
+	method IsSamplingDataPortConnection (connection): 
+	"Is sampling data connection" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Sampled_DataPortConnection
+	]
+
+
+	method IsGuaranteedDelivery (connection): 
+	"guarantees delivery (logical & HW if bound)" [
+		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.guarantees_Delivery
+	]
+
+	
+]

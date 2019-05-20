@@ -1,0 +1,146 @@
+package Devices
+public
+	with Isolette_Data_Model, Isolette_Properties;
+
+	with Data_Model;
+
+	device Detect_Regulator_Failure
+		features
+			internal_failure: out data port Isolette_Data_Model::Failure_Flag;
+	end Detect_Regulator_Failure;
+
+	device implementation Detect_Regulator_Failure.impl
+	end Detect_Regulator_Failure.impl;
+
+--A.5.2.4 Detect Monitor Failure Function
+--this is where error models signal active threads an 
+--internal thermostat monitor failure has been detected
+	device Detect_Monitor_Failure
+		features
+			internal_failure: out data port Isolette_Data_Model::Failure_Flag;
+	end Detect_Monitor_Failure;
+
+	device implementation Detect_Monitor_Failure.impl
+	end Detect_Monitor_Failure.impl;
+
+	device Temperature_Sensor
+		features
+			air: in feature Isolette_Data_Model::PhysicalTemp;
+			current_temp: out data port Isolette_Data_Model::DiscreteTemp {
+						Data_Model::Real_Range => 68.0 .. 105.0;
+						Data_Model::Measurement_Unit => "Fahrenheit";
+						Isolette_Properties::Temperature_Accuracy => 0.1 Fahrenheit;
+					};
+		flows
+			temp_reading: flow source current_temp {Latency => 500ms .. 550ms;}; -- Note that sensor is sampling. There is a sampling latency for recognizing a change in temperature
+			air_temp_reading: flow path air -> current_temp {Latency => 50ms .. 55ms;}; -- actual sensing of air temp. Sampling is captured by period.
+		properties
+			Dispatch_Protocol => Periodic; -- jab
+			Period => 1 sec; -- jab  
+		annex EMV2 {**
+			use types IsoletteEM;
+			use behavior IsoletteEM::FailStop;
+			error propagations
+				current_temp: out propagation {SensorError};
+			-- may deliver bad or no reading without being aware of it.
+				flows
+					sensorfails: error source current_temp{SensorError};
+			end propagations;
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::TemperatureSensorFailureRateValue;]
+							applies to failed, sensorfails.SensorError;
+		**};
+	end Temperature_Sensor;
+
+	device implementation Temperature_Sensor.impl
+	end Temperature_Sensor.impl;
+
+	device Heat_Source
+		features
+			heat_control: in data port Isolette_Data_Model::On_Off;
+			heat_out: out feature Isolette_Data_Model::Heat;
+		flows
+			heatOnOff: flow path heat_control -> heat_out { Latency => 500 ms .. 550 ms;};
+		properties
+			Dispatch_Protocol => Periodic; -- jab
+			Period => 1 sec; -- jab  
+		annex EMV2 {**
+			use types IsoletteEM;
+			use behavior IsoletteEM::FailStop;
+			
+			error propagations
+				heat_control: in propagation {RegulatorError};
+				heat_out: out propagation {HeaterError};
+			flows
+				controlpassthru: error path heat_control {RegulatorError} -> heat_out {HeaterError}; -- incorrect on/off maps into commission and omission
+				HSFail: error source heat_out {HeaterError};
+			end propagations;
+			
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::AlarmSoundFailureRateValue;] 
+							applies to failed, HSFail.HeaterError;
+		**};
+	end Heat_Source;
+
+	device implementation Heat_Source.impl
+	end Heat_Source.impl;
+
+	device Alarm_Device
+		features
+			alarm_control: in event data port Isolette_Data_Model::On_Off;
+			alarm_sound: out feature Isolette_Data_Model::Alarm_Sound;
+		properties
+			Dispatch_Protocol => Aperiodic; -- phf
+		annex EMV2 {**
+			use types IsoletteEM;
+			use behavior IsoletteEM::FailStop;
+			error propagations
+				alarm_sound: out propagation {AlarmError}; --{ServiceOmission, ServiceCommission};
+				-- may deliver no sound or erroneous sound
+				flows
+					alarmfails: error source alarm_sound{AlarmError};
+			end propagations;
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::AlarmSoundFailureRateValue;]
+							applies to failed, alarmfails.AlarmError;
+		**};
+	end Alarm_Device;
+
+	device implementation Alarm_Device.impl
+	end Alarm_Device.impl;
+
+	device TouchScreen
+		features
+			current_temp: in data port Isolette_Data_Model::DisplayTemp;
+			lower_desired_temp: in data port Isolette_Data_Model::ValidFullDegreeFahrenheit;
+			upper_desired_temp: in data port Isolette_Data_Model::ValidFullDegreeFahrenheit;
+			lower_alarm_temp: in data port Isolette_Data_Model::ValidFullDegreeFahrenheit;
+			upper_alarm_temp: in data port Isolette_Data_Model::ValidFullDegreeFahrenheit;
+			touch_key_command: out event data port Isolette_Data_Model::Interface_Command;
+			command_error: in event data port Isolette_Data_Model::Interface_Command;
+			visual_info: out feature Isolette_Data_Model::Interface_Display;
+			operator_input: in feature Isolette_Data_Model::Interface_Touch;
+		properties
+			Dispatch_Protocol => Aperiodic; -- phf
+		annex EMV2 {**
+			use types IsoletteEM;
+			use behavior IsoletteEM::FailStop;
+			error propagations
+				visual_info: out propagation {InterfaceError};
+				touch_key_command: out propagation {InterfaceError};
+			end propagations;
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::InterfaceFailureRateValue;]
+							applies to failed, visual_info.InterfaceError, touch_key_command.InterfaceError;
+		**};
+	end TouchScreen;
+
+	device implementation TouchScreen.impl
+	end TouchScreen.impl;
+
+
+end Devices;

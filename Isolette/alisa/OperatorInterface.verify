@@ -1,0 +1,64 @@
+verification plan OperatorInterfaceVPlan for OperatorInterfaceReqs [
+claim REQ_GL1_Fahrenheit [
+	activities
+		isFahrenheitvct: ResoluteIsolette.IsElementFahrenheit(this.valid_current_temp)
+		isFahrenheitovi: ResoluteIsolette.IsElementFahrenheit(this.operator_visual_information)
+		isFahrenheitldt: ResoluteIsolette.IsElementFahrenheit(this.lower_desired_temp)
+		isFahrenheitudt: ResoluteIsolette.IsElementFahrenheit(this.upper_desired_temp)
+		isFahrenheitlat: ResoluteIsolette.IsElementFahrenheit(this.lower_alarm_temp)
+		isFahrenheituat: ResoluteIsolette.IsElementFahrenheit(this.upper_alarm_temp)
+	]
+
+claim REQ_GL2_OneDegreeFahrenheit [
+	activities
+		isOnevct: ResoluteIsolette.ElementTemperatureAccuracyOne(this.valid_current_temp)
+		isOneovi: ResoluteIsolette.ElementTemperatureAccuracyOne(this.operator_visual_information)
+		isOneldt: ResoluteIsolette.ElementTemperatureAccuracyOne(this.lower_desired_temp)
+		isOneudt: ResoluteIsolette.ElementTemperatureAccuracyOne(this.upper_desired_temp)
+		isOnelat: ResoluteIsolette.ElementTemperatureAccuracyOne(this.lower_alarm_temp)
+		isOneuat: ResoluteIsolette.ElementTemperatureAccuracyOne(this.upper_alarm_temp)
+	]
+
+	claim REQ_OI_1 [
+		activities
+		isValid: ResoluteIsolette.IsValid()
+	]
+
+	claim REQ_OI_4 [
+//		value predicate #Isolette_Properties::Temperature_Accuracy == 1.0 Fahrenheit
+	]
+
+	claim REQ_OI_5 [
+		// tolerance of 0.6 F
+		// formula that takes into account value error due to periodic sampling at 0.1 plus rounding and latency to display 
+	]
+
+	claim REQ_OI_6_1 [
+//		value predicate LowerAlarmBound < UpperAlarmBound and LowerDesiredBound < UpperDesiredBound
+//		and LowerAlarmBound < LowerDesiredBound and UpperDesiredBound < UpperAlarmBound
+	]
+
+	claim REQ_OI_6_2 [
+		activities
+		rangeswithinBounds: ResoluteIsolette.RangesWithinBounds(this.lower_desired_temp, LowerDesiredBound,this.upper_desired_temp, UpperDesiredBound,this.lower_alarm_temp, LowerAlarmBound,this.upper_alarm_temp, UpperAlarmBound)
+	]
+
+	claim REQ_OI_6_3 [
+		activities
+		consistentranges: ResoluteIsolette.ConsistentRanges(this.lower_desired_temp,this.upper_desired_temp,this.lower_alarm_temp,this.upper_alarm_temp)
+	]
+
+	claim REQ_OI_6_4 [
+		activities
+		desiredwithinalarm: ResoluteIsolette.DesiredRangesWithinAlarmRanges(this.lower_desired_temp,this.upper_desired_temp,this.lower_alarm_temp,this.upper_alarm_temp)
+	]
+
+	claim REQ_OI_10A [
+//		value predicate # Data_Model::Real_Range == DisplayTemperatureRange
+	]
+
+	claim REQ_OI_10B [
+//		value predicate # Data_Model::Integer_Range == DisplayTemperatureRange
+	]
+
+]

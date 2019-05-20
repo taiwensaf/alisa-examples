@@ -1,0 +1,60 @@
+verification plan HeatSourceVPlan for HeatSourceReqs [
+	
+claim REQ_HS_EA1 [
+		activities
+		isOnOffHC: ResoluteIsolette.IsOnOff()
+	]
+
+	claim REQ_HS_S1 [
+//		value predicate #Isolette_Constants::HeatSourceFailureRateValue <= HeatsourceFailureRate
+	]
+claim REQ_HS_Behavior1 [
+		activities
+	 isPeriodic: ResoluteIsolette.IsPeriodic()
+	]
+]
+
+verification plan AlarmDeviceVPlan for AlarmDeviceReqs [
+claim REQ_AD_EA1 [
+		activities
+		isOnOffHC: ResoluteIsolette.IsOnOff()
+	]
+
+	claim REQ_AD_Behavior1 [
+		activities
+	 isTriggering: ResoluteIsolette.IsTriggeringPort()
+	 isEventDataPort: ResoluteIsolette.IsEventDataPort()
+	]
+
+	claim REQ_AD_S1 [
+//		value predicate #Isolette_Constants::AlarmSoundFailureRateValue <= AlarmDeviceFailureRate
+	]
+]
+
+verification plan TemperatureSensorVPlan for TemperatureSensorReqs [
+claim REQ_TS_1 [
+		activities
+	 maxLatency: ResoluteIsolette.IsMaxLatencyValue(MaxSensorLatency)
+	]
+	claim REQ_TS_2 [
+		activities
+	 isOneSecOutputRate: ResoluteIsolette.PortOutputRate(SensorRate)
+	 isPeriodic: ResoluteIsolette.IsDataPort()
+	]
+
+	claim REQ_TS_3 [
+// 		value predicate TemperatureUnitUnitProperty == "Fahrenheit"
+	]
+
+	claim REQ_TS_4 [
+//		value predicate #Isolette_Properties::Temperature_Accuracy <= TemperatureSenseAccuracy
+	]
+
+	claim REQ_TS_5 [
+//		value predicate #Data_Model::Real_Range == SensedTemperatureRange
+	]
+
+	claim REQ_TS_S1 [
+//		value predicate #Isolette_Constants::TemperatureSensorFailureRateValue <= TemperatureSensorFailureRate
+	]
+]

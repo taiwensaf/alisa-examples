@@ -1,0 +1,27 @@
+verification plan RegulateTemperatureVPlan for RegulateTemperatureReqs [
+	
+claim REQ_RT_1 [
+	activities
+		typeEnforced: ResoluteIsolette.IsMeasuredTemperature()
+	]
+	claim REQ_RT_2 [
+//		value predicate #Period == RegulateRate
+	]
+
+	claim REQ_RT_4 [
+		activities
+		periodicOutput: ResoluteIsolette.PortOutputRate(RegulateRate)
+		isOnOffHC: ResoluteIsolette.IsOnOff()
+	]
+
+	claim REQ_RT_5 [
+		activities
+		// communicate mode
+	]
+
+	claim REQ_RT_6 [
+		activities
+		validTemp: ResoluteIsolette.IsValid()
+	]
+]
+

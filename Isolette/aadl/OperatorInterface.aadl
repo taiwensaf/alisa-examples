@@ -1,0 +1,147 @@
+
+package OperatorInterface
+  public
+	with Isolette_Data_Model, Isolette_Constants;
+
+	with Isolette_Properties;
+
+	with Data_Model;
+
+	with Devices;
+
+	system operator_interface
+		features
+				-- ======== INPUT from Operator to Operator Interface =======		
+			operator_input: in feature Isolette_Data_Model::Interface_Touch;
+					-- ======== OUTPUT from Operator Interface to Operator  =======	
+					-- models (abstractly) visual information presented to the operator on Isolette operator interface
+			operator_visual_information: out feature Isolette_Data_Model::Interface_Display;
+					-- models (abstraction) audio information presented to the operator on Isolette operator interface
+			alarm_sound: out feature Isolette_Data_Model::Alarm_Sound;
+					-- ==== INPUTS from thermostat to operator interface 
+			regulator_status: in data port Isolette_Data_Model::Status;
+			monitor_status: in data port Isolette_Data_Model::Status;
+			sensor_status: in data port Isolette_Data_Model::Status;
+			valid_current_temp: in data port Isolette_Data_Model::MeasuredTemp {
+						Isolette_Properties::Validity => valid;};
+			alarm_control: in data port Isolette_Data_Model::On_Off;
+					-- ==== OUTPUTS from operator interface to thermostat 
+			lower_desired_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 97 .. 99;};
+			upper_desired_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 98 .. 100;};
+			lower_alarm_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 93 .. 98;};
+			upper_alarm_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 99 .. 103;};
+		flows
+			enableAlarmSound: flow path alarm_control -> alarm_sound { Latency => 100 ms .. 150 ms;};
+			processCommand: flow path operator_input -> operator_visual_information { Latency => 100 ms .. 150 ms;};
+		properties
+			Period => Isolette_Constants::ProcessingRate;
+		annex EMV2 {**
+				-- operator interface failures
+			use types IsoletteEM;
+			use behavior IsoletteEM::FailStop;
+			error propagations
+				alarm_sound: out propagation {AlarmError}; --{ServiceOmission, ServiceCommission};
+				-- may deliver no sound or erroneous sound
+				flows
+					alarmfails: error source alarm_sound{AlarmError};
+			end propagations;
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::AlarmSoundFailureRateValue;]
+							applies to failed, alarmfails.AlarmError;
+		**};
+	end operator_interface;
+
+	system implementation operator_interface.impl
+		subcomponents
+			oip: process operator_interface_process.impl;
+			oiad: device Devices::Alarm_Device;
+			oiDisplay: device Devices::TouchScreen;
+		connections
+			c1: port regulator_status -> oip.regulator_status;
+			c2: port monitor_status -> oip.monitor_status;
+			c3: port valid_current_temp -> oip.valid_current_temp;
+			c4: port alarm_control -> oiad.alarm_control;
+			c5: port oip.lower_desired_temp -> lower_desired_temp;
+			c6: port oip.upper_desired_temp -> upper_desired_temp;
+			c7: port oip.lower_alarm_temp -> lower_alarm_temp;
+			c8: port oip.upper_alarm_temp -> upper_alarm_temp;
+					-- current temp and limits to display
+			ctd: port oip.display_current_temperature -> oiDisplay.current_temp;
+			c5d: port oip.lower_desired_temp -> oiDisplay.lower_desired_temp;
+			c6d: port oip.upper_desired_temp -> oiDisplay.upper_desired_temp;
+			c7d: port oip.lower_alarm_temp -> oiDisplay.lower_alarm_temp;
+			c8d: port oip.upper_alarm_temp -> oiDisplay.upper_alarm_temp;
+					-- touch screen operator interactions
+			touch2oi: feature operator_input -> oiDisplay.operator_input;
+			oi2screen: feature oiDisplay.visual_info -> operator_visual_information;
+					-- touch screen OI sw interaction
+			cmd2oi: port oiDisplay.touch_key_command -> oip.touch_key_command;
+			oi2cmderror: port oip.command_error -> oiDisplay.command_error;
+	end operator_interface.impl;
+
+	process operator_interface_process
+		features
+				-- ==== INPUTS from thermostat to operator interface
+			regulator_status: in data port Isolette_Data_Model::Status;
+			monitor_status: in data port Isolette_Data_Model::Status;
+			valid_current_temp: in data port Isolette_Data_Model::MeasuredTemp {
+						Isolette_Properties::Validity => valid;};
+			display_current_temperature: out data port Isolette_Data_Model::DisplayTemp;
+			lower_desired_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 97 .. 99;};
+			upper_desired_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 98 .. 100;};
+			lower_alarm_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 93 .. 98;};
+			upper_alarm_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 99 .. 103;};
+			touch_key_command: in event data port Isolette_Data_Model::Interface_Command;
+					-- ==== OUTPUTS from operator interface  
+			command_error: out event data port Isolette_Data_Model::Interface_Command;
+	end operator_interface_process;
+
+	process implementation operator_interface_process.impl
+		subcomponents
+			oit: thread operator_interface_thread.impl;
+		connections
+			c1: port regulator_status -> oit.regulator_status;
+			c2: port monitor_status -> oit.monitor_status;
+			c3: port valid_current_temp -> oit.valid_current_temp;
+			c5: port oit.lower_desired_temp -> lower_desired_temp;
+			c6: port oit.upper_desired_temp -> upper_desired_temp;
+			c7: port oit.lower_alarm_temp -> lower_alarm_temp;
+			c8: port oit.upper_alarm_temp -> upper_alarm_temp;
+	end operator_interface_process.impl;
+
+	thread operator_interface_thread
+		features
+				-- ==== INPUTS from thermostat to operator interface
+			regulator_status: in data port Isolette_Data_Model::Status;
+			monitor_status: in data port Isolette_Data_Model::Status;
+			valid_current_temp: in data port Isolette_Data_Model::MeasuredTemp {
+						Isolette_Properties::Validity => valid;};
+					-- ==== OUTPUTS from operator interface to thermostat 
+			lower_desired_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 97 .. 99;};
+			upper_desired_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 98 .. 100;};
+			lower_alarm_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 93 .. 98;};
+			upper_alarm_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 99 .. 103;};
+			display_current_temp: in data port Isolette_Data_Model::DisplayTemp;
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => Isolette_Constants::ThreadPeriod;
+	end operator_interface_thread;
+
+	thread implementation operator_interface_thread.impl
+	end operator_interface_thread.impl;
+
+end OperatorInterface;
+

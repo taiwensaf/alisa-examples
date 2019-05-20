@@ -1,0 +1,46 @@
+package IsoletteEM
+public
+	annex EMV2
+{**
+	error types
+	  HeaterError: type;  --heater 
+	  AlarmError : type;		--the class of alarm errors
+	  RegulatorError : type ;  
+	  MonitorError : type ;  
+	  InterfaceError : type ;  
+	  SensorError : type ;  
+	  OperatorError : type ;  
+
+	  FalseAlarm : type extends AlarmError;  --alarm erroneously sounded
+	  MissedAlarm : type extends AlarmError;  --alarm missed  
+	  
+	  StatusError : type;  --mode and status errors
+
+	  RegulatorStatusError : type extends StatusError;  --indicated regulator status wrong
+	  RegulatorModeError : type extends StatusError;  --regulator mode wrong
+	  MonitorStatusError : type extends StatusError;  --indicated monitor status wrong
+	  MonitorModeError : type extends StatusError;  --monitor mode wrong
+	  ThreadFault renames type ErrorLibrary::EarlyServiceTermination;  --thread fault halts thread
+	  InternalError : type;  --an internal error was detected
+	  
+	  InvalidTemperature: type; -- from FAA REMHB A.4 SR2 value flagged as invalid. Called IncorrectValue in FAA REMHB page 36.
+	  
+	  DangerousInfantExposure: type;
+	  
+	end types;
+	error behavior FailStop
+	  events fail: error event;
+	  states 
+	    working: initial state; 
+	    failed : state;
+	  transitions
+	    working -[fail]-> failed;
+	end behavior;
+	error behavior FailStopStates
+	  states 
+	    working: initial state; 
+	    failed : state;
+	end behavior;
+**};
+	
+end IsoletteEM;

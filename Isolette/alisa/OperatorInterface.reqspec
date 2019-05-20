@@ -1,0 +1,96 @@
+// Environmental Assumptions
+system requirements OperatorInterfaceReqs for OperatorInterface::operator_interface [
+	requirement REQ_GL1_Fahrenheit [
+		description "All temperatures will be entered and displayed in degrees Fahrenheit."
+		decomposes IsoletteReqs.REQ_GL1_Fahrenheit
+	]
+	
+	requirement REQ_GL2_OneDegreeFahrenheit [
+		description "Display temperature will be displayed in 1 degree increments."
+	]
+	
+ 	requirement REQ_OI_1 for valid_current_temp [
+		category Kind.Assumption
+		description "The current temperature is valid."
+		// validation: temperature is valid
+	]
+
+	requirement REQ_OI_4 for operator_visual_information [
+		description "The received measured temperature to be displayed is assumed to have been rounded to 1.0 deg F by the sender."
+		rationale "The Current Temperature is displayed on the Operator Interface to provide the operators with an additional means to confirm the Isolette is maintaining the temperature correctly."
+		// validation: temperature data type has correct increment
+		// Validation (for displayCurrentTemp resolved):flow exists from incoming current temp to display temp
+		value predicate #Isolette_Properties::Temperature_Accuracy == 1.0 Fahrenheit
+		issues "We do not know that rounded values are passed in until REQ_MRI_4"
+	]
+
+	requirement REQ_OI_5  for operator_visual_information  [
+	val AllowedDisplayTempTolerance =0.6 Fahrenheit
+		description "If the Regulator Mode is NORMAL, the Display Temperature shall be set to the value of the Current Temperature rounded to the nearest integer. The accuracy of the rounded value will be +/- " AllowedDisplayTempTolerance " of the actual value."
+		rationale "Displaying the rounded value of the Current Temperature provides the the most accurate display of the Current Temperature possible using an integer display. When combined with the accuracy of the Temperature Sensor (EA-TS-2), the Display Temperature should be within 0.6�F of the actual value."
+		// Validation: correct rounding. Also validate the accuracy of 0.6. Are there other value error contributors.
+	]
+
+	// Alarm and desired temperature bounds
+	val LowerAlarmBound = 93     // LAB
+	val UpperAlarmBound = 103    // UAB
+	val LowerDesiredBound = 97   // LDB
+	val UpperDesiredBound = 100  // UDB
+
+	requirement REQ_OI_6_1  [
+		category Kind.Consistency
+		description "Consistent Alarm and Desired Temperature Bound value specifications."
+		rationale
+		"Each value range: LAB < UAB and LDB < UDB; Desired contained in Alarm: LAB < LDB and UDB < UAB"
+		// validation: enforced by range constraint in lower_alarm_temperature data model. 
+		value predicate LowerAlarmBound < UpperAlarmBound and LowerDesiredBound < UpperDesiredBound
+		and LowerAlarmBound < LowerDesiredBound and UpperDesiredBound < UpperAlarmBound
+	]
+
+
+	requirement REQ_OI_6_2  [
+		category Kind.Consistency
+		description "Specified Alarm and Desired Temperature Bound Ranges specified by property Data_Model::Real_Range within specified bounds."
+		rationale
+		"Each value range:  LAB <= lb(LABR) and up(UABR) <= UAB and LDB <= lb(LDBR) and up(UDBR) <= UDB"
+		// validation: enforced by range constraint in lower_alarm_temperature data model. 
+	]
+
+	requirement REQ_OI_6_3  [
+		category Kind.Consistency
+		description "Consistency of range specifications (Data_Model::Real_Range) for lower within upper bound of Desired Temperature and for Alarm Temperature."
+		rationale
+	 	"Each value range:  lb(LABR) < up(LABR) and lb(LDBR) < up(LDBR) and lb(UABR) < up(UABR) and lb(UDBR) < up(UDBR)"
+	    "Each Lower Bound vs Upper Bound range: LBR < UBR : lb(LBR) < lb(UBR) and ub(LBR) < ub(UBR) "
+		// validation: enforced by range constraint in lower_alarm_temperature data model. 
+	]
+
+	requirement REQ_OI_6_4 [
+		category Kind.Consistency
+		description "Range specifications (Data_Model::Real_Range) for Desired Temperature lower/upper bounds contained in Alarm Temperature lower/upper bounds."
+		rationale "Desired within Alarm:  LABR < LDBR and UDBR < UABR"
+		// validation: enforced by range constraint in lower_alarm_temperature data model. 
+	]
+
+	requirement REQ_OI_10A for valid_current_temp [
+		val CurrentTempLowerBound = 68.0
+		val CurrentTempUpperBound = 105.0
+	val DisplayTemperatureRange = [	CurrentTempLowerBound .. CurrentTempUpperBound 	] 
+		description "The Display Temperature will cover the range of  " CurrentTempLowerBound " to " CurrentTempUpperBound " deg F"
+		rationale "Display the same range as the temperature sensor provides."
+				// validation: enforced by range constraint in lower_desired_temperature data model. 
+		value predicate # Data_Model::Real_Range == DisplayTemperatureRange
+	]
+	requirement REQ_OI_10B for operator_visual_information [
+		val DisplayLowerBound = 68
+		val DisplayUpperBound = 105
+	val DisplayTemperatureRange = [	DisplayLowerBound .. DisplayUpperBound 	] 
+		description "The Display Temperature will cover the range of  " DisplayLowerBound " to " DisplayUpperBound " deg F"
+		rationale "Display the same range as the temperature sensor provides."
+				// validation: enforced by range constraint in lower_desired_temperature data model. 
+		value predicate # Data_Model::Integer_Range == DisplayTemperatureRange
+	]
+
+]
+
+	

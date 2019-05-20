@@ -1,0 +1,99 @@
+	
+system requirements HeatSourceReqs for Devices::Heat_Source  [
+	requirement REQ_HS_EA1 for heat_control [ 
+		description "The heat source can be turned on/off."
+		rationale "There needs to be a way of turning heat source on and off."
+		// validation: presence of incoming feature and data type supports on/off
+	]
+
+	requirement REQ_HS_Behavior1 [ 
+		val HeaterCommandSamplingRate = 1 sec
+		description "The heat source receives the desired heat_control state repeatedly at "HeaterCommandSamplingRate" intervals."
+		rationale "This ensures that a state change is not missed if communication is unreliable."
+		// validation: periodic operation of heat source
+		value predicate #Period == HeaterCommandSamplingRate
+	]
+
+	requirement REQ_HS_S1  [ 
+		val HeatsourceFailureRate = 1.0E-5
+		
+		description "The heat source has a failure rate of less than " HeatsourceFailureRate
+		rationale "Affordable heat source."
+//		see goal IsoletteGoals.COST_1
+		value predicate #Isolette_Constants::HeatSourceFailureRateValue <= HeatsourceFailureRate
+		
+	]
+]
+
+system requirements AlarmDeviceReqs for Devices::Alarm_Device  [
+	requirement REQ_AD_EA1 for alarm_control [ 
+		description "The alarm device can be turned on/off."
+		rationale "There needs to be a way of turning the alarm sound on and off."
+		// validation: presence of incoming feature and data type supports on/off
+	]
+
+	requirement REQ_AD_Behavior1 for alarm_control [ 
+		description "The alarm device responds to alarm control commands as message events."
+		rationale "The alarm device does not consume energy polling on a command. this requires reliable transmission of alarm commands."
+		// validation: aperiodic operation of alarm device via event data port
+	]
+
+	requirement REQ_AD_S1  [ 
+		val AlarmDeviceFailureRate = 1.0E-10
+		
+		description "The heat source has a failure rate of less than " AlarmDeviceFailureRate
+		rationale "Affordable heat source."
+//		see goal IsoletteGoals.COST_1
+		value predicate #Isolette_Constants::AlarmSoundFailureRateValue <= AlarmDeviceFailureRate
+		
+	]
+]
+
+system requirements TemperatureSensorReqs for Devices::Temperature_Sensor [
+	
+	requirement REQ_TS_1 for temp_reading [
+		val MaxSensorLatency =  550 ms
+		description "The sensor shall provide a temperature reading in less than " MaxSensorLatency 
+ 		category Kind.Assumption
+ 		issues "Sensor operates periodically. There is sampling latency of 1 sec which delays recognizing the next 0.1 deg F."
+	]
+	
+	requirement REQ_TS_2 for current_temp [
+	val SensorRate = 1 sec
+		description "The sensor shall provide a temperature reading at a "SensorRate" rate" 
+ 		category Kind.Guarantee
+	]
+
+	requirement REQ_TS_3 for current_temp [
+		description "The sensor shall provide a temperature reading in units of Fahrenheit" 
+ 		category Kind.Assumption
+ 		decomposes IsoletteReqs.REQ_GL1_Fahrenheit
+ 		// check unit is Fahrenheit
+ 		value predicate TemperatureUnitProperty == "Fahrenheit"
+	]
+
+	requirement REQ_TS_4 for current_temp [
+		val TemperatureSenseAccuracy = 0.1 Fahrenheit
+		category Kind.Guarantee
+		description "The Current Temperature will be sensed to an accuracy of +/-" TemperatureSenseAccuracy " deg F."
+		rationale "An accuracy of 0.1�F is necessary to ensure the Thermostat can turn the Heat Source on and off quickly enough to maintain the Desired Temperature Range."
+		// validation: accuracy property on thermostat is same or better than required.
+		value predicate #Isolette_Properties::Temperature_Accuracy <= TemperatureSenseAccuracy
+	]
+	requirement REQ_TS_5 for current_temp [
+		val SensedTemperatureRange = [ 68.0 .. 105.0]
+		category Kind.Assumption
+		description "The Current Temperature will cover the range of at least " SensedTemperatureRange " deg F."
+		rationale "This is the specified range of operation of the Isolette. The lower end of this range is useful for monitoring an Isolette that is warming to the Desired Temperature Range. The upper end is greater than the Upper Alarm Temperature to ensure that the Current Temperature will be sensed across the entire Alarm Temperature Range."
+		value predicate #Data_Model::Real_Range == SensedTemperatureRange
+		]
+
+	requirement REQ_TS_S1  [ 
+		val TemperatureSensorFailureRate = 3.0E-10
+		description "The temperature sensor has a failure rate of less than " TemperatureSensorFailureRate
+		rationale "Affordable temperature sensor."
+//		see goal IsoletteGoals.COST_1
+		value predicate #Isolette_Constants::TemperatureSensorFailureRateValue <= TemperatureSensorFailureRate
+	]
+]
+

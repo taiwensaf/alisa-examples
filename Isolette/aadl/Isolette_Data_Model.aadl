@@ -1,0 +1,167 @@
+--Building_Variables.aadl
+package Isolette_Data_Model
+public
+	with Isolette_Properties, Data_Model;
+
+-- ==============
+-- Physical entities
+-- ==============
+--@description heat emitted by source to warm air	
+	abstract Heat
+	end Heat;
+
+--@description data that flows between operator and control panel
+	abstract Interface_Touch
+	end Interface_Touch;
+
+	abstract Interface_Display
+		properties
+			Data_Model::Integer_Range => 68 .. 105;
+			Data_Model::Measurement_Unit => "Fahrenheit";
+			Isolette_Properties::Temperature_Accuracy => 1.0 Fahrenheit;
+	end Interface_Display;
+
+--@description of alarm sound
+	abstract Alarm_Sound
+	end Alarm_Sound;
+
+--@description warming of air by heat source, or of infant by air	
+	abstract Air_Exposure
+	end Air_Exposure;
+
+	abstract PhysicalTemp
+	end PhysicalTemp;
+
+-- ===============
+-- Discrete data entities
+-- ===============
+
+	data DiscreteTemp
+	end DiscreteTemp;
+
+	data MeasuredTemp extends DiscreteTemp
+		properties
+			Data_Model::Real_Range => 68.0 .. 105.0;
+			Data_Model::Measurement_Unit => "Fahrenheit"; -- generic string representation. Easier to process any unit
+			Isolette_Properties::Temperature_Accuracy => 0.1 Fahrenheit;
+	end MeasuredTemp;
+
+	data FullDegreeFTemp extends DiscreteTemp
+		properties
+			Data_Model::Measurement_Unit => "Fahrenheit";
+			Isolette_Properties::Temperature_Accuracy => 1.0 Fahrenheit;
+	end FullDegreeFTemp;
+
+
+	data ValidFullDegreeFahrenheit extends FullDegreeFTemp
+		properties
+			Isolette_Properties::Validity => valid;
+	end ValidFullDegreeFahrenheit;
+	
+
+	data DisplayTemp extends ValidFullDegreeFahrenheit
+		properties
+			Data_Model::Integer_Range => 68 .. 105; 
+	end DisplayTemp;
+	
+
+-- bound limits encoded in data type for use within Thermostat
+-- this way the type system ensure the specified range rather than a validator.
+-- at the Isolette level we use the more generic type with explicit value range specifications
+	data lower_desired_temperature extends ValidFullDegreeFahrenheit
+		properties
+			Data_Model::Integer_Range => 97 .. 99;
+	end lower_desired_temperature;
+
+	data upper_desired_temperature extends ValidFullDegreeFahrenheit
+		properties
+			Data_Model::Integer_Range => 98 .. 100;
+	end upper_desired_temperature;
+
+
+--range of Lower alarm Temperature  
+	data lower_alarm_temperature extends ValidFullDegreeFahrenheit
+		properties
+			Data_Model::Integer_Range => 93 .. 98;
+	end lower_alarm_temperature;
+
+
+--range of Upper alarm Temperature  
+	data upper_alarm_temperature extends ValidFullDegreeFahrenheit
+		properties
+			Data_Model::Integer_Range => 99 .. 103;
+	end upper_alarm_temperature;
+	
+
+	data On_Off
+		properties
+			Data_Model::Data_Representation => Enum;
+	end On_Off;
+
+	data Valid_Flag
+	end Valid_Flag;
+
+	data Failure_Flag
+	end Failure_Flag;
+	
+	data Interface_Command
+		-- increment/decrement desired/alarm lower/upper bound
+		-- turn on/off
+	end Interface_Command;
+
+--Regulator and Monitor Status
+	data Status
+		properties
+			Data_Model::Data_Representation => Enum;
+			Data_Model::Enumerators => ("Init", "O_n", "Failed");
+	end Status;
+
+--Regulator Mode
+	data Regulator_Mode
+		modes
+			Init: initial mode;
+			Normal: mode;
+			Failed: mode;
+		properties
+			Isolette_Properties::Regulator_Mode => Init;
+			Data_Model::Data_Representation => Enum;
+			Data_Model::Enumerators => ("Init", "NORMAL", "FAILED");
+	end Regulator_Mode;
+
+--Monitor Mode
+	data Monitor_Mode
+		properties
+			Data_Model::Data_Representation => Enum;
+			Data_Model::Enumerators => ("INIT", "NORMAL", "FAILED");
+	end Monitor_Mode;
+--Table A-3 Thermostat Monitored Variables for Temperature  Sensor
+-- current temperature : TempWstatus
+--Table A-4 Thermostat Controlled Variables for Heat Source
+-- heat control : On_Off
+--Table A-5
+-- lower desired temperature : TempWstatus
+-- upper desired temperature : TempWstatus
+-- lower alarm temperature : TempWstatus
+-- upper alarm temperature : TempWstatus
+--range of Monitored Temperature  
+-- data Measured_Temperature_Range
+-- properties
+-- Data_Model::Base_Type => (classifier(BLESS_Types::Fixed_Point));  
+--  Data_Model::Real_Range => 68.0 .. 105.0;
+--  Data_Model::Measurement_Unit => "Fahrenheit";
+--  BLESS::Typed => "real 68.0 .. 105.0 units Fahrenheit";
+--  end Measured_Temperature_Range;  
+--Valid/Invalid enumerated type
+--Current Temperature "t" is temp, "status" is valid/invalid flag 
+-- data Current_Temperature 
+--  properties
+--  Data_Model::Data_Representation => Struct;
+--  Data_Model::Element_Names => ("t","status");
+--  Data_Model::Base_Type => (classifier (Measured_Temperature_Range), 
+--  	classifier (Valid_Flag));
+--  BLESS::Typed => "record (t:measured_temperature_range; status:valid_flag;)";
+-- end Current_Temperature; 
+--Table A-4. Thermostat Controlled Variables for Heat Source
+--heat control and alarm value
+--Table A-5
+end Isolette_Data_Model;

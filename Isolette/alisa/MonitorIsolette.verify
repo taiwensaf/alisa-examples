@@ -1,0 +1,33 @@
+verification plan MonitorIsoletteVPlan for MonitorIsoletteReqs [
+	
+
+	claim REQ_MI_1 [
+	activities
+		correctType: ResoluteIsolette.IsMeasuredTemperature()
+	]
+	claim REQ_MI_4 [
+	activities
+		isOnOff: ResoluteIsolette.IsOnOff()
+	]
+
+	claim REQ_MI_Behavior1 [
+	activities
+		sendsMessage: ResoluteIsolette.IsEventDataPort()
+	]
+
+	claim REQ_MI_5 [
+	]
+
+	claim REQ_MI_S1 [
+	]
+
+	claim _REQ_MI_S2 [
+//		value predicate #Isolette_Constants::IsoletteMonitorFailureRateValue <= ThermostatMonitorFailureRate
+	]
+
+	claim _REQ_MI_S3 [
+	activities
+		sendsMessage: ResoluteIsolette.IsMaxLatencyValue(MaxAlarmLatency)
+	]
+]
+

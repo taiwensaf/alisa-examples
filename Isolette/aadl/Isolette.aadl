@@ -1,0 +1,133 @@
+-- Isolette.aadl
+--
+-- =====================================================================================================================
+--
+--   I s o l e t t e     P a c k a g e 
+-- 
+--
+--   Top-level system specification including
+--
+--      - thermostat + temp sensor and heater hardware components
+--      - system boundary capturing interactions with the environment
+--
+-- =====================================================================================================================
+ 
+-- authors Brian Larson and John Hatcliff 
+
+
+package Isolette
+  public
+	with MonitorIsolette, -- subcomponent of the Room thermostat that monitors turns heat source on/off
+-- as necessary to maintain desired temperature
+RegulateTemperature, -- physical entities in Room system including temperature sensor and heat source
+Devices, -- entities used to monitor environment external to Room including infant, nurse, air 
+Isolette_Data_Model, -- import type definitions used in Isolette
+OperatorInterface;
+
+	with Isolette_Properties;
+
+	system isolette
+		features
+				-- models (abstractly) warming of air inside of Isolette enclosure
+			heat_out: out feature Isolette_Data_Model::Heat;
+					-- models (abstractly) commands given by the operator to Isolette operator interface
+			operator_input: in feature Isolette_Data_Model::Interface_Touch;
+					-- models (abstractly) visual information presented to the operator on Isolette operator interface
+			operator_visual_information: out feature Isolette_Data_Model::Interface_Display;
+					-- models (abstraction) audio information presented to the operator on Isolette operator interface
+			alarm_sound: out feature Isolette_Data_Model::Alarm_Sound;
+					-- models (abstractly) the sensing of the physical air temperature
+			air_temperature: in feature Isolette_Data_Model::PhysicalTemp;
+		flows
+			raise_alarm: flow source alarm_sound {Latency => 15 sec .. 15 sec;};
+			command_response: flow path operator_input -> operator_visual_information{Latency => 500ms .. 500ms;};
+			extreme_air_alarm: flow path air_temperature -> alarm_sound{Latency => 15 sec .. 15 sec;};
+		properties
+			Isolette_Properties::Temperature_Change_Rate => 1.0 Fdeg_Minute;
+	end isolette;
+
+-- -----------------------------------------------------------------------------
+--
+--   I s o l e t t e     S y s t e m    I m p l e m e n t a t i o n 
+-- 
+--
+--   Top-level system structure capturing 
+--   thermostat + temp sensor and heater hardware components
+--
+-- -----------------------------------------------------------------------------
+	system implementation isolette.SingleSensor_Functional
+-- internal architecture of Isolette 
+--
+-- It is a single sensor architecture
+--
+-- Tier 1 shows one level down. Is used to analyze resposne time of nurse to alarm.
+-- Tier 2 refines the model one level of detail for repeated end to end flow latency analysis
+--
+--  Note that in contrast to the "boundary" implied by Figure A.1, we have not chosen to model the
+--  notion of "Air" as "inside" the system boundary.  Our rationale is that we are only including
+--  in the system boundary the components that the manufacturer is responsible for and that will
+--  be addressed in quality management and the primary risk management activities.
+--
+		subcomponents
+			temperature_regulator: abstract RegulateTemperature::Regulate_Temperature;
+			isolette_monitor: abstract MonitorIsolette::Monitor_Isolette;
+			temperature_sensor: device Devices::temperature_sensor;
+			heat_source: device Devices::heat_source;
+			operator_interface: system OperatorInterface::operator_interface;
+		connections
+				-- ==== INPUT interface to internal components ==== 	    
+				-- commands from operator flow into the operator interface
+			oioc: feature operator_input -> operator_interface.operator_input;
+					-- the environment air temperature (abstract/physical) flows into the temp sensor
+			a2ts: feature air_temperature -> temperature_sensor.air;
+					-- ==== OUTPUT interface values from internal components ==== 
+					-- information (audio and visual) flows from the operator interface to the operator
+			oiovi: feature operator_interface.operator_visual_information -> operator_visual_information;
+			oioa: feature operator_interface.alarm_sound -> alarm_sound;
+					-- heat source's (abstract) output is increase in physical air temperature
+			hs: feature heat_source.heat_out -> heat_out;
+					-- ==== INTERNAL communication ==== 
+					-- sensor sends sensed current temperature to thermostat  
+			ctr: port temperature_sensor.current_temp -> temperature_regulator.current_temp {
+						Classifier_Matching_Rule => Subset;};
+			ctm: port temperature_sensor.current_temp -> isolette_monitor.current_temp {
+						Classifier_Matching_Rule => Subset;};
+					-- thermostat controls turns the heat source off and on  
+			hc: port temperature_regulator.heat_control -> heat_source.heat_control;
+					-- operator interface communicates desired temperature to thermostat
+			ldt: port operator_interface.lower_desired_temp -> temperature_regulator.lower_desired_temp {
+						Classifier_Matching_Rule => Subset;};
+			udt: port operator_interface.upper_desired_temp -> temperature_regulator.upper_desired_temp {
+						Classifier_Matching_Rule => Subset;};
+					-- operator interface communicates alarm temperature to thermostat
+			lat: port operator_interface.lower_alarm_temp -> isolette_monitor.lower_alarm_temp {
+						Classifier_Matching_Rule => Subset;};
+			uat: port operator_interface.upper_alarm_temp -> isolette_monitor.upper_alarm_temp {
+						Classifier_Matching_Rule => Subset;};
+					-- thermostat communicates regulator status to display on operator interface
+			rs: port isolette_monitor.regulator_status -> operator_interface.regulator_status;
+					-- thermostat communicates monitor status to display on operator interface
+			ms: port isolette_monitor.monitor_status -> operator_interface.monitor_status;
+			ss: port isolette_monitor.sensor_status -> operator_interface.sensor_status;
+					-- thermostat communicates current sensed temperature to display on operator interface
+			dt: port isolette_monitor.valid_current_temp -> operator_interface.valid_current_temp;
+					-- thermostat communicates alarm information to display on operator interface
+			al: port isolette_monitor.alarm_control -> operator_interface.alarm_control;
+		flows
+			raise_alarm: flow source temperature_sensor -> ctm -> isolette_monitor.detectTempOOR -> al -> operator_interface.enableAlarmSound -> oioa -> alarm_sound;
+			extreme_air_alarm: flow path air_temperature -> a2ts -> temperature_sensor.air_temp_reading -> ctm -> isolette_monitor.detectTempOOR -> al -> operator_interface.enableAlarmSound -> oioa -> alarm_sound;
+			command_response: flow path operator_input -> oioc -> operator_interface.processCommand -> oiovi -> operator_visual_information;
+	end isolette.SingleSensor_Functional;
+
+	system implementation isolette.SingleSensor_EmbeddedSW extends isolette.SingleSensor_Functional
+		subcomponents
+			temperature_regulator: refined to process RegulateTemperature::Regulate_Temperature_Pr.impl {
+						Classifier_Substitution_Rule => Type_Extension;};
+			isolette_monitor: refined to process MonitorIsolette::Monitor_Isolette_pr.impl {
+						Classifier_Substitution_Rule => Type_Extension;};
+--			operator_interface: refined to system OperatorInterface::operator_interface.impl;
+	end isolette.SingleSensor_EmbeddedSW;
+
+
+end Isolette;
+

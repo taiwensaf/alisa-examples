@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="ASCII"?>
+<assure:AssuranceCaseResult xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:assure="http://www.osate.org/assure/Assure" xmlns:result="http://www.osate.org/result/Result" name="OperationalIsoletteCase">
+  <metrics successCount="5" failCount="3" errorCount="2"/>
+  <modelResult>
+    <metrics successCount="5" failCount="3" errorCount="2"/>
+    <plan href="../alisa/OperationalIsoletteCase.alisa#//@assurancePlans.0"/>
+    <target xsi:type="aadl2:SystemImplementation" href="../aadl/Isolette_Environment.aadl#Isolette_Environment.Isolette_Environment.tier1"/>
+    <claimResult>
+      <metrics failCount="1"/>
+      <targetReference>
+        <verificationPlan href="../alisa/OperationalIsolette.verify#//@contents.0"/>
+        <requirement>
+          <requirement href="../alisa/OperationalIsolette.reqspec#//@parts.0/@requirements.0"/>
+        </requirement>
+      </targetReference>
+      <modelElement xsi:type="aadl2:EndToEndFlow" href="../aadl/Isolette_Environment.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedEndToEndFlow.1"/>
+      <verificationActivityResult xsi:type="assure:VerificationActivityResult" type="FAILURE">
+        <metrics failCount="1" executionTime="337"/>
+        <analysisresult analysis="latency" message="AS-MF-DL-EQ">
+          <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#/"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <results message="Latency results for alarmResponse" resultType="FAILURE">
+            <values xsi:type="result:StringValue" value=""/>
+            <values xsi:type="result:RealValue" value="35000.0"/>
+            <values xsi:type="result:RealValue" value="55000.0"/>
+            <values xsi:type="result:RealValue" value="35000.0"/>
+            <values xsi:type="result:RealValue" value="55000.0"/>
+            <values xsi:type="result:RealValue" value="15000.0"/>
+            <values xsi:type="result:RealValue" value="15000.0"/>
+            <diagnostics diagnosticType="ERROR" message="Minimum specified flow latency total 35000.0ms exceeds expected maximum latency 15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.1"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Minimum actual latency total 35000.0ms exceeds expected maximum end to end latency 15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.1"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Maximum specified flow latency total 55000.0ms exceeds expected maximum end to end latency 15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.1"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Maximum actual latency total 55000.0ms exceeds expected maximum end to end latency 15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.1"/>
+            </diagnostics>
+            <diagnostics diagnosticType="WARNING" message="Jitter of specified latency total 35000.0..55000.0ms exceeds expected end to end latency jitter 15000.0..15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.1"/>
+            </diagnostics>
+            <diagnostics diagnosticType="WARNING" message="Jitter of actual latency total 35000.0..55000.0ms exceeds expected end to end latency jitter 15000.0..15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.1"/>
+            </diagnostics>
+            <subResults>
+              <values xsi:type="result:RealValue" value="15000.0"/>
+              <values xsi:type="result:RealValue" value="15000.0"/>
+              <values xsi:type="result:RealValue" value="15000.0"/>
+              <values xsi:type="result:RealValue" value="15000.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.3"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@connectionInstance.8"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="30000.0"/>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="30000.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.2"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@connectionInstance.5"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.1"/>
+            </subResults>
+            <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.1"/>
+          </results>
+        </analysisresult>
+        <targetReference>
+          <verificationPlan href="../alisa/OperationalIsolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/OperationalIsolette.reqspec#//@parts.0/@requirements.0"/>
+          </requirement>
+          <verificationActivity href="../alisa/OperationalIsolette.verify#//@contents.0/@claim.0/@activities.0"/>
+        </targetReference>
+      </verificationActivityResult>
+    </claimResult>
+    <claimResult>
+      <metrics failCount="1"/>
+      <targetReference>
+        <verificationPlan href="../alisa/OperationalIsolette.verify#//@contents.0"/>
+        <requirement>
+          <requirement href="../alisa/OperationalIsolette.reqspec#//@parts.0/@requirements.1"/>
+        </requirement>
+      </targetReference>
+      <modelElement xsi:type="aadl2:EndToEndFlow" href="../aadl/Isolette_Environment.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedEndToEndFlow.0"/>
+      <verificationActivityResult xsi:type="assure:VerificationActivityResult" type="FAILURE">
+        <metrics failCount="1" executionTime="128"/>
+        <analysisresult analysis="latency" message="AS-MF-DL-EQ">
+          <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#/"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <results message="Latency results for extremeAirAlarmResponse" resultType="FAILURE">
+            <values xsi:type="result:StringValue" value=""/>
+            <values xsi:type="result:RealValue" value="35001.0"/>
+            <values xsi:type="result:RealValue" value="55005.0"/>
+            <values xsi:type="result:RealValue" value="35001.0"/>
+            <values xsi:type="result:RealValue" value="55005.0"/>
+            <values xsi:type="result:RealValue" value="15000.0"/>
+            <values xsi:type="result:RealValue" value="15000.0"/>
+            <diagnostics diagnosticType="ERROR" message="Minimum specified flow latency total 35001.0ms exceeds expected maximum latency 15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.0"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Minimum actual latency total 35001.0ms exceeds expected maximum end to end latency 15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.0"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Maximum specified flow latency total 55005.0ms exceeds expected maximum end to end latency 15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.0"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Maximum actual latency total 55005.0ms exceeds expected maximum end to end latency 15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.0"/>
+            </diagnostics>
+            <diagnostics diagnosticType="WARNING" message="Jitter of specified latency total 35001.0..55005.0ms exceeds expected end to end latency jitter 15000.0..15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.0"/>
+            </diagnostics>
+            <diagnostics diagnosticType="WARNING" message="Jitter of actual latency total 35001.0..55005.0ms exceeds expected end to end latency jitter 15000.0..15000.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.0"/>
+            </diagnostics>
+            <subResults>
+              <values xsi:type="result:RealValue" value="1.0"/>
+              <values xsi:type="result:RealValue" value="5.0"/>
+              <values xsi:type="result:RealValue" value="1.0"/>
+              <values xsi:type="result:RealValue" value="5.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.0"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@connectionInstance.2"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue" value="15000.0"/>
+              <values xsi:type="result:RealValue" value="15000.0"/>
+              <values xsi:type="result:RealValue" value="15000.0"/>
+              <values xsi:type="result:RealValue" value="15000.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.3"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@connectionInstance.8"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="30000.0"/>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="30000.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.2"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@connectionInstance.5"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:RealValue" value="10000.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.1"/>
+            </subResults>
+            <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.0"/>
+          </results>
+        </analysisresult>
+        <targetReference>
+          <verificationPlan href="../alisa/OperationalIsolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/OperationalIsolette.reqspec#//@parts.0/@requirements.1"/>
+          </requirement>
+          <verificationActivity href="../alisa/OperationalIsolette.verify#//@contents.0/@claim.1/@activities.0"/>
+        </targetReference>
+      </verificationActivityResult>
+    </claimResult>
+    <claimResult>
+      <metrics failCount="1"/>
+      <targetReference>
+        <verificationPlan href="../alisa/OperationalIsolette.verify#//@contents.0"/>
+        <requirement>
+          <requirement href="../alisa/OperationalIsolette.reqspec#//@parts.0/@requirements.2"/>
+        </requirement>
+      </targetReference>
+      <modelElement xsi:type="aadl2:EndToEndFlow" href="../aadl/Isolette_Environment.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedEndToEndFlow.2"/>
+      <verificationActivityResult xsi:type="assure:VerificationActivityResult" type="FAILURE">
+        <metrics failCount="1" executionTime="105"/>
+        <analysisresult analysis="latency" message="AS-MF-DL-EQ">
+          <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#/"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <parameters value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001"/>
+          <results message="Latency results for operatorCommandResponse" resultType="FAILURE">
+            <values xsi:type="result:StringValue" value=""/>
+            <values xsi:type="result:RealValue" value="610.0"/>
+            <values xsi:type="result:RealValue" value="630.0"/>
+            <values xsi:type="result:RealValue" value="610.0"/>
+            <values xsi:type="result:RealValue" value="630.0"/>
+            <values xsi:type="result:RealValue" value="500.0"/>
+            <values xsi:type="result:RealValue" value="500.0"/>
+            <diagnostics diagnosticType="ERROR" message="Minimum specified flow latency total 610.0ms exceeds expected maximum latency 500.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.2"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Minimum actual latency total 610.0ms exceeds expected maximum end to end latency 500.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.2"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Maximum specified flow latency total 630.0ms exceeds expected maximum end to end latency 500.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.2"/>
+            </diagnostics>
+            <diagnostics diagnosticType="ERROR" message="Maximum actual latency total 630.0ms exceeds expected maximum end to end latency 500.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.2"/>
+            </diagnostics>
+            <diagnostics diagnosticType="WARNING" message="Jitter of specified latency total 610.0..630.0ms exceeds expected end to end latency jitter 500.0..500.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.2"/>
+            </diagnostics>
+            <diagnostics diagnosticType="WARNING" message="Jitter of actual latency total 610.0..630.0ms exceeds expected end to end latency jitter 500.0..500.0ms">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.2"/>
+            </diagnostics>
+            <subResults>
+              <values xsi:type="result:RealValue" value="100.0"/>
+              <values xsi:type="result:RealValue" value="100.0"/>
+              <values xsi:type="result:RealValue" value="100.0"/>
+              <values xsi:type="result:RealValue" value="100.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.2"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@connectionInstance.4"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue" value="500.0"/>
+              <values xsi:type="result:RealValue" value="500.0"/>
+              <values xsi:type="result:RealValue" value="500.0"/>
+              <values xsi:type="result:RealValue" value="500.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.3"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:RealValue"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <values xsi:type="result:StringValue" value="no latency"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@connectionInstance.7"/>
+            </subResults>
+            <subResults>
+              <values xsi:type="result:RealValue" value="10.0"/>
+              <values xsi:type="result:RealValue" value="30.0"/>
+              <values xsi:type="result:RealValue" value="10.0"/>
+              <values xsi:type="result:RealValue" value="30.0"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <values xsi:type="result:StringValue" value="specified"/>
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.2"/>
+            </subResults>
+            <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@endToEndFlow.2"/>
+          </results>
+        </analysisresult>
+        <targetReference>
+          <verificationPlan href="../alisa/OperationalIsolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/OperationalIsolette.reqspec#//@parts.0/@requirements.2"/>
+          </requirement>
+          <verificationActivity href="../alisa/OperationalIsolette.verify#//@contents.0/@claim.2/@activities.0"/>
+        </targetReference>
+      </verificationActivityResult>
+    </claimResult>
+    <subsystemResult>
+      <metrics/>
+      <targetSystem xsi:type="aadl2:AbstractSubcomponent" href="../aadl/Isolette_Environment.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedAbstractSubcomponent.0"/>
+    </subsystemResult>
+    <subsystemResult>
+      <metrics/>
+      <targetSystem xsi:type="aadl2:AbstractSubcomponent" href="../aadl/Isolette_Environment.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedAbstractSubcomponent.1"/>
+    </subsystemResult>
+    <subsystemResult>
+      <metrics/>
+      <targetSystem xsi:type="aadl2:AbstractSubcomponent" href="../aadl/Isolette_Environment.aadl#//@ownedPublicSection/@ownedClassifier.4/@ownedAbstractSubcomponent.2"/>
+    </subsystemResult>
+    <subsystemResult>
+      <metrics successCount="5" errorCount="2"/>
+      <targetSystem xsi:type="aadl2:SystemSubcomponent" href="../aadl/Isolette_Environment.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedSystemSubcomponent.0"/>
+      <claimResult>
+        <metrics successCount="1"/>
+        <targetReference>
+          <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.1"/>
+          </requirement>
+        </targetReference>
+        <predicateResult xsi:type="assure:PredicateResult" type="SUCCESS">
+          <metrics successCount="1"/>
+          <targetReference>
+            <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+            <requirement>
+              <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.1"/>
+            </requirement>
+          </targetReference>
+        </predicateResult>
+      </claimResult>
+      <claimResult>
+        <metrics successCount="1"/>
+        <targetReference>
+          <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.2"/>
+          </requirement>
+        </targetReference>
+        <predicateResult xsi:type="assure:PredicateResult" type="SUCCESS">
+          <metrics successCount="1"/>
+          <targetReference>
+            <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+            <requirement>
+              <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.2"/>
+            </requirement>
+          </targetReference>
+        </predicateResult>
+      </claimResult>
+      <claimResult>
+        <metrics errorCount="2"/>
+        <targetReference>
+          <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.6"/>
+          </requirement>
+        </targetReference>
+        <verificationActivityResult xsi:type="assure:VerificationActivityResult" type="ERROR">
+          <metrics errorCount="1" executionTime="14"/>
+          <analysisresult analysis="FTA">
+            <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.3"/>
+            <parameters value="ACED000574000C7374617465206661696C6564"/>
+            <results message="Fault tree analysis failed to run" resultType="ERROR">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.3"/>
+            </results>
+          </analysisresult>
+          <targetReference>
+            <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+            <requirement>
+              <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.6"/>
+            </requirement>
+            <verificationActivity href="../alisa/Isolette.verify#//@contents.0/@claim.2/@activities.0"/>
+          </targetReference>
+        </verificationActivityResult>
+        <verificationActivityResult xsi:type="assure:VerificationActivityResult" type="ERROR">
+          <metrics errorCount="1" executionTime="20"/>
+          <analysisresult analysis="FTA">
+            <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.3"/>
+            <parameters value="ACED000574003F6F7574676F696E672070726F7061676174696F6E206F6E20696E66616E744578706F737572657B44616E6765726F7573496E66616E744578706F737572657D"/>
+            <results message="Fault tree analysis failed to run" resultType="ERROR">
+              <modelElement href="../aadl/instances/Isolette_Environment_Isolette_Environment_tier1_Instance.aaxl2#//@componentInstance.3"/>
+            </results>
+          </analysisresult>
+          <targetReference>
+            <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+            <requirement>
+              <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.6"/>
+            </requirement>
+            <verificationActivity href="../alisa/Isolette.verify#//@contents.0/@claim.2/@activities.1"/>
+          </targetReference>
+        </verificationActivityResult>
+      </claimResult>
+      <claimResult>
+        <metrics successCount="1"/>
+        <targetReference>
+          <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.3"/>
+          </requirement>
+        </targetReference>
+        <modelElement xsi:type="aadl2:FlowSpecification" href="../aadl/Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.1"/>
+        <verificationActivityResult xsi:type="assure:VerificationActivityResult" type="SUCCESS">
+          <metrics successCount="1" executionTime="72"/>
+          <results message="Latency of command_response must be 500 ms and is 500 ms" resultType="SUCCESS">
+            <modelElement href="../resolute/Resolute_Isolette.aadl#Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Max_Latency_Value"/>
+          </results>
+          <targetReference>
+            <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+            <requirement>
+              <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.3"/>
+            </requirement>
+            <verificationActivity href="../alisa/Isolette.verify#//@contents.0/@claim.3/@activities.0"/>
+          </targetReference>
+        </verificationActivityResult>
+      </claimResult>
+      <claimResult>
+        <metrics successCount="1"/>
+        <targetReference>
+          <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.4"/>
+          </requirement>
+        </targetReference>
+        <modelElement xsi:type="aadl2:FlowSpecification" href="../aadl/Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
+        <verificationActivityResult xsi:type="assure:VerificationActivityResult" type="SUCCESS">
+          <metrics successCount="1" executionTime="23"/>
+          <results message="Latency of raise_alarm must be 15000 ms and is 15000 ms" resultType="SUCCESS">
+            <modelElement href="../resolute/Resolute_Isolette.aadl#Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Max_Latency_Value"/>
+          </results>
+          <targetReference>
+            <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+            <requirement>
+              <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.4"/>
+            </requirement>
+            <verificationActivity href="../alisa/Isolette.verify#//@contents.0/@claim.4/@activities.0"/>
+          </targetReference>
+        </verificationActivityResult>
+      </claimResult>
+      <claimResult>
+        <metrics successCount="1"/>
+        <targetReference>
+          <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.5"/>
+          </requirement>
+        </targetReference>
+        <modelElement xsi:type="aadl2:FlowSpecification" href="../aadl/Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.2"/>
+        <verificationActivityResult xsi:type="assure:VerificationActivityResult" type="SUCCESS">
+          <metrics successCount="1" executionTime="20"/>
+          <results message="Latency of extreme_air_alarm must be 15000 ms and is 15000 ms" resultType="SUCCESS">
+            <modelElement href="../resolute/Resolute_Isolette.aadl#Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Max_Latency_Value"/>
+          </results>
+          <targetReference>
+            <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+            <requirement>
+              <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.5"/>
+            </requirement>
+            <verificationActivity href="../alisa/Isolette.verify#//@contents.0/@claim.5/@activities.0"/>
+          </targetReference>
+        </verificationActivityResult>
+      </claimResult>
+      <claimResult>
+        <metrics/>
+        <targetReference>
+          <verificationPlan href="../alisa/Isolette.verify#//@contents.0"/>
+          <requirement>
+            <requirement href="../alisa/Isolette.reqspec#//@parts.0/@requirements.0"/>
+          </requirement>
+        </targetReference>
+      </claimResult>
+    </subsystemResult>
+  </modelResult>
+</assure:AssuranceCaseResult>

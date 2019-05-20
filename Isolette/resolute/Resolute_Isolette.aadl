@@ -1,0 +1,299 @@
+-- Copyright 2018 Carnegie Mellon University. See Notice.txt
+-- Distribution Statement A: Approved for Public Release; Distribution is Unlimited.
+package Resolute_Isolette
+public
+	annex Resolute {**
+
+ 
+ 	is_Max_Latency_Value(me: aadl, lat: int)<=
+	** "Latency of " me " must be " lat%ms " and is " ublat%ms **
+		let ublat : int = (int)upper_bound(property (me, Communication_Properties::Latency));
+ 		if has_property(me, Communication_Properties::Latency) then ublat = lat
+ 		else false
+
+ is_Valid(cp: aadl)<=
+	**  cp " has validated data" **
+ 		if has_property(cp, Isolette_Properties::Validity) then property (cp, Isolette_Properties::Validity) = "Valid"
+ 		else false
+
+
+	is_Measured_Temperature(cp:port)<=
+	** "Data type of " cp " must be MeasuredTemp" **
+	type(cp) = Isolette_Data_Model.MeasuredTemp
+ 
+ 	is_Element_Fahrenheit(c: component, p: aadl)<=
+	** "Measurement unit of " p " in " c " must be Fahrenheit" **
+ 		if has_property(c, Data_Model::Measurement_Unit) then property (c, Data_Model::Measurement_Unit) = "Fahrenheit"
+ 		else false
+ 
+  
+ 	is_Fahrenheit(cp: port)<=
+	** "Measurement unit of " cp " must be Fahrenheit" **
+ 		if has_property(cp, Data_Model::Measurement_Unit) then property (cp, Data_Model::Measurement_Unit) = "Fahrenheit"
+ 		else false
+ 
+ 	temperature_Accuracy_IsOne(cp: port)<=
+	** "Temperature accuracy of " cp " must be 1.0 deg F" **
+ 		if has_Temperature_Accuracy(cp) then 
+ 		property (cp, Isolette_Properties::Temperature_Accuracy)= 1.0 
+ 		else false
+ 
+ 	element_temperature_Accuracy_IsOne(c: component, p: aadl)<=
+	** "Temperature accuracy of " p " of "" must be 1.0 deg F" **
+ 		if has_Temperature_Accuracy(p) then 
+ 		property (p, Isolette_Properties::Temperature_Accuracy)= 1.0 
+ 		else false
+
+ 	temperature_Accuracy_IsPointOne(cp: port)<=
+	** "Temperature accuracy of " cp " must be 0.1 deg F" **
+ 		if has_Temperature_Accuracy(cp) then 
+ 		property (cp, Isolette_Properties::Temperature_Accuracy)= 0.1 
+ 		else false
+
+ 	
+    is_Within_Integer_Range(cp: port, lb: int, ub: int) <=
+	** "Value range of " cp " must be " lb " .. " ub **
+ 	if has_Integer_Range(cp) then
+ 		let rr : range = get_Integer_Range(cp);
+		(int)lower_bound(rr)  = lb and (int)upper_bound(rr) = ub
+	else 
+		false
+ 
+    within_IntegerRange_LowerBound(cp: aadl,  lb: int) <=
+	** "Specified lower bound " lb " <= lower bound of " cp " Integer_Range "rrlb **
+ 	if has_Integer_Range(cp) then
+ 		let rrlb: int = (int)lower_bound(get_Integer_Range(cp));
+		lb <= rrlb
+	else 
+		false
+
+ 
+    within_IntegerRange_UpperBound(cp: port,  ub: int) <=
+	** "Upper bound of " cp " Integer_Range "rrub" <= specified upper bound" ub **
+ 	if has_Integer_Range(cp) then
+ 		let rrub: int = (int)upper_bound(get_Integer_Range(cp));
+		rrlb <= lb
+	else 
+		false
+ 
+    within_RealRange_LowerBound(cp: aadl,  lb: real) <=
+	** "Specified lower bound " lb " <= lower bound of " cp " Real_Range "rrlb **
+ 	if has_Real_Range(cp) then
+ 		let rrlb: real = (real)lower_bound(get_Real_Range(cp));
+		lb <= rrlb
+	else 
+		false
+ 
+    within_RealRange_UpperBound(cp: aadl,  ub: real) <=
+	** "Upper bound of " cp " Real_Range "rrub" <= specified upper bound" ub **
+ 	if has_Real_Range(cp) then
+ 		let rrub: real = (real)upper_bound(get_Real_Range(cp));
+		rrlb <= lb
+	else 
+		false
+	
+	ranges_Within_Bounds(c: component, ldb : aadl, ldbv: int, udb: aadl, udbv : int, lab: aadl, labv: int, uab: aadl, uabv : int) <=
+	** "Component "c" Alarm and Desired bound ranges within specified bounds." **
+	-- 	"Each value range:  LAB <= lb(LABR) and up(UABR) <= UAB and LDB <= lb(LDBR) and up(UDBR) <= UDB"
+	within_IntegerRange_LowerBound(lab, labv) and within_IntegerRange_LowerBound(uab, uabv) 
+	and within_IntegerRange_LowerBound(ldb, ldbv) and within_IntegerRange_LowerBound(udb, udbv)
+
+	consistent_Ranges(c: component, ldb : aadl, udb: aadl, lab: aadl, uab: aadl) <=
+	** "Component "c" Alarm and Desired range lower bound < upper bound." **
+	-- 	"Each value range:  lb(LABR) < up(LABR) and lb(LDBR) < up(LDBR) and lb(UABR) < up(UABR) and lb(UDBR) < up(UDBR)"
+	-- "Each Lower Bound vs Upper Bound range: LBR < UBR : lb(LBR) < lb(UBR) and ub(LBR) < ub(UBR) "
+	consistent_IntegerRange(lab) and consistent_IntegerRange(uab) 
+	and consistent_IntegerRange(ldb) and consistent_IntegerRange(udb)
+	and integerrange_Less_IntegerRange(ldb, udb) and integerrange_Less_IntegerRange(lab, uab)
+
+ 
+	desired_Ranges_Within_Alarm_Ranges(c: component, ldb : aadl, udb: aadl, lab: aadl, uab: aadl) <=
+	** "Component "c" Desired range contained in Alarm range." **
+	-- 	"Desired within Alarm:  LABR < LDBR and UDBR < UABR"
+	integerrange_Less_IntegerRange(lab, ldb) and integerrange_Less_IntegerRange(udb, uab)
+ 
+    consistent_IntegerRange(mel: aadl) <=
+	**  mel " Real_Range lower bound " mellb " < upper bound " melub **
+ 		let mellb : int = (int) lower_bound(get_Integer_Range(mel));
+ 		let melub : int = (int) upper_bound(get_Integer_Range(mel));
+		mellb < melub
+
+    integerrange_Less_IntegerRange(lbp: aadl, ubp: aadl) <=
+	**  lbp " lower and upper bound < " ubp " < lower and upper bound" **
+ 		let lbr: range = get_Integer_Range(lbp);
+ 		let ubr: range = get_Integer_Range(ubp);
+		(int)lower_bound(lbr) < (int)lower_bound(ubr) and (int)upper_bound(lbr) < (int)upper_bound(ubr)
+	
+	is_Consistent_Connection_IntegerRange(conn: connection) <=
+	** "Value range must be the same for sender and receiver of connection " nName **
+	let nName : string = name(conn);
+	let src : aadl = source(conn);
+	let dst: aadl = destination(conn);
+	is_Consistent_IntegerRange(src, dst)
+		
+	is_Consistent_Connection_RealRange(conn: connection) <=
+	** "Value range must be the same for sender and receiver of connection " nName **
+	let nName : string = name(conn);
+	let src : aadl = source(conn);
+	let dst: aadl = destination(conn);
+	is_Consistent_RealRange(src, dst)
+		
+  	is_Type_Valid_Flag(cp: port)<=
+	** "Type of " cp " is Valid_flag" **
+ 		type(cp) = Isolette_Data_Model::Valid_Flag
+
+ 	is_Type_On_Off(cp: port)<=
+	** "Type of " cp " is On_off" **
+ 		type(cp) = Isolette_Data_Model::On_Off
+
+ 	components_Are_Connected(p: component, c1: aadl, c2: aadl)<=
+	** "Component " c1 " and " c2 " are connected." **
+ 		are_connected(c1, c2)
+
+ 	components_Are_Not_Connected(p: component, c1: aadl, c2: aadl)<=
+	** "Component " c1 " and " c2 " are not connected." **
+ 		not are_connected(c1, c2)
+ 		
+ 	assert_True (el: aadl) <=
+ 		** "assert true" **
+ 		true
+
+
+ 	have_common_bound_processor(p: component, c1: aadl, c2: aadl)<=
+	** "Component " c1 " and " c2 " are bound to the same processor." **
+	let common: {component} = common_bound_processor(c1, c2);
+ 		size(common) > 0
+
+ 	have_no_common_bound_processor(p: component, c1: aadl, c2: aadl)<=
+	** "Component " c1 " and " c2 " are not bound to the same processor." **
+	let common: {component} = common_bound_processor(c1, c2);
+ 		size(common) = 0
+
+	is_Periodic(c: component) <=
+	** "Component " c " is periodic" **
+	if has_property(c, Dispatch_Protocol)
+	then property(c, Dispatch_Protocol) = "Periodic"
+	else false
+
+	is_Aperiodic(c: component) <=
+	** "Component " c " is aperiodic" **
+	if has_property(c, Dispatch_Protocol)
+	then property(c, Dispatch_Protocol) = "Aperiodic"
+	else false
+
+	is_EventDataPort(p: port) <=
+	** "Port " p " is event data" **
+	p instanceof event_data_port
+
+	is_DataPort(p: port) <=
+	** "Port " p " is data" **
+	p instanceof data_port
+
+	is_TriggeringPort(p: port) <=
+	** "Port " p " triggers aperiodic component" **
+	is_Aperiodic(containing_component(p))
+
+	is_SampledPort(p: port) <=
+	** "Port " p " is sampled by periodic component" **
+	is_Periodic(containing_component(p))
+
+	is_Port_Output_Rate(p: port, interval : int) <=
+	** "Port " p " sends output every " interval **
+		is_Periodic(containing_component(p))
+	and property(containing_component(p), Period,0 sec) = interval
+
+	is_Triggering_EventDataPortConnection(c: connection) <=
+	** "Connection " c " messages trigger receiver" **
+	is_event_data_port_connection(c) and is_Aperiodic(destination_component(c))
+
+	is_Sampled_DataPortConnection(c: connection) <=
+	** "Connection  " c " data is sampled by receiver" **
+	is_data_port_connection(c) and is_Periodic(destination_component(c))
+	
+
+	guarantees_Delivery(c: connection) <=
+	** "Connection  " c " requires guaranteed delivery" **
+	let hw : {component} = connection_bound_hardware(c);
+	if size(hw) = 0 then
+		is_GuaranteedDelivery(c)
+	else 
+		forall(hwc : hw). is_GuaranteedDelivery(hwc)
+
+
+
+	is_GuaranteedDelivery (c:aadl) : bool =
+	member("GuaranteedDelivery",property(c,Deployment_Properties::Required_Connection_Quality_Of_Service,[""]))
+	or 	member("GuaranteedDelivery",property(c,Deployment_Properties::Provided_Connection_Quality_Of_Service,[""]))
+	
+
+	has_Temperature_Accuracy (cp:aadl) : bool =
+	has_property(cp, Isolette_Properties::Temperature_Accuracy)
+
+	has_Measurement_Unit (cp:aadl) : bool =
+	has_property(cp, Data_Model::Measurement_Unit)
+
+    get_Measurement_Unit(cp: aadl) : string = 
+ 	property (cp, Data_Model::Measurement_Unit)
+ 	
+
+	has_Real_Range (cp:aadl) : bool =
+	has_property(cp, Data_Model::Real_Range)
+
+    get_Real_Range(cp: aadl) :  range  = 
+ 	property (cp, Data_Model::Real_Range) 
+
+	has_Integer_Range (cp:aadl) : bool =
+	has_property(cp, Data_Model::Integer_Range)
+
+    get_Integer_Range(cp: aadl) :  range  = 
+ 	property (cp, Data_Model::Integer_Range) 
+
+is_Consistent_IntegerRange(me1: aadl, me2: aadl): bool =
+	if has_Integer_Range(me1) and has_Integer_Range(me2)
+	then
+	let me1r : range = get_Integer_Range(me1);
+	let me2r : range = get_Integer_Range(me2);
+	(int)lower_bound(me1r) = (int)lower_bound(me2r) and
+	(int)upper_bound(me1r) = (int)upper_bound(me2r)
+	else 
+	 false
+
+is_Consistent_RealRange(me1: aadl, me2: aadl): bool =
+	if has_Real_Range(me1) and has_Integer_Range(me2)
+	then
+	let me1r : range = get_Real_Range(me1);
+	let me2r : range = get_Real_Range(me2);
+	(real)lower_bound(me1r) = (real)lower_bound(me2r) and
+	(real)upper_bound(me1r) = (real)upper_bound(me2r)
+	else 
+	 false
+
+	 
+	 get_Subcomponent(pc: component, subname: string): component =
+	 let subs : {component} = subcomponents(pc);
+	 let filtered :{component} = {cn for  (cn:subs) | name(cn) = subname};
+	 if size(filtered) > 0 
+	 then
+	 	head(as_list(filtered))
+	 else
+	 pc
+
+	 
+	 get_Feature(pc: component, cp: feature, subname: string): feature =
+	 let subs : {feature} = features(pc);
+	 let filtered :{feature} = {cn for  (cn:subs) | name(cn) = subname};
+	 if size(filtered) > 0 
+	 then
+	 	head(as_list(filtered))
+	 else
+	 cp
+	 
+	common_bound_processor(c1: aadl, c2: aadl): {component} =
+	let pc1: {component} = bound_processors(c1);
+	let pc2: {component} = bound_processors(c2);
+	intersect(pc1, pc2)
+ 	 
+
+		
+	**};
+end Resolute_Isolette;
