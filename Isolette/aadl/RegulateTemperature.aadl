@@ -40,10 +40,11 @@ public
 --				lower_desired_temp: in propagation {InvalidTemperature};
 --				valid_current_temp: out propagation {InvalidTemperature};
 --				regulator_status: out propagation {RegulatorStatusError};
-				current_temp: in propagation {SensorError};
+				current_temp: in propagation {SensorError,OutOfRange};
 				heat_control: out propagation {RegulatorError};
 			flows
---				badTempControl : error path current_temp{SensorError} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
+--				missingSensorReadins : error path current_temp{SensorError} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
+				respondwithheater: error sink current_temp{OutOfRange};
 				regulatorFails : error source heat_control{RegulatorError}; -- Intenral regaulator error
 --				badDesired : error path lower_desired_temperature{InvalidTemperature} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
 			end propagations;

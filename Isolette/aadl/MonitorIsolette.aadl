@@ -35,16 +35,16 @@ annex EMV2
     use types ErrorLibrary, isoletteEM;
     use behavior IsoletteEM::FailStop;
   	error propagations
-  		current_temp: in propagation {SensorError};
+  		current_temp: in propagation {SensorError, OutOfRange};
   		alarm_control: out propagation {MonitorError};
   	flows
   		badMonitor: error source alarm_control {MonitorError};
-  		badTemp: error path current_temp{SensorError} -> alarm_control {MonitorError}; 
+  		badTemp: error path current_temp{OutOfRange,SensorError} -> alarm_control {MonitorError}; 
   end propagations;
   component error behavior
   propagations
-  	working -[current_temp{SensorError}]-> alarm_control{noerror};
-  	failed -[current_temp{SensorError}]-> alarm_control{MonitorError};
+  	working -[current_temp{SensorError,OutOfRange}]-> alarm_control{noerror};
+  	failed -[current_temp{SensorError,OutOfRange}]-> alarm_control{MonitorError};
   end component;
   properties
       EMV2::OccurrenceDistribution => [ProbabilityValue =>  Isolette_Constants::IsoletteMonitorFailureRateValue ;] 

@@ -38,10 +38,10 @@ public
 			Dispatch_Protocol => Periodic; -- jab
 			Period => 1 sec; -- jab  
 		annex EMV2 {**
-			use types IsoletteEM;
+			use types IsoletteEM, ErrorLibrary;
 			use behavior IsoletteEM::FailStop;
 			error propagations
-				current_temp: out propagation {SensorError};
+				current_temp: out propagation {SensorError, OutOfRange};
 				heaterEffect: in propagation {HeaterError};
 			-- may deliver bad or no reading without being aware of it.
 				flows
