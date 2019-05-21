@@ -17,7 +17,7 @@ public
 			upper_alarm_temp: in data port Isolette_Data_Model::upper_alarm_temperature;
 					-- ===== OUTPUTs (controlled variables)  ...based in part on Figure A.2 and Table A.6
 					-- control signal (on/off) to alarm component 
-			alarm_control: out data port Isolette_Data_Model::On_Off;
+			alarm_control: out event data port Isolette_Data_Model::On_Off;
 					-- enumerated type describing status/mode of monitor (Init, On/operating, or Failed)
 			monitor_status: out data port Isolette_Data_Model::Status;
 			regulator_status: out data port Isolette_Data_Model::Status;

@@ -80,7 +80,7 @@ verification methods ResoluteIsolette [
 	]
 	
 		
-		method IsConsistentConnectionRealRange (connection):	"Connection integer value range " [
+		method IsConsistentConnectionRealRange (connection):	"Connection real value range " [
 		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Consistent_Connection_RealRange
 	]
 

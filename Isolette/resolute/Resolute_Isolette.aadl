@@ -23,11 +23,10 @@ public
  
  	is_Element_Fahrenheit(c: component, p: aadl)<=
 	** "Measurement unit of " p " in " c " must be Fahrenheit" **
- 		if has_property(c, Data_Model::Measurement_Unit) then property (c, Data_Model::Measurement_Unit) = "Fahrenheit"
- 		else false
+ 		is_Fahrenheit(p)
  
   
- 	is_Fahrenheit(cp: port)<=
+ 	is_Fahrenheit(cp: aadl)<=
 	** "Measurement unit of " cp " must be Fahrenheit" **
  		if has_property(cp, Data_Model::Measurement_Unit) then property (cp, Data_Model::Measurement_Unit) = "Fahrenheit"
  		else false
@@ -68,7 +67,7 @@ public
 		false
 
  
-    within_IntegerRange_UpperBound(cp: port,  ub: int) <=
+    within_IntegerRange_UpperBound(cp: aadl,  ub: int) <=
 	** "Upper bound of " cp " Integer_Range "rrub" <= specified upper bound" ub **
  	if has_Integer_Range(cp) then
  		let rrub: int = (int)upper_bound(get_Integer_Range(cp));
@@ -95,8 +94,8 @@ public
 	ranges_Within_Bounds(c: component, ldb : aadl, ldbv: int, udb: aadl, udbv : int, lab: aadl, labv: int, uab: aadl, uabv : int) <=
 	** "Component "c" Alarm and Desired bound ranges within specified bounds." **
 	-- 	"Each value range:  LAB <= lb(LABR) and up(UABR) <= UAB and LDB <= lb(LDBR) and up(UDBR) <= UDB"
-	within_IntegerRange_LowerBound(lab, labv) and within_IntegerRange_LowerBound(uab, uabv) 
-	and within_IntegerRange_LowerBound(ldb, ldbv) and within_IntegerRange_LowerBound(udb, udbv)
+	within_IntegerRange_LowerBound(lab, labv) and within_IntegerRange_UpperBound(uab, uabv) 
+	and within_IntegerRange_LowerBound(ldb, ldbv) and within_IntegerRange_UpperBound(udb, udbv)
 
 	consistent_Ranges(c: component, ldb : aadl, udb: aadl, lab: aadl, uab: aadl) <=
 	** "Component "c" Alarm and Desired range lower bound < upper bound." **
@@ -258,8 +257,8 @@ is_Consistent_IntegerRange(me1: aadl, me2: aadl): bool =
 	else 
 	 false
 
-is_Consistent_RealRange(me1: aadl, me2: aadl): bool =
-	if has_Real_Range(me1) and has_Integer_Range(me2)
+is_Consistent_RealRange(me1: aadl, me2: aadl) <= ** "sender " me1 " and receiver " me2 " ranges"**
+	if has_Real_Range(me1) and has_Real_Range(me2)
 	then
 	let me1r : range = get_Real_Range(me1);
 	let me2r : range = get_Real_Range(me2);

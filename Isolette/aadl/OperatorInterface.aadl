@@ -51,6 +51,7 @@ package OperatorInterface
 				-- may deliver no sound or erroneous sound
 				flows
 					alarmfails: error source alarm_sound{AlarmError};
+					badAlarm: error path alarm_control{MonitorError}-> alarm_sound{AlarmError};
 					badTemp: error path valid_current_temp{RegulatorError}-> operator_visual_information{DisplayError};
 			end propagations;
 			properties

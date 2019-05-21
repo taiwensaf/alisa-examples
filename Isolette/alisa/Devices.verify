@@ -43,7 +43,8 @@ claim REQ_TS_1 [
 	]
 
 	claim REQ_TS_3 [
-// 		value predicate TemperatureUnitUnitProperty == "Fahrenheit"
+	activities
+		isFahrenheitvct: ResoluteIsolette.IsFahrenheit()
 	]
 
 	claim REQ_TS_4 [

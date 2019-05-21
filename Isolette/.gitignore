@@ -1,5 +1,5 @@
 /.aadlbin-gen/
-/instances/
+aadl/instances/
 *.emfta
 *.aird
 /assure/

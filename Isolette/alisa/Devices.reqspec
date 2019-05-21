@@ -68,8 +68,6 @@ system requirements TemperatureSensorReqs for Devices::Temperature_Sensor [
 		description "The sensor shall provide a temperature reading in units of Fahrenheit" 
  		category Kind.Assumption
  		decomposes IsoletteReqs.REQ_GL1_Fahrenheit
- 		// check unit is Fahrenheit
- 		value predicate TemperatureUnitProperty == "Fahrenheit"
 	]
 
 	requirement REQ_TS_4 for current_temp [
@@ -89,11 +87,10 @@ system requirements TemperatureSensorReqs for Devices::Temperature_Sensor [
 		]
 
 	requirement REQ_TS_S1  [ 
-		val TemperatureSensorFailureRate = 3.0E-10
+		val TemperatureSensorFailureRate = #Isolette_Constants::TemperatureSensorFailureRateValue
 		description "The temperature sensor has a failure rate of less than " TemperatureSensorFailureRate
 		rationale "Affordable temperature sensor."
 //		see goal IsoletteGoals.COST_1
-		value predicate #Isolette_Constants::TemperatureSensorFailureRateValue <= TemperatureSensorFailureRate
 	]
 ]
 

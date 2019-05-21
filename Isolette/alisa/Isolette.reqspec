@@ -3,7 +3,6 @@ system requirements IsoletteReqs for Isolette::isolette  [
 	requirement REQ_GL1_Fahrenheit [
 		description "All temperature measurements are in Fahrenheit."
 		category Kind.Constraint
-		val TemperatureUnitProperty = #Data_Model::Measurement_Unit
 	]
 
 // environmental assumptions

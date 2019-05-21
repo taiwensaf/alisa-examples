@@ -50,7 +50,7 @@ system requirements MonitorIsoletteReqs for MonitorIsolette::Monitor_Isolette  [
 	]
 	
 	requirement _REQ_MI_S3 for detectTempOOR [ 
-	val MaxAlarmLatency = 1.0 sec // Isolette Monitor operates at 1 sec rate
+	val MaxAlarmLatency = 1 sec // Isolette Monitor operates at 1 sec rate
 	description "The Isolette shall include an independent monitor function that responds with an alarm within " MaxAlarmLatency
 		// ensure latency value on flow spec
 	]

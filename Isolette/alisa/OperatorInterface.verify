@@ -11,7 +11,7 @@ claim REQ_GL1_Fahrenheit [
 
 claim REQ_GL2_OneDegreeFahrenheit [
 	activities
-		isOnevct: ResoluteIsolette.ElementTemperatureAccuracyOne(this.valid_current_temp)
+		isOnevct: ResoluteIsolette.ElementTemperatureAccuracyOne(this.valid_current_temp) // this one should fail
 		isOneovi: ResoluteIsolette.ElementTemperatureAccuracyOne(this.operator_visual_information)
 		isOneldt: ResoluteIsolette.ElementTemperatureAccuracyOne(this.lower_desired_temp)
 		isOneudt: ResoluteIsolette.ElementTemperatureAccuracyOne(this.upper_desired_temp)

@@ -126,6 +126,9 @@ OperatorInterface;
 			-- Figure 5 HB: parts & monitor alarm (see thermostat)
 				CompositeFailed:[1 ormore (temperature_regulator.failed, temperature_sensor.failed, heat_source.Failed, operator_interface.Failed ) ]-> Failed;
 			end composite;
+			propagation paths
+				heaterErrorEffect: heat_source.heat_out -> temperature_sensor.heaterEffect;
+			end paths;
 		**};
 	end isolette.SingleSensor_FunctionalParts;
 	
@@ -152,11 +155,13 @@ OperatorInterface;
 		flows
 			raise_alarm: flow source temperature_sensor -> ctm -> isolette_monitor.detectTempOOR -> al -> operator_interface.enableAlarmSound -> oioa -> alarm_sound;
 			extreme_air_alarm: flow path air_temperature -> a2ts -> temperature_sensor.air_temp_reading -> ctm -> isolette_monitor.detectTempOOR -> al -> operator_interface.enableAlarmSound -> oioa -> alarm_sound;
+		properties
+			Required_Connection_Quality_Of_Service => (GuaranteedDelivery) applies to al;
 		annex EMV2 {**
 			use behavior IsoletteEM::FailStop;
 			component error behavior
 			propagations
-			outprop: working -[ 1 ormore(heat_source.heat_out{HeaterError},operator_interface.alarm_sound{AlarmError})]-> infantExposure{DangerousInfantExposure};
+			outprop: working -[ 1 ormore(operator_interface.alarm_sound{AlarmError})]-> infantExposure{DangerousInfantExposure};
 --			all -[ heat_source.heat_out{HeaterError}]-> heat_out{HeaterError};
 			end component;
 			composite error behavior

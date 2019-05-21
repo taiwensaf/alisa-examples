@@ -42,10 +42,15 @@ public
 			use behavior IsoletteEM::FailStop;
 			error propagations
 				current_temp: out propagation {SensorError};
+				heaterEffect: in propagation {HeaterError};
 			-- may deliver bad or no reading without being aware of it.
 				flows
 					sensorfails: error source current_temp{SensorError};
+					overheat: error path heaterEffect{HeaterError} -> current_temp{SensorError};
 			end propagations;
+			propagation paths
+				heaterEffect: propagation point;
+			end paths;
 			properties
 				EMV2::OccurrenceDistribution => [
 							ProbabilityValue => Isolette_Constants::TemperatureSensorFailureRateValue;]
