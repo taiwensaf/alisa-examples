@@ -46,7 +46,7 @@ public
 			-- may deliver bad or no reading without being aware of it.
 				flows
 					sensorfails: error source current_temp{SensorError};
-					overheat: error path heaterEffect{HeaterError} -> current_temp{SensorError};
+					overheat: error path heaterEffect{HeaterError} -> current_temp{OutOfRange};
 			end propagations;
 			propagation paths
 				heaterEffect: propagation point;
