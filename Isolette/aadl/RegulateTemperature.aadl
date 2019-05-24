@@ -45,8 +45,7 @@ public
 			flows
 				missingSensorReading : error path current_temp{SensorError} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
 				respondwithheater: error sink current_temp{OutOfRange};
-				regulatorFails : error source heat_control{RegulatorError}; -- Intenral regaulator error
---				badDesired : error path lower_desired_temperature{InvalidTemperature} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
+				regulatorFails : error source heat_control{RegulatorError}; -- Internal regaulator error
 			end propagations;
   		properties
   	      EMV2::OccurrenceDistribution => [ProbabilityValue => Isolette_Constants::TemperatureRegulatorFailureRateValue; ]
@@ -55,7 +54,15 @@ public
 	end Regulate_Temperature;
 	
 	process Regulate_Temperature_Pr extends Regulate_Temperature
-		
+		annex EMV2 {**
+			use types  isoletteEM;
+			
+			error propagations
+				processor: in propagation {CPUError};
+			flows
+				badCPU: error path processor {CPUError} -> heat_control {RegulatorError};
+			end propagations;
+		**};
 	end Regulate_Temperature_Pr;
 
 --@description process implementation that holds threads that regulate air temperature

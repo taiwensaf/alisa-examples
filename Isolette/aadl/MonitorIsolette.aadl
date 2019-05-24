@@ -43,8 +43,8 @@ annex EMV2
   end propagations;
   component error behavior
   propagations
-  	working -[current_temp{SensorError,OutOfRange}]-> alarm_control{noerror};
-  	failed -[current_temp{SensorError,OutOfRange}]-> alarm_control{MonitorError};
+  	reportfailures: working -[current_temp{SensorError,OutOfRange}]-> alarm_control{noerror};
+  	alarmfailures: failed -[current_temp{SensorError,OutOfRange}]-> alarm_control{MonitorError};
   end component;
   properties
       EMV2::OccurrenceDistribution => [ProbabilityValue =>  Isolette_Constants::IsoletteMonitorFailureRateValue ;] 
@@ -53,6 +53,20 @@ annex EMV2
 	end Monitor_Isolette;
 
 	process Monitor_Isolette_pr extends Monitor_Isolette
+		annex EMV2 {**
+			use types  isoletteEM;
+			
+			error propagations
+				processor: in propagation {CPUError};
+			flows
+				badCPU: error path processor {CPUError} -> alarm_control {MonitorError};
+			end propagations;
+			
+			component error behavior
+			propagations
+			cpueffect:	all -[processor {CPUError}]-> alarm_control {MonitorError};
+			end component;
+		**};
 	end Monitor_Isolette_pr;
 
 	process implementation Monitor_Isolette_pr.impl

@@ -19,6 +19,9 @@ property set Isolette_Constants is
 --rate at which user interface fails
   InterfaceFailureRateValue : constant aadlreal => 1.0E-7;
 
+--rate at which CPU fails
+  CPUFailureRateValue : constant aadlreal => 1.0E-6;
+
 
 --rate at which the alarm sound generator fails
   AlarmSoundFailureRateValue : constant aadlreal => 1.0E-7;

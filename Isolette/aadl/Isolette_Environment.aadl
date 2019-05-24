@@ -132,9 +132,14 @@ public
 			anIncubator: refined to system Isolette::isolette.SingleSensor_Functional;
 	end Isolette_Environment.functional;
 
-	system implementation Isolette_Environment.EmbeddedSW extends Isolette_Environment.tier1
+	system implementation Isolette_Environment.EmbeddedSWTier1 extends Isolette_Environment.tier1
 		subcomponents
-			anIncubator: refined to system Isolette::isolette.SingleSensor_EmbeddedSW;
-	end Isolette_Environment.EmbeddedSW;
+			anIncubator: refined to system Isolette::isolette.SingleSensor_EmbeddedSWProcessesHW;
+	end Isolette_Environment.EmbeddedSWTier1;
+	
+	system implementation Isolette_Environment.EmbeddedSWTier2 extends Isolette_Environment.tier1
+		subcomponents
+			anIncubator: refined to system Isolette::isolette.SingleSensor_EmbeddedSWThreadsHW;
+	end Isolette_Environment.EmbeddedSWTier2;
 	
 end Isolette_Environment;

@@ -12,7 +12,7 @@
 --
 -- =====================================================================================================================
  
--- authors Brian Larson and John Hatcliff 
+-- authors Brian Larson, John Hatcliff, Peter Feiler
 
 
 package Isolette
@@ -57,7 +57,7 @@ OperatorInterface;
 			end paths;
 			properties
 				EMV2::OccurrenceDistribution => [ProbabilityValue => Isolette_Constants::ExpectedIsoletteFailureRateValue;] 
-      			applies to failed;      
+      			applies to failed, infantExposure.DangerousInfantExposure;      
 		**};
 	end isolette;
 
@@ -175,14 +175,26 @@ OperatorInterface;
 	end isolette.SingleSensor_Functional;
 	
 
-	system implementation isolette.SingleSensor_EmbeddedSW extends isolette.SingleSensor_Functional
+	system implementation isolette.SingleSensor_EmbeddedSWProcessesHW extends isolette.SingleSensor_Functional
+		subcomponents
+			temperature_regulator: refined to process RegulateTemperature::Regulate_Temperature_Pr {
+						Classifier_Substitution_Rule => Type_Extension;};
+			isolette_monitor: refined to process MonitorIsolette::Monitor_Isolette_pr {
+						Classifier_Substitution_Rule => Type_Extension;};
+			cpu1: processor Devices::CPU;
+--			operator_interface: refined to system OperatorInterface::operator_interface.impl;
+		properties
+			Actual_Processor_Binding => (reference(cpu1)) applies to temperature_regulator, isolette_monitor;
+	end isolette.SingleSensor_EmbeddedSWProcessesHW;
+
+	system implementation isolette.SingleSensor_EmbeddedSWThreadsHW extends isolette.SingleSensor_Functional
 		subcomponents
 			temperature_regulator: refined to process RegulateTemperature::Regulate_Temperature_Pr.impl {
 						Classifier_Substitution_Rule => Type_Extension;};
 			isolette_monitor: refined to process MonitorIsolette::Monitor_Isolette_pr.impl {
 						Classifier_Substitution_Rule => Type_Extension;};
 --			operator_interface: refined to system OperatorInterface::operator_interface.impl;
-	end isolette.SingleSensor_EmbeddedSW;
+	end isolette.SingleSensor_EmbeddedSWThreadsHW;
 
 
 end Isolette;
