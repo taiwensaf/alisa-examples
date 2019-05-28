@@ -134,7 +134,7 @@ public
 
 	system implementation Isolette_Environment.EmbeddedSWTier1 extends Isolette_Environment.tier1
 		subcomponents
-			anIncubator: refined to system Isolette::isolette.SingleSensor_EmbeddedSWProcessesHW;
+			anIncubator: refined to system Isolette::isolette.SingleSensor_EmbeddedSWProcessesSingleCPUHW;
 	end Isolette_Environment.EmbeddedSWTier1;
 	
 	system implementation Isolette_Environment.EmbeddedSWTier2 extends Isolette_Environment.tier1

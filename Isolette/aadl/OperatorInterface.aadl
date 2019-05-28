@@ -51,6 +51,7 @@ package OperatorInterface
 				-- may deliver no sound or erroneous sound
 				flows
 					alarmfails: error source alarm_sound{AlarmError};
+					displayfails: error source operator_visual_information{DisplayError};
 					badAlarm: error path alarm_control{MonitorError}-> alarm_sound{AlarmError};
 					badTemp: error path valid_current_temp{RegulatorError}-> operator_visual_information{DisplayError};
 			end propagations;
@@ -60,6 +61,22 @@ package OperatorInterface
 							applies to failed, alarmfails.AlarmError;
 		**};
 	end operator_interface;
+	
+		system powered_operator_interface extends operator_interface
+			features
+				power: in feature;
+		annex EMV2 {**
+				-- operator interface failures
+			use types IsoletteEM;
+			error propagations
+				power: in propagation {PowerSupplyError};
+				flows
+					nopoweralarm: error path power{PowerSupplyError} -> alarm_sound{AlarmError};
+					nopowerdisplay: error path power{PowerSupplyError} -> operator_visual_information{DisplayError};
+			end propagations;
+		**};
+		end powered_operator_interface;
+	
 
 	system implementation operator_interface.impl
 		subcomponents

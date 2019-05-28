@@ -129,11 +129,16 @@ public
 	end TouchScreen.impl;
 	
 	processor CPU
+		features
+			power: in feature;
 		annex EMV2 {**
 			use types IsoletteEM;
 			use behavior IsoletteEM::FailStop;
 			error propagations
 				bindings: out propagation {CPUError};
+				power: in propagation {PowerSupplyError};
+				flows
+					p2c: error path power{PowerSupplyError} -> bindings{CPUError};
 			end propagations;
 			properties
 				EMV2::OccurrenceDistribution => [
@@ -141,6 +146,24 @@ public
 							applies to failed, bindings.CPUError;
 		**};
 	end CPU;
+	
+	device PowerSupply
+		features
+			power : out feature;
+		annex EMV2 {**
+			use types IsoletteEM;
+			use behavior IsoletteEM::FailStop;
+			error propagations
+				power: out propagation {PowerSupplyError};
+			flows
+					nopower: error source power {PowerSupplyError};
+			end propagations;
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::PowerSupplyFailureRateValue;]
+							applies to failed, nopower.PowerSupplyError;
+		**};
+	end PowerSupply;
 
 
 	device Detect_Regulator_Failure

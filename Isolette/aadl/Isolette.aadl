@@ -173,9 +173,19 @@ OperatorInterface;
 			end composite;
 		**};
 	end isolette.SingleSensor_Functional;
-	
 
-	system implementation isolette.SingleSensor_EmbeddedSWProcessesHW extends isolette.SingleSensor_Functional
+
+	system implementation isolette.SingleSensor_Alarm_Touchscreen extends isolette.SingleSensor_Functional
+		subcomponents
+			cpu1: processor Devices::CPU;
+			operator_interface: refined to system OperatorInterface::operator_interface.impl;
+		properties
+			Actual_Processor_Binding => (reference(cpu1)) applies to temperature_regulator, isolette_monitor;
+	end isolette.SingleSensor_Alarm_Touchscreen;
+	
+	-- regulator and monitor turned into software processes.
+	-- they are bound to the same processor.
+	system implementation isolette.SingleSensor_EmbeddedSWProcessesSingleCPUHW extends isolette.SingleSensor_Functional
 		subcomponents
 			temperature_regulator: refined to process RegulateTemperature::Regulate_Temperature_Pr {
 						Classifier_Substitution_Rule => Type_Extension;};
@@ -185,8 +195,32 @@ OperatorInterface;
 --			operator_interface: refined to system OperatorInterface::operator_interface.impl;
 		properties
 			Actual_Processor_Binding => (reference(cpu1)) applies to temperature_regulator, isolette_monitor;
-	end isolette.SingleSensor_EmbeddedSWProcessesHW;
+	end isolette.SingleSensor_EmbeddedSWProcessesSingleCPUHW;
 
+
+	-- second processor added and monitor bound to it instead of CPU1
+	system implementation isolette.SingleSensor_EmbeddedSWProcesses2CPUHW extends isolette.SingleSensor_EmbeddedSWProcessesSingleCPUHW
+		subcomponents
+			cpu2: processor Devices::CPU;
+--			operator_interface: refined to system OperatorInterface::operator_interface.impl;
+		properties
+			Actual_Processor_Binding => (reference(cpu1)) applies to temperature_regulator;
+			Actual_Processor_Binding => (reference(cpu2)) applies to  isolette_monitor;
+	end isolette.SingleSensor_EmbeddedSWProcesses2CPUHW;
+
+	-- added power supply to supply power to 2 cpus and operator interface.
+	system implementation isolette.SingleSensor_EmbeddedSWProcesses2CPUHWPower extends isolette.SingleSensor_EmbeddedSWProcesses2CPUHW
+		subcomponents
+			powersupply : device Devices::PowerSupply;
+			operator_interface: refined to system OperatorInterface::powered_operator_interface{
+						Classifier_Substitution_Rule => Type_Extension;};
+		connections
+			p2c1: feature powersupply.power -> cpu1.power;
+			p2c2: feature powersupply.power -> cpu2.power;
+			p2OI: feature powersupply.power -> operator_interface.power;
+	end isolette.SingleSensor_EmbeddedSWProcesses2CPUHWPower;
+	
+	
 	system implementation isolette.SingleSensor_EmbeddedSWThreadsHW extends isolette.SingleSensor_Functional
 		subcomponents
 			temperature_regulator: refined to process RegulateTemperature::Regulate_Temperature_Pr.impl {

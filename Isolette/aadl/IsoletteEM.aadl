@@ -12,6 +12,7 @@ public
 	  SensorError : type ;  
 	  OperatorError : type ;  
 	  CPUError : type ;  
+	  PowerSupplyError : type ;  
 	  
 	  DangerousInfantExposure: type;
 
