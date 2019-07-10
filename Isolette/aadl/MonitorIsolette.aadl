@@ -12,49 +12,55 @@ public
 				-- value of current temp (with status flag) from air temp sensor
 			current_temp: in data port Isolette_Data_Model::MeasuredTemp;
 					-- operator-specific alarm range for temperature
-				-- we use the type system to ensure value range on desired temp	
+					-- we use the type system to ensure value range on desired temp	
 			lower_alarm_temp: in data port Isolette_Data_Model::lower_alarm_temperature;
 			upper_alarm_temp: in data port Isolette_Data_Model::upper_alarm_temperature;
+					-- monitor regulator
+			regulator_selfcheck_status: in data port Isolette_Data_Model::Status;
+			monitor_heat_control: in data port Isolette_Data_Model::On_Off;
 					-- ===== OUTPUTs (controlled variables)  ...based in part on Figure A.2 and Table A.6
 					-- control signal (on/off) to alarm component 
-			alarm_control: out event data port Isolette_Data_Model::On_Off;
-					-- enumerated type describing status/mode of monitor (Init, On/operating, or Failed)
 			monitor_status: out data port Isolette_Data_Model::Status;
 			regulator_status: out data port Isolette_Data_Model::Status;
 			sensor_status: out data port Isolette_Data_Model::Status;
-				-- the monitor validates current temp reading
+					-- the monitor validates current temp reading
 			valid_current_temp: out data port Isolette_Data_Model::MeasuredTemp {
 						Isolette_Properties::Validity => Valid;};
+			alarm_control: out event data port Isolette_Data_Model::On_Off;
 		flows
-			detectTempOOR: flow path current_temp -> alarm_control {Latency => 10 ms .. 1 sec;}; -- 1 sec due to periodic sampling
+			detectTempOOR: flow path current_temp -> alarm_control {Latency => 10ms .. 1 sec;}; -- 1 sec due to periodic sampling
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ProcessingRate;
-annex EMV2 
-  {**
-    use types ErrorLibrary, isoletteEM;
-    use behavior IsoletteEM::FailStop;
-  	error propagations
-  		current_temp: in propagation {SensorError, OutOfRange};
-  		alarm_control: out propagation {MonitorError};
-  	flows
-  		badMonitor: error source alarm_control {MonitorError};
-  		badTemp: error path current_temp{OutOfRange,SensorError} -> alarm_control {MonitorError}; 
-  end propagations;
-  component error behavior
-  propagations
-  	reportfailures: working -[current_temp{SensorError,OutOfRange}]-> alarm_control{noerror};
-  	alarmfailures: failed -[current_temp{SensorError,OutOfRange}]-> alarm_control{MonitorError};
-  end component;
-  properties
-      EMV2::OccurrenceDistribution => [ProbabilityValue =>  Isolette_Constants::IsoletteMonitorFailureRateValue ;] 
-   	applies to failed, badMonitor.MonitorError, fail;      
-  **};
+		annex EMV2 {**
+			use types ErrorLibrary, isoletteEM;
+			use behavior IsoletteEM::FailStop;
+			
+			error propagations
+				current_temp: in propagation {SensorError, OutOfRange, OutOfCalibration};
+				monitor_heat_control: in propagation {RegulatorError};
+				alarm_control: out propagation {MonitorError};
+				valid_current_temp: out propagation {ItemOmission};
+			flows
+				badMonitor: error source alarm_control {MonitorError};
+				badTemp: error path current_temp {OutOfRange, SensorError} -> alarm_control {MonitorError};
+			end propagations;
+			
+			component error behavior
+			propagations
+				reportfailures: working -[current_temp {SensorError, OutOfRange}]-> alarm_control {noerror};
+				alarmfailures: failed -[current_temp {SensorError, OutOfRange}]-> alarm_control {MonitorError};
+			end component;
+			
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::IsoletteMonitorFailureRateValue;] applies to failed, badMonitor.MonitorError, fail;
+		**};
 	end Monitor_Isolette;
 
 	process Monitor_Isolette_pr extends Monitor_Isolette
 		annex EMV2 {**
-			use types  isoletteEM;
+			use types isoletteEM;
 			
 			error propagations
 				processor: in propagation {CPUError};
@@ -64,7 +70,7 @@ annex EMV2
 			
 			component error behavior
 			propagations
-			cpueffect:	all -[processor {CPUError}]-> alarm_control {MonitorError};
+				cpueffect: all -[processor {CPUError}]-> alarm_control {MonitorError};
 			end component;
 		**};
 	end Monitor_Isolette_pr;
@@ -76,34 +82,31 @@ annex EMV2
 				--thread for manage alarm implementation
 			manage_alarm: thread Manage_Alarm.impl;
 					--thread for monitor interface implementation
-			manage_monitor_interface: thread Manage_Monitor_Interface.impl;
+			manage_monitor_isolette: thread Manage_Monitor_Isolette.impl;
 					--thread for monitor mode implementation
-			manage_monitor_mode: thread Manage_Monitor_Mode.impl;
+			validate_current_temp: thread Validate_Temp.impl;
 		connections
 				-- ==== INPUT INTERFACE values to internal components ====
 				-- send incoming alarm temperature range to monitor interface manager
-			muat: port upper_alarm_temp -> manage_monitor_interface.upper_alarm_temp;
-			mlat: port lower_alarm_temp -> manage_monitor_interface.lower_alarm_temp;
+			muat: port upper_alarm_temp -> manage_alarm.upper_alarm_temp;
+			mlat: port lower_alarm_temp -> manage_alarm.lower_alarm_temp;
 					-- send incoming current temperature (with status value)
 					--   ...to interface manager
-			mcti: port current_temp -> manage_monitor_interface.current_temp;
-					--   ...to alarm manager (controls alarm)
-			mcta: port current_temp -> manage_alarm.current_temp;
-					--   ...to mode manager
-			mctm: port current_temp -> manage_monitor_mode.current_temp;
+			mctv: port current_temp -> validate_current_temp.current_temp;
+			vcta: port validate_current_temp.valid_current_temp -> valid_current_temp;
 					-- ==== OUTPUT INTERFACE values from internal components ==== 
 					-- send alarm actuation command (on/off) 
 			malrm: port manage_alarm.alarm_control -> alarm_control;
 					-- send status of monitor subsystem  to operator interface
-			mms: port manage_monitor_interface.monitor_status -> monitor_status;
-					-- ==== INTERNAL communication ====
-					-- send monitor mode from mode manager 
-					--  ... to interface manager
-			mmmi: port manage_monitor_mode.monitor_mode -> manage_monitor_interface.monitor_mode;
-					--  ... to alarm manager
-			mmma: port manage_monitor_mode.monitor_mode -> manage_alarm.monitor_mode;
-					-- send regulator interface failure to mode manager
-			intff: port manage_monitor_interface.interface_failure -> manage_monitor_mode.interface_failure;
+			mms: port manage_monitor_isolette.monitor_status -> monitor_status;
+			mss: port manage_monitor_isolette.sensor_status -> sensor_status;
+			mrs: port manage_monitor_isolette.regulator_status -> regulator_status;
+			mhc: port monitor_heat_control -> manage_monitor_isolette.monitor_heat_control;
+			mac: port manage_alarm.alarm_control -> manage_monitor_isolette.monitor_alarm_control;
+			vctma: port validate_current_temp.valid_current_temp -> manage_alarm.current_temp;
+			vctmi: port validate_current_temp.valid_current_temp -> manage_monitor_isolette.current_temp;
+			vsmi: port validate_current_temp.temp_validation_status -> manage_monitor_isolette.temp_validation_status;
+			rscksmi: port regulator_selfcheck_status -> manage_monitor_isolette.regulator_selfcheck_status;
 	end Monitor_Isolette_pr.impl;
 
 -- ===========================================================================================================
@@ -114,62 +117,28 @@ annex EMV2
 -- A.5.2.1 Manage Monitor Interface Function
 -- 
 -- ===========================================================================================================
-	thread Manage_Monitor_Interface
+	thread Manage_Monitor_Isolette
 		features
 -- ==== INPUTS ====	(see Figure A.5)
-				--  operator specified alarm range
-			lower_alarm_temp: in data port Isolette_Data_Model::lower_alarm_temperature;
-			upper_alarm_temp: in data port Isolette_Data_Model::upper_alarm_temperature;
 					-- current temperature from temp sensor
 			current_temp: in data port Isolette_Data_Model::MeasuredTemp;
-					-- current mode of monitor subsystem (init, normal or failed)
-			monitor_mode: in data port Isolette_Data_Model::Monitor_Mode;
+			regulator_selfcheck_status: in data port Isolette_Data_Model::Status;
+			monitor_heat_control: in data port Isolette_Data_Model::On_Off;
+			monitor_alarm_control: in data port Isolette_Data_Model::On_Off;
+			temp_validation_status: in data port Isolette_Data_Model::Valid_Flag;
 					-- overall status of monitor subsystem sent to operator interface
-			monitor_status: out data port Isolette_Data_Model::Status;
-					-- flag indicating improper inputs; sent to determine overall subsystem mode 
-			interface_failure: out data port Isolette_Data_Model::Failure_Flag;
+			monitor_status: out data port Isolette_Data_Model::Status; -- alarm_control (Omission), internal selfcheck
+			regulator_status: out data port Isolette_Data_Model::Status; -- heat_control (Omission), regulator_selfcheck(memory)
+			sensor_status: out data port Isolette_Data_Model::Status; -- temp out of range (temp_validation_status), ItemOmission, 
 		properties --properties of monitor interface
 				--Dispatch_Protocol => Timed;				--Dispatch_Protocol?
 			Dispatch_Protocol => Periodic; -- jab switched to periodic
 			Period => Isolette_Constants::ThreadPeriod;
-	end Manage_Monitor_Interface;
+	end Manage_Monitor_Isolette;
 
-	thread implementation Manage_Monitor_Interface.impl
-		subcomponents
-			alarm_temp_lower_bound_var: data Isolette_Data_Model::ValidFullDegreeFahrenheit {
-						Data_Model::Integer_Range => 96 .. 101;};
-			alarm_temp_upper_bound_var: data Isolette_Data_Model::ValidFullDegreeFahrenheit {
-						Data_Model::Integer_Range => 97 .. 102;};
-	end Manage_Monitor_Interface.impl;
+	thread implementation Manage_Monitor_Isolette.impl
+	end Manage_Monitor_Isolette.impl;
 
--- ===========================================================================================================
---
---   M a n a g e    R e g u l a t o r   M o d e   T h r e a d
---
---  
---   A.5.2.2 Manage Regulator Mode Function
--- 
--- ===========================================================================================================
---A.5.2.2 Manage Monitor Mode Function
-	thread Manage_Monitor_Mode
-		features
-				-- ==== INPUTS ========		
-				-- current temperature from temp sensor
-			current_temp: in data port Isolette_Data_Model::MeasuredTemp;
-					-- status of operator interface interactions
-			interface_failure: in data port Isolette_Data_Model::Failure_Flag;
-					-- in case of internal failure, a flag is raised
-			internal_failure: in data port Isolette_Data_Model::Failure_Flag;
-					-- ==== OUTPUTS ========		
-					-- mode of regulator (Init, Normal, Failed)   
-			monitor_mode: out data port Isolette_Data_Model::Monitor_Mode;
-		properties
-			Dispatch_Protocol => Periodic; -- jab switched to Periodic
-			Period => Isolette_Constants::ThreadPeriod;
-	end Manage_Monitor_Mode;
-
-	thread implementation Manage_Monitor_Mode.impl
-	end Manage_Monitor_Mode.impl;
 
 -- ===========================================================================================================
 --
@@ -190,10 +159,8 @@ annex EMV2
 					-- lowest and upper bound of operator specified alarm temperature range
 			lower_alarm_temp: in data port Isolette_Data_Model::lower_alarm_temperature;
 			upper_alarm_temp: in data port Isolette_Data_Model::upper_alarm_temperature;
-					-- subsystem mode
-			monitor_mode: in data port Isolette_Data_Model::Monitor_Mode;
 					-- ======== OUTPUTS =======
--- command to turn alarm on/off (actuation command)  
+-- command to turn alarm on/off (actuation command) sent repeatedly 
 			alarm_control: out data port Isolette_Data_Model::On_Off;
 		properties
 			Dispatch_Protocol => Periodic;
@@ -201,5 +168,26 @@ annex EMV2
 	end Manage_Alarm;
 
 	thread implementation Manage_Alarm.impl
+		subcomponents
+			alarm_temp_lower_bound_var: data Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 96 .. 101;};
+			alarm_temp_upper_bound_var: data Isolette_Data_Model::ValidFullDegreeFahrenheit {
+						Data_Model::Integer_Range => 97 .. 102;};
 	end Manage_Alarm.impl;
+
+	thread Validate_Temp
+		features
+				-- ======== INPUTS =======
+				-- current temperature (from temp sensor)
+			current_temp: in data port Isolette_Data_Model::MeasuredTemp;
+			valid_current_temp: out data port Isolette_Data_Model::MeasuredTemp {
+						Isolette_Properties::Validity => Valid;};
+			temp_validation_status: out data port Isolette_Data_Model::Valid_Flag;
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => Isolette_Constants::ThreadPeriod;
+	end Validate_Temp;
+
+	thread implementation Validate_Temp.impl
+	end Validate_Temp.impl;
 end MonitorIsolette;

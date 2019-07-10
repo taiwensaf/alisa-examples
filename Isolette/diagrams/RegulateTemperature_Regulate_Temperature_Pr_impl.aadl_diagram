@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://osate.org/diagram" formatVersion="7">
+  <element uuid="d7fd4d03-722d-4e35-b48d-a9dd4f8a3de5" manual="true">
+    <element uuid="070af908-d1a2-4e44-a8cc-7446a0ba4ff5" manual="true">
+      <element uuid="ed305a03-4701-49a9-8a53-1d2f18e28248" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>regulate_temperature_pr_impl_new_connection</seg>
+      </bo>
+    </element>
+    <element uuid="52c50ca1-f11c-48c4-bb40-c72e21dd068c" manual="true">
+      <element uuid="6594bddf-8fbd-401a-bb56-d00179ed8a29" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>rhc</seg>
+      </bo>
+    </element>
+    <element uuid="d641813e-0665-4218-ab04-d859eefed5eb" manual="true">
+      <element uuid="618d85a3-c583-4167-b1ba-5b7b43067d7d" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>rldt</seg>
+      </bo>
+    </element>
+    <element uuid="e9e87ebd-a8f0-4096-8350-6703d8630f94" manual="true">
+      <element uuid="09ca8d0a-02aa-4908-86d8-af414954bb94" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>rrs</seg>
+      </bo>
+    </element>
+    <element uuid="95208701-713c-4daf-821f-916cae231f30" manual="true">
+      <element uuid="1403040d-43dc-4d9d-be0c-48834e113b15" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>rudt</seg>
+      </bo>
+    </element>
+    <element uuid="d7c546f4-90ac-4cb8-a064-cea7efdc91cb" manual="true" dockArea="left">
+      <bo>
+        <seg>feature</seg>
+        <seg>current_temp</seg>
+      </bo>
+      <position y="48.0"/>
+    </element>
+    <element uuid="5f7ecc33-4d51-4c21-bd84-6b6129414e95" manual="true" dockArea="right">
+      <bo>
+        <seg>feature</seg>
+        <seg>heat_control</seg>
+      </bo>
+      <position x="562.0" y="276.0"/>
+    </element>
+    <element uuid="fce7fca2-5266-45a7-abb2-e44a9d37a063" manual="true" dockArea="left">
+      <bo>
+        <seg>feature</seg>
+        <seg>lower_desired_temp</seg>
+      </bo>
+      <position y="326.0"/>
+    </element>
+    <element uuid="fb9e3db8-ee5d-42e7-a038-61b46a851071" manual="true" dockArea="right">
+      <bo>
+        <seg>feature</seg>
+        <seg>self_check_status</seg>
+      </bo>
+      <position x="530.0" y="98.0"/>
+    </element>
+    <element uuid="3d889045-7983-4c25-b084-03aef655e892" manual="true" dockArea="left">
+      <bo>
+        <seg>feature</seg>
+        <seg>upper_desired_temp</seg>
+      </bo>
+      <position y="276.0"/>
+    </element>
+    <element uuid="da18ca23-5a8b-490d-b12e-430b2e728c8a" manual="true">
+      <element uuid="f9e2209c-81bc-4804-a974-efdd6ab57b8c" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>current_temp</seg>
+        </bo>
+        <position y="10.0"/>
+      </element>
+      <element uuid="7ab1d34e-43c4-4e0d-95ac-21380e440b0f" manual="true" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>heat_control</seg>
+        </bo>
+        <position x="255.0" y="60.0"/>
+      </element>
+      <element uuid="194ab2d6-d35a-4df8-b23f-be835d9a6f2e" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>lower_desired_temp</seg>
+        </bo>
+        <position y="110.0"/>
+      </element>
+      <element uuid="8c7bf110-0c43-4676-b371-10bb40f594e3" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>upper_desired_temp</seg>
+        </bo>
+        <position y="60.0"/>
+      </element>
+      <bo>
+        <seg>subcomponent</seg>
+        <seg>manage_heat_source</seg>
+      </bo>
+      <position x="165.0" y="206.0"/>
+      <size width="352.0" height="160.0"/>
+    </element>
+    <element uuid="681d0b65-3c04-4046-86ad-43b57248d16b" manual="true">
+      <element uuid="6c561cd4-3858-4217-ac2b-1a59418ded00" manual="true" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>regulator_status</seg>
+        </bo>
+        <position x="226.0" y="30.0"/>
+      </element>
+      <bo>
+        <seg>subcomponent</seg>
+        <seg>manage_regulator_interface</seg>
+      </bo>
+      <position x="168.0" y="38.0"/>
+      <size width="346.0" height="100.0"/>
+    </element>
+    <bo>
+      <seg>classifier</seg>
+      <seg>regulate_temperature_pr.impl</seg>
+    </bo>
+    <position x="12.0" y="12.0"/>
+    <size width="659.0" height="388.0"/>
+  </element>
+  <config type="structure" connectionPrimaryLabelsVisible="false">
+    <enabledAadlProperties/>
+    <context>
+      <seg>classifier</seg>
+      <seg>regulatetemperature::regulate_temperature_pr.impl</seg>
+    </context>
+  </config>
+</diagram:Diagram>

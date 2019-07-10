@@ -8,7 +8,10 @@ public
 		features
 			air: in feature Isolette_Data_Model::PhysicalTemp;
 			current_temp: out data port Isolette_Data_Model::DiscreteTemp {
-						Data_Model::Real_Range => 68.0 .. 105.0;
+						Data_Model::Real_Range => 68.0 .. 105.0; 
+						-- real physical range may be larger
+						-- sampled range may be larger or miscalibrated (see out propagation)
+						-- is sampled value range bounded by specified range?
 						Data_Model::Measurement_Unit => "Fahrenheit";
 						Isolette_Properties::Temperature_Accuracy => 0.1 Fahrenheit;
 					};
@@ -22,7 +25,7 @@ public
 			use types IsoletteEM, ErrorLibrary;
 			use behavior IsoletteEM::FailStop;
 			error propagations
-				current_temp: out propagation {SensorError, OutOfRange};
+				current_temp: out propagation {SensorError, OutOfRange, OutOfCalibration};
 				heaterEffect: in propagation {HeaterError};
 			-- may deliver bad or no reading without being aware of it.
 				flows

@@ -259,7 +259,7 @@
           <namedValue xsi:type="aadl2:EnumerationLiteral" href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.3/@ownedLiteral.0"/>
         </ownedValue>
       </ownedValue>
-      <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedPropertyAssociation.0"/>
+      <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
     </ownedPropertyAssociation>
     <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
       <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Timing_Properties.aadl#Timing_Properties.Period"/>
@@ -268,10 +268,10 @@
           <unit href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.16/@ownedLiteral.4"/>
         </ownedValue>
       </ownedValue>
-      <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedPropertyAssociation.1"/>
+      <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.1"/>
     </ownedPropertyAssociation>
     <featureInstance name="air" category="abstractFeature">
-      <feature xsi:type="aadl2:AbstractFeature" href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedAbstractFeature.0"/>
+      <feature xsi:type="aadl2:AbstractFeature" href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAbstractFeature.0"/>
     </featureInstance>
     <featureInstance name="current_temp" direction="out">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
@@ -279,7 +279,7 @@
         <ownedValue>
           <ownedValue xsi:type="aadl2:StringLiteral" value="Fahrenheit"/>
         </ownedValue>
-        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedDataPort.0/@ownedPropertyAssociation.1"/>
+        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0/@ownedPropertyAssociation.1"/>
       </ownedPropertyAssociation>
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
         <property href="../Isolette_Properties.aadl#Isolette_Properties.Temperature_Accuracy"/>
@@ -288,7 +288,7 @@
             <unit href="../Isolette_Properties.aadl#/0/@ownedPropertyType.3/@ownedLiteral.0"/>
           </ownedValue>
         </ownedValue>
-        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedDataPort.0/@ownedPropertyAssociation.2"/>
+        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0/@ownedPropertyAssociation.2"/>
       </ownedPropertyAssociation>
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
         <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Real_Range"/>
@@ -298,9 +298,9 @@
             <maximum xsi:type="aadl2:RealLiteral" value="105.0"/>
           </ownedValue>
         </ownedValue>
-        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedDataPort.0/@ownedPropertyAssociation.0"/>
+        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0/@ownedPropertyAssociation.0"/>
       </ownedPropertyAssociation>
-      <feature xsi:type="aadl2:DataPort" href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedDataPort.0"/>
+      <feature xsi:type="aadl2:DataPort" href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0"/>
     </featureInstance>
     <flowSpecification name="temp_reading" destination="//@componentInstance.1/@featureInstance.1">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
@@ -315,9 +315,9 @@
             </maximum>
           </ownedValue>
         </ownedValue>
-        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedFlowSpecification.0/@ownedPropertyAssociation.0"/>
+        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0/@ownedPropertyAssociation.0"/>
       </ownedPropertyAssociation>
-      <flowSpecification href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedFlowSpecification.0"/>
+      <flowSpecification href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.0"/>
     </flowSpecification>
     <flowSpecification name="air_temp_reading" source="//@componentInstance.1/@featureInstance.0" destination="//@componentInstance.1/@featureInstance.1">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
@@ -332,9 +332,9 @@
             </maximum>
           </ownedValue>
         </ownedValue>
-        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedFlowSpecification.1/@ownedPropertyAssociation.0"/>
+        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.1/@ownedPropertyAssociation.0"/>
       </ownedPropertyAssociation>
-      <flowSpecification href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedFlowSpecification.1"/>
+      <flowSpecification href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedFlowSpecification.1"/>
     </flowSpecification>
     <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.0"/>
     <index>0</index>
@@ -348,7 +348,7 @@
           <namedValue xsi:type="aadl2:EnumerationLiteral" href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.3/@ownedLiteral.0"/>
         </ownedValue>
       </ownedValue>
-      <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedPropertyAssociation.0"/>
+      <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.0"/>
     </ownedPropertyAssociation>
     <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
       <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Timing_Properties.aadl#Timing_Properties.Period"/>
@@ -357,10 +357,10 @@
           <unit href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/AADL_Project.aadl#/0/@ownedPropertyType.16/@ownedLiteral.4"/>
         </ownedValue>
       </ownedValue>
-      <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedPropertyAssociation.1"/>
+      <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.2/@ownedPropertyAssociation.1"/>
     </ownedPropertyAssociation>
     <featureInstance name="heat_out" category="abstractFeature" direction="out">
-      <feature xsi:type="aadl2:AbstractFeature" href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedAbstractFeature.0"/>
+      <feature xsi:type="aadl2:AbstractFeature" href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.2/@ownedAbstractFeature.0"/>
     </featureInstance>
     <featureInstance name="heat_control">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
@@ -372,7 +372,7 @@
         </ownedValue>
         <propertyAssociation href="../Isolette_Data_Model.aadl#/0/@ownedPublicSection/@ownedClassifier.15/@ownedPropertyAssociation.0"/>
       </ownedPropertyAssociation>
-      <feature xsi:type="aadl2:DataPort" href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.0"/>
+      <feature xsi:type="aadl2:DataPort" href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.2/@ownedDataPort.0"/>
     </featureInstance>
     <flowSpecification name="heatOnOff" source="//@componentInstance.2/@featureInstance.1" destination="//@componentInstance.2/@featureInstance.0">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
@@ -387,9 +387,9 @@
             </maximum>
           </ownedValue>
         </ownedValue>
-        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedFlowSpecification.0/@ownedPropertyAssociation.0"/>
+        <propertyAssociation href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.2/@ownedFlowSpecification.0/@ownedPropertyAssociation.0"/>
       </ownedPropertyAssociation>
-      <flowSpecification href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedFlowSpecification.0"/>
+      <flowSpecification href="../Devices.aadl#/0/@ownedPublicSection/@ownedClassifier.2/@ownedFlowSpecification.0"/>
     </flowSpecification>
     <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.1"/>
     <index>0</index>

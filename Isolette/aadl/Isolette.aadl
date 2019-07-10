@@ -70,7 +70,7 @@ OperatorInterface;
 --   thermostat + temp sensor and heater hardware components
 --
 -- -----------------------------------------------------------------------------
-	system implementation isolette.SingleSensor_FunctionalParts
+	system implementation isolette.SingleSensor_Functional
 -- internal architecture of Isolette 
 --
 -- It is a single sensor architecture
@@ -85,7 +85,7 @@ OperatorInterface;
 --
 		subcomponents
 			temperature_regulator: abstract RegulateTemperature::Regulate_Temperature;
---			isolette_monitor: abstract MonitorIsolette::Monitor_Isolette;
+			isolette_monitor: abstract MonitorIsolette::Monitor_Isolette;
 			temperature_sensor: device Devices::temperature_sensor;
 			heat_source: device Devices::heat_source;
 			operator_interface: system OperatorInterface::operator_interface;
@@ -102,9 +102,6 @@ OperatorInterface;
 					-- heat source's (abstract) output is increase in physical air temperature
 			hs: feature heat_source.heat_out -> heat_out;
 					-- ==== INTERNAL communication ==== 
-					-- sensor sends sensed current temperature to thermostat  
-			ctr: port temperature_sensor.current_temp -> temperature_regulator.current_temp {
-						Classifier_Matching_Rule => Subset;};
 					-- thermostat controls turns the heat source off and on  
 			hc: port temperature_regulator.heat_control -> heat_source.heat_control;
 					-- operator interface communicates desired temperature to thermostat
@@ -112,38 +109,18 @@ OperatorInterface;
 						Classifier_Matching_Rule => Subset;};
 			udt: port operator_interface.upper_desired_temp -> temperature_regulator.upper_desired_temp {
 						Classifier_Matching_Rule => Subset;};
-		flows
-			command_response: flow path operator_input -> oioc -> operator_interface.processCommand -> oiovi -> operator_visual_information;
-		annex EMV2 {**
-			use behavior IsoletteEM::FailStop;
-			component error behavior
-			propagations
-			outprop: all -[ 1 ormore(heat_source.heat_out{HeaterError},operator_interface.operator_visual_information{DisplayError})]-> infantExposure{DangerousInfantExposure};
---			all -[ heat_source.heat_out{HeaterError}]-> heat_out{HeaterError};
-			end component;
-			composite error behavior
-			states
-			-- Figure 5 HB: parts & monitor alarm (see thermostat)
-				CompositeFailed:[1 ormore (temperature_regulator.failed, temperature_sensor.failed, heat_source.Failed, operator_interface.Failed ) ]-> Failed;
-			end composite;
-			propagation paths
-				heaterErrorEffect: heat_source.heat_out -> temperature_sensor.heaterEffect;
-			end paths;
-		**};
-	end isolette.SingleSensor_FunctionalParts;
-	
-	system implementation isolette.SingleSensor_Functional extends isolette.SingleSensor_FunctionalParts
-		subcomponents
-			isolette_monitor: abstract MonitorIsolette::Monitor_Isolette;
-		connections
 			ctm: port temperature_sensor.current_temp -> isolette_monitor.current_temp {
 						Classifier_Matching_Rule => Subset;};
+			ctv: port isolette_monitor.valid_current_temp -> temperature_regulator.current_temp;
 					-- operator interface communicates alarm temperature to thermostat
 			lat: port operator_interface.lower_alarm_temp -> isolette_monitor.lower_alarm_temp {
 						Classifier_Matching_Rule => Subset;};
 			uat: port operator_interface.upper_alarm_temp -> isolette_monitor.upper_alarm_temp {
 						Classifier_Matching_Rule => Subset;};
-					-- thermostat communicates regulator status to display on operator interface
+					-- monitor regulator
+			rhcmi: port temperature_regulator.heat_control -> isolette_monitor.monitor_heat_control;
+			rscksmi: port temperature_regulator.self_check_status -> isolette_monitor.regulator_selfcheck_status;
+					-- monitor communicates regulator status to display on operator interface
 			rs: port isolette_monitor.regulator_status -> operator_interface.regulator_status;
 					-- thermostat communicates monitor status to display on operator interface
 			ms: port isolette_monitor.monitor_status -> operator_interface.monitor_status;
@@ -153,26 +130,39 @@ OperatorInterface;
 					-- thermostat communicates alarm information to display on operator interface
 			al: port isolette_monitor.alarm_control -> operator_interface.alarm_control;
 		flows
+			command_response: flow path operator_input -> oioc -> operator_interface.processCommand -> oiovi -> operator_visual_information;
 			raise_alarm: flow source temperature_sensor -> ctm -> isolette_monitor.detectTempOOR -> al -> operator_interface.enableAlarmSound -> oioa -> alarm_sound;
 			extreme_air_alarm: flow path air_temperature -> a2ts -> temperature_sensor.air_temp_reading -> ctm -> isolette_monitor.detectTempOOR -> al -> operator_interface.enableAlarmSound -> oioa -> alarm_sound;
 		properties
 			Required_Connection_Quality_Of_Service => (GuaranteedDelivery) applies to al;
 		annex EMV2 {**
 			use behavior IsoletteEM::FailStop;
+			
 			component error behavior
 			propagations
-			outprop: working -[ 1 ormore(operator_interface.alarm_sound{AlarmError})]-> infantExposure{DangerousInfantExposure};
---			all -[ heat_source.heat_out{HeaterError}]-> heat_out{HeaterError};
+				outprop: all -[1 ormore (heat_source.heat_out {HeaterError},
+					operator_interface.operator_visual_information {DisplayError})]-> infantExposure {DangerousInfantExposure};
+				outprop1: working -[1 ormore (operator_interface.alarm_sound {AlarmError})]-> infantExposure {DangerousInfantExposure};
+			--			all -[ heat_source.heat_out{HeaterError}]-> heat_out{HeaterError};
 			end component;
+			
 			composite error behavior
 			states
-			-- Figure 6 HB: parts & monitor alarm (see thermostat)
-				BadHBCompositeFailed:[1 ormore(isolette_monitor.failed and 1 ormore (temperature_regulator.failed,  heat_source.Failed), temperature_sensor.failed, operator_interface.Failed ) ]-> badfail;
-			-- corresponds to fault tree logic
-				CompositeFailed:[1 ormore(isolette_monitor.failed and 1 ormore (temperature_regulator.failed,  heat_source.Failed, temperature_sensor.failed), operator_interface.Failed ) ]-> Failed;
+				--			-- Figure 6 HB: parts & monitor alarm (see thermostat)
+				--				BadHBCompositeFailed:[1 ormore(isolette_monitor.failed and 1 ormore (temperature_regulator.failed,  heat_source.Failed), temperature_sensor.failed, operator_interface.Failed ) ]-> badfail;
+				--			-- corresponds to fault tree logic
+				--				CompositeFailed:[1 ormore(isolette_monitor.failed and 1 ormore (temperature_regulator.failed,  heat_source.Failed, temperature_sensor.failed), operator_interface.Failed ) ]-> Failed;
+				-- Figure 5 HB: parts & monitor alarm (see thermostat)
+				CompositeFailed: [1 ormore (temperature_regulator.failed, temperature_sensor.failed, heat_source.Failed,
+					operator_interface.Failed)]-> Failed;
 			end composite;
+			
+			propagation paths
+				heaterErrorEffect: heat_source.heat_out -> temperature_sensor.heaterEffect;
+			end paths;
 		**};
 	end isolette.SingleSensor_Functional;
+	
 
 
 	system implementation isolette.SingleSensor_Alarm_Touchscreen extends isolette.SingleSensor_Functional

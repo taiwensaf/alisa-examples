@@ -1,5 +1,5 @@
 /bin/
-/.aadlbin-grn/
+/.aadlbin-gen/
 /instances/
 *.emfta
 *.aird

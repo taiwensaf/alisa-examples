@@ -41,10 +41,10 @@ package OperatorInterface
 			Period => Isolette_Constants::ProcessingRate;
 		annex EMV2 {**
 				-- operator interface failures
-			use types IsoletteEM;
+			use types ErrorLibrary,IsoletteEM;
 			use behavior IsoletteEM::FailStop;
 			error propagations
-				valid_current_temp: in propagation {RegulatorError}; 
+				valid_current_temp: in propagation {ItemOmission,ServiceOmission}; 
 				alarm_control: in propagation {MonitorError}; 
 				alarm_sound: out propagation {AlarmError}; --{ServiceOmission, ServiceCommission};
 				operator_visual_information: out propagation {DisplayError};
@@ -53,7 +53,8 @@ package OperatorInterface
 					alarmfails: error source alarm_sound{AlarmError};
 					displayfails: error source operator_visual_information{DisplayError};
 					badAlarm: error path alarm_control{MonitorError}-> alarm_sound{AlarmError};
-					badTemp: error path valid_current_temp{RegulatorError}-> operator_visual_information{DisplayError};
+					omittedTemp: error sink valid_current_temp{ItemOmission};
+					noTemp: error path valid_current_temp{ServiceOmission}-> operator_visual_information{DisplayError};
 			end propagations;
 			properties
 				EMV2::OccurrenceDistribution => [

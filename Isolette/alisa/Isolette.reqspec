@@ -122,6 +122,15 @@ system requirements IsoletteImplReqs for Isolette::isolette.SingleSensor_Functio
 		description "temperature sensor current temp value range same as expected by monitor"
 	] 
 	
+	requirement REQ_IsoI_CTR_Valid for temperature_regulator [
+		category Kind.Assumption
+		description "assumes that actual current temp is in value range"
+	] 
+	requirement REQ_IsoI_CTM_Validate for isolette_monitor [
+		category Kind.Constraint
+		description "validate that actual temperature sensor current temp values are within range"
+	] 
+	
 	requirement REQ_IsoI_CTR_Sampled for ctr [
 		category Kind.Constraint
 		description "temperature sensor current temp is sampled by the regulator"

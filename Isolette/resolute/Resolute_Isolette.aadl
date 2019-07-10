@@ -71,7 +71,7 @@ public
 	** "Upper bound of " cp " Integer_Range "rrub" <= specified upper bound" ub **
  	if has_Integer_Range(cp) then
  		let rrub: int = (int)upper_bound(get_Integer_Range(cp));
-		rrlb <= lb
+		rrub <= ub
 	else 
 		false
  
@@ -87,7 +87,7 @@ public
 	** "Upper bound of " cp " Real_Range "rrub" <= specified upper bound" ub **
  	if has_Real_Range(cp) then
  		let rrub: real = (real)upper_bound(get_Real_Range(cp));
-		rrlb <= lb
+		rrub <= ub
 	else 
 		false
 	
@@ -203,7 +203,8 @@ public
 
 	is_Triggering_EventDataPortConnection(c: connection) <=
 	** "Connection " c " messages trigger receiver" **
-	is_event_data_port_connection(c) and is_Aperiodic(destination_component(c))
+	-- this causes a class cast exception in Resolute on event data ports: is_event_data_port_connection(c) and 
+	is_Aperiodic(destination_component(c))
 
 	is_Sampled_DataPortConnection(c: connection) <=
 	** "Connection  " c " data is sampled by receiver" **

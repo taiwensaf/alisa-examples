@@ -110,6 +110,7 @@ public
 	end Interface_Command;
 
 --Regulator and Monitor Status
+
 	data Status
 		properties
 			Data_Model::Data_Representation => Enum;
@@ -134,34 +135,5 @@ public
 			Data_Model::Data_Representation => Enum;
 			Data_Model::Enumerators => ("INIT", "NORMAL", "FAILED");
 	end Monitor_Mode;
---Table A-3 Thermostat Monitored Variables for Temperature  Sensor
--- current temperature : TempWstatus
---Table A-4 Thermostat Controlled Variables for Heat Source
--- heat control : On_Off
---Table A-5
--- lower desired temperature : TempWstatus
--- upper desired temperature : TempWstatus
--- lower alarm temperature : TempWstatus
--- upper alarm temperature : TempWstatus
---range of Monitored Temperature  
--- data Measured_Temperature_Range
--- properties
--- Data_Model::Base_Type => (classifier(BLESS_Types::Fixed_Point));  
---  Data_Model::Real_Range => 68.0 .. 105.0;
---  Data_Model::Measurement_Unit => "Fahrenheit";
---  BLESS::Typed => "real 68.0 .. 105.0 units Fahrenheit";
---  end Measured_Temperature_Range;  
---Valid/Invalid enumerated type
---Current Temperature "t" is temp, "status" is valid/invalid flag 
--- data Current_Temperature 
---  properties
---  Data_Model::Data_Representation => Struct;
---  Data_Model::Element_Names => ("t","status");
---  Data_Model::Base_Type => (classifier (Measured_Temperature_Range), 
---  	classifier (Valid_Flag));
---  BLESS::Typed => "record (t:measured_temperature_range; status:valid_flag;)";
--- end Current_Temperature; 
---Table A-4. Thermostat Controlled Variables for Heat Source
---heat control and alarm value
---Table A-5
+ 
 end Isolette_Data_Model;

@@ -22,13 +22,12 @@ public
 			lower_desired_temp: in data port Isolette_Data_Model::lower_desired_temperature;
 			upper_desired_temp: in data port Isolette_Data_Model::upper_desired_temperature;
 					--  actual temperature from temp sensor
-			current_temp: in data port Isolette_Data_Model::MeasuredTemp;
+			current_temp: in data port Isolette_Data_Model::MeasuredTemp{ Isolette_Properties::Validity => Valid;};
 					-- ===== OUTPUTs (controlled variables)  ...based in part on Figure A.2 and Table A.6
 					-- status of regulate temperature function as reported to operator interface
-			regulator_status: out data port Isolette_Data_Model::Status;
+			self_check_status: out data port Isolette_Data_Model::Status;
 					-- actuation command to heater
 			heat_control: out data port Isolette_Data_Model::On_Off;
-			valid_current_temp: out data port Isolette_Data_Model::MeasuredTemp { Isolette_Properties::Validity => Valid;};
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ProcessingRate;
@@ -36,16 +35,12 @@ public
 			use types ErrorLibrary, isoletteEM;
 			use behavior IsoletteEM::FailStop;
 			error propagations
---				upper_desired_temp: in propagation {InvalidTemperature};
---				lower_desired_temp: in propagation {InvalidTemperature};
---				valid_current_temp: out propagation {InvalidTemperature};
---				regulator_status: out propagation {RegulatorStatusError};
-				current_temp: in propagation {SensorError,OutOfRange};
+				current_temp: in propagation {ItemOmission, ServiceOmission};
 				heat_control: out propagation {RegulatorError};
 			flows
-				missingSensorReading : error path current_temp{SensorError} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
-				respondwithheater: error sink current_temp{OutOfRange};
-				regulatorFails : error source heat_control{RegulatorError}; -- Internal regaulator error
+				missingSensorReading : error sink current_temp{ItemOmission} ; -- Thermo does detect missing TS readings
+				noSensorReadings : error path current_temp{ServiceOmission} -> heat_control{RegulatorError}; -- Thermo does not detect missing TS readings
+				regulatorFails : error source heat_control{RegulatorError}; -- Internal regulator error
 			end propagations;
   		properties
   	      EMV2::OccurrenceDistribution => [ProbabilityValue => Isolette_Constants::TemperatureRegulatorFailureRateValue; ]
@@ -69,39 +64,20 @@ public
 	process implementation Regulate_Temperature_Pr.impl
 		subcomponents
 --thread to manage the interactions between with operator interface and the rest of the regulator process
-			manage_regulator_interface: thread Manage_Regulator_Interface.impl;
+			manage_regulator_interface: thread Self_Check_Regulator.impl;
 -- thread to manage the heat source.  Receives the desired range, current determine, and determines whether or not to
 --send an on/off command to the heat source
 			manage_heat_source: thread Manage_Heat_Source.impl;
---thread to manage the regular mode. Based inputs describing the failure status of the interface, subsystem internals,
---and temperature  status,  determines the mode of the regulator process (i.e., if the mode is Init, Normal, or Failed modes)
-			manage_regulator_mode: thread Manage_Regulator_Mode.impl;
 		connections
 				-- ==== INPUT INTERFACE values to internal components ==== 		
 				-- send incoming desired temperature range to regulator interface manager
-			rudt: port upper_desired_temp -> manage_regulator_interface.upper_desired_temp;
-			rldt: port lower_desired_temp -> manage_regulator_interface.lower_desired_temp;
-					-- send incoming current temperature (with status value)
-					--   ...to interface manager
-			rcti: port current_temp -> manage_regulator_interface.current_temp;
-					--   ...and to mode manager
-			rctm: port manage_regulator_interface.valid_current_temp -> manage_regulator_mode.current_temp;
-					-- ==== OUTPUT INTERFACE values from internal components ==== 
-					-- output temperature to display on operator interface
-			rdhs: port manage_regulator_interface.valid_current_temp -> manage_heat_source.current_temp;
-			rdio: port manage_regulator_interface.valid_current_temp -> valid_current_temp;
+			rudt: port upper_desired_temp -> manage_heat_source.upper_desired_temp;
+			rldt: port lower_desired_temp -> manage_heat_source.lower_desired_temp;
+			ctmhs: port current_temp -> manage_heat_source.current_temp;
 					-- output regulator subsystem status to operator interface  
-			rrs: port manage_regulator_interface.regulator_status -> regulator_status;
+			rrs: port manage_regulator_interface.regulator_status -> self_check_status;
 					-- output on/off command to heat source
 			rhc: port manage_heat_source.heat_control -> heat_control;
-					-- ==== INTERNAL communication ====
--- send regulator mode from mode manager 
---  ... to interface manager
-			rrmi: port manage_regulator_mode.regulator_mode -> manage_regulator_interface.regulator_mode;
---  ... and to heat source manager
-			rrmh: port manage_regulator_mode.regulator_mode -> manage_heat_source.regulator_mode;
--- send regulator interface failure to mode manager
-			rif: port manage_regulator_interface.interface_failure -> manage_regulator_mode.interface_failure;
 	end Regulate_Temperature_Pr.impl;
 
 -- ===========================================================================================================
@@ -112,67 +88,18 @@ public
 -- A.5.1.1 Manage Regulator Interface Function
 -- 
 -- ===========================================================================================================
-	thread Manage_Regulator_Interface
+	thread Self_Check_Regulator
 		features
-				-- ==== INPUTS ====	(see Figure A.3)
-				--  desired temperature from operator interface
-			lower_desired_temp: in event data port Isolette_Data_Model::lower_desired_temperature;
-			upper_desired_temp: in event data port Isolette_Data_Model::upper_desired_temperature;
-					-- current temperature from temp sensor
-			current_temp: in data port Isolette_Data_Model::MeasuredTemp{Isolette_Properties::Validity => valid;};
-					-- current mode of regulator subsystem
-			regulator_mode: in data port Isolette_Data_Model::Regulator_Mode;
-					-- ==== OUTPUTS ====	(see Figure A.3)
-					-- current temperature to display on operator interface
-			valid_current_temp: out data port Isolette_Data_Model::MeasuredTemp { Isolette_Properties::Validity => valid;};  
-					-- overall status of regulator subsystem sent to operator interface
+				-- overall status of regulator subsystem sent to operator interface
 			regulator_status: out data port Isolette_Data_Model::Status;
-					-- flag indicating improper inputs; sent to determine overall subsystem mode 
-			interface_failure: out data port Isolette_Data_Model::Failure_Flag;
 		properties
---the data type for this project is set to periodic interval
-				--Dispatch_Protocol => Timed;
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ThreadPeriod;
-	end Manage_Regulator_Interface;
+	end Self_Check_Regulator;
 
-	thread implementation Manage_Regulator_Interface.impl
-		subcomponents
-			desired_temp_lower_bound_var : data Isolette_Data_Model::ValidFullDegreeFahrenheit
-			{ Data_Model::Integer_Range => 96 .. 101;};
-			desired_temp_upper_bound_var : data Isolette_Data_Model::ValidFullDegreeFahrenheit
-			{ Data_Model::Integer_Range => 97 .. 102;};
-	end Manage_Regulator_Interface.impl;
+	thread implementation Self_Check_Regulator.impl
+	end Self_Check_Regulator.impl;
 
--- ===========================================================================================================
---
---   M a n a g e    R e g u l a t o r   M o d e   T h r e a d
---
---  
---   A.5.1.2 Manage Regulator Mode Function
--- 
--- ===========================================================================================================
-	thread Manage_Regulator_Mode
-		features
-				-- ==== INPUTS ========		
-				-- current temperature from temp sensor
-			current_temp: in data port Isolette_Data_Model::MeasuredTemp{Isolette_Properties::Validity => valid;};
-					-- status of operator interface interactions
-			interface_failure: in data port Isolette_Data_Model::Failure_Flag;
-					-- internal status of regulator
-			internal_failure: in data port Isolette_Data_Model::Failure_Flag;
-					-- ==== OUTPUTS ========		
-					-- mode of regulator (Init, Normal, Failed)
-			regulator_mode: out data port Isolette_Data_Model::Regulator_Mode;
-		properties
---the time protocol is set to periodic for this project
-				--Dispatch_Protocol => Timed;
-			Dispatch_Protocol => Periodic;
-			Period => Isolette_Constants::ThreadPeriod;
-	end Manage_Regulator_Mode;
-
-	thread implementation Manage_Regulator_Mode.impl
-	end Manage_Regulator_Mode.impl;
 
 -- ===========================================================================================================
 --
@@ -190,8 +117,6 @@ public
 -- lowest and upper bound of desired temperature range
 			lower_desired_temp: in data port Isolette_Data_Model::lower_desired_temperature;
 			upper_desired_temp: in data port Isolette_Data_Model::upper_desired_temperature;
--- subsystem mode 
-			regulator_mode: in data port Isolette_Data_Model::Regulator_Mode;
 -- ======== OUTPUTS =======
 -- command to turn heater on/off (actuation command)
 			heat_control: out data port Isolette_Data_Model::On_Off;
@@ -201,6 +126,11 @@ public
 	end Manage_Heat_Source;
 
 	thread implementation Manage_Heat_Source.impl
+		subcomponents
+			desired_temp_lower_bound_var : data Isolette_Data_Model::ValidFullDegreeFahrenheit
+			{ Data_Model::Integer_Range => 96 .. 101;};
+			desired_temp_upper_bound_var : data Isolette_Data_Model::ValidFullDegreeFahrenheit
+			{ Data_Model::Integer_Range => 97 .. 102;};
 	end Manage_Heat_Source.impl;
 
 end RegulateTemperature;

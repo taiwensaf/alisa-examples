@@ -74,7 +74,7 @@ system requirements TemperatureSensorReqs for Devices::Temperature_Sensor [
 		val TemperatureSenseAccuracy = 0.1 Fahrenheit
 		category Kind.Guarantee
 		description "The Current Temperature will be sensed to an accuracy of +/-" TemperatureSenseAccuracy " deg F."
-		rationale "An accuracy of 0.1�F is necessary to ensure the Thermostat can turn the Heat Source on and off quickly enough to maintain the Desired Temperature Range."
+		rationale "An accuracy of 0.1 F is necessary to ensure the Thermostat can turn the Heat Source on and off quickly enough to maintain the Desired Temperature Range."
 		// validation: accuracy property on thermostat is same or better than required.
 		value predicate #Isolette_Properties::Temperature_Accuracy <= TemperatureSenseAccuracy
 	]
