@@ -20,15 +20,15 @@ public
 			monitor_heat_control: in data port Isolette_Data_Model::On_Off;
 					-- ===== OUTPUTs (controlled variables)  ...based in part on Figure A.2 and Table A.6
 					-- control signal (on/off) to alarm component 
-			monitor_status: out data port Isolette_Data_Model::Status;
-			regulator_status: out data port Isolette_Data_Model::Status;
-			sensor_status: out data port Isolette_Data_Model::Status;
+			isolette_status: out data port Isolette_Data_Model::Isolette_Status;
 					-- the monitor validates current temp reading
 			valid_current_temp: out data port Isolette_Data_Model::MeasuredTemp {
 						Isolette_Properties::Validity => Valid;};
-			alarm_control: out event data port Isolette_Data_Model::On_Off;
+			alarm_control: out data port Isolette_Data_Model::On_Off;
+			go_Standby: out event port ; 
 		flows
 			detectTempOOR: flow path current_temp -> alarm_control {Latency => 10ms .. 1 sec;}; -- 1 sec due to periodic sampling
+			validateCT: flow path current_temp -> valid_current_temp {Latency => 10ms .. 1 sec;}; -- 1 sec due to periodic sampling
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ProcessingRate;
@@ -82,7 +82,7 @@ public
 				--thread for manage alarm implementation
 			manage_alarm: thread Manage_Alarm.impl;
 					--thread for monitor interface implementation
-			manage_monitor_isolette: thread Manage_Monitor_Isolette.impl;
+			manage_isolette_status: thread Manage_Isolette_Status.impl;
 					--thread for monitor mode implementation
 			validate_current_temp: thread Validate_Temp.impl;
 		connections
@@ -98,15 +98,13 @@ public
 					-- send alarm actuation command (on/off) 
 			malrm: port manage_alarm.alarm_control -> alarm_control;
 					-- send status of monitor subsystem  to operator interface
-			mms: port manage_monitor_isolette.monitor_status -> monitor_status;
-			mss: port manage_monitor_isolette.sensor_status -> sensor_status;
-			mrs: port manage_monitor_isolette.regulator_status -> regulator_status;
-			mhc: port monitor_heat_control -> manage_monitor_isolette.monitor_heat_control;
-			mac: port manage_alarm.alarm_control -> manage_monitor_isolette.monitor_alarm_control;
+			mis: port manage_isolette_status.isolette_status -> isolette_status;
+			mhc: port monitor_heat_control -> manage_isolette_status.monitor_heat_control;
+			mac: port manage_alarm.alarm_control -> manage_isolette_status.monitor_alarm_control;
 			vctma: port validate_current_temp.valid_current_temp -> manage_alarm.current_temp;
-			vctmi: port validate_current_temp.valid_current_temp -> manage_monitor_isolette.current_temp;
-			vsmi: port validate_current_temp.temp_validation_status -> manage_monitor_isolette.temp_validation_status;
-			rscksmi: port regulator_selfcheck_status -> manage_monitor_isolette.regulator_selfcheck_status;
+			vsmi: port validate_current_temp.temp_validation_status -> manage_isolette_status.temp_validation_status;
+			rscksmi: port regulator_selfcheck_status -> manage_isolette_status.regulator_selfcheck_status;
+			gostdby: port manage_isolette_status.go_Standby -> go_Standby;
 	end Monitor_Isolette_pr.impl;
 
 -- ===========================================================================================================
@@ -117,27 +115,22 @@ public
 -- A.5.2.1 Manage Monitor Interface Function
 -- 
 -- ===========================================================================================================
-	thread Manage_Monitor_Isolette
+	thread Manage_Isolette_Status
 		features
--- ==== INPUTS ====	(see Figure A.5)
-					-- current temperature from temp sensor
-			current_temp: in data port Isolette_Data_Model::MeasuredTemp;
 			regulator_selfcheck_status: in data port Isolette_Data_Model::Status;
 			monitor_heat_control: in data port Isolette_Data_Model::On_Off;
 			monitor_alarm_control: in data port Isolette_Data_Model::On_Off;
-			temp_validation_status: in data port Isolette_Data_Model::Valid_Flag;
+			temp_validation_status: in data port Isolette_Data_Model::Status;
 					-- overall status of monitor subsystem sent to operator interface
-			monitor_status: out data port Isolette_Data_Model::Status; -- alarm_control (Omission), internal selfcheck
-			regulator_status: out data port Isolette_Data_Model::Status; -- heat_control (Omission), regulator_selfcheck(memory)
-			sensor_status: out data port Isolette_Data_Model::Status; -- temp out of range (temp_validation_status), ItemOmission, 
+			isolette_status: out data port Isolette_Data_Model::Isolette_Status; -- alarm_control (Omission), internal selfcheck
+			go_Standby: out event port;
 		properties --properties of monitor interface
-				--Dispatch_Protocol => Timed;				--Dispatch_Protocol?
-			Dispatch_Protocol => Periodic; -- jab switched to periodic
+			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ThreadPeriod;
-	end Manage_Monitor_Isolette;
+	end Manage_Isolette_Status;
 
-	thread implementation Manage_Monitor_Isolette.impl
-	end Manage_Monitor_Isolette.impl;
+	thread implementation Manage_Isolette_Status.impl
+	end Manage_Isolette_Status.impl;
 
 
 -- ===========================================================================================================
@@ -182,7 +175,7 @@ public
 			current_temp: in data port Isolette_Data_Model::MeasuredTemp;
 			valid_current_temp: out data port Isolette_Data_Model::MeasuredTemp {
 						Isolette_Properties::Validity => Valid;};
-			temp_validation_status: out data port Isolette_Data_Model::Valid_Flag;
+			temp_validation_status: out data port Isolette_Data_Model::Status;
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ThreadPeriod;

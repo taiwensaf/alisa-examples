@@ -84,13 +84,8 @@ verification methods ResoluteIsolette [
 		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Consistent_Connection_RealRange
 	]
 
-	method IsValidFlag (feature): 
-	"Type is Valid_Flag" [
-		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Type_Valid_Flag
-	]
-
 	method IsOnOff (feature): 
-	"Type is Valid_Flag" [
+	"Type is On_Off" [
 		resolute Resolute_Isolette.Resolute_Isolette_public.Resolute.Resolute.is_Type_On_Off
 	]
 

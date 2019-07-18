@@ -14,8 +14,8 @@ system requirements MonitorIsoletteReqs for MonitorIsolette::Monitor_Isolette  [
 
 	requirement REQ_MI_4 for alarm_control [  
 		category Kind.Guarantee
-		description "The Thermostat shall send an alarm control on/off command."
-		rationale "A primary Thermostat Function is to activate the Alarm if the Isolette is unable to maintain the Current Temperature within the Alarm Temperature Range, which is required by SR-2."
+		description "The Isolette Monitor shall send an alarm control on/off command."
+		rationale "A primary Isolette Monitor Function is to activate the Alarm if the Isolette is unable to maintain the Current Temperature within the Alarm Temperature Range, which is required by SR-2."
 		issues "Command as single event or continuous sending of current command, i.e., state?"
 		// should also be a requirement on the Isolette pointing to the connection between thermostat and heat source
 		// Validation: heat control out port exists with on/off function
@@ -27,11 +27,10 @@ system requirements MonitorIsoletteReqs for MonitorIsolette::Monitor_Isolette  [
 		// validation: event data port
 		// validation on connection: guaranteed delivery (see Isolette)
 	]
-	requirement REQ_MI_5 for monitor_status [
+	requirement REQ_MI_5 for isolette_status [
 		category Kind.Guarantee
-		description "The Thermostat shall set the value of the Monitor Status."
-		rationale "SR-2 requires the Thermostat to provide an independent monitor function. The status of this function must be provided to the Operator Interface, which will use it and the status of the regulator function to report the overall status of the thermostat."
-		// status as to internal failure?
+		description "The Thermostat shall set the value of the Isolette Status."
+		rationale "SR-2 requires the Thermostat to provide an independent monitor function. The status of this function must be provided to the Operator Interface, which will use it and the status of the regulator function to report the overall status of the isolette."
 	]
 	
 	requirement REQ_MI_S1 [  

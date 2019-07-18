@@ -19,47 +19,46 @@ package OperatorInterface
 					-- models (abstraction) audio information presented to the operator on Isolette operator interface
 			alarm_sound: out feature Isolette_Data_Model::Alarm_Sound;
 					-- ==== INPUTS from thermostat to operator interface 
-			regulator_status: in data port Isolette_Data_Model::Status;
-			monitor_status: in data port Isolette_Data_Model::Status;
-			sensor_status: in data port Isolette_Data_Model::Status;
+			isolette_status: in data port Isolette_Data_Model::Isolette_Status;
 			valid_current_temp: in data port Isolette_Data_Model::MeasuredTemp {
-						Isolette_Properties::Validity => valid;};
+				Isolette_Properties::Validity => valid;};
 			alarm_control: in data port Isolette_Data_Model::On_Off;
 					-- ==== OUTPUTS from operator interface to thermostat 
 			lower_desired_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
-						Data_Model::Integer_Range => 97 .. 99;};
+				Data_Model::Integer_Range => 97 .. 99;};
 			upper_desired_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
-						Data_Model::Integer_Range => 98 .. 100;};
+				Data_Model::Integer_Range => 98 .. 100;};
 			lower_alarm_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
-						Data_Model::Integer_Range => 93 .. 98;};
+				Data_Model::Integer_Range => 93 .. 98;};
 			upper_alarm_temp: out data port Isolette_Data_Model::ValidFullDegreeFahrenheit {
-						Data_Model::Integer_Range => 99 .. 103;};
+				Data_Model::Integer_Range => 99 .. 103;};
 		flows
-			enableAlarmSound: flow path alarm_control -> alarm_sound { Latency => 100 ms .. 150 ms;};
-			processCommand: flow path operator_input -> operator_visual_information { Latency => 100 ms .. 150 ms;};
+			enableAlarmSound: flow path alarm_control -> alarm_sound {Latency => 100ms .. 150ms;};
+			processCommand: flow path operator_input -> operator_visual_information {Latency => 100ms .. 150ms;};
 		properties
 			Period => Isolette_Constants::ProcessingRate;
 		annex EMV2 {**
-				-- operator interface failures
-			use types ErrorLibrary,IsoletteEM;
+			-- operator interface failures
+			use types ErrorLibrary, IsoletteEM;
 			use behavior IsoletteEM::FailStop;
+			
 			error propagations
-				valid_current_temp: in propagation {ItemOmission,ServiceOmission}; 
-				alarm_control: in propagation {MonitorError}; 
+				valid_current_temp: in propagation {ItemOmission, ServiceOmission};
+				alarm_control: in propagation {MonitorError};
 				alarm_sound: out propagation {AlarmError}; --{ServiceOmission, ServiceCommission};
 				operator_visual_information: out propagation {DisplayError};
-				-- may deliver no sound or erroneous sound
-				flows
-					alarmfails: error source alarm_sound{AlarmError};
-					displayfails: error source operator_visual_information{DisplayError};
-					badAlarm: error path alarm_control{MonitorError}-> alarm_sound{AlarmError};
-					omittedTemp: error sink valid_current_temp{ItemOmission};
-					noTemp: error path valid_current_temp{ServiceOmission}-> operator_visual_information{DisplayError};
+			-- may deliver no sound or erroneous sound
+			flows
+				alarmfails: error source alarm_sound {AlarmError};
+				displayfails: error source operator_visual_information {DisplayError};
+				badAlarm: error path alarm_control {MonitorError} -> alarm_sound {AlarmError};
+				omittedTemp: error sink valid_current_temp {ItemOmission};
+				noTemp: error path valid_current_temp {ServiceOmission} -> operator_visual_information {DisplayError};
 			end propagations;
+			
 			properties
 				EMV2::OccurrenceDistribution => [
-							ProbabilityValue => Isolette_Constants::AlarmSoundFailureRateValue;]
-							applies to failed, alarmfails.AlarmError;
+					ProbabilityValue => Isolette_Constants::AlarmSoundFailureRateValue;] applies to failed, alarmfails.AlarmError;
 		**};
 	end operator_interface;
 	
@@ -85,8 +84,7 @@ package OperatorInterface
 			oiad: device Devices::Alarm_Device;
 			oiDisplay: device Devices::TouchScreen;
 		connections
-			c1: port regulator_status -> oip.regulator_status;
-			c2: port monitor_status -> oip.monitor_status;
+			c1: port isolette_status -> oip.isolette_status;
 			c3: port valid_current_temp -> oip.valid_current_temp;
 			c4: port alarm_control -> oiad.alarm_control;
 			c5: port oip.lower_desired_temp -> lower_desired_temp;
@@ -110,8 +108,7 @@ package OperatorInterface
 	process operator_interface_process
 		features
 				-- ==== INPUTS from thermostat to operator interface
-			regulator_status: in data port Isolette_Data_Model::Status;
-			monitor_status: in data port Isolette_Data_Model::Status;
+			isolette_status: in data port Isolette_Data_Model::Isolette_Status;
 			valid_current_temp: in data port Isolette_Data_Model::MeasuredTemp {
 						Isolette_Properties::Validity => valid;};
 			display_current_temperature: out data port Isolette_Data_Model::DisplayTemp;
@@ -132,8 +129,7 @@ package OperatorInterface
 		subcomponents
 			oit: thread operator_interface_thread.impl;
 		connections
-			c1: port regulator_status -> oit.regulator_status;
-			c2: port monitor_status -> oit.monitor_status;
+			c1: port isolette_status -> oit.isolette_status;
 			c3: port valid_current_temp -> oit.valid_current_temp;
 			c5: port oit.lower_desired_temp -> lower_desired_temp;
 			c6: port oit.upper_desired_temp -> upper_desired_temp;
@@ -144,7 +140,7 @@ package OperatorInterface
 	thread operator_interface_thread
 		features
 				-- ==== INPUTS from thermostat to operator interface
-			regulator_status: in data port Isolette_Data_Model::Status;
+			isolette_status: in data port Isolette_Data_Model::Isolette_Status;
 			monitor_status: in data port Isolette_Data_Model::Status;
 			valid_current_temp: in data port Isolette_Data_Model::MeasuredTemp {
 						Isolette_Properties::Validity => valid;};

@@ -40,24 +40,28 @@ OperatorInterface;
 			air_temperature: in feature Isolette_Data_Model::PhysicalTemp;
 		flows
 			raise_alarm: flow source alarm_sound {Latency => 15 sec .. 15 sec;};
-			command_response: flow path operator_input -> operator_visual_information{Latency => 500ms .. 500ms;};
-			extreme_air_alarm: flow path air_temperature -> alarm_sound{Latency => 15 sec .. 15 sec;};
+			command_response: flow path operator_input -> operator_visual_information {Latency => 500ms .. 500ms;};
+			extreme_air_alarm: flow path air_temperature -> alarm_sound {Latency => 15 sec .. 15 sec;};
+			heat_control: flow path air_temperature -> heat_out{Latency => 6 sec .. 6 sec;};
 		properties
 			Isolette_Properties::Temperature_Change_Rate => 1.0 Fdeg_Minute;
 		annex EMV2 {**
 			use types ErrorLibrary, IsoletteEM;
 			use behavior IsoletteEM::FailStop;
+			
 			error propagations
-			infantExposure : out propagation {DangerousInfantExposure};
-			heat_out : out propagation {HeaterError};
-			operator_visual_information : out propagation {DisplayError};
+				infantExposure: out propagation {DangerousInfantExposure};
+				heat_out: out propagation {HeaterError};
+				operator_visual_information: out propagation {DisplayError};
 			end propagations;
+			
 			propagation paths
 				infantExposure: propagation point;
 			end paths;
+			
 			properties
-				EMV2::OccurrenceDistribution => [ProbabilityValue => Isolette_Constants::ExpectedIsoletteFailureRateValue;] 
-      			applies to failed, infantExposure.DangerousInfantExposure;      
+				EMV2::OccurrenceDistribution => [
+					ProbabilityValue => Isolette_Constants::ExpectedIsoletteFailureRateValue;] applies to failed, infantExposure.DangerousInfantExposure;
 		**};
 	end isolette;
 
@@ -106,33 +110,32 @@ OperatorInterface;
 			hc: port temperature_regulator.heat_control -> heat_source.heat_control;
 					-- operator interface communicates desired temperature to thermostat
 			ldt: port operator_interface.lower_desired_temp -> temperature_regulator.lower_desired_temp {
-						Classifier_Matching_Rule => Subset;};
+				Classifier_Matching_Rule => Subset;};
 			udt: port operator_interface.upper_desired_temp -> temperature_regulator.upper_desired_temp {
-						Classifier_Matching_Rule => Subset;};
+				Classifier_Matching_Rule => Subset;};
 			ctm: port temperature_sensor.current_temp -> isolette_monitor.current_temp {
-						Classifier_Matching_Rule => Subset;};
-			ctv: port isolette_monitor.valid_current_temp -> temperature_regulator.current_temp;
+				Classifier_Matching_Rule => Subset;};
+			ctvr: port isolette_monitor.valid_current_temp -> temperature_regulator.current_temp;
 					-- operator interface communicates alarm temperature to thermostat
 			lat: port operator_interface.lower_alarm_temp -> isolette_monitor.lower_alarm_temp {
-						Classifier_Matching_Rule => Subset;};
+				Classifier_Matching_Rule => Subset;};
 			uat: port operator_interface.upper_alarm_temp -> isolette_monitor.upper_alarm_temp {
-						Classifier_Matching_Rule => Subset;};
+				Classifier_Matching_Rule => Subset;};
 					-- monitor regulator
 			rhcmi: port temperature_regulator.heat_control -> isolette_monitor.monitor_heat_control;
 			rscksmi: port temperature_regulator.self_check_status -> isolette_monitor.regulator_selfcheck_status;
 					-- monitor communicates regulator status to display on operator interface
-			rs: port isolette_monitor.regulator_status -> operator_interface.regulator_status;
-					-- thermostat communicates monitor status to display on operator interface
-			ms: port isolette_monitor.monitor_status -> operator_interface.monitor_status;
-			ss: port isolette_monitor.sensor_status -> operator_interface.sensor_status;
+			rs: port isolette_monitor.isolette_status -> operator_interface.isolette_status;
 					-- thermostat communicates current sensed temperature to display on operator interface
 			dt: port isolette_monitor.valid_current_temp -> operator_interface.valid_current_temp;
 					-- thermostat communicates alarm information to display on operator interface
 			al: port isolette_monitor.alarm_control -> operator_interface.alarm_control;
+			isolette_SingleSensor_Functional_new_connection: port isolette_monitor.go_Standby -> temperature_regulator.goStandby;
 		flows
 			command_response: flow path operator_input -> oioc -> operator_interface.processCommand -> oiovi -> operator_visual_information;
 			raise_alarm: flow source temperature_sensor -> ctm -> isolette_monitor.detectTempOOR -> al -> operator_interface.enableAlarmSound -> oioa -> alarm_sound;
 			extreme_air_alarm: flow path air_temperature -> a2ts -> temperature_sensor.air_temp_reading -> ctm -> isolette_monitor.detectTempOOR -> al -> operator_interface.enableAlarmSound -> oioa -> alarm_sound;
+			heat_control: flow path air_temperature -> a2ts -> temperature_sensor.air_temp_reading -> ctm -> isolette_monitor.validateCT -> ctvr -> temperature_regulator.regulate -> hc -> heat_source.heatOnOff -> hs -> heat_out;
 		properties
 			Required_Connection_Quality_Of_Service => (GuaranteedDelivery) applies to al;
 		annex EMV2 {**

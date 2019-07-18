@@ -1,17 +1,21 @@
 verification plan IsoletteEnvVPlan for IsoletteEnvironmentReqs [
 	
-claim OE_IS_SR2_Lat [
+claim OE_IS_SR2_Alarm_Lat [
 	activities
 	  assertlatency : Mode, SpecLatency , ActualLatency = Plugins.ComputeEndToEndFlowLatency ()
 //	  assertLatencyProperty: ResoluteIsolette.IsMaxLatencyValue(NurseAlarmResponse)
 	]
-claim OE_IS_SR2Air_Lat [
+claim OE_IS_SR2_Air_Lat [
 	activities
 	  assertlatency : Mode, SpecLatency, ActualLatency = Plugins.ComputeEndToEndFlowLatency ()
 	]
-
-claim OE_IS_P1_Lat [
+claim OE_IS_Lat_Cmd [
 	activities
-	  assertlatency : Mode, SpecLatency , ActualLatency = Plugins.ComputeEndToEndFlowLatency ()
+	  assertCmdlatency : Mode, SpecLatency , ActualLatency = Plugins.ComputeEndToEndFlowLatency ()
+	]
+
+	claim OE_IS_Lat_Control [
+	activities
+	  assertControllatency : Mode, SpecLatency , ActualLatency = Plugins.ComputeEndToEndFlowLatency ()
 	]
 ]

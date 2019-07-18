@@ -97,12 +97,6 @@ public
 		properties
 			Data_Model::Data_Representation => Enum;
 	end On_Off;
-
-	data Valid_Flag
-	end Valid_Flag;
-
-	data Failure_Flag
-	end Failure_Flag;
 	
 	data Interface_Command
 		-- increment/decrement desired/alarm lower/upper bound
@@ -114,26 +108,14 @@ public
 	data Status
 		properties
 			Data_Model::Data_Representation => Enum;
-			Data_Model::Enumerators => ("Init", "O_n", "Failed");
+			Data_Model::Enumerators => ("Ok", "Failed");
 	end Status;
 
---Regulator Mode
-	data Regulator_Mode
-		modes
-			Init: initial mode;
-			Normal: mode;
-			Failed: mode;
+	data Isolette_Status
 		properties
-			Isolette_Properties::Regulator_Mode => Init;
 			Data_Model::Data_Representation => Enum;
-			Data_Model::Enumerators => ("Init", "NORMAL", "FAILED");
-	end Regulator_Mode;
+			Data_Model::Enumerators => ("Normal", "Failed");
+	end Isolette_Status;
 
---Monitor Mode
-	data Monitor_Mode
-		properties
-			Data_Model::Data_Representation => Enum;
-			Data_Model::Enumerators => ("INIT", "NORMAL", "FAILED");
-	end Monitor_Mode;
  
 end Isolette_Data_Model;

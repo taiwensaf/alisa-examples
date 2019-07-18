@@ -37,12 +37,12 @@
         <seg>ctm</seg>
       </bo>
       <bendpoints>
-        <point x="355.0" y="142.0"/>
-        <point x="730.0" y="142.0"/>
+        <point x="360.0" y="106.0"/>
+        <point x="738.0" y="106.0"/>
       </bendpoints>
     </element>
-    <element uuid="fd8d17f9-449f-453e-b54b-9ccaf8569fee" manual="true">
-      <element uuid="308de3e6-f180-46e9-acc6-3880391b2277" manual="true">
+    <element uuid="0f7bc6ed-01b9-4465-8e89-cb0a480d13c3" manual="true">
+      <element uuid="833c77b1-a8db-4082-befd-26f42d7f0036" manual="true">
         <bo>
           <seg>tag</seg>
           <seg>unidirectional</seg>
@@ -50,7 +50,7 @@
       </element>
       <bo>
         <seg>connection</seg>
-        <seg>ctv</seg>
+        <seg>ctvr</seg>
       </bo>
     </element>
     <element uuid="1c2b9b12-c1ba-446c-9a08-e1ca102b055a" manual="true">
@@ -65,8 +65,9 @@
         <seg>dt</seg>
       </bo>
       <bendpoints>
-        <point x="1308.0" y="480.0"/>
-        <point x="1308.0" y="687.0"/>
+        <point x="1308.0" y="500.0"/>
+        <point x="1308.0" y="740.0"/>
+        <point x="946.0" y="740.0"/>
       </bendpoints>
     </element>
     <element uuid="0db08020-efe9-4650-bd79-88ed67916892" manual="true">
@@ -93,6 +94,18 @@
         <seg>hs</seg>
       </bo>
     </element>
+    <element uuid="86213cd1-8266-44b2-9868-8ecb25ec0e8c" manual="true">
+      <element uuid="ad8cd774-40bc-4425-8576-e83836e0f12e" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>isolette_singlesensor_functional_new_connection</seg>
+      </bo>
+    </element>
     <element uuid="913b1e57-5ea2-4d69-8052-1ee2a6014fd5" manual="true">
       <element uuid="5c3e9cd6-2b1c-4755-ac16-47713dcbbc41" manual="true">
         <bo>
@@ -115,18 +128,6 @@
       <bo>
         <seg>connection</seg>
         <seg>ldt</seg>
-      </bo>
-    </element>
-    <element uuid="5120da2b-555e-4a22-b2a5-282ccf9f835e" manual="true">
-      <element uuid="63cbf53f-3ca6-4c01-ba0f-6b21c11ed6a4" manual="true">
-        <bo>
-          <seg>tag</seg>
-          <seg>unidirectional</seg>
-        </bo>
-      </element>
-      <bo>
-        <seg>connection</seg>
-        <seg>ms</seg>
       </bo>
     </element>
     <element uuid="cbdae975-da81-4942-8f5b-b49cd914992d" manual="true">
@@ -211,18 +212,6 @@
         <seg>rscksmi</seg>
       </bo>
     </element>
-    <element uuid="355d1575-4b85-4e68-8fc2-c300a65a1fce" manual="true">
-      <element uuid="bfcce87b-a7cb-4487-bafb-7ac0fee5ced6" manual="true">
-        <bo>
-          <seg>tag</seg>
-          <seg>unidirectional</seg>
-        </bo>
-      </element>
-      <bo>
-        <seg>connection</seg>
-        <seg>ss</seg>
-      </bo>
-    </element>
     <element uuid="9a85953a-0205-499a-8ef9-9d98701e9eea" manual="true">
       <element uuid="e1e482de-f370-492d-a6da-85f92c8a70a7" manual="true">
         <bo>
@@ -247,40 +236,40 @@
         <seg>udt</seg>
       </bo>
     </element>
-    <element uuid="077d9ee6-cef4-4853-b757-b0e0c3871741" manual="true" dockArea="left">
+    <element uuid="a3084d55-50d8-4271-ac68-e6dcb82210e8" manual="true" dockArea="left">
       <bo>
         <seg>feature</seg>
         <seg>air_temperature</seg>
       </bo>
-      <position y="67.0"/>
+      <position/>
     </element>
-    <element uuid="4032907f-d968-4e83-a062-9cf0c791e3b4" manual="true" dockArea="right">
+    <element uuid="0187844a-465e-408b-9b53-c6fdfb8d0bd1" manual="true" dockArea="right">
       <bo>
         <seg>feature</seg>
         <seg>alarm_sound</seg>
       </bo>
-      <position x="2119.0" y="88.0"/>
+      <position x="2119.0" y="18.0"/>
     </element>
-    <element uuid="9efd987c-f19a-494b-b49a-240f9e39d187" manual="true" dockArea="right">
+    <element uuid="6c911163-1dd2-46fa-a822-f7c3517a646c" manual="true" dockArea="right">
       <bo>
         <seg>feature</seg>
         <seg>heat_out</seg>
       </bo>
-      <position x="2146.0" y="434.0"/>
+      <position x="2146.0" y="338.0"/>
     </element>
-    <element uuid="32000591-56c0-4480-92e9-42674b602367" manual="true" dockArea="left">
+    <element uuid="12dd9877-b059-4351-acc2-5d7738d66b31" manual="true" dockArea="left">
       <bo>
         <seg>feature</seg>
         <seg>operator_input</seg>
       </bo>
-      <position y="18.0"/>
+      <position y="45.0"/>
     </element>
-    <element uuid="903b2648-c726-48d6-8153-ab8ff8781c10" manual="true" dockArea="right">
+    <element uuid="e9c25a44-30e5-46dd-8bfc-7810c35369e4" manual="true" dockArea="right">
       <bo>
         <seg>feature</seg>
         <seg>operator_visual_information</seg>
       </bo>
-      <position x="2011.0" y="28.0"/>
+      <position x="2011.0" y="68.0"/>
     </element>
     <element uuid="ce5f6a9a-58fe-472c-b27a-a3333ccf6cd2" manual="true">
       <bo>
@@ -343,6 +332,20 @@
         </bo>
         <position y="22.0"/>
       </element>
+      <element uuid="1116b1ec-7e0f-485d-bcf5-aac9e124da54" manual="true" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>go_standby</seg>
+        </bo>
+        <position x="208.0" y="320.0"/>
+      </element>
+      <element uuid="6c90a0b1-2b02-4db0-be86-a33a73326166" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>isolette_status</seg>
+        </bo>
+        <position y="230.0"/>
+      </element>
       <element uuid="bb592717-3039-4bcd-915c-e37131feff4a" manual="true" dockArea="left">
         <bo>
           <seg>feature</seg>
@@ -355,14 +358,7 @@
           <seg>feature</seg>
           <seg>monitor_heat_control</seg>
         </bo>
-        <position x="143.0" y="314.0"/>
-      </element>
-      <element uuid="8e185810-2c3b-46e6-905f-c3c867568c21" manual="true" dockArea="left">
-        <bo>
-          <seg>feature</seg>
-          <seg>monitor_status</seg>
-        </bo>
-        <position y="353.0"/>
+        <position x="143.0" y="370.0"/>
       </element>
       <element uuid="84e27e0d-7a28-414a-b89d-84da7e651a29" manual="true" dockArea="right">
         <bo>
@@ -370,20 +366,6 @@
           <seg>regulator_selfcheck_status</seg>
         </bo>
         <position x="105.0" y="269.0"/>
-      </element>
-      <element uuid="9409ebe1-896c-49e9-aaf2-53a12595e5de" manual="true" dockArea="left">
-        <bo>
-          <seg>feature</seg>
-          <seg>regulator_status</seg>
-        </bo>
-        <position y="308.0"/>
-      </element>
-      <element uuid="2978d9a6-40ab-435c-9859-fd321c508a25" manual="true" dockArea="left">
-        <bo>
-          <seg>feature</seg>
-          <seg>sensor_status</seg>
-        </bo>
-        <position y="263.0"/>
       </element>
       <element uuid="1728075d-7a77-4243-b197-cc912ff66dd8" manual="true" dockArea="left">
         <bo>
@@ -409,99 +391,89 @@
         <seg>subcomponent</seg>
         <seg>isolette_monitor</seg>
       </bo>
-      <position x="968.0" y="238.0"/>
+      <position x="968.0" y="298.0"/>
       <size width="301.0" height="421.0"/>
     </element>
     <element uuid="6cae1275-be12-4437-af53-0f3eae0cdf7d" manual="true">
-      <element uuid="432871b8-8e6b-4418-ab97-baa0d2894f13" manual="true" dockArea="right">
+      <element uuid="a1338a91-b92a-479f-aaf4-9710dffe81ad" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>alarm_control</seg>
         </bo>
-        <position x="155.0" y="128.0"/>
+        <position x="225.0" y="201.0"/>
       </element>
-      <element uuid="ea18e735-85c3-49f2-8335-989b74d777d7" manual="true" dockArea="right">
+      <element uuid="52e855ce-ccad-4efe-8a56-20e36cd7b74e" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>alarm_sound</seg>
         </bo>
-        <position x="161.0" y="83.0"/>
+        <position x="231.0" y="21.0"/>
       </element>
-      <element uuid="c31bf683-533d-468b-8a5a-a15f01621940" manual="true" dockArea="right">
+      <element uuid="765fec29-4daa-4aaf-8c7c-f714f61ca9c0" manual="true" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>isolette_status</seg>
+        </bo>
+        <position x="224.0" y="398.0"/>
+      </element>
+      <element uuid="71c7b805-1627-47f6-a55f-4a32970935a4" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>lower_alarm_temp</seg>
         </bo>
-        <position x="123.0" y="315.0"/>
+        <position x="193.0" y="325.0"/>
       </element>
-      <element uuid="0cc10801-542c-469c-8279-ae5d02b9cd8b" manual="true" dockArea="right">
+      <element uuid="50b56255-b09f-4e0f-82b4-cf6c06c54f1d" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>lower_desired_temp</seg>
         </bo>
-        <position x="111.0" y="173.0"/>
+        <position x="181.0" y="111.0"/>
       </element>
-      <element uuid="db6e367f-e5a1-442c-bbe9-969535c91e4e" manual="true" dockArea="right">
-        <bo>
-          <seg>feature</seg>
-          <seg>monitor_status</seg>
-        </bo>
-        <position x="151.0" y="460.0"/>
-      </element>
-      <element uuid="63269e88-6067-49f4-8962-ca68ec74a919" manual="true" dockArea="left">
+      <element uuid="c235715c-691b-4f2c-b8e7-46d7bbba352b" manual="true" dockArea="left">
         <bo>
           <seg>feature</seg>
           <seg>operator_input</seg>
         </bo>
-        <position y="38.0"/>
+        <position y="66.0"/>
       </element>
-      <element uuid="40b32162-abab-4144-b556-9cc6a88f51b4" manual="true" dockArea="right">
+      <element uuid="bb488247-0707-4c0b-80e5-300b4dc3b23b" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>operator_visual_information</seg>
         </bo>
-        <position x="53.0" y="38.0"/>
+        <position x="123.0" y="66.0"/>
       </element>
-      <element uuid="f5a64c98-1312-49ea-91e7-95254cf72410" manual="true" dockArea="right">
-        <bo>
-          <seg>feature</seg>
-          <seg>regulator_status</seg>
-        </bo>
-        <position x="141.0" y="415.0"/>
-      </element>
-      <element uuid="38f8ea61-1c56-466e-a4a0-e0c3e2a80af5" manual="true" dockArea="right">
-        <bo>
-          <seg>feature</seg>
-          <seg>sensor_status</seg>
-        </bo>
-        <position x="159.0" y="370.0"/>
-      </element>
-      <element uuid="c6f64ad3-d990-40bd-8023-0bdaea9294f6" manual="true" dockArea="right">
+      <element uuid="618078e3-0999-4fd3-ab6d-714717775ee1" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>upper_alarm_temp</seg>
         </bo>
-        <position x="122.0" y="270.0"/>
+        <position x="192.0" y="246.0"/>
       </element>
-      <element uuid="f201bf53-2096-4595-bd58-54cb0f2385ba" manual="true" dockArea="right">
+      <element uuid="92066d0e-f615-42ef-b3bd-7527e00163ae" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>upper_desired_temp</seg>
         </bo>
-        <position x="110.0" y="218.0"/>
+        <position x="180.0" y="156.0"/>
       </element>
-      <element uuid="46a78b9b-d6b8-4d6a-87ca-a0feacd8c0fe" manual="true" dockArea="right">
+      <element uuid="027e1658-c338-4171-ba86-727d4509b629" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>valid_current_temp</seg>
         </bo>
-        <position x="118.0" y="505.0"/>
+        <position x="188.0" y="518.0"/>
       </element>
       <element uuid="ae62e498-5005-4a7a-a1b2-ad0abef74aa4" manual="true">
         <bo>
           <seg>flow_specification</seg>
           <seg>enablealarmsound</seg>
         </bo>
+        <bendpoints>
+          <point x="647.0" y="341.0"/>
+          <point x="647.0" y="172.0"/>
+        </bendpoints>
       </element>
       <element uuid="8b43b270-8c92-404a-9d94-63b61d433845" manual="true">
         <bo>
@@ -513,8 +485,8 @@
         <seg>subcomponent</seg>
         <seg>operator_interface</seg>
       </bo>
-      <position x="368.0" y="138.0"/>
-      <size width="261.0" height="573.0"/>
+      <position x="368.0" y="107.0"/>
+      <size width="331.0" height="630.0"/>
     </element>
     <element uuid="7762aaae-c010-4aa6-9cf7-798213e9399c" manual="true">
       <element uuid="c319d826-fdbc-484b-af01-9276b3de224c" manual="true" dockArea="left">
@@ -523,6 +495,13 @@
           <seg>current_temp</seg>
         </bo>
         <position y="120.0"/>
+      </element>
+      <element uuid="c27469f2-a669-4d53-95f4-e0bf6de271c6" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>gostandby</seg>
+        </bo>
+        <position y="210.0"/>
       </element>
       <element uuid="7710d1a4-8ac4-4a19-aa1a-97093e9335d4" manual="true" dockArea="right">
         <bo>
@@ -536,7 +515,7 @@
           <seg>feature</seg>
           <seg>lower_desired_temp</seg>
         </bo>
-        <position y="30.0"/>
+        <position y="20.0"/>
       </element>
       <element uuid="6f038554-a026-48af-9d15-da4f809245f9" manual="true" dockArea="left">
         <bo>
@@ -550,14 +529,14 @@
           <seg>feature</seg>
           <seg>upper_desired_temp</seg>
         </bo>
-        <position y="75.0"/>
+        <position y="65.0"/>
       </element>
       <bo>
         <seg>subcomponent</seg>
         <seg>temperature_regulator</seg>
       </bo>
-      <position x="1438.0" y="218.0"/>
-      <size width="311.0" height="210.0"/>
+      <position x="1438.0" y="178.0"/>
+      <size width="311.0" height="261.0"/>
     </element>
     <element uuid="601d35ba-0542-4ba5-a52e-5bccb5b33df7" manual="true">
       <element uuid="5aa420a2-d1e7-4c91-ad58-cfae7fcc0af8" manual="true" dockArea="left">
@@ -598,7 +577,7 @@
       <seg>isolette.singlesensor_functional</seg>
     </bo>
     <position x="12.0" y="12.0"/>
-    <size width="2219.0" height="740.0"/>
+    <size width="2219.0" height="768.0"/>
   </element>
   <config type="structure" connectionPrimaryLabelsVisible="false">
     <enabledAadlProperties/>

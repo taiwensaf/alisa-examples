@@ -1,6 +1,6 @@
 system requirements IsoletteEnvironmentReqs for Isolette_Environment::Isolette_Environment.tier1 [
 	
-	requirement OE_IS_SR2_Lat for alarmResponse [
+	requirement OE_IS_SR2_Alarm_Lat for alarmResponse [
 		val NurseAlarmResponse: Time = 15 sec
 		compute ActualLatency: Time
 		compute SpecLatency : Time
@@ -11,7 +11,7 @@ system requirements IsoletteEnvironmentReqs for Isolette_Environment::Isolette_E
  		value predicate ActualLatency <= NurseAlarmResponse 
 		// validation: latency analysis
 	]
-	requirement OE_IS_SR2Air_Lat for extremeAirAlarmResponse [
+	requirement OE_IS_SR2_Air_Lat for extremeAirAlarmResponse [
 		val NurseAlarmResponse : Time = 15 sec
 		compute ActualLatency: Time
 		compute SpecLatency : Time
@@ -23,7 +23,7 @@ system requirements IsoletteEnvironmentReqs for Isolette_Environment::Isolette_E
 		// validation: latency analysis
 	]
 	
-		requirement OE_IS_P1_Lat for operatorCommandResponse [
+		requirement OE_IS_Lat_Cmd for operatorCommandResponse [
 		val MaxOperatorResponseTime : Time= 500 ms
 		compute ActualLatency: Time
 		compute SpecLatency : Time
@@ -31,6 +31,17 @@ system requirements IsoletteEnvironmentReqs for Isolette_Environment::Isolette_E
 		description "Max Operator Response Time less or equal to " MaxOperatorResponseTime ". The time an operator will tolerate between an operator request or a change in the Thermostat state and the visible response."
 		rationale "A trade study has shown that this lag should be no more than 0.5 second."
  		value predicate ActualLatency <= MaxOperatorResponseTime 
+		// validation: latency analysis
+	]
+	
+		requirement OE_IS_Lat_Control for SenseControlActuate [
+		val MaxHeatControlResponseTime : Time= 500 ms 
+		compute ActualLatency: Time
+		compute SpecLatency : Time
+		compute Mode : string
+		description "Max Heat Control Response Time less or equal to " MaxHeatControlResponseTime ". The acceptable time for the heat regulator to respond to turn off/on heater when current temperature reaches desired bounds."
+ 		value predicate ActualLatency <= MaxHeatControlResponseTime 
+ 		issues "response time is listed in table but not as identifiable requirement"
 		// validation: latency analysis
 	]
 	

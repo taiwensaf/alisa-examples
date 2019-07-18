@@ -169,23 +169,4 @@ public
 	end PowerSupply;
 
 
-	device Detect_Regulator_Failure
-		features
-			internal_failure: out data port Isolette_Data_Model::Failure_Flag;
-	end Detect_Regulator_Failure;
-
-	device implementation Detect_Regulator_Failure.impl
-	end Detect_Regulator_Failure.impl;
-
---A.5.2.4 Detect Monitor Failure Function
---this is where error models signal active threads an 
---internal thermostat monitor failure has been detected
-	device Detect_Monitor_Failure
-		features
-			internal_failure: out data port Isolette_Data_Model::Failure_Flag;
-	end Detect_Monitor_Failure;
-
-	device implementation Detect_Monitor_Failure.impl
-	end Detect_Monitor_Failure.impl;
-
 end Devices;

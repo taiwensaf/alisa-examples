@@ -119,12 +119,14 @@ public
 		flows
 			extremeAirAlarmResponse: end to end flow theAir.temp_source -> tmp -> anIncubator.extreme_air_alarm -> n2ioa -> aNurse.operator_responds_to_alarm -> n2i -> anInfant.removeFromIncubator;
 			alarmResponse: end to end flow anIncubator.raise_alarm -> n2ioa -> aNurse.operator_responds_to_alarm -> n2i -> anInfant.removeFromIncubator;
-			operatorCommandResponse: end to end flow aNurse.operator_sends_commands -> n2ioc -> anIncubator.command_response -> n2iovi -> aNurse.operator_reads_visuals {Latency => 500ms .. 500ms;};
+			operatorCommandResponse: end to end flow aNurse.operator_sends_commands -> n2ioc -> anIncubator.command_response -> n2iovi -> aNurse.operator_reads_visuals ;
+			SenseControlActuate: end to end flow theAir.temp_source -> tmp -> anIncubator.heat_control -> hs2a -> theAir.heat_flow_sink ;
 		properties
 -- recorded in reqspec. Added here for analysis without ALISA
 			Latency => 15 sec .. 15 sec applies to extremeAirAlarmResponse;
 			Latency => 15 sec .. 15 sec applies to alarmResponse;
---			Latency => 500ms .. 500ms applies to operatorCommandResponse;
+			Latency => 500ms .. 500ms applies to operatorCommandResponse;
+			Latency => 6 sec .. 6 sec applies to SenseControlActuate;
 	end Isolette_Environment.tier1;
 
 	system implementation Isolette_Environment.functional extends Isolette_Environment.tier1

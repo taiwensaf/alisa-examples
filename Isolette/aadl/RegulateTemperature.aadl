@@ -23,11 +23,19 @@ public
 			upper_desired_temp: in data port Isolette_Data_Model::upper_desired_temperature;
 					--  actual temperature from temp sensor
 			current_temp: in data port Isolette_Data_Model::MeasuredTemp{ Isolette_Properties::Validity => Valid;};
+			
+			goStandby: in event port;
 					-- ===== OUTPUTs (controlled variables)  ...based in part on Figure A.2 and Table A.6
 					-- status of regulate temperature function as reported to operator interface
 			self_check_status: out data port Isolette_Data_Model::Status;
 					-- actuation command to heater
 			heat_control: out data port Isolette_Data_Model::On_Off;
+		flows
+			regulate: flow path current_temp -> heat_control { Latency => 10 ms .. 1 sec;};
+		modes
+			normal : initial mode;
+			standby: mode;
+			stdby: normal -[goStandby]-> standby;
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ProcessingRate;
@@ -64,10 +72,10 @@ public
 	process implementation Regulate_Temperature_Pr.impl
 		subcomponents
 --thread to manage the interactions between with operator interface and the rest of the regulator process
-			manage_regulator_interface: thread Self_Check_Regulator.impl;
+			self_check_regulator: thread Self_Check_Regulator.impl in modes (normal);
 -- thread to manage the heat source.  Receives the desired range, current determine, and determines whether or not to
 --send an on/off command to the heat source
-			manage_heat_source: thread Manage_Heat_Source.impl;
+			manage_heat_source: thread Manage_Heat_Source.impl in modes (normal);
 		connections
 				-- ==== INPUT INTERFACE values to internal components ==== 		
 				-- send incoming desired temperature range to regulator interface manager
@@ -75,7 +83,7 @@ public
 			rldt: port lower_desired_temp -> manage_heat_source.lower_desired_temp;
 			ctmhs: port current_temp -> manage_heat_source.current_temp;
 					-- output regulator subsystem status to operator interface  
-			rrs: port manage_regulator_interface.regulator_status -> self_check_status;
+			rrs: port self_check_regulator.regulator_status -> self_check_status;
 					-- output on/off command to heat source
 			rhc: port manage_heat_source.heat_control -> heat_control;
 	end Regulate_Temperature_Pr.impl;
@@ -95,10 +103,17 @@ public
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ThreadPeriod;
+			Initialize_Entrypoint => classifier(Init_Self_Checker);
+			Compute_Entrypoint => classifier(Compute_Self_Checker);
 	end Self_Check_Regulator;
 
 	thread implementation Self_Check_Regulator.impl
 	end Self_Check_Regulator.impl;
+	
+	subprogram Init_Self_Checker
+	end Init_Self_Checker;
+	subprogram Compute_Self_Checker
+	end Compute_Self_Checker;
 
 
 -- ===========================================================================================================
@@ -123,6 +138,8 @@ public
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ThreadPeriod;
+			Initialize_Entrypoint => classifier(Init_MHS);
+			Compute_Entrypoint => classifier(Compute_MHS);
 	end Manage_Heat_Source;
 
 	thread implementation Manage_Heat_Source.impl
@@ -132,5 +149,10 @@ public
 			desired_temp_upper_bound_var : data Isolette_Data_Model::ValidFullDegreeFahrenheit
 			{ Data_Model::Integer_Range => 97 .. 102;};
 	end Manage_Heat_Source.impl;
+	
+	subprogram Init_MHS
+	end Init_MHS;
+	subprogram Compute_MHS
+	end Compute_MHS;
 
 end RegulateTemperature;

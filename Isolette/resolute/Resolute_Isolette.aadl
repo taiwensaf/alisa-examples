@@ -136,10 +136,6 @@ public
 	let src : aadl = source(conn);
 	let dst: aadl = destination(conn);
 	is_Consistent_RealRange(src, dst)
-		
-  	is_Type_Valid_Flag(cp: port)<=
-	** "Type of " cp " is Valid_flag" **
- 		type(cp) = Isolette_Data_Model::Valid_Flag
 
  	is_Type_On_Off(cp: port)<=
 	** "Type of " cp " is On_off" **
@@ -203,7 +199,7 @@ public
 
 	is_Triggering_EventDataPortConnection(c: connection) <=
 	** "Connection " c " messages trigger receiver" **
-	-- this causes a class cast exception in Resolute on event data ports: is_event_data_port_connection(c) and 
+	is_event_data_port_connection(c) and 
 	is_Aperiodic(destination_component(c))
 
 	is_Sampled_DataPortConnection(c: connection) <=
