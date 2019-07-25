@@ -3,4 +3,22 @@ assurance case IsoletteCase for Isolette::isolette [
 		assure IsoletteVPlan IsoletteImplVPlan
 		assure subsystem operator_interface isolette_monitor temperature_regulator temperature_sensor heat_source
 ] 
+	assurance plan SCSPlan1cpu for Isolette::isolette.SingleSensor_EmbeddedSWProcessesSingleCPUHW [
+		assure IsoletteVPlan IsoletteImplVPlan
+		assure subsystem operator_interface isolette_monitor temperature_regulator temperature_sensor heat_source
+] 
+	assurance plan SCSPlan2cpu for Isolette::isolette.SingleSensor_EmbeddedSWProcesses2CPUHW [
+		assure IsoletteVPlan IsoletteImplVPlan
+		assure subsystem operator_interface isolette_monitor temperature_regulator temperature_sensor heat_source
+] 
+	assurance plan SCSPlan2cpupower for Isolette::isolette.SingleSensor_EmbeddedSWProcesses2CPUHWPower [
+		assure IsoletteVPlan IsoletteImplVPlan
+		assure subsystem operator_interface isolette_monitor temperature_regulator temperature_sensor heat_source
+] 
+
+	assurance plan SCSPlan1threadcpu for Isolette::isolette.SingleSensor_EmbeddedSWThreadsHW1CPU [
+		assure IsoletteVPlan IsoletteImplVPlan
+		assure subsystem operator_interface isolette_monitor temperature_regulator temperature_sensor heat_source
+] 
+
 ]

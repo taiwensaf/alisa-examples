@@ -86,6 +86,8 @@ public
 			rrs: port self_check_regulator.regulator_status -> self_check_status;
 					-- output on/off command to heat source
 			rhc: port manage_heat_source.heat_control -> heat_control;
+		flows
+			regulate: flow path current_temp -> ctmhs -> manage_heat_source.regulate -> rhc -> heat_control;
 	end Regulate_Temperature_Pr.impl;
 
 -- ===========================================================================================================
@@ -135,9 +137,12 @@ public
 -- ======== OUTPUTS =======
 -- command to turn heater on/off (actuation command)
 			heat_control: out data port Isolette_Data_Model::On_Off;
+		flows
+			regulate: flow path current_temp -> heat_control;
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ThreadPeriod;
+			Latency => 10 ms .. 10 ms applies to regulate;
 			Initialize_Entrypoint => classifier(Init_MHS);
 			Compute_Entrypoint => classifier(Compute_MHS);
 	end Manage_Heat_Source;

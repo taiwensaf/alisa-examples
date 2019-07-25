@@ -21,6 +21,8 @@ property set Isolette_Constants is
 
 --rate at which CPU fails
   CPUFailureRateValue : constant aadlreal => 1.0E-6;
+--rate at which Bus fails
+  BusFailureRateValue : constant aadlreal => 1.0E-6;
 --rate at which CPU fails
   PowerSupplyFailureRateValue : constant aadlreal => 1.0E-8;
 

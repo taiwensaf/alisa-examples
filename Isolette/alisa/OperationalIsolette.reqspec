@@ -1,23 +1,22 @@
 system requirements IsoletteEnvironmentReqs for Isolette_Environment::Isolette_Environment.tier1 [
+		val NurseAlarmResponse: Time = 15 sec
 	
 	requirement OE_IS_SR2_Alarm_Lat for alarmResponse [
-		val NurseAlarmResponse: Time = 15 sec
 		compute ActualLatency: Time
 		compute SpecLatency : Time
 		compute Mode : string
 		description "The Infant should be removed from the Isolette within 15 seconds after the Current Temperature falls below or rises above the Alarm Temperature Range."
- 		category Kind.Assumption
+ 		category Kind.Assumption Quality.Latency
 // 		see goal IsoletteGoals.H1
  		value predicate ActualLatency <= NurseAlarmResponse 
 		// validation: latency analysis
 	]
 	requirement OE_IS_SR2_Air_Lat for extremeAirAlarmResponse [
-		val NurseAlarmResponse : Time = 15 sec
 		compute ActualLatency: Time
 		compute SpecLatency : Time
 		compute Mode : string
-		description "The Infant should be removed from the Isolette within 15 seconds after the Current Temperature falls below or rises above the Alarm Temperature Range."
- 		category Kind.Assumption
+		description "The Infant should be removed from the Isolette within " NurseAlarmResponse" after the Current Temperature falls below or rises above the Alarm Temperature Range."
+ 		category Kind.Assumption Quality.Latency
 // 		see goal IsoletteGoals.H1
  		value predicate ActualLatency <= NurseAlarmResponse 
 		// validation: latency analysis
@@ -31,6 +30,7 @@ system requirements IsoletteEnvironmentReqs for Isolette_Environment::Isolette_E
 		description "Max Operator Response Time less or equal to " MaxOperatorResponseTime ". The time an operator will tolerate between an operator request or a change in the Thermostat state and the visible response."
 		rationale "A trade study has shown that this lag should be no more than 0.5 second."
  		value predicate ActualLatency <= MaxOperatorResponseTime 
+ 		category Quality.Latency
 		// validation: latency analysis
 	]
 	
@@ -41,6 +41,7 @@ system requirements IsoletteEnvironmentReqs for Isolette_Environment::Isolette_E
 		compute Mode : string
 		description "Max Heat Control Response Time less or equal to " MaxHeatControlResponseTime ". The acceptable time for the heat regulator to respond to turn off/on heater when current temperature reaches desired bounds."
  		value predicate ActualLatency <= MaxHeatControlResponseTime 
+ 		category Quality.Latency
  		issues "response time is listed in table but not as identifiable requirement"
 		// validation: latency analysis
 	]

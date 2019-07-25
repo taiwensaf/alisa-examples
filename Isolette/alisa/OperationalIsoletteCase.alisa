@@ -7,7 +7,12 @@ assurance case OperationalIsoletteCase for Isolette_Environment::Isolette_Enviro
 		assure IsoletteEnvVPlan
 		assure subsystem anIncubator
 		]
-//	assurance plan OpIsoletteEmbeddedSW for Isolette_Environment::Isolette_Environment.EmbeddedSW [
-//		assure IsoletteEnvVPlan
-//		]
+	assurance plan OpIsoletteEmbeddedSW for Isolette_Environment::Isolette_Environment.EmbeddedSWTier1 [
+		assure IsoletteEnvVPlan
+		assure subsystem anIncubator
+		]
+	assurance plan OpIsoletteEmbeddedSWThreads for Isolette_Environment::Isolette_Environment.EmbeddedSWTier2 [
+		assure IsoletteEnvVPlan
+		assure subsystem anIncubator
+		]
 ]

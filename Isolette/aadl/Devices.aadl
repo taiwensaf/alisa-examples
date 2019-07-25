@@ -80,14 +80,20 @@ public
 		features
 			alarm_control: in event data port Isolette_Data_Model::On_Off;
 			alarm_sound: out feature Isolette_Data_Model::Alarm_Sound;
+			network: requires bus access PCI;
+		flows
+			makeSound: flow path alarm_control -> alarm_sound;
 		properties
-			Dispatch_Protocol => Aperiodic; -- phf
+			Dispatch_Protocol => Aperiodic; 
+			Latency => 50 ms .. 60 ms applies to makeSound;
 		annex EMV2 {**
 			use types IsoletteEM;
 			use behavior IsoletteEM::FailStop;
 			error propagations
 				alarm_sound: out propagation {AlarmError}; --{ServiceOmission, ServiceCommission};
 				-- may deliver no sound or erroneous sound
+				network: in propagation {NetworkError};
+				-- XXX no propagation from alarm to bus (electrical isolation)
 				flows
 					alarmfails: error source alarm_sound{AlarmError};
 			end propagations;
@@ -112,28 +118,60 @@ public
 			command_error: in event data port Isolette_Data_Model::Interface_Command;
 			visual_info: out feature Isolette_Data_Model::Interface_Display;
 			operator_input: in feature Isolette_Data_Model::Interface_Touch;
+			network: requires bus access PCI;
+		flows
+			showinfo: flow path lower_desired_temp ->visual_info;
+			doCommand: flow path operator_input ->touch_key_command;
 		properties
-			Dispatch_Protocol => Aperiodic; -- phf
+			Dispatch_Protocol => Aperiodic; 
+			Latency => 75 ms .. 85 ms applies to showinfo;
+			Latency => 65 ms .. 75 ms applies to doCommand;
 		annex EMV2 {**
 			use types IsoletteEM;
 			use behavior IsoletteEM::FailStop;
 			error propagations
 				visual_info: out propagation {DisplayError};
 				touch_key_command: out propagation {InterfaceError};
+				network: in propagation {NetworkError};
+				-- XXX no propagation from alarm to bus (electrical isolation)
+				flows
+					touchscreenfails: error source touch_key_command{InterfaceError};
+					displayfails: error source visual_info{DisplayError};
 			end propagations;
 			properties
 				EMV2::OccurrenceDistribution => [
 							ProbabilityValue => Isolette_Constants::InterfaceFailureRateValue;]
-							applies to failed, visual_info.DisplayError, touch_key_command.InterfaceError;
+							applies to failed, displayfails, touch_key_command;
 		**};
 	end TouchScreen;
 
 	device implementation TouchScreen.impl
 	end TouchScreen.impl;
 	
+	bus PCI
+		features
+			power: in feature;
+		annex EMV2 {**
+			use types IsoletteEM;
+			use behavior IsoletteEM::FailStop;
+			error propagations
+				bindings: out propagation {NetworkError};
+				power: in propagation {PowerSupplyError};
+				flows
+					p2n: error path power{PowerSupplyError} -> bindings{NetworkError};
+					busfail: error source bindings{NetworkError};
+			end propagations;
+			properties
+				EMV2::OccurrenceDistribution => [
+							ProbabilityValue => Isolette_Constants::BusFailureRateValue;]
+							applies to failed,busfail, bindings.NetworkError;
+		**};
+	end PCI;
+	
 	processor CPU
 		features
 			power: in feature;
+			network: requires bus access PCI;
 		annex EMV2 {**
 			use types IsoletteEM;
 			use behavior IsoletteEM::FailStop;
@@ -142,13 +180,40 @@ public
 				power: in propagation {PowerSupplyError};
 				flows
 					p2c: error path power{PowerSupplyError} -> bindings{CPUError};
+					cpufail: error source bindings{CPUError};
 			end propagations;
 			properties
 				EMV2::OccurrenceDistribution => [
 							ProbabilityValue => Isolette_Constants::CPUFailureRateValue;]
-							applies to failed, bindings.CPUError;
+							applies to failed,cpufail, bindings.CPUError;
 		**};
 	end CPU;
+	
+	system Platform
+		features
+			network: provides bus access PCI;
+			power: in feature;
+	end Platform;
+	
+	system implementation Platform.singleCPU
+		subcomponents
+			cpu1: processor CPU;
+			nw: bus PCI;
+		connections
+			c2n: bus access cpu1.network <-> nw;
+			n2ext: bus access nw <-> network;
+			p2cpu1: feature power -> cpu1.power;
+			p2network: feature power -> nw.power;
+	end Platform.singleCPU;
+	
+	system implementation Platform.DualCPU extends Platform.singleCPU
+		subcomponents
+			cpu2: processor CPU;
+		connections
+			c22n: bus access cpu2.network <-> nw;
+			p2cpu2: feature power -> cpu2.power;
+	end Platform.DualCPU;
+	
 	
 	device PowerSupply
 		features

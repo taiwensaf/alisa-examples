@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <diagram:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://osate.org/diagram" formatVersion="7">
   <element uuid="d7fd4d03-722d-4e35-b48d-a9dd4f8a3de5" manual="true">
-    <element uuid="070af908-d1a2-4e44-a8cc-7446a0ba4ff5" manual="true">
-      <element uuid="ed305a03-4701-49a9-8a53-1d2f18e28248" manual="true">
+    <element uuid="05a25b14-12ff-449d-b600-a7fcc7cd205f" manual="true">
+      <element uuid="6080d444-8a8a-4aea-8c43-2f0583ccb7af" manual="true">
         <bo>
           <seg>tag</seg>
           <seg>unidirectional</seg>
@@ -10,7 +10,7 @@
       </element>
       <bo>
         <seg>connection</seg>
-        <seg>regulate_temperature_pr_impl_new_connection</seg>
+        <seg>ctmhs</seg>
       </bo>
     </element>
     <element uuid="52c50ca1-f11c-48c4-bb40-c72e21dd068c" manual="true">
@@ -66,7 +66,14 @@
         <seg>feature</seg>
         <seg>current_temp</seg>
       </bo>
-      <position y="48.0"/>
+      <position y="68.0"/>
+    </element>
+    <element uuid="bdc39d7a-41a0-4504-9e4b-caeb6e5278d1" manual="true" dockArea="left">
+      <bo>
+        <seg>feature</seg>
+        <seg>gostandby</seg>
+      </bo>
+      <position y="167.0"/>
     </element>
     <element uuid="5f7ecc33-4d51-4c21-bd84-6b6129414e95" manual="true" dockArea="right">
       <bo>
@@ -95,6 +102,41 @@
         <seg>upper_desired_temp</seg>
       </bo>
       <position y="276.0"/>
+    </element>
+    <element uuid="3d16812e-ba22-4f38-a282-f8b8f3d76d86" manual="true">
+      <bo>
+        <seg>flow_specification</seg>
+        <seg>regulate</seg>
+      </bo>
+    </element>
+    <element uuid="c8c997de-770a-42f1-97e5-a0304c419916" manual="true">
+      <bo>
+        <seg>mode</seg>
+        <seg>normal</seg>
+      </bo>
+      <position x="103.0" y="14.0"/>
+      <size width="100.0" height="55.0"/>
+    </element>
+    <element uuid="c563eb98-5eb1-4eeb-ae00-7f6cf4ac1d9a" manual="true">
+      <bo>
+        <seg>mode</seg>
+        <seg>standby</seg>
+      </bo>
+      <position/>
+      <size width="104.0" height="35.0"/>
+    </element>
+    <element uuid="8386f5e3-5a81-42d8-bf12-b2de0d992685" manual="true">
+      <element uuid="cb998ee9-c09b-4282-bda5-61a637540a46" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>mtt</seg>
+        </bo>
+        <position x="-53.0" y="12.0"/>
+      </element>
+      <bo>
+        <seg>mt</seg>
+        <seg>stdby</seg>
+      </bo>
     </element>
     <element uuid="da18ca23-5a8b-490d-b12e-430b2e728c8a" manual="true">
       <element uuid="f9e2209c-81bc-4804-a974-efdd6ab57b8c" manual="true" dockArea="left">
@@ -132,27 +174,27 @@
       <position x="165.0" y="206.0"/>
       <size width="352.0" height="160.0"/>
     </element>
-    <element uuid="681d0b65-3c04-4046-86ad-43b57248d16b" manual="true">
-      <element uuid="6c561cd4-3858-4217-ac2b-1a59418ded00" manual="true" dockArea="right">
+    <element uuid="fa8df7d5-3817-46e0-b76c-752a23e3f254" manual="true">
+      <element uuid="c8ecd92f-9277-407a-a157-3b7f0d566fd6" manual="true" dockArea="right">
         <bo>
           <seg>feature</seg>
           <seg>regulator_status</seg>
         </bo>
-        <position x="226.0" y="30.0"/>
+        <position x="185.0" y="10.0"/>
       </element>
       <bo>
         <seg>subcomponent</seg>
-        <seg>manage_regulator_interface</seg>
+        <seg>self_check_regulator</seg>
       </bo>
-      <position x="168.0" y="38.0"/>
-      <size width="346.0" height="100.0"/>
+      <position x="238.0" y="48.0"/>
+      <size width="305.0" height="60.0"/>
     </element>
     <bo>
       <seg>classifier</seg>
       <seg>regulate_temperature_pr.impl</seg>
     </bo>
     <position x="12.0" y="12.0"/>
-    <size width="659.0" height="388.0"/>
+    <size width="659.0" height="411.0"/>
   </element>
   <config type="structure" connectionPrimaryLabelsVisible="false">
     <enabledAadlProperties/>

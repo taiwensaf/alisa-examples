@@ -271,24 +271,6 @@
       </bo>
       <position x="2011.0" y="68.0"/>
     </element>
-    <element uuid="ce5f6a9a-58fe-472c-b27a-a3333ccf6cd2" manual="true">
-      <bo>
-        <seg>flow_specification</seg>
-        <seg>command_response</seg>
-      </bo>
-    </element>
-    <element uuid="adddea3e-4e7b-4501-81a6-15bf7d6f2e3b" manual="true">
-      <bo>
-        <seg>flow_specification</seg>
-        <seg>extreme_air_alarm</seg>
-      </bo>
-    </element>
-    <element uuid="eb0a918c-5771-4bd4-8c2b-ad173daa23e5" manual="true">
-      <bo>
-        <seg>flow_specification</seg>
-        <seg>raise_alarm</seg>
-      </bo>
-    </element>
     <element uuid="ac2f19b3-10f2-44cb-aefc-17c170178800" manual="true">
       <element uuid="d39fa14f-b6a3-4e52-bf65-e242a0a49b86" manual="true" dockArea="left">
         <bo>
@@ -385,6 +367,12 @@
         <bo>
           <seg>flow_specification</seg>
           <seg>detecttempoor</seg>
+        </bo>
+      </element>
+      <element uuid="e3bb2a4a-ce3b-4ccc-9f07-5cce9d7077ca" manual="true">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>validatect</seg>
         </bo>
       </element>
       <bo>
@@ -530,6 +518,12 @@
           <seg>upper_desired_temp</seg>
         </bo>
         <position y="65.0"/>
+      </element>
+      <element uuid="e3675097-af45-4c03-a18f-a7cf69895aab" manual="true">
+        <bo>
+          <seg>flow_specification</seg>
+          <seg>regulate</seg>
+        </bo>
       </element>
       <bo>
         <seg>subcomponent</seg>

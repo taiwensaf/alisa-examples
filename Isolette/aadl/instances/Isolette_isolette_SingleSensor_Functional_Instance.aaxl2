@@ -710,6 +710,12 @@
     <featureInstance name="alarm_sound" category="abstractFeature" direction="out">
       <feature xsi:type="aadl2:AbstractFeature" href="../OperatorInterface.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAbstractFeature.2"/>
     </featureInstance>
+    <featureInstance name="power" category="abstractFeature">
+      <feature xsi:type="aadl2:AbstractFeature" href="../OperatorInterface.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedAbstractFeature.3"/>
+    </featureInstance>
+    <featureInstance name="network" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../OperatorInterface.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedBusAccess.0"/>
+    </featureInstance>
     <featureInstance name="isolette_status">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
         <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Data_Representation"/>
@@ -934,7 +940,7 @@
       </ownedPropertyAssociation>
       <feature xsi:type="aadl2:DataPort" href="../OperatorInterface.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.6"/>
     </featureInstance>
-    <flowSpecification name="enableAlarmSound" source="//@componentInstance.4/@featureInstance.5" destination="//@componentInstance.4/@featureInstance.2">
+    <flowSpecification name="enableAlarmSound" source="//@componentInstance.4/@featureInstance.7" destination="//@componentInstance.4/@featureInstance.2">
       <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
         <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Latency"/>
         <ownedValue>
@@ -1065,8 +1071,8 @@
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.7"/>
     </connectionReference>
   </connectionInstance>
-  <connectionInstance name="isolette_monitor.isolette_status -> operator_interface.isolette_status" complete="true" kind="portConnection" destination="//@componentInstance.4/@featureInstance.3" source="//@componentInstance.1/@featureInstance.5">
-    <connectionReference context="/" source="//@componentInstance.1/@featureInstance.5" destination="//@componentInstance.4/@featureInstance.3">
+  <connectionInstance name="isolette_monitor.isolette_status -> operator_interface.isolette_status" complete="true" kind="portConnection" destination="//@componentInstance.4/@featureInstance.5" source="//@componentInstance.1/@featureInstance.5">
+    <connectionReference context="/" source="//@componentInstance.1/@featureInstance.5" destination="//@componentInstance.4/@featureInstance.5">
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.9"/>
     </connectionReference>
   </connectionInstance>
@@ -1075,12 +1081,21 @@
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.4"/>
     </connectionReference>
   </connectionInstance>
-  <connectionInstance name="isolette_monitor.valid_current_temp -> operator_interface.valid_current_temp" complete="true" kind="portConnection" destination="//@componentInstance.4/@featureInstance.4" source="//@componentInstance.1/@featureInstance.6">
-    <connectionReference context="/" source="//@componentInstance.1/@featureInstance.6" destination="//@componentInstance.4/@featureInstance.4">
+  <connectionInstance name="isolette_monitor.valid_current_temp -> operator_interface.valid_current_temp" complete="true" kind="portConnection" destination="//@componentInstance.4/@featureInstance.6" source="//@componentInstance.1/@featureInstance.6">
+    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+      <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Communication_Properties.aadl#Communication_Properties.Timing"/>
+      <ownedValue>
+        <ownedValue xsi:type="aadl2:NamedValue">
+          <namedValue xsi:type="aadl2:EnumerationLiteral" href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Communication_Properties.aadl#/0/@ownedProperty.7/@ownedPropertyType/@ownedLiteral.1"/>
+        </ownedValue>
+      </ownedValue>
+      <propertyAssociation href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.10/@ownedPropertyAssociation.0"/>
+    </ownedPropertyAssociation>
+    <connectionReference context="/" source="//@componentInstance.1/@featureInstance.6" destination="//@componentInstance.4/@featureInstance.6">
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.10"/>
     </connectionReference>
   </connectionInstance>
-  <connectionInstance name="isolette_monitor.alarm_control -> operator_interface.alarm_control" complete="true" kind="portConnection" destination="//@componentInstance.4/@featureInstance.5" source="//@componentInstance.1/@featureInstance.7">
+  <connectionInstance name="isolette_monitor.alarm_control -> operator_interface.alarm_control" complete="true" kind="portConnection" destination="//@componentInstance.4/@featureInstance.7" source="//@componentInstance.1/@featureInstance.7">
     <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
       <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Deployment_Properties.aadl#Deployment_Properties.Required_Connection_Quality_Of_Service"/>
       <ownedValue>
@@ -1092,7 +1107,7 @@
       </ownedValue>
       <propertyAssociation href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPropertyAssociation.0"/>
     </ownedPropertyAssociation>
-    <connectionReference context="/" source="//@componentInstance.1/@featureInstance.7" destination="//@componentInstance.4/@featureInstance.5">
+    <connectionReference context="/" source="//@componentInstance.1/@featureInstance.7" destination="//@componentInstance.4/@featureInstance.7">
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.11"/>
     </connectionReference>
   </connectionInstance>
@@ -1130,7 +1145,7 @@
       <connection xsi:type="aadl2:FeatureConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedFeatureConnection.3"/>
     </connectionReference>
   </connectionInstance>
-  <connectionInstance name="operator_interface.lower_desired_temp -> temperature_regulator.lower_desired_temp" complete="true" kind="portConnection" destination="//@componentInstance.0/@featureInstance.0" source="//@componentInstance.4/@featureInstance.6">
+  <connectionInstance name="operator_interface.lower_desired_temp -> temperature_regulator.lower_desired_temp" complete="true" kind="portConnection" destination="//@componentInstance.0/@featureInstance.0" source="//@componentInstance.4/@featureInstance.8">
     <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
       <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Modeling_Properties.aadl#Modeling_Properties.Classifier_Matching_Rule"/>
       <ownedValue>
@@ -1140,11 +1155,11 @@
       </ownedValue>
       <propertyAssociation href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.1/@ownedPropertyAssociation.0"/>
     </ownedPropertyAssociation>
-    <connectionReference context="/" source="//@componentInstance.4/@featureInstance.6" destination="//@componentInstance.0/@featureInstance.0">
+    <connectionReference context="/" source="//@componentInstance.4/@featureInstance.8" destination="//@componentInstance.0/@featureInstance.0">
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.1"/>
     </connectionReference>
   </connectionInstance>
-  <connectionInstance name="operator_interface.upper_desired_temp -> temperature_regulator.upper_desired_temp" complete="true" kind="portConnection" destination="//@componentInstance.0/@featureInstance.1" source="//@componentInstance.4/@featureInstance.7">
+  <connectionInstance name="operator_interface.upper_desired_temp -> temperature_regulator.upper_desired_temp" complete="true" kind="portConnection" destination="//@componentInstance.0/@featureInstance.1" source="//@componentInstance.4/@featureInstance.9">
     <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
       <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Modeling_Properties.aadl#Modeling_Properties.Classifier_Matching_Rule"/>
       <ownedValue>
@@ -1154,11 +1169,11 @@
       </ownedValue>
       <propertyAssociation href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.2/@ownedPropertyAssociation.0"/>
     </ownedPropertyAssociation>
-    <connectionReference context="/" source="//@componentInstance.4/@featureInstance.7" destination="//@componentInstance.0/@featureInstance.1">
+    <connectionReference context="/" source="//@componentInstance.4/@featureInstance.9" destination="//@componentInstance.0/@featureInstance.1">
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.2"/>
     </connectionReference>
   </connectionInstance>
-  <connectionInstance name="operator_interface.lower_alarm_temp -> isolette_monitor.lower_alarm_temp" complete="true" kind="portConnection" destination="//@componentInstance.1/@featureInstance.1" source="//@componentInstance.4/@featureInstance.8">
+  <connectionInstance name="operator_interface.lower_alarm_temp -> isolette_monitor.lower_alarm_temp" complete="true" kind="portConnection" destination="//@componentInstance.1/@featureInstance.1" source="//@componentInstance.4/@featureInstance.10">
     <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
       <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Modeling_Properties.aadl#Modeling_Properties.Classifier_Matching_Rule"/>
       <ownedValue>
@@ -1168,11 +1183,11 @@
       </ownedValue>
       <propertyAssociation href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.5/@ownedPropertyAssociation.0"/>
     </ownedPropertyAssociation>
-    <connectionReference context="/" source="//@componentInstance.4/@featureInstance.8" destination="//@componentInstance.1/@featureInstance.1">
+    <connectionReference context="/" source="//@componentInstance.4/@featureInstance.10" destination="//@componentInstance.1/@featureInstance.1">
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.5"/>
     </connectionReference>
   </connectionInstance>
-  <connectionInstance name="operator_interface.upper_alarm_temp -> isolette_monitor.upper_alarm_temp" complete="true" kind="portConnection" destination="//@componentInstance.1/@featureInstance.2" source="//@componentInstance.4/@featureInstance.9">
+  <connectionInstance name="operator_interface.upper_alarm_temp -> isolette_monitor.upper_alarm_temp" complete="true" kind="portConnection" destination="//@componentInstance.1/@featureInstance.2" source="//@componentInstance.4/@featureInstance.11">
     <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
       <property href="platform:/plugin/org.osate.workspace/resources/properties/Predeclared_Property_Sets/Modeling_Properties.aadl#Modeling_Properties.Classifier_Matching_Rule"/>
       <ownedValue>
@@ -1182,7 +1197,7 @@
       </ownedValue>
       <propertyAssociation href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.6/@ownedPropertyAssociation.0"/>
     </ownedPropertyAssociation>
-    <connectionReference context="/" source="//@componentInstance.4/@featureInstance.9" destination="//@componentInstance.1/@featureInstance.2">
+    <connectionReference context="/" source="//@componentInstance.4/@featureInstance.11" destination="//@componentInstance.1/@featureInstance.2">
       <connection xsi:type="aadl2:PortConnection" href="../Isolette.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.6"/>
     </connectionReference>
   </connectionInstance>

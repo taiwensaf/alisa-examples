@@ -101,10 +101,13 @@ public
 			mis: port manage_isolette_status.isolette_status -> isolette_status;
 			mhc: port monitor_heat_control -> manage_isolette_status.monitor_heat_control;
 			mac: port manage_alarm.alarm_control -> manage_isolette_status.monitor_alarm_control;
-			vctma: port validate_current_temp.valid_current_temp -> manage_alarm.current_temp;
-			vsmi: port validate_current_temp.temp_validation_status -> manage_isolette_status.temp_validation_status;
+			vctma: port validate_current_temp.valid_current_temp -> manage_alarm.current_temp { Timing => Immediate;};
+			vsmi: port validate_current_temp.temp_validation_status -> manage_isolette_status.temp_validation_status{ Timing => Immediate;};
 			rscksmi: port regulator_selfcheck_status -> manage_isolette_status.regulator_selfcheck_status;
 			gostdby: port manage_isolette_status.go_Standby -> go_Standby;
+		flows
+			detectTempOOR: flow path  current_temp -> mctv -> validate_current_temp.validate -> vctma -> manage_alarm.detectAlarm -> malrm -> alarm_control;
+			validateCT: flow path current_temp -> mctv -> validate_current_temp.validate -> vcta -> valid_current_temp ;
 	end Monitor_Isolette_pr.impl;
 
 -- ===========================================================================================================
@@ -155,9 +158,12 @@ public
 					-- ======== OUTPUTS =======
 -- command to turn alarm on/off (actuation command) sent repeatedly 
 			alarm_control: out data port Isolette_Data_Model::On_Off;
+		flows
+			detectAlarm: flow path current_temp -> alarm_control;
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ThreadPeriod;
+			Latency => 10 ms .. 10 ms applies to detectAlarm;
 	end Manage_Alarm;
 
 	thread implementation Manage_Alarm.impl
@@ -176,9 +182,12 @@ public
 			valid_current_temp: out data port Isolette_Data_Model::MeasuredTemp {
 						Isolette_Properties::Validity => Valid;};
 			temp_validation_status: out data port Isolette_Data_Model::Status;
+		flows
+			validate: flow path current_temp -> valid_current_temp;
 		properties
 			Dispatch_Protocol => Periodic;
 			Period => Isolette_Constants::ThreadPeriod;
+			Latency => 10 ms .. 10 ms applies to validate;
 	end Validate_Temp;
 
 	thread implementation Validate_Temp.impl
