@@ -36,7 +36,7 @@ public
 			Stack_Size => 25 Kbyte;
 			Data_size => 250 KByte; -- for logging
 			Period => 20 ms;
-			Compute_Execution_Time => 5 ms .. 7 ms;
+			Compute_Execution_Time => 5 ms .. 77 ms;
 	end filterApp;
 
 	thread controlApp
@@ -47,7 +47,7 @@ public
 			Stack_Size => 25 Kbyte;
 			Data_size => 50 KByte; -- for control state
 			Period => 20 ms;
-			--   Compute_Execution_Time => 2 ms .. 6 ms; intentionally left out
+			Compute_Execution_Time => 2 ms .. 6 ms; 
 
 	end controlApp;
 
@@ -94,7 +94,7 @@ public
 			filter: thread filterApp;
 			control: thread controlApp;
 		connections
-			filtertocontrol: port filter.sensorfiltered -> control.sensorfiltered;
+			filtertocontrol: port filter.sensorfiltered -> control.sensorfiltered { Timing => immediate;};
 			outgoingCmd: port control.actuate -> controlout;
 			incomingSignal: port samplingin -> filter.sensorraw;
 		flows
@@ -119,7 +119,7 @@ public
 			iop: process IOP;
 			app: process APP;
 		connections
-			sampledData: port iop.senseout -> app.samplingin;
+			sampledData: port iop.senseout -> app.samplingin{Timing=> immediate;};
 			controlData: port app.controlout -> iop.controlin;
 			actuatorcmdxfer: port iop.actuatorout -> actuatorOut;
 			signal1xfer: port sensor1in -> iop.sensorin;

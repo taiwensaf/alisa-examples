@@ -68,8 +68,8 @@ with Physical;
 		flows
 			sensortoactuatorresponse: end to end flow sensor1.sensorreading -> Sensor1Xfer ->
 					dcs.sensorprocessing -> ActuatorCmdXfer -> actuator.actuatoraction;
---		properties
---			latency => 12 ms .. 50 ms applies to sensortoactuatorresponse;
+		properties
+			latency => 12 ms .. 50 ms applies to sensortoactuatorresponse;
 	end SCS.tier0;
 
 	system implementation SCS.tier1 extends SCS.tier0
