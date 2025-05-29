@@ -1,31 +1,36 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="27.0.4">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="27.1.0">
   <diagram name="第 1 页" id="I-FHmJqJn4Lj6oNasydo">
-    <mxGraphModel dx="1554" dy="896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1295" dy="747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="Ne2g3-kz1IsfRp00sByH-3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+        <mxCell id="Ne2g3-kz1IsfRp00sByH-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="24" y="20" width="780" height="590" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-1" value="&lt;font style=&quot;color: rgb(0, 0, 0); font-size: 15px;&quot;&gt;AADL模型实例化信息&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;align=center;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-          <mxGeometry x="80" y="80" width="130" height="200" as="geometry" />
+        <mxCell id="DjZN2qQ4LFaa7JWo_ivs-10" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="50" y="70" width="430" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-1" value="&lt;font style=&quot;color: rgb(0, 0, 0); font-size: 20px;&quot;&gt;&lt;b&gt;AADL模型实例化信息&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;align=center;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="100" y="80" width="130" height="170" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-2" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="210" y="164" as="sourcePoint" />
+            <mxPoint x="230" y="164" as="sourcePoint" />
             <mxPoint x="320" y="164" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-4" value="信息提取" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="FVaBGFV1bEwPQXF_SMrs-2" vertex="1" connectable="0">
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-4" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;信息提取&lt;/font&gt;&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="FVaBGFV1bEwPQXF_SMrs-2" vertex="1" connectable="0">
           <mxGeometry x="-0.4721" y="6" relative="1" as="geometry">
             <mxPoint x="11" y="-8" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-5" value="&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;FMEA相关信息&lt;/font&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;JSON格式&lt;/span&gt;&lt;/div&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-          <mxGeometry x="320" y="130" width="120" height="60" as="geometry" />
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-5" value="&lt;div&gt;&lt;b&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;&lt;font style=&quot;&quot;&gt;FMEA相关信息&lt;/font&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;JSON格式&lt;/span&gt;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="320" y="140" width="140" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-6" value="安全关键领域RAG系统" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-          <mxGeometry x="550" y="140" width="200" height="270" as="geometry" />
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-6" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;安全关键领域RAG系统&lt;/font&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="540" y="140" width="210" height="270" as="geometry">
+            <mxRectangle x="550" y="140" width="200" height="30" as="alternateBounds" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="FVaBGFV1bEwPQXF_SMrs-6" target="FVaBGFV1bEwPQXF_SMrs-10" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -35,10 +40,10 @@
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="FVaBGFV1bEwPQXF_SMrs-6" source="FVaBGFV1bEwPQXF_SMrs-10" target="FVaBGFV1bEwPQXF_SMrs-13" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-10" value="安全关键领域知识检索" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="FVaBGFV1bEwPQXF_SMrs-6" vertex="1">
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-10" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;安全关键领域知识检索&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="FVaBGFV1bEwPQXF_SMrs-6" vertex="1">
           <mxGeometry x="27.5" y="130" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-13" value="安全关键领域相关知识" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="FVaBGFV1bEwPQXF_SMrs-6" vertex="1">
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-13" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;安全关键领域相关知识&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="FVaBGFV1bEwPQXF_SMrs-6" vertex="1">
           <mxGeometry x="27.5" y="210" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-15" value="问题检索" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="FVaBGFV1bEwPQXF_SMrs-6" vertex="1">
@@ -47,14 +52,14 @@
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-16" value="知识整合" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="FVaBGFV1bEwPQXF_SMrs-6" vertex="1">
           <mxGeometry x="105" y="180" width="70" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-24" value="&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;安全关键领域知识库搭建&lt;/span&gt;" style="shape=datastore;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="FVaBGFV1bEwPQXF_SMrs-6" vertex="1">
-          <mxGeometry x="22" y="40" width="137.5" height="60" as="geometry" />
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-24" value="&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;&lt;b&gt;安全关键领域知识库搭建&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;" style="shape=datastore;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="FVaBGFV1bEwPQXF_SMrs-6" vertex="1">
+          <mxGeometry x="22" y="40" width="148" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-23" value="&lt;ul style=&quot;color: rgb(51, 51, 51); line-height: 2.4px;&quot;&gt;&lt;li&gt;name.&lt;/li&gt;&lt;li&gt;&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;; line-height: 2.4px;&quot;&gt;category&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;; background-color: transparent; color: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));&quot;&gt;.....&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;align=left;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-          <mxGeometry x="85" y="170" width="120" height="70" as="geometry" />
+          <mxGeometry x="102.5" y="160" width="120" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-25" value="基于思维链的FMEA提示框架" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="300" y="250" width="160" height="168" as="geometry">
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-25" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;&lt;b&gt;基于思维链的FMEA提示框架&lt;/b&gt;&lt;/font&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="300" y="270" width="160" height="168" as="geometry">
             <mxRectangle x="300" y="270" width="220" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -65,12 +70,12 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-39" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.72;dx=17.8;direction=south;notch=0;" parent="1" vertex="1">
-          <mxGeometry x="370" y="190" width="20" height="60" as="geometry" />
+          <mxGeometry x="375" y="200" width="20" height="70" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-42" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.62;dx=39.67;flipH=1;notch=0;" parent="1" vertex="1">
           <mxGeometry x="464" y="363" width="110" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-48" value="&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;相关失效文本&lt;/font&gt;&lt;/span&gt;&lt;div style=&quot;&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; text-wrap-mode: nowrap;&quot;&gt;安全标准&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; text-wrap-mode: nowrap;&quot;&gt;历史故障案例&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; text-wrap-mode: nowrap;&quot;&gt;.........&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;align=left;fillColor=#b0e3e6;strokeColor=#0e8088;" parent="1" vertex="1">
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-48" value="&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;&lt;b&gt;相关失效文本&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;div style=&quot;&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; text-wrap-mode: nowrap;&quot;&gt;安全标准&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; text-wrap-mode: nowrap;&quot;&gt;历史故障案例&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; text-wrap-mode: nowrap;&quot;&gt;.........&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;align=left;fillColor=#b0e3e6;strokeColor=#0e8088;" parent="1" vertex="1">
           <mxGeometry x="67.5" y="300" width="155" height="150" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-51" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.66;dx=26.8;notch=0;" parent="1" vertex="1">
@@ -79,20 +84,32 @@
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-52" value="&lt;font style=&quot;font-size: 21px;&quot;&gt;LLM&lt;/font&gt;" style="ellipse;shape=doubleEllipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#b1ddf0;strokeColor=#10739e;" parent="1" vertex="1">
           <mxGeometry x="340" y="480" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-53" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;JSON格式的&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;FMEA报告&lt;/font&gt;&lt;/div&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-53" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;JSON格式的&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;FMEA报告&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="470" y="485" width="104" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="FVaBGFV1bEwPQXF_SMrs-57" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;AADL模型EMV2附件更新&lt;/font&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="FVaBGFV1bEwPQXF_SMrs-57" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;AADL模型EMV2附件更新&lt;/b&gt;&lt;/font&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="640" y="487" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-59" value="" style="shape=singleArrow;direction=south;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="365" y="420" width="30" height="60" as="geometry" />
+          <mxGeometry x="365" y="440" width="30" height="40" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-63" value="" style="shape=singleArrow;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="576" y="503.75" width="64" height="27.5" as="geometry" />
         </mxCell>
         <mxCell id="FVaBGFV1bEwPQXF_SMrs-68" value="" style="shape=singleArrow;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="420" y="506.25" width="50" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="DjZN2qQ4LFaa7JWo_ivs-11" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;1&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="410" y="215" width="35" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="DjZN2qQ4LFaa7JWo_ivs-12" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;2&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="510" y="333" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DjZN2qQ4LFaa7JWo_ivs-13" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;3&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="397.5" y="438" width="33" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="DjZN2qQ4LFaa7JWo_ivs-14" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;4&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="591.5" y="470.75" width="33" height="33" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
